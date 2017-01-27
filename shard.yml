@@ -1,0 +1,9 @@
+name: raven
+version: 0.1.0
+
+authors:
+  - Sijawusz Pur Rahnama <sija@sija.pl>
+
+crystal: 0.20.5
+
+license: MIT
