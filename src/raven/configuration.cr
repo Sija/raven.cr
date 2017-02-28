@@ -26,10 +26,10 @@ module Raven
     # Directories to be recognized as part of your app. e.g. if you
     # have an `engines` dir at the root of your project, you may want
     # to set this to something like `/(src|engines)/`
-    property app_dirs_pattern : Regex { /src/i }
+    property app_dirs_pattern : Regex { /src/ }
 
     # FIXME
-    property in_app_pattern : Regex { /^(#{SRC_PATH}\/)#{app_dirs_pattern}/ }
+    property in_app_pattern : Regex { /^(#{SRC_PATH}\/)?(#{app_dirs_pattern})/ }
 
     # Provide an object that responds to `call` to send events asynchronously.
     #
