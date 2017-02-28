@@ -4,6 +4,11 @@ version: 0.1.0
 authors:
   - Sijawusz Pur Rahnama <sija@sija.pl>
 
-crystal: 0.20.5
+dependencies:
+  any_hash:
+    github: sija/any_hash.cr
+    branch: master
+
+crystal: 0.21.0
 
 license: MIT
