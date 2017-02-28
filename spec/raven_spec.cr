@@ -1,9 +1,9 @@
 require "./spec_helper"
 
 describe Raven do
-  # TODO: Write tests
-
-  it "works" do
-    false.should eq(true)
+  context ".instance" do
+    it "is set" do
+      Raven.instance.should be_a(Raven::Instance)
+    end
   end
 end
