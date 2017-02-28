@@ -123,6 +123,7 @@ For more information, see [Context](https://docs.sentry.io/clients/ruby/context/
 - [x] Breadcrumbs
 - [ ] Integrations (Kemal, Sidekiq)
 - [ ] Async
+- [ ] Tests
 
 ## Development
 

@@ -54,11 +54,17 @@ module Raven
     property environments : Array(String)
 
     # Logger "progname"s to exclude from breadcrumbs.
+    #
+    # Defaults to `[Raven::Logger::PROGNAME]`.
+    #
+    # NOTE: You should probably append to this rather than overwrite it.
     property exclude_loggers : Array(String)
 
     # Array of exception classes that should never be sent.
+    #
     # See `IGNORE_DEFAULT`.
-    # You should probably append to this rather than overwrite it.
+    #
+    # NOTE: You should probably append to this rather than overwrite it.
     property excluded_exceptions : Array(String)
 
     # DSN component - set automatically if DSN provided.
@@ -271,7 +277,7 @@ module Raven
 
     private def capture_in_current_environment?
       return true unless environments.any? && !environments.includes?(@current_environment)
-      @errors << "Not configured to send/capture in environment '#{current_environment}'"
+      @errors << "Not configured to send/capture in environment '#{@current_environment}'"
       false
     end
 
