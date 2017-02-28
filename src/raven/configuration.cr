@@ -4,7 +4,7 @@ require "json"
 module Raven
   class Configuration
     {% begin %}
-    SRC_PATH = {{ `pwd`.strip.stringify }}
+    SRC_PATH = {{ flag?(:debug) ? `pwd`.strip.stringify : nil }}
     {% end %}
 
     # Array of exception classes that should never be sent.

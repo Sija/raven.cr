@@ -15,7 +15,8 @@ module Raven
       property? in_app : Bool?
 
       def under_src_path?
-        abs_path.try &.starts_with?(Configuration::SRC_PATH)
+        return unless src_path = Configuration::SRC_PATH
+        abs_path.try &.starts_with?(src_path)
       end
 
       def filename
