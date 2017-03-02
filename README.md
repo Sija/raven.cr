@@ -119,7 +119,7 @@ For more information, see [Context](https://docs.sentry.io/clients/ruby/context/
 - [ ] Exponential backoff in case of connection error
 - [x] Interfaces
 - [x] Connection transports
-- [ ] Processors
+- [x] Processors
 - [x] Breadcrumbs
 - [x] Integrations (Kemal, Sidekiq)
 - [ ] Async

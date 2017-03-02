@@ -19,11 +19,11 @@ module Raven
     # before passing to other processors.
     DEFAULT_PROCESSORS = [
       Processor::RemoveCircularReferences,
-      # Processor::UTF8Conversion,
-      Processor::Cookies,
-      Processor::PostData,
-      Processor::HTTPHeaders,
       # Processor::RemoveStacktrace,
+      # Processor::Cookies,
+      # Processor::PostData,
+      Processor::HTTPHeaders,
+      # Processor::UTF8Conversion,
       Processor::SanitizeData,
       Processor::Compact,
     ] of Processor.class
