@@ -19,17 +19,29 @@ module Raven
         abs_path.try &.starts_with?(src_path)
       end
 
-      def filename
+      def relative_path
         return nil unless path = abs_path
+        return path unless path.starts_with?('/')
+        return nil unless under_src_path?
+        if prefix = Configuration::SRC_PATH
+          path[prefix.chomp(File::SEPARATOR).size + 1..-1]
+        end
+      end
 
-        prefix = nil
-        prefix = Configuration::SRC_PATH if under_src_path?
-        prefix ? path[prefix.to_s.chomp(File::SEPARATOR).size + 1..-1] : path
+      def filename
+        relative_path
+      end
+
+      def package
+        relative_path.try &.match(Raven.configuration.modules_path_pattern).try do |match|
+          match["name"]
+        end
       end
 
       def to_hash
         data = super
         data[:filename] = filename
+        data[:package] = package
         data.to_h
       end
     end

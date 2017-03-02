@@ -31,6 +31,10 @@ module Raven
     # to set this to something like `/(src|engines)/`
     property app_dirs_pattern = /src/
 
+    # Path pattern matching directories to be recognized as your app modules.
+    # Defaults to standard Shards setup (`lib/shard-name/...`).
+    property modules_path_pattern = %r{^lib/(?<name>[^/]+)}
+
     # `Regex` pattern matched against `Backtrace::Line#file`.
     property in_app_pattern : Regex { /^(#{SRC_PATH}\/)?(#{app_dirs_pattern})/ }
 
