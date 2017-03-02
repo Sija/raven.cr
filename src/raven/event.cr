@@ -70,8 +70,8 @@ module Raven
       # options.reverse_merge!(exception_context)
 
       configuration = options[:configuration]? || Raven.configuration
+      # Try to prevent error reporting loops
       if exc.is_a?(Raven::Error)
-        # Try to prevent error reporting loops
         configuration.logger.debug "Refusing to capture Raven error: #{exc.inspect}"
         return
       end
@@ -80,10 +80,7 @@ module Raven
         return
       end
 
-      # FIXME: new(options)
-      new.tap do |event|
-        event.configuration = configuration
-        event.level = options[:level]?
+      new(**options).tap do |event|
         # Messages limited to 10kb
         event.message = "#{exc.class}: #{exc.message}".byte_slice(0, 9_999)
 
@@ -94,20 +91,11 @@ module Raven
     end
 
     def self.from(message : String, **options)
-      configuration = options[:configuration]? || Raven.configuration
       # Messages limited to 10kb
       message = message.byte_slice(0, 9_999)
 
-      # FIXME: new(options)
-      new.tap do |event|
-        event.configuration = configuration
-        event.level = options[:level]?
+      new(**options).tap do |event|
         event.message = {message, options[:message_params]?}
-        if backtrace = options[:backtrace]?
-          event.interface :stacktrace do |iface|
-            stacktrace_interface_from iface.as(Interface::Stacktrace), event, backtrace
-          end
-        end
       end
     end
 

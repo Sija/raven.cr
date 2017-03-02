@@ -106,19 +106,14 @@ module Raven
         logger.debug "#{obj} excluded from capture: #{configuration.error_messages}"
         return false
       end
-
-      # FIXME
-      # options[:configuration] = configuration
-      # options[:context] = context
       if (event = Event.from(obj, configuration: configuration, context: context))
+        event.initialize_with **options
         yield event
         if cb = configuration.async
           begin
-            # We have to convert to a JSON-like hash, because background job
-            # processors may not like weird types in the event hash
             cb.call(event)
           rescue ex
-            logger.error "async event sending failed: #{ex.message}"
+            logger.error "Async event sending failed: #{ex.message}"
             send_event(event)
           end
         else
