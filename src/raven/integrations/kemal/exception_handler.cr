@@ -30,6 +30,7 @@ module Raven
       rescue ex
         Raven.capture(ex) do |event|
           request = context.request
+          event.logger ||= "kemal"
           event.interface :http,
             headers:      headers_to_hash(request.headers),
             method:       request.method.upcase,
