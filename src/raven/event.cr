@@ -60,7 +60,6 @@ module Raven
     property context : Context
     property configuration : Configuration
     property breadcrumbs : BreadcrumbBuffer
-    property backtrace : Backtrace?
 
     any_json_property :contexts, :user, :tags, :extra
 
@@ -121,7 +120,7 @@ module Raven
           iface.module = e.class.to_s.split("::")[0...-1].join("::")
 
           iface.stacktrace =
-            if e.backtrace && !backtraces.includes?(e.backtrace.object_id)
+            if e.backtrace? && !backtraces.includes?(e.backtrace.object_id)
               backtraces << e.backtrace.object_id
               Interface::Stacktrace.new do |stacktrace|
                 stacktrace_interface_from stacktrace, event, e.backtrace
@@ -137,14 +136,13 @@ module Raven
 
       backtrace = Backtrace.parse(backtrace)
       backtrace.lines.reverse_each do |line|
-        frame = Interface::Stacktrace::Frame.new
-        frame.abs_path = line.file
-        frame.function = line.method
-        frame.lineno = line.number
-        frame.colno = line.column
-        frame.in_app = line.in_app?
-
-        iface.frames << frame
+        iface.frames << Interface::Stacktrace::Frame.new.tap do |frame|
+          frame.abs_path = line.file
+          frame.function = line.method
+          frame.lineno = line.number
+          frame.colno = line.column
+          frame.in_app = line.in_app?
+        end
       end
 
       event.culprit = get_culprit(iface.frames)
