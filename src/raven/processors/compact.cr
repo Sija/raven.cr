@@ -1,9 +1,7 @@
 module Raven
   class Processor::Compact < Processor
     def process(data)
-      if data.responds_to? :empty?
-        return nil if data.empty?
-      end
+      return if data.responds_to?(:empty?) && data.empty?
       case data
       when AnyHash::JSON
         data.each do |k, v|

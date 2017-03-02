@@ -47,7 +47,7 @@ module Raven
               crumb.type = Breadcrumb::Type::HTTP
               crumb.category = "kemal.request"
               crumb.data = {
-                method:      context.request.method,
+                method:      context.request.method.upcase,
                 url:         Kemal.build_request_url(context.request),
                 status_code: context.response.status_code,
                 elapsed:     elapsed_text(elapsed),

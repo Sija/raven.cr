@@ -73,11 +73,11 @@ module Raven
       if exc.is_a?(Raven::Error)
         # Try to prevent error reporting loops
         configuration.logger.debug "Refusing to capture Raven error: #{exc.inspect}"
-        return nil
+        return
       end
       if configuration.excluded_exceptions.includes?(exc.class.name)
         configuration.logger.debug "User excluded error: #{exc.inspect}"
-        return nil
+        return
       end
 
       # FIXME: new(options)

@@ -20,9 +20,9 @@ module Raven
       end
 
       def relative_path
-        return nil unless path = abs_path
+        return unless path = abs_path
         return path unless path.starts_with?('/')
-        return nil unless under_src_path?
+        return unless under_src_path?
         if prefix = Configuration::SRC_PATH
           path[prefix.chomp(File::SEPARATOR).size + 1..-1]
         end

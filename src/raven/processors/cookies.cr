@@ -6,7 +6,7 @@ module Raven
 
       if req = data[:request]?.as?(Hash).try(&.to_any_json)
         req[:cookies] = nil if req[:cookies]?
-        if req[:headers]? && req[:headers, "Cookie"]?
+        if req[:headers, "Cookie"]?
           req[:headers, "Cookie"] = nil
         end
       end

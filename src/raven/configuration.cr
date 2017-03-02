@@ -57,7 +57,7 @@ module Raven
 
     # Encoding type for event bodies.
     #
-    # FIXME: switch to `Encoding::GZIP` after Crystal v0.21.0
+    # TODO: switch to `Encoding::GZIP` after Crystal v0.21.0
     property encoding : Encoding = Encoding::JSON
 
     # Whitelist of environments that will send notifications to Sentry.
@@ -77,7 +77,7 @@ module Raven
     # NOTE: You should probably append to this rather than overwrite it.
     property excluded_exceptions : Array(String)
 
-    # DSN component - set automatically if DSN provided.
+    # NOTE: DSN component - set automatically if DSN provided.
     property host : String?
 
     # Logger used by Raven. You can use any other `::Logger`,
@@ -87,10 +87,10 @@ module Raven
     # Timeout waiting for the Sentry server connection to open in seconds.
     property connect_timeout : Time::Span = 1.second
 
-    # DSN component - set automatically if DSN provided.
+    # NOTE: DSN component - set automatically if DSN provided.
     property path : String?
 
-    # DSN component - set automatically if DSN provided.
+    # NOTE: DSN component - set automatically if DSN provided.
     property port : Int32?
 
     # Processors to run on data before sending upstream. See `DEFAULT_PROCESSORS`.
@@ -98,7 +98,8 @@ module Raven
     property processors : Array(Processor.class)
 
     # Project ID number to send to the Sentry server
-    # If you provide a DSN, this will be set automatically.
+    #
+    # NOTE: If you provide a DSN, this will be set automatically.
     property project_id : UInt64?
 
     # Project directory root for revision detection. Could be Kemal root, etc.
@@ -111,7 +112,8 @@ module Raven
     }
 
     # Public key for authentication with the Sentry server.
-    # If you provide a DSN, this will be set automatically.
+    #
+    # NOTE: If you provide a DSN, this will be set automatically.
     property public_key : String?
 
     # Release tag to be passed with every event sent to Sentry.
@@ -129,12 +131,14 @@ module Raven
     # Sanitize additional HTTP headers - only `Authorization` is removed by default.
     property sanitize_http_headers = [] of String | Regex
 
-    # DSN component - set automatically if DSN provided.
-    # Otherwise, can be one of `"http"`, `"https"`, or `"dummy"`
+    # Can be one of `"http"`, `"https"`, or `"dummy"`.
+    #
+    # NOTE: DSN component - set automatically if DSN provided.
     property scheme : String?
 
     # Secret key for authentication with the Sentry server
-    # If you provide a DSN, this will be set automatically.
+    #
+    # NOTE: If you provide a DSN, this will be set automatically.
     property secret_key : String?
 
     # Include module versions in reports.
