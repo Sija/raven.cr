@@ -19,12 +19,6 @@ module Raven
         end
       end
 
-      private def build_request_url(req : HTTP::Request)
-        String.build do |url|
-          url << ::Kemal.config.scheme << "://" << req.host_with_port << req.resource
-        end
-      end
-
       def call(context)
         call_next context
       rescue ex
@@ -34,7 +28,7 @@ module Raven
           event.interface :http,
             headers:      headers_to_hash(request.headers),
             method:       request.method.upcase,
-            url:          build_request_url(request),
+            url:          Kemal.build_request_url(request),
             query_string: request.query
         end
         # Raven.annotate_exception exception, ...
