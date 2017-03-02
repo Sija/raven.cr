@@ -21,7 +21,7 @@ module Raven
       Processor::RemoveCircularReferences,
       # Processor::UTF8Conversion,
       # Processor::SanitizeData,
-      # Processor::Cookies,
+      Processor::Cookies,
       # Processor::PostData,
       # Processor::HTTPHeaders,
       Processor::Compact,
