@@ -226,11 +226,19 @@ module Raven
       @interfaces[interface.sentry_alias] = interface.new(**options)
     end
 
+    def interface(name : Symbol, options : NamedTuple)
+      interface(name, **options)
+    end
+
     def interface(name : Symbol, **options, &block)
       interface = Interface[name]
       @interfaces[interface.sentry_alias] = interface.new(**options) do |iface|
         yield iface
       end
+    end
+
+    def interface(name : Symbol, options : NamedTuple, &block)
+      interface(name, **options) { |iface| yield iface }
     end
 
     def to_hash

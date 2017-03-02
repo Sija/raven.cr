@@ -25,11 +25,12 @@ module Raven
         Raven.capture(ex) do |event|
           request = context.request
           event.logger ||= "kemal"
-          event.interface :http,
+          event.interface :http, {
             headers:      headers_to_hash(request.headers),
             method:       request.method.upcase,
             url:          Kemal.build_request_url(request),
-            query_string: request.query
+            query_string: request.query,
+          }
         end
         # Raven.annotate_exception exception, ...
         # pp ex
