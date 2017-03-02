@@ -65,10 +65,6 @@ module Raven
     any_json_property :contexts, :user, :tags, :extra
 
     def self.from(exc : Exception, **options)
-      exception_context = get_exception_context(exc)
-      # options = options.to_any_json
-      # options.reverse_merge!(exception_context)
-
       configuration = options[:configuration]? || Raven.configuration
       # Try to prevent error reporting loops
       if exc.is_a?(Raven::Error)
@@ -83,6 +79,9 @@ module Raven
       new(**options).tap do |event|
         # Messages limited to 10kb
         event.message = "#{exc.class}: #{exc.message}".byte_slice(0, 9_999)
+
+        exception_context = get_exception_context(exc)
+        event.extra.reverse_merge! exception_context
 
         # FIXME?
         exc.callstack ||= CallStack.new
