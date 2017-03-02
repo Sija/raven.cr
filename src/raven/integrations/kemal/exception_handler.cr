@@ -28,7 +28,6 @@ module Raven
       def call(context)
         call_next context
       rescue ex
-        # Raven.annotate_exception exception, ...
         Raven.capture(ex) do |event|
           request = context.request
           event.interface :http,
@@ -37,6 +36,7 @@ module Raven
             url:          build_request_url(request),
             query_string: request.query
         end
+        # Raven.annotate_exception exception, ...
         # pp ex
         raise ex
       end
