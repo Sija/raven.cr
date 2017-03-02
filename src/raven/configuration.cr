@@ -70,9 +70,9 @@ module Raven
     # DSN component - set automatically if DSN provided.
     property host : String?
 
-    # Logger used by Raven. In Kemal, this is the Kemal logger, otherwise
-    # Raven provides its own `Raven::Logger`.
-    property logger : Logger
+    # Logger used by Raven. You can use any other `::Logger`,
+    # defaults to `Raven::Logger`.
+    property logger : ::Logger
 
     # Timeout waiting for the Sentry server connection to open in seconds.
     property connect_timeout : Time::Span
