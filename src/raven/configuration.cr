@@ -24,6 +24,7 @@ module Raven
       # Processor::Cookies,
       # Processor::PostData,
       # Processor::HTTPHeaders,
+      Processor::Compact,
     ] of Processor.class
 
     # Directories to be recognized as part of your app. e.g. if you
