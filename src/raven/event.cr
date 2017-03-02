@@ -111,11 +111,11 @@ module Raven
       end
     end
 
-    private def self.get_exception_context(exc)
+    protected def self.get_exception_context(exc)
       exc.__raven_context
     end
 
-    private def self.add_exception_interface(event, exc)
+    protected def self.add_exception_interface(event, exc)
       exceptions = [exc] of Exception
       context = Set(UInt64).new [exc.object_id]
       backtraces = Set(UInt64).new
@@ -145,7 +145,7 @@ module Raven
       event.interface :exception, values: values
     end
 
-    private def self.stacktrace_interface_from(iface, event, backtrace)
+    protected def self.stacktrace_interface_from(iface, event, backtrace)
       iface.frames = [] of Interface::Stacktrace::Frame
 
       backtrace = Backtrace.parse(backtrace)
@@ -163,7 +163,7 @@ module Raven
       event.culprit = get_culprit(iface.frames)
     end
 
-    private def self.get_culprit(frames)
+    protected def self.get_culprit(frames)
       lastframe = frames.reverse.find(&.in_app?) || frames.last
       return unless lastframe
       parts = {
@@ -186,10 +186,27 @@ module Raven
       @environment = @configuration.current_environment
       @modules = list_shard_specs if @configuration.send_modules?
 
+      initialize_with **options
+
       contexts.merge! @context.contexts
       user.merge! @context.user
       extra.merge! @context.extra
       tags.merge! @configuration.tags, @context.tags
+    end
+
+    def initialize_with(**attributes)
+      {% for var in @type.instance_vars %}
+        if %arg = attributes[:{{var.name.id}}]?
+          @{{var.name.id}} = %arg if %arg.is_a?({{var.type.id}})
+        end
+      {% end %}
+      {% for method in @type.methods.select { |m| m.name.ends_with?('=') && m.args.size == 1 } %}
+        {% ivar_name = method.name[0...-1].id %}
+        if %arg = attributes[:{{ivar_name}}]?
+          self.{{ivar_name}} = %arg
+        end
+      {% end %}
+      self
     end
 
     def message
@@ -206,6 +223,12 @@ module Raven
         params:  message_with_params.last,
       }
       interface :message, **options
+    end
+
+    def backtrace=(backtrace)
+      interface :stacktrace do |iface|
+        self.class.stacktrace_interface_from iface.as(Interface::Stacktrace), self, backtrace
+      end
     end
 
     def list_shard_specs
