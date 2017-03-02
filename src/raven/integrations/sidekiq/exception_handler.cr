@@ -1,5 +1,3 @@
-require "sidekiq"
-
 module Raven
   module Sidekiq
     # Exception handler capturing all unhandled `Exception`s.
