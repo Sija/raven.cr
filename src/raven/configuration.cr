@@ -24,6 +24,7 @@ module Raven
       Processor::Cookies,
       Processor::PostData,
       Processor::HTTPHeaders,
+      # Processor::RemoveStacktrace,
       Processor::Compact,
     ] of Processor.class
 
