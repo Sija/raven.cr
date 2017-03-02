@@ -3,9 +3,12 @@ require "json"
 
 module Raven
   class Configuration
-    {% begin %}
+    # :nodoc:
     SRC_PATH = {{ flag?(:debug) ? `pwd`.strip.stringify : nil }}
-    {% end %}
+
+    # Array of required properties needed to be set, before
+    # `Configuration` is considered valid.
+    REQUIRED_OPTIONS = %i(host public_key secret_key project_id)
 
     # Array of exception classes that should never be sent.
     IGNORE_DEFAULT = [
@@ -20,15 +23,15 @@ module Raven
       # Processor::SanitizeData,
       # Processor::Cookies,
       # Processor::PostData,
-      # Processor::HTTPHeaders
+      # Processor::HTTPHeaders,
     ] of Processor.class
 
     # Directories to be recognized as part of your app. e.g. if you
     # have an `engines` dir at the root of your project, you may want
     # to set this to something like `/(src|engines)/`
-    property app_dirs_pattern : Regex { /src/ }
+    property app_dirs_pattern = /src/
 
-    # FIXME
+    # `Regex` pattern matched against `Backtrace::Line#file`.
     property in_app_pattern : Regex { /^(#{SRC_PATH}\/)?(#{app_dirs_pattern})/ }
 
     # Provide an object that responds to `call` to send events asynchronously.
@@ -36,7 +39,7 @@ module Raven
     # ```
     # ->(event : Event) { future { Raven.send_event(event) } }
     # ```
-    property async : Proc(Event, NoReturn)?
+    property async : Proc(Event, Nil)?
 
     # `KEMAL_ENV` by default.
     property current_environment : String?
@@ -48,10 +51,12 @@ module Raven
     end
 
     # Encoding type for event bodies.
-    property encoding : Encoding
+    #
+    # FIXME: switch to `Encoding::GZIP` after Crystal v0.21.0
+    property encoding : Encoding = Encoding::JSON
 
     # Whitelist of environments that will send notifications to Sentry.
-    property environments : Array(String)
+    property environments = [] of String
 
     # Logger "progname"s to exclude from breadcrumbs.
     #
@@ -75,7 +80,7 @@ module Raven
     property logger : ::Logger
 
     # Timeout waiting for the Sentry server connection to open in seconds.
-    property connect_timeout : Time::Span
+    property connect_timeout : Time::Span = 1.second
 
     # DSN component - set automatically if DSN provided.
     property path : String?
@@ -109,15 +114,15 @@ module Raven
     property release : String?
 
     # Should sanitize values that look like credit card numbers?
-    property? sanitize_credit_cards : Bool
+    property? sanitize_credit_cards = true
 
     # By default, Sentry censors `Hash` values when their keys match things like
     # `"secret"`, `"password"`, etc. Provide an `Array` of `String`s that, when matched in
     # a hash key, will be censored and not sent to Sentry.
-    property sanitize_fields : Array(String | Regex)
+    property sanitize_fields = [] of String | Regex
 
     # Sanitize additional HTTP headers - only `Authorization` is removed by default.
-    property sanitize_http_headers : Array(String | Regex)
+    property sanitize_http_headers = [] of String | Regex
 
     # DSN component - set automatically if DSN provided.
     # Otherwise, can be one of `"http"`, `"https"`, or `"dummy"`
@@ -128,7 +133,7 @@ module Raven
     property secret_key : String?
 
     # Include module versions in reports.
-    property? send_modules : Bool
+    property? send_modules = true
 
     # Simple server string - set this to the DSN found on your Sentry settings.
     getter server : String?
@@ -147,42 +152,32 @@ module Raven
     property should_capture : Proc(Event | Exception | String, Bool)?
 
     # Silences ready message when `true`.
-    property? silence_ready : Bool
+    property? silence_ready = false
 
     # Default tags for events.
     any_json_property :tags
 
     # Timeout when waiting for the server to return data.
-    property read_timeout : Time::Span
+    property read_timeout : Time::Span = 2.seconds
 
     # Optional `Proc`, called when the Sentry server cannot be contacted for any reason.
     #
     # ```
     # ->(event : Event) { future { MyJobProcessor.send_email(event) } }
     # ```
-    property transport_failure_callback : Proc(Event, NoReturn)?
+    property transport_failure_callback : Proc(Event, Nil)?
 
     # Errors object - an Array that contains error messages.
-    getter errors : Array(String)
+    getter errors = [] of String
 
     def initialize
       @current_environment = ENV["KEMAL_ENV"]?
-      @encoding = Encoding::JSON # TODO: GZIP
-      @environments = [] of String
       @exclude_loggers = [Logger::PROGNAME]
       @excluded_exceptions = IGNORE_DEFAULT.dup
       @logger = Logger.new(STDOUT)
-      @connect_timeout = 1.second
       @processors = DEFAULT_PROCESSORS.dup
       @release = detect_release
-      @sanitize_credit_cards = true
-      @sanitize_fields = [] of String | Regex
-      @sanitize_http_headers = [] of String | Regex
-      @send_modules = true
-      @silence_ready = false
       @server_name = resolve_hostname
-      @read_timeout = 2.seconds
-      @errors = [] of String
 
       # try runtime ENV variable first
       if dsn = ENV["SENTRY_DSN"]?
@@ -291,7 +286,7 @@ module Raven
     private def valid?
       valid = true
       if server
-        {% for key in %w(host public_key secret_key project_id) %}
+        {% for key in REQUIRED_OPTIONS %}
           unless {{ "self.#{key.id}".id }}
             valid = false
             @errors << "No :{{ key.id }} specified"

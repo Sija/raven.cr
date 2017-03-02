@@ -3,7 +3,7 @@ require "kemal"
 module Raven
   module Kemal
     # Kemal logger capturing all sent messages and requests as breadcrumbs.
-    # 
+    #
     # Optionally wraps another `::Kemal::BaseLogHandler` and forwards messages
     # to it.
     #
@@ -39,11 +39,9 @@ module Raven
         ensure
           if log_requests?
             elapsed = Time.now - time
-            elapsed_text = elapsed_text(elapsed)
-
             message = {
               context.response.status_code, context.request.method,
-              context.request.resource, elapsed_text
+              context.request.resource, elapsed_text(elapsed),
             }.join ' '
 
             Raven.breadcrumbs.record do |crumb|

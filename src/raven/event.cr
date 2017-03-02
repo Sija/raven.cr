@@ -103,10 +103,9 @@ module Raven
         event.configuration = configuration
         event.level = options[:level]?
         event.message = {message, options[:message_params]?}
-        # FIXME
-        if backtrace = options[:backtrace]? || caller
+        if backtrace = options[:backtrace]?
           event.interface :stacktrace do |iface|
-            stacktrace_interface_from(iface.as(Interface::Stacktrace), event, backtrace)
+            stacktrace_interface_from iface.as(Interface::Stacktrace), event, backtrace
           end
         end
       end
@@ -138,7 +137,7 @@ module Raven
             if e.backtrace && !backtraces.includes?(e.backtrace.object_id)
               backtraces << e.backtrace.object_id
               Interface::Stacktrace.new do |stacktrace|
-                stacktrace_interface_from(stacktrace, event, e.backtrace)
+                stacktrace_interface_from stacktrace, event, e.backtrace
               end
             end
         end
