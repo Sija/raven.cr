@@ -14,7 +14,7 @@ module Raven
       when Hash
         process data.to_any_json, visited
       when Array
-        data.map! { |v| process v, visited }
+        data.map { |v| process(v, visited).as(typeof(v)) }
       else
         data
       end

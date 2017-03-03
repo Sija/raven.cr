@@ -34,6 +34,7 @@ module Raven
           @{{var.name.id}} = %arg
         end
       {% end %}
+      self
     end
 
     def to_hash

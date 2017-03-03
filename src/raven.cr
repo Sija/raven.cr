@@ -6,6 +6,7 @@ class Exception
 end
 
 module Raven
+  # `Raven.instance` delegators.
   module Delegators
     delegate :context, :logger, :configuration, :client,
       :report_status, :configure, :send_event, :capture,

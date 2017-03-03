@@ -3,9 +3,12 @@ require "json"
 
 module Raven
   class Configuration
-    {% begin %}
+    # :nodoc:
     SRC_PATH = {{ flag?(:debug) ? `pwd`.strip.stringify : nil }}
-    {% end %}
+
+    # Array of required properties needed to be set, before
+    # `Configuration` is considered valid.
+    REQUIRED_OPTIONS = %i(host public_key secret_key project_id)
 
     # Array of exception classes that should never be sent.
     IGNORE_DEFAULT = [
@@ -16,27 +19,33 @@ module Raven
     # before passing to other processors.
     DEFAULT_PROCESSORS = [
       Processor::RemoveCircularReferences,
-      # Processor::UTF8Conversion,
-      # Processor::SanitizeData,
+      # Processor::RemoveStacktrace,
       # Processor::Cookies,
       # Processor::PostData,
-      # Processor::HTTPHeaders
+      Processor::HTTPHeaders,
+      # Processor::UTF8Conversion,
+      Processor::SanitizeData,
+      Processor::Compact,
     ] of Processor.class
 
     # Directories to be recognized as part of your app. e.g. if you
     # have an `engines` dir at the root of your project, you may want
     # to set this to something like `/(src|engines)/`
-    property app_dirs_pattern : Regex { /src/i }
+    property app_dirs_pattern = /src/
 
-    # FIXME
-    property in_app_pattern : Regex { /^(#{SRC_PATH}\/)#{app_dirs_pattern}/ }
+    # Path pattern matching directories to be recognized as your app modules.
+    # Defaults to standard Shards setup (`lib/shard-name/...`).
+    property modules_path_pattern = %r{^lib/(?<name>[^/]+)}
+
+    # `Regex` pattern matched against `Backtrace::Line#file`.
+    property in_app_pattern : Regex { /^(#{SRC_PATH}\/)?(#{app_dirs_pattern})/ }
 
     # Provide an object that responds to `call` to send events asynchronously.
     #
     # ```
     # ->(event : Event) { future { Raven.send_event(event) } }
     # ```
-    property async : Proc(Event, NoReturn)?
+    property async : Proc(Event, Nil)?
 
     # `KEMAL_ENV` by default.
     property current_environment : String?
@@ -48,33 +57,41 @@ module Raven
     end
 
     # Encoding type for event bodies.
-    property encoding : Encoding
+    #
+    # TODO: switch to `Encoding::GZIP` after Crystal v0.21.0
+    property encoding : Encoding = Encoding::JSON
 
     # Whitelist of environments that will send notifications to Sentry.
-    property environments : Array(String)
+    property environments = [] of String
 
     # Logger "progname"s to exclude from breadcrumbs.
+    #
+    # Defaults to `[Raven::Logger::PROGNAME]`.
+    #
+    # NOTE: You should probably append to this rather than overwrite it.
     property exclude_loggers : Array(String)
 
     # Array of exception classes that should never be sent.
+    #
     # See `IGNORE_DEFAULT`.
-    # You should probably append to this rather than overwrite it.
+    #
+    # NOTE: You should probably append to this rather than overwrite it.
     property excluded_exceptions : Array(String)
 
-    # DSN component - set automatically if DSN provided.
+    # NOTE: DSN component - set automatically if DSN provided.
     property host : String?
 
-    # Logger used by Raven. In Kemal, this is the Kemal logger, otherwise
-    # Raven provides its own `Raven::Logger`.
-    property logger : Logger
+    # Logger used by Raven. You can use any other `::Logger`,
+    # defaults to `Raven::Logger`.
+    property logger : ::Logger
 
     # Timeout waiting for the Sentry server connection to open in seconds.
-    property connect_timeout : Time::Span
+    property connect_timeout : Time::Span = 1.second
 
-    # DSN component - set automatically if DSN provided.
+    # NOTE: DSN component - set automatically if DSN provided.
     property path : String?
 
-    # DSN component - set automatically if DSN provided.
+    # NOTE: DSN component - set automatically if DSN provided.
     property port : Int32?
 
     # Processors to run on data before sending upstream. See `DEFAULT_PROCESSORS`.
@@ -82,7 +99,8 @@ module Raven
     property processors : Array(Processor.class)
 
     # Project ID number to send to the Sentry server
-    # If you provide a DSN, this will be set automatically.
+    #
+    # NOTE: If you provide a DSN, this will be set automatically.
     property project_id : UInt64?
 
     # Project directory root for revision detection. Could be Kemal root, etc.
@@ -95,7 +113,8 @@ module Raven
     }
 
     # Public key for authentication with the Sentry server.
-    # If you provide a DSN, this will be set automatically.
+    #
+    # NOTE: If you provide a DSN, this will be set automatically.
     property public_key : String?
 
     # Release tag to be passed with every event sent to Sentry.
@@ -103,26 +122,28 @@ module Raven
     property release : String?
 
     # Should sanitize values that look like credit card numbers?
-    property? sanitize_credit_cards : Bool
+    property? sanitize_credit_cards = true
 
     # By default, Sentry censors `Hash` values when their keys match things like
     # `"secret"`, `"password"`, etc. Provide an `Array` of `String`s that, when matched in
     # a hash key, will be censored and not sent to Sentry.
-    property sanitize_fields : Array(String | Regex)
+    property sanitize_fields = [] of String | Regex
 
     # Sanitize additional HTTP headers - only `Authorization` is removed by default.
-    property sanitize_http_headers : Array(String | Regex)
+    property sanitize_http_headers = [] of String | Regex
 
-    # DSN component - set automatically if DSN provided.
-    # Otherwise, can be one of `"http"`, `"https"`, or `"dummy"`
+    # Can be one of `"http"`, `"https"`, or `"dummy"`.
+    #
+    # NOTE: DSN component - set automatically if DSN provided.
     property scheme : String?
 
     # Secret key for authentication with the Sentry server
-    # If you provide a DSN, this will be set automatically.
+    #
+    # NOTE: If you provide a DSN, this will be set automatically.
     property secret_key : String?
 
     # Include module versions in reports.
-    property? send_modules : Bool
+    property? send_modules = true
 
     # Simple server string - set this to the DSN found on your Sentry settings.
     getter server : String?
@@ -141,42 +162,32 @@ module Raven
     property should_capture : Proc(Event | Exception | String, Bool)?
 
     # Silences ready message when `true`.
-    property? silence_ready : Bool
+    property? silence_ready = false
 
     # Default tags for events.
     any_json_property :tags
 
     # Timeout when waiting for the server to return data.
-    property read_timeout : Time::Span
+    property read_timeout : Time::Span = 2.seconds
 
     # Optional `Proc`, called when the Sentry server cannot be contacted for any reason.
     #
     # ```
     # ->(event : Event) { future { MyJobProcessor.send_email(event) } }
     # ```
-    property transport_failure_callback : Proc(Event, NoReturn)?
+    property transport_failure_callback : Proc(Event, Nil)?
 
     # Errors object - an Array that contains error messages.
-    getter errors : Array(String)
+    getter errors = [] of String
 
     def initialize
       @current_environment = ENV["KEMAL_ENV"]?
-      @encoding = Encoding::JSON # TODO: GZIP
-      @environments = [] of String
       @exclude_loggers = [Logger::PROGNAME]
       @excluded_exceptions = IGNORE_DEFAULT.dup
       @logger = Logger.new(STDOUT)
-      @connect_timeout = 1.second
       @processors = DEFAULT_PROCESSORS.dup
       @release = detect_release
-      @sanitize_credit_cards = true
-      @sanitize_fields = [] of String | Regex
-      @sanitize_http_headers = [] of String | Regex
-      @send_modules = true
-      @silence_ready = false
       @server_name = resolve_hostname
-      @read_timeout = 2.seconds
-      @errors = [] of String
 
       # try runtime ENV variable first
       if dsn = ENV["SENTRY_DSN"]?
@@ -271,7 +282,7 @@ module Raven
 
     private def capture_in_current_environment?
       return true unless environments.any? && !environments.includes?(@current_environment)
-      @errors << "Not configured to send/capture in environment '#{current_environment}'"
+      @errors << "Not configured to send/capture in environment '#{@current_environment}'"
       false
     end
 
@@ -285,7 +296,7 @@ module Raven
     private def valid?
       valid = true
       if server
-        {% for key in %w(host public_key secret_key project_id) %}
+        {% for key in REQUIRED_OPTIONS %}
           unless {{ "self.#{key.id}".id }}
             valid = false
             @errors << "No :{{ key.id }} specified"

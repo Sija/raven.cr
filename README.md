@@ -121,8 +121,9 @@ For more information, see [Context](https://docs.sentry.io/clients/ruby/context/
 - [x] Connection transports
 - [x] Processors
 - [x] Breadcrumbs
-- [ ] Integrations (Kemal, Sidekiq)
+- [x] Integrations (Kemal, Sidekiq)
 - [ ] Async
+- [ ] Tests
 
 ## Development
 

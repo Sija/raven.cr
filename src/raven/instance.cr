@@ -17,7 +17,7 @@ module Raven
   #
   #
   #   rescue e
-  #     @other_raven.capture_exception(e)
+  #     @other_raven.capture(e)
   #   end
   # end
   # ```
@@ -86,24 +86,6 @@ module Raven
       client.send_event(event)
     end
 
-    # Capture and process any exceptions from the given block.
-    #
-    # ```
-    # Raven.capture do
-    #   MyApp.run
-    # end
-    # ```
-    def capture(**options)
-      begin
-        yield
-      rescue e : Raven::Error
-        raise e # Don't capture Raven errors
-      rescue e : Exception
-        capture(e, **options)
-        raise e
-      end
-    end
-
     # @[ThreadLocal]
     @last_event_id : String?
 
@@ -111,28 +93,27 @@ module Raven
       @last_event_id
     end
 
-    def capture(obj : Exception | String, **options)
-      capture(obj, **options) { }
-    end
-
+    # Captures given `Exception` or `String` object and yields
+    # created `Raven::Event` before sending to Sentry.
+    #
+    # ```
+    # Raven.capture("boo!") do |event|
+    #   pp event.to_hash
+    # end
+    # ```
     def capture(obj : Exception | String, **options, &block)
       unless configuration.capture_allowed?(obj)
         logger.debug "#{obj} excluded from capture: #{configuration.error_messages}"
         return false
       end
-
-      # FIXME
-      # options[:configuration] = configuration
-      # options[:context] = context
       if (event = Event.from(obj, configuration: configuration, context: context))
+        event.initialize_with **options
         yield event
         if cb = configuration.async
           begin
-            # We have to convert to a JSON-like hash, because background job
-            # processors may not like weird types in the event hash
             cb.call(event)
           rescue ex
-            logger.error "async event sending failed: #{ex.message}"
+            logger.error "Async event sending failed: #{ex.message}"
             send_event(event)
           end
         else
@@ -140,6 +121,39 @@ module Raven
         end
         @last_event_id = event.id
         event
+      end
+    end
+
+    # Captures given `Exception` or `String` object.
+    #
+    # ```
+    # begin
+    #   # ...
+    # rescue e
+    #   Raven.capture e
+    # end
+    #
+    # Raven.capture "boo!"
+    # ```
+    def capture(obj : Exception | String, **options)
+      capture(obj, **options) { }
+    end
+
+    # Capture and process any exceptions from the given block.
+    #
+    # ```
+    # Raven.capture do
+    #   MyApp.run
+    # end
+    # ```
+    def capture(**options, &block)
+      begin
+        yield
+      rescue e : Raven::Error
+        raise e # Don't capture Raven errors
+      rescue e : Exception
+        capture(e, **options)
+        raise e
       end
     end
 

@@ -13,13 +13,17 @@ class Logger
     Raven.configuration.exclude_loggers.includes?(progname)
   end
 
+  protected def self.deansify(message)
+    message.gsub(/\x1b[^m]*m/, "")
+  end
+
   private def write(severity, datetime, progname, message)
     unless self.class.ignored_logger?(progname)
       Raven.breadcrumbs.record do |crumb|
         crumb.timestamp = datetime
         crumb.level = LOGGER_BREADCRUMB_LEVELS[severity]?
         crumb.category = progname || "logger"
-        crumb.message = message
+        crumb.message = self.class.deansify(message)
       end
     end
     previous_def
