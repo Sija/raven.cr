@@ -54,7 +54,7 @@ module Raven
     end
 
     private def encode(event)
-      data = event.to_hash
+      data = event.to_hash.to_h
       data = processors.reduce(data) { |v, p| p.process(v) }
       encoded = data.to_json
 

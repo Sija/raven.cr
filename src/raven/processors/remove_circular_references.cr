@@ -5,16 +5,14 @@ module Raven
       return "(...)" if visited.includes? data.object_id
 
       case data
-      when AnyHash::JSON
+      when Hash
         visited << data.to_h.object_id
         data.each do |k, v|
-          data[k] = process(v, visited) rescue "!"
+          data[k] = process(v, visited) rescue "!!!"
         end
         data.to_h
-      when Hash
-        process data.to_any_json, visited
       when Array
-        data.map { |v| process(v, visited).as(typeof(v)) }
+        data.map! { |v| process(v, visited).as(typeof(v)) }
       else
         data
       end

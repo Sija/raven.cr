@@ -38,7 +38,7 @@ module Raven
       when value.is_a?(Hash)
         process(value)
       when value.is_a?(Array)
-        value.map { |i| process(key, i).as(typeof(i)) }
+        value.map! { |i| process(key, i).as(typeof(i)) }
       when key.to_s == "query_string"
         if value.is_a?(String)
           sanitize_query_string(value)
@@ -47,8 +47,7 @@ module Raven
         end
       when value.is_a?(String)
         if fields_pattern.match(value.to_s) && (json = JSON.parse_raw(value) rescue nil)
-          # if this string is actually a json obj, convert and sanitize
-          json.is_a?(Hash) ? process(json).to_json : value
+          process(json).to_json
         elsif matches_regexes?(key, value)
           STRING_MASK
         else
@@ -64,7 +63,7 @@ module Raven
     private def sanitize_query_string(query_string)
       query_hash = HTTP::Params.parse(query_string).to_h
       query_hash = process(query_hash)
-      query_hash = query_hash.map { |k,v| [k.as(String), v.as(String)] }.to_h rescue nil
+      query_hash = query_hash.map { |k, v| [k.as(String), v.as(String)] }.to_h rescue nil
       HTTP::Params.from_hash(query_hash).to_s if query_hash
     end
 

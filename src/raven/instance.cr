@@ -98,7 +98,7 @@ module Raven
     #
     # ```
     # Raven.capture("boo!") do |event|
-    #   pp event.to_hash
+    #   event.extra.merge! foo: "bar"
     # end
     # ```
     def capture(obj : Exception | String, **options, &block)
