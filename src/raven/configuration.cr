@@ -23,7 +23,7 @@ module Raven
       # Processor::Cookies,
       # Processor::PostData,
       Processor::HTTPHeaders,
-      # Processor::UTF8Conversion,
+      Processor::UTF8Conversion,
       Processor::SanitizeData,
       Processor::Compact,
     ] of Processor.class
