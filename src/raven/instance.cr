@@ -86,6 +86,7 @@ module Raven
       client.send_event(event)
     end
 
+    # FIXME
     # @[ThreadLocal]
     @last_event_id : String?
 
