@@ -1,6 +1,14 @@
 require "kemal"
 
 module Raven
+  # It's recommended to enable `Configuration#async` when using Kemal.
+  #
+  # ```
+  # Raven.configure do |config|
+  #   # ...
+  #   config.async = true
+  # end
+  # ```
   module Kemal
     # Returns full URL string for `HTTP::Request`.
     def self.build_request_url(req : HTTP::Request)
