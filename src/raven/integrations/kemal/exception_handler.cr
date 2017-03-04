@@ -38,6 +38,9 @@ module Raven
             query_string: request.query,
             data:         data,
           }
+          if context.responds_to?(:kemal_authorized_username?)
+            event.user[:username] ||= context.kemal_authorized_username?
+          end
         end
         # Raven.annotate_exception exception, ...
         # pp ex
