@@ -156,7 +156,7 @@ For more information, see [Context](https://docs.sentry.io/clients/ruby/context/
 - [x] Processors
 - [x] Breadcrumbs
 - [x] Integrations (Kemal, Sidekiq)
-- [ ] Async
+- [x] Async
 - [ ] Tests
 
 ## Development
