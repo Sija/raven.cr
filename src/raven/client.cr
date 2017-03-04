@@ -11,10 +11,8 @@ module Raven
     property configuration : Configuration
     delegate logger, to: configuration
 
-    # FIXME: why do i need to use "!"?
-    protected getter! processors : Array(Processor)
-    # FIXME: why do i need to use "!"?
-    protected getter! state : State
+    @state : State
+    @processors : Array(Processor)
 
     getter transport : Transport do
       case configuration.scheme
@@ -28,13 +26,15 @@ module Raven
     end
 
     def initialize(@configuration)
-      @processors = @configuration.processors.map &.new(self)
       @state = State.new
+      # FIXME: why do i need this line to make compiler happy?
+      @processors = [] of Processor
+      @processors = @configuration.processors.map &.new(self)
     end
 
     def send_event(event : Event | Event::HashType)
       event = event.is_a?(Event) ? event.to_hash.to_h : event
-      unless state.should_try?
+      unless @state.should_try?
         failed_send nil, event
         return
       end
@@ -52,7 +52,7 @@ module Raven
     end
 
     private def encode(data)
-      data = processors.reduce(data) { |v, p| p.process(v) }
+      data = @processors.reduce(data) { |v, p| p.process(v) }
       encoded = data.to_json
 
       case configuration.encoding
@@ -81,11 +81,11 @@ module Raven
     end
 
     private def successful_send
-      state.success
+      @state.success
     end
 
     private def failed_send(e, event)
-      state.failure
+      @state.failure
       if e
         logger.error "Unable to record event with remote Sentry server \
           (#{e.class} - #{e.message}): #{e.backtrace[0..10].join('\n')}"
