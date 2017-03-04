@@ -20,8 +20,8 @@ module Raven
     DEFAULT_PROCESSORS = [
       Processor::RemoveCircularReferences,
       # Processor::RemoveStacktrace,
-      # Processor::Cookies,
-      # Processor::PostData,
+      Processor::Cookies,
+      Processor::PostData,
       Processor::HTTPHeaders,
       Processor::UTF8Conversion,
       Processor::SanitizeData,
