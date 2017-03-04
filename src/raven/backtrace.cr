@@ -36,7 +36,7 @@ module Raven
     def_equals @lines
 
     def to_s(io)
-      @lines.join '\n', io
+      @lines.join('\n', io)
     end
 
     def inspect(io)

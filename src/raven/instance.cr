@@ -86,6 +86,7 @@ module Raven
       client.send_event(event)
     end
 
+    # FIXME
     # @[ThreadLocal]
     @last_event_id : String?
 
@@ -98,7 +99,7 @@ module Raven
     #
     # ```
     # Raven.capture("boo!") do |event|
-    #   pp event.to_hash
+    #   event.extra.merge! foo: "bar"
     # end
     # ```
     def capture(obj : Exception | String, **options, &block)
@@ -109,9 +110,13 @@ module Raven
       if (event = Event.from(obj, configuration: configuration, context: context))
         event.initialize_with **options
         yield event
-        if cb = configuration.async
+        async = configuration.async
+        if async.as?(Bool) == true
+          async = ->(event : Event) { spawn { send_event(event) }; nil }
+        end
+        if async.is_a?(Event -> Nil)
           begin
-            cb.call(event)
+            async.call(event)
           rescue ex
             logger.error "Async event sending failed: #{ex.message}"
             send_event(event)

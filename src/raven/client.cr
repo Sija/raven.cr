@@ -11,10 +11,8 @@ module Raven
     property configuration : Configuration
     delegate logger, to: configuration
 
-    # FIXME: why do i need to use "!"?
-    protected getter! processors : Array(Processor)
-    # FIXME: why do i need to use "!"?
-    protected getter! state : State
+    @state : State
+    @processors : Array(Processor)
 
     getter transport : Transport do
       case configuration.scheme
@@ -28,19 +26,19 @@ module Raven
     end
 
     def initialize(@configuration)
-      @processors = @configuration.processors.map &.new(self)
       @state = State.new
+      # FIXME: why do i need this line to make compiler happy?
+      @processors = [] of Processor
+      @processors = @configuration.processors.map &.new(self)
     end
 
-    def send_event(event)
-      return false unless configuration.capture_allowed?(event)
-
-      unless state.should_try?
+    def send_event(event : Event | Event::HashType)
+      event = event.is_a?(Event) ? event.to_hash.to_h : event
+      unless @state.should_try?
         failed_send nil, event
         return
       end
-      logger.info "Sending event #{event.id} to Sentry"
-      # pp event.to_hash
+      logger.info "Sending event #{event[:event_id]} to Sentry"
 
       content_type, encoded_data = encode(event)
       begin
@@ -53,9 +51,8 @@ module Raven
       end
     end
 
-    private def encode(event)
-      data = event.to_hash
-      data = processors.reduce(data) { |v, p| p.process(v) }
+    private def encode(data)
+      data = @processors.reduce(data) { |v, p| p.process(v) }
       encoded = data.to_json
 
       case configuration.encoding
@@ -84,18 +81,21 @@ module Raven
     end
 
     private def successful_send
-      state.success
+      @state.success
     end
 
     private def failed_send(e, event)
-      state.failure
+      @state.failure
       if e
         logger.error "Unable to record event with remote Sentry server \
           (#{e.class} - #{e.message}): #{e.backtrace[0..10].join('\n')}"
       else
         logger.error "Not sending event due to previous failure(s)"
       end
-      logger.error "Failed to submit event: #{event.message || "<no message value>"}"
+
+      message = event[:message]? || "<no message value>"
+      logger.error "Failed to submit event: #{message}"
+
       configuration.transport_failure_callback.try &.call(event)
     end
   end

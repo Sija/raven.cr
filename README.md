@@ -83,13 +83,47 @@ Raven.configure do |config|
 end
 ```
 
+#### async
+
+When an error or message occurs, the notification is immediately sent to Sentry. Raven can be configured to send asynchronously:
+
+```crystal
+config.async = ->(event : Raven::Event) {
+  spawn { Raven.send_event(event) }
+  nil
+}
+```
+
+If the `async` callback raises an exception, Raven will attempt to send synchronously.
+
+We recommend creating a background job, using your background job processor, that will send Sentry notifications in the background. Rather than enqueuing an entire `Raven::Event` object, we recommend providing the `Hash` representation of an event as a job argument. Here’s an example for Sidekiq.cr:
+
+```crystal
+config.async = ->(event : Raven::Event) {
+  SentryJob.async.perform(event.to_hash)
+  nil
+}
+
+class SentryJob
+  include Sidekiq::Worker
+  sidekiq_options do |job|
+    job.queue = "sentry"
+    job.retry = true
+  end
+
+  def perform(event : Hash)
+    Raven.send_event(event)
+  end
+end
+```
+
 #### transport_failure_callback
 
 If Raven fails to send an event to Sentry for any reason (either the Sentry server has returned a 4XX or 5XX response), this Proc will be called.
 
 ```crystal
-config.transport_failure_callback = ->(event : Raven::Event) {
-  AdminMailer.email_admins("Oh god, it's on fire!", event.to_hash).deliver_later
+config.transport_failure_callback = ->(event : Raven::Event::HashType) {
+  AdminMailer.email_admins("Oh god, it's on fire!", event).deliver_later
 }
 ```
 
@@ -122,7 +156,7 @@ For more information, see [Context](https://docs.sentry.io/clients/ruby/context/
 - [x] Processors
 - [x] Breadcrumbs
 - [x] Integrations (Kemal, Sidekiq)
-- [ ] Async
+- [x] Async
 - [ ] Tests
 
 ## Development

@@ -23,7 +23,7 @@ module Raven
       # Processor::Cookies,
       # Processor::PostData,
       Processor::HTTPHeaders,
-      # Processor::UTF8Conversion,
+      Processor::UTF8Conversion,
       Processor::SanitizeData,
       Processor::Compact,
     ] of Processor.class
@@ -40,12 +40,13 @@ module Raven
     # `Regex` pattern matched against `Backtrace::Line#file`.
     property in_app_pattern : Regex { /^(#{SRC_PATH}\/)?(#{app_dirs_pattern})/ }
 
-    # Provide an object that responds to `call` to send events asynchronously.
+    # Provide a `Proc` object that responds to `call` to send
+    # events asynchronously, or pass `true` to to use standard `spawn`.
     #
     # ```
-    # ->(event : Event) { future { Raven.send_event(event) } }
+    # ->(event : Raven::Event) { spawn { Raven.send_event(event) }; nil }
     # ```
-    property async : Proc(Event, Nil)?
+    property async : Bool | Proc(Event, Nil) | Nil
 
     # `KEMAL_ENV` by default.
     property current_environment : String?
@@ -157,9 +158,9 @@ module Raven
     # or an `Exception`.
     #
     # ```
-    # ->(obj : Event | Exception | String) { obj.some_attr == false }
+    # ->(obj : Exception | String) { obj.some_attr == false }
     # ```
-    property should_capture : Proc(Event | Exception | String, Bool)?
+    property should_capture : Proc(Exception | String, Bool)?
 
     # Silences ready message when `true`.
     property? silence_ready = false
@@ -173,9 +174,9 @@ module Raven
     # Optional `Proc`, called when the Sentry server cannot be contacted for any reason.
     #
     # ```
-    # ->(event : Event) { future { MyJobProcessor.send_email(event) } }
+    # ->(event : Raven::Event::HashType) { spawn { MyJobProcessor.send_email(event); nil } }
     # ```
-    property transport_failure_callback : Proc(Event, Nil)?
+    property transport_failure_callback : Proc(Event::HashType, Nil)?
 
     # Errors object - an Array that contains error messages.
     getter errors = [] of String

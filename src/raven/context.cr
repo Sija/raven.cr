@@ -1,5 +1,6 @@
 module Raven
   class Context
+    # FIXME
     # @[ThreadLocal]
     @@current : self?
 

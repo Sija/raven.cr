@@ -19,6 +19,9 @@ module Raven
     # Information about the SDK sending the event.
     SDK = {name: "raven.cr", version: Raven::VERSION}
 
+    # `Hash` type returned by `#to_hash`.
+    alias HashType = Hash(AnyHash::JSON::Key, AnyHash::JSON::Value)
+
     # Hexadecimal string representing a uuid4 value.
     #
     # NOTE: The length is exactly 32 characters (no dashes!)
@@ -103,7 +106,7 @@ module Raven
 
     protected def self.add_exception_interface(event, exc)
       exceptions = [exc] of Exception
-      context = Set(UInt64).new [exc.object_id]
+      context = Set(UInt64).new({exc.object_id})
       backtraces = Set(UInt64).new
 
       while exc = exc.cause
@@ -136,7 +139,7 @@ module Raven
 
       backtrace = Backtrace.parse(backtrace)
       backtrace.lines.reverse_each do |line|
-        iface.frames << Interface::Stacktrace::Frame.new.tap do |frame|
+        iface.frames << Interface::Stacktrace::Frame.new do |frame|
           frame.abs_path = line.file
           frame.function = line.method
           frame.lineno = line.number
@@ -180,15 +183,21 @@ module Raven
     end
 
     def initialize_with(**attributes)
-      {% for var in @type.instance_vars %}
-        if %arg = attributes[:{{var.name.id}}]?
-          @{{var.name.id}} = %arg if %arg.is_a?({{var.type.id}})
-        end
-      {% end %}
-      {% for method in @type.methods.select { |m| m.name.ends_with?('=') && m.args.size == 1 } %}
-        {% ivar_name = method.name[0...-1].id %}
-        if %arg = attributes[:{{ivar_name}}]?
-          self.{{ivar_name}} = %arg
+      {% begin %}
+        %set = false
+        {% for method in @type.methods.select { |m| m.name.ends_with?('=') && m.args.size == 1 } %}
+          {% ivar_name = method.name[0...-1].id %}
+          if arg = attributes[:{{ivar_name}}]?
+            self.{{ivar_name}} = arg
+            %set = true
+          end
+        {% end %}
+        unless %set
+          {% for var in @type.instance_vars %}
+            if arg = attributes[:{{var.name.id}}]?
+              @{{var.name.id}} = arg if arg.is_a?({{var.type.id}})
+            end
+          {% end %}
         end
       {% end %}
       self
@@ -274,7 +283,7 @@ module Raven
       @interfaces.each do |name, interface|
         data[name] = interface.to_hash
       end
-      data.compact!
+      # data.compact!
       data.to_h
     end
   end

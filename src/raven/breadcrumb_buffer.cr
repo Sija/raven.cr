@@ -2,6 +2,7 @@ module Raven
   class BreadcrumbBuffer
     include Enumerable(Breadcrumb)
 
+    # FIXME
     # @[ThreadLocal]
     @@current : self?
 
