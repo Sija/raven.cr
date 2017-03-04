@@ -19,6 +19,9 @@ module Raven
     # Information about the SDK sending the event.
     SDK = {name: "raven.cr", version: Raven::VERSION}
 
+    # `Hash` type returned by `#to_hash`.
+    alias HashType = Hash(AnyHash::JSON::Key, AnyHash::JSON::Value)
+
     # Hexadecimal string representing a uuid4 value.
     #
     # NOTE: The length is exactly 32 characters (no dashes!)

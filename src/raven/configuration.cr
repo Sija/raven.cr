@@ -158,9 +158,9 @@ module Raven
     # or an `Exception`.
     #
     # ```
-    # ->(obj : Raven::Event | Exception | String) { obj.some_attr == false }
+    # ->(obj : Exception | String) { obj.some_attr == false }
     # ```
-    property should_capture : Proc(Event | Exception | String, Bool)?
+    property should_capture : Proc(Exception | String, Bool)?
 
     # Silences ready message when `true`.
     property? silence_ready = false
@@ -174,9 +174,9 @@ module Raven
     # Optional `Proc`, called when the Sentry server cannot be contacted for any reason.
     #
     # ```
-    # ->(event : Raven::Event) { spawn { MyJobProcessor.send_email(event); nil } }
+    # ->(event : Raven::Event::HashType) { spawn { MyJobProcessor.send_email(event); nil } }
     # ```
-    property transport_failure_callback : Proc(Event, Nil)?
+    property transport_failure_callback : Proc(Event::HashType, Nil)?
 
     # Errors object - an Array that contains error messages.
     getter errors = [] of String

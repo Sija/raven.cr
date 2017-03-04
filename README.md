@@ -122,8 +122,8 @@ end
 If Raven fails to send an event to Sentry for any reason (either the Sentry server has returned a 4XX or 5XX response), this Proc will be called.
 
 ```crystal
-config.transport_failure_callback = ->(event : Raven::Event) {
-  AdminMailer.email_admins("Oh god, it's on fire!", event.to_hash).deliver_later
+config.transport_failure_callback = ->(event : Raven::Event::HashType) {
+  AdminMailer.email_admins("Oh god, it's on fire!", event).deliver_later
 }
 ```
 
