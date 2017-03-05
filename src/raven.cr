@@ -1,4 +1,6 @@
 require "any_hash"
+
+require "./raven/mixins/*"
 require "./raven/*"
 
 class Exception

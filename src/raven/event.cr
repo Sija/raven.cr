@@ -2,6 +2,8 @@ require "secure_random"
 
 module Raven
   class Event
+    include Mixin::InitializeWith
+
     enum Severity
       DEBUG
       INFO
@@ -180,27 +182,6 @@ module Raven
       user.merge! @context.user
       extra.merge! @context.extra
       tags.merge! @configuration.tags, @context.tags
-    end
-
-    def initialize_with(**attributes)
-      {% begin %}
-        %set = false
-        {% for method in @type.methods.select { |m| m.name.ends_with?('=') && m.args.size == 1 } %}
-          {% ivar_name = method.name[0...-1].id %}
-          if arg = attributes[:{{ivar_name}}]?
-            self.{{ivar_name}} = arg
-            %set = true
-          end
-        {% end %}
-        unless %set
-          {% for var in @type.instance_vars %}
-            if arg = attributes[:{{var.name.id}}]?
-              @{{var.name.id}} = arg if arg.is_a?({{var.type.id}})
-            end
-          {% end %}
-        end
-      {% end %}
-      self
     end
 
     def message
