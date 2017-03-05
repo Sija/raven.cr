@@ -4,6 +4,7 @@ module Raven
   class Event
     include Mixin::InitializeWith
 
+    # Event severity.
     enum Severity
       DEBUG
       INFO
@@ -84,10 +85,11 @@ module Raven
         # Messages limited to 10kb
         event.message = "#{exc.class}: #{exc.message}".byte_slice(0, 9_999)
 
-        exception_context = get_exception_context(exc)
-        event.extra.reverse_merge! exception_context
+        exc_context = get_exception_context(exc)
+        # FIXME: would be nice to be able to call
+        # `event.initialize_with(exc_context)` somehow...
+        event.extra.merge! exc_context
 
-        # FIXME?
         exc.callstack ||= CallStack.new
         add_exception_interface(event, exc)
       end
@@ -184,6 +186,31 @@ module Raven
       tags.merge! @configuration.tags, @context.tags
     end
 
+    def interface(name : Symbol)
+      interface = Interface[name]
+      @interfaces[interface.sentry_alias]?
+    end
+
+    def interface(name : Symbol, **options : Object)
+      interface = Interface[name]
+      @interfaces[interface.sentry_alias] = interface.new(**options)
+    end
+
+    def interface(name : Symbol, options : NamedTuple)
+      interface(name, **options)
+    end
+
+    def interface(name : Symbol, **options, &block)
+      interface = Interface[name]
+      @interfaces[interface.sentry_alias] = interface.new(**options) do |iface|
+        yield iface
+      end
+    end
+
+    def interface(name : Symbol, options : NamedTuple, &block)
+      interface(name, **options) { |iface| yield iface }
+    end
+
     def message
       interface(:message).try &.as(Interface::Message).unformatted_message
     end
@@ -214,32 +241,7 @@ module Raven
       end
     end
 
-    def interface(name : Symbol)
-      interface = Interface[name]
-      @interfaces[interface.sentry_alias]?
-    end
-
-    def interface(name : Symbol, **options : Object)
-      interface = Interface[name]
-      @interfaces[interface.sentry_alias] = interface.new(**options)
-    end
-
-    def interface(name : Symbol, options : NamedTuple)
-      interface(name, **options)
-    end
-
-    def interface(name : Symbol, **options, &block)
-      interface = Interface[name]
-      @interfaces[interface.sentry_alias] = interface.new(**options) do |iface|
-        yield iface
-      end
-    end
-
-    def interface(name : Symbol, options : NamedTuple, &block)
-      interface(name, **options) { |iface| yield iface }
-    end
-
-    def to_hash
+    def to_hash : HashType
       data = {
         event_id:    @id,
         timestamp:   @timestamp.to_utc.to_s("%FT%X"),

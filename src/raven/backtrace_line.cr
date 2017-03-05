@@ -53,7 +53,6 @@ module Raven
         column = match["col"]?
         method = match["proc_method"]? || match["method"]?
       end
-      # pp match
       new(file, number.try(&.to_i), column.try(&.to_i), method)
     end
 

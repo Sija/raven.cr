@@ -2,6 +2,32 @@
 
 A client and integration layer for the [Sentry](https://github.com/getsentry/sentry) error reporting API.
 
+Based on fine [raven-ruby](https://github.com/getsentry/raven-ruby) gem
+from folks at [@getsentry](https://github.com/getsentry).
+
+## Status
+
+### Stability
+
+LGTM (aside of few `FIXME` flags [here and there](https://github.com/sija/raven.cr/search?q=FIXME)…)
+yet there are no tests written, so use it at your own risk! - or kindly send a PR :)
+
+### Feature support
+
+- [x] Processors (data scrubbers)
+- [x] Interfaces (Message, Exception, Stacktrace, User, HTTP, ...)
+- [x] Contexts (tags, extra, `os`, `runtime`)
+- [x] Breadcrumbs
+- [x] Integrations ([Kemal](https://github.com/kemalcr/kemal), [Sidekiq.cr](https://github.com/mperham/sidekiq.cr))
+- [x] Async support
+
+### TODO
+
+- [ ] Tests
+- [ ] Exponential backoff in case of connection error
+- [ ] Caching unsent events for later send
+- [ ] Catching app crashes, kind of a bin wrapper perhaps?
+
 ## Installation
 
 Add this to your application's `shard.yml`:
@@ -79,7 +105,7 @@ setting. Raven will only capture events when `KEMAL_ENV` matches an environment 
 
 ```crystal
 Raven.configure do |config|
-  config.environments = %w[staging production]
+  config.environments = %w(staging production)
 end
 ```
 
@@ -88,10 +114,13 @@ end
 When an error or message occurs, the notification is immediately sent to Sentry. Raven can be configured to send asynchronously:
 
 ```crystal
+# define your own handler
 config.async = ->(event : Raven::Event) {
   spawn { Raven.send_event(event) }
   nil
 }
+# or use default implementation based on fibers (i.e. the one above)
+config.async = true
 ```
 
 If the `async` callback raises an exception, Raven will attempt to send synchronously.
@@ -100,7 +129,10 @@ We recommend creating a background job, using your background job processor, tha
 
 ```crystal
 config.async = ->(event : Raven::Event) {
+  # enqueue the job with a hash...
   SentryJob.async.perform(event.to_hash)
+  # or with JSON string
+  # SentryJob.async.perform(event.to_json)
   nil
 }
 
@@ -111,7 +143,7 @@ class SentryJob
     job.retry = true
   end
 
-  def perform(event : Hash)
+  def perform(event : Raven::Event::HashType)
     Raven.send_event(event)
   end
 end
@@ -123,7 +155,8 @@ If Raven fails to send an event to Sentry for any reason (either the Sentry serv
 
 ```crystal
 config.transport_failure_callback = ->(event : Raven::Event::HashType) {
-  AdminMailer.email_admins("Oh god, it's on fire!", event).deliver_later
+  AdminMailer.async.perform("Oh god, it's on fire!", event)
+  nil
 }
 ```
 
@@ -146,25 +179,6 @@ Raven.extra_context happiness: "very"
 
 For more information, see [Context](https://docs.sentry.io/clients/ruby/context/).
 
-## TODO
-
-- [x] Configuration
-- [x] Connection to Sentry server
-- [ ] Exponential backoff in case of connection error
-- [x] Interfaces
-- [x] Connection transports
-- [x] Processors
-- [x] Breadcrumbs
-- [x] Integrations (Kemal, Sidekiq)
-- [x] Async
-- [ ] Tests
-
-## Development
-
-```
-crystal spec
-```
-
 ## More Information
 
 * [Documentation](https://docs.sentry.io/clients/ruby)
@@ -172,6 +186,12 @@ crystal spec
 * [Code](https://github.com/sija/raven.cr)
 * [Mailing List](https://groups.google.com/group/getsentry)
 * [IRC](irc://irc.freenode.net/sentry) (irc.freenode.net, #sentry)
+
+## Development
+
+```
+crystal spec
+```
 
 ## Contributing
 
