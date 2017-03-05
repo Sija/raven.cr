@@ -267,5 +267,9 @@ module Raven
       # data.compact!
       data.to_h
     end
+
+    def to_json(json : JSON::Builder)
+      to_hash.to_json(json)
+    end
   end
 end
