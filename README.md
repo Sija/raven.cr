@@ -56,7 +56,7 @@ export SENTRY_DSN=http://public:secret@example.com/project-id
 ```crystal
 # Or you can configure the client in the code (not recommended - keep your DSN secret!)
 Raven.configure do |config|
-  config.server = "http://public:secret@example.com/project-id"
+  config.dsn = "http://public:secret@example.com/project-id"
 end
 ```
 
@@ -96,7 +96,7 @@ variable, there are two other configuration settings for controlling Raven:
 # DSN can be configured as a config setting instead.
 # Place in config/initializers or similar.
 Raven.configure do |config|
-  config.server = "your_dsn"
+  config.dsn = "your_dsn"
 end
 ```
 
