@@ -33,8 +33,13 @@ module Raven
     # Indicates when the logging record was created (in the Sentry SDK).
     property timestamp : Time
 
-    # The record severity. Defaults to `Severity::ERROR`.
-    property level : Event::Severity?
+    # The record severity. Defaults to `:error`.
+    property level : Severity?
+
+    # ditto
+    def level=(severity : Symbol)
+      @level = Severity.parse(severity.to_s)
+    end
 
     # The name of the logger which created the record.
     property logger : String?

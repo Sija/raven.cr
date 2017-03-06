@@ -22,11 +22,16 @@ module Raven
     # A timestamp representing when the breadcrumb occurred.
     property timestamp : Time
 
-    # The type of breadcrumb. The default type is `default` which indicates
+    # The type of breadcrumb. The default type is `:default` which indicates
     # no specific handling. Other types are currently:
-    # - `http` for HTTP requests and
-    # - `navigation` for navigation events.
+    # - `:http` for HTTP requests and
+    # - `:navigation` for navigation events.
     property type : Type?
+
+    # ditto
+    def type=(type : Symbol)
+      @type = Type.parse(type.to_s)
+    end
 
     # If a message is provided it’s rendered as text and the whitespace is preserved.
     # Very long text might be abbreviated in the UI.
@@ -42,6 +47,11 @@ module Raven
     # This defines the level of the event. If not provided it defaults
     # to `info` which is the middle level.
     property level : Severity?
+
+    # ditto
+    def level=(severity : Symbol)
+      @level = Severity.parse(severity.to_s)
+    end
 
     # Data associated with this breadcrumb. Contains a sub-object whose
     # contents depend on the breadcrumb `type`. Additional parameters that
