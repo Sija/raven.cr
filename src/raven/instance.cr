@@ -8,7 +8,7 @@ module Raven
   #   def initialize
   #     @other_raven = Raven::Instance.new
   #     @other_raven.configure do |config|
-  #       config.server = "http://..."
+  #       config.dsn = "http://..."
   #     end
   #   end
   #
@@ -61,7 +61,7 @@ module Raven
     #
     # ```
     # Raven.configure do |config|
-    #   config.server = "http://..."
+    #   config.dsn = "http://..."
     # end
     # ```
     def configure

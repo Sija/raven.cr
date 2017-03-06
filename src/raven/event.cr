@@ -2,6 +2,9 @@ require "secure_random"
 
 module Raven
   class Event
+    include Mixin::InitializeWith
+
+    # Event severity.
     enum Severity
       DEBUG
       INFO
@@ -30,8 +33,13 @@ module Raven
     # Indicates when the logging record was created (in the Sentry SDK).
     property timestamp : Time
 
-    # The record severity. Defaults to `Severity::ERROR`.
-    property level : Event::Severity?
+    # The record severity. Defaults to `:error`.
+    property level : Severity?
+
+    # ditto
+    def level=(severity : Symbol)
+      @level = Severity.parse(severity.to_s)
+    end
 
     # The name of the logger which created the record.
     property logger : String?
@@ -82,10 +90,11 @@ module Raven
         # Messages limited to 10kb
         event.message = "#{exc.class}: #{exc.message}".byte_slice(0, 9_999)
 
-        exception_context = get_exception_context(exc)
-        event.extra.reverse_merge! exception_context
+        exc_context = get_exception_context(exc)
+        # FIXME: would be nice to be able to call
+        # `event.initialize_with(exc_context)` somehow...
+        event.extra.merge! exc_context
 
-        # FIXME?
         exc.callstack ||= CallStack.new
         add_exception_interface(event, exc)
       end
@@ -182,25 +191,29 @@ module Raven
       tags.merge! @configuration.tags, @context.tags
     end
 
-    def initialize_with(**attributes)
-      {% begin %}
-        %set = false
-        {% for method in @type.methods.select { |m| m.name.ends_with?('=') && m.args.size == 1 } %}
-          {% ivar_name = method.name[0...-1].id %}
-          if arg = attributes[:{{ivar_name}}]?
-            self.{{ivar_name}} = arg
-            %set = true
-          end
-        {% end %}
-        unless %set
-          {% for var in @type.instance_vars %}
-            if arg = attributes[:{{var.name.id}}]?
-              @{{var.name.id}} = arg if arg.is_a?({{var.type.id}})
-            end
-          {% end %}
-        end
-      {% end %}
-      self
+    def interface(name : Symbol)
+      interface = Interface[name]
+      @interfaces[interface.sentry_alias]?
+    end
+
+    def interface(name : Symbol, **options : Object)
+      interface = Interface[name]
+      @interfaces[interface.sentry_alias] = interface.new(**options)
+    end
+
+    def interface(name : Symbol, options : NamedTuple)
+      interface(name, **options)
+    end
+
+    def interface(name : Symbol, **options, &block)
+      interface = Interface[name]
+      @interfaces[interface.sentry_alias] = interface.new(**options) do |iface|
+        yield iface
+      end
+    end
+
+    def interface(name : Symbol, options : NamedTuple, &block)
+      interface(name, **options) { |iface| yield iface }
     end
 
     def message
@@ -233,32 +246,7 @@ module Raven
       end
     end
 
-    def interface(name : Symbol)
-      interface = Interface[name]
-      @interfaces[interface.sentry_alias]?
-    end
-
-    def interface(name : Symbol, **options : Object)
-      interface = Interface[name]
-      @interfaces[interface.sentry_alias] = interface.new(**options)
-    end
-
-    def interface(name : Symbol, options : NamedTuple)
-      interface(name, **options)
-    end
-
-    def interface(name : Symbol, **options, &block)
-      interface = Interface[name]
-      @interfaces[interface.sentry_alias] = interface.new(**options) do |iface|
-        yield iface
-      end
-    end
-
-    def interface(name : Symbol, options : NamedTuple, &block)
-      interface(name, **options) { |iface| yield iface }
-    end
-
-    def to_hash
+    def to_hash : HashType
       data = {
         event_id:    @id,
         timestamp:   @timestamp.to_utc.to_s("%FT%X"),
@@ -285,6 +273,10 @@ module Raven
       end
       # data.compact!
       data.to_h
+    end
+
+    def to_json(json : JSON::Builder)
+      to_hash.to_json(json)
     end
   end
 end

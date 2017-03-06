@@ -20,8 +20,8 @@ module Raven
     DEFAULT_PROCESSORS = [
       Processor::RemoveCircularReferences,
       # Processor::RemoveStacktrace,
-      # Processor::Cookies,
-      # Processor::PostData,
+      Processor::Cookies,
+      Processor::PostData,
       Processor::HTTPHeaders,
       Processor::UTF8Conversion,
       Processor::SanitizeData,
@@ -33,12 +33,12 @@ module Raven
     # to set this to something like `/(src|engines)/`
     property app_dirs_pattern = /src/
 
+    # `Regex` pattern matched against `Backtrace::Line#file`.
+    property in_app_pattern : Regex { /^(#{SRC_PATH}\/)?(#{app_dirs_pattern})/ }
+
     # Path pattern matching directories to be recognized as your app modules.
     # Defaults to standard Shards setup (`lib/shard-name/...`).
     property modules_path_pattern = %r{^lib/(?<name>[^/]+)}
-
-    # `Regex` pattern matched against `Backtrace::Line#file`.
-    property in_app_pattern : Regex { /^(#{SRC_PATH}\/)?(#{app_dirs_pattern})/ }
 
     # Provide a `Proc` object that responds to `call` to send
     # events asynchronously, or pass `true` to to use standard `spawn`.
@@ -147,7 +147,7 @@ module Raven
     property? send_modules = true
 
     # Simple server string - set this to the DSN found on your Sentry settings.
-    getter server : String?
+    getter dsn : String?
 
     # Hostname as an FQDN.
     property server_name : String?
@@ -192,16 +192,16 @@ module Raven
 
       # try runtime ENV variable first
       if dsn = ENV["SENTRY_DSN"]?
-        self.server = dsn
+        self.dsn = dsn
       end
       # then try compile-time ENV variable
       # overwrites runtime if set
       {% if dsn = env("SENTRY_DSN") %}
-        self.server = {{dsn}}
+        self.dsn = {{dsn}}
       {% end %}
     end
 
-    def server=(uri : URI)
+    def dsn=(uri : URI)
       uri_path = uri.path.try &.split('/')
 
       if uri.user
@@ -225,15 +225,15 @@ module Raven
       @path = nil if @path.try &.empty?
 
       # For anyone who wants to read the base server string
-      @server = String.build do |str|
+      @dsn = String.build do |str|
         str << "#{@scheme}://#{@host}"
         str << ":#{@port}" if @port
         str << "#{@path}" if @path
       end
     end
 
-    def server=(value : String)
-      self.server = URI.parse(value)
+    def dsn=(value : String)
+      self.dsn = URI.parse(value)
     end
 
     def capture_allowed?(message_or_exc = nil)
@@ -296,7 +296,7 @@ module Raven
 
     private def valid?
       valid = true
-      if server
+      if dsn
         {% for key in REQUIRED_OPTIONS %}
           unless {{ "self.#{key.id}".id }}
             valid = false

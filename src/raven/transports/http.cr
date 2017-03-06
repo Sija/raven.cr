@@ -23,7 +23,7 @@ module Raven
         logger.debug "Event not sent: #{configuration.error_messages}"
         return
       end
-      logger.debug "HTTP Transport connecting to #{configuration.server}"
+      logger.debug "HTTP Transport connecting to #{configuration.dsn}"
 
       project_id = configuration.project_id
       path = configuration.path.try &.chomp '/'

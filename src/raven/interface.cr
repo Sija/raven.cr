@@ -1,5 +1,7 @@
 module Raven
   abstract class Interface
+    include Mixin::InitializeWith
+
     class_getter registered = {} of Symbol => Interface.class
 
     def self.[](name : Symbol)
@@ -26,15 +28,6 @@ module Raven
         initialize_with(**attributes)
         yield self
       end
-    end
-
-    def initialize_with(**attributes)
-      {% for var in @type.instance_vars %}
-        if %arg = attributes[:{{var.name.id}}]?
-          @{{var.name.id}} = %arg
-        end
-      {% end %}
-      self
     end
 
     def to_hash

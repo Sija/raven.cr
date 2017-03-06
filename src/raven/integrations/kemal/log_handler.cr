@@ -42,9 +42,9 @@ module Raven
 
             Raven.breadcrumbs.record do |crumb|
               unless (200...400).includes? context.response.status_code
-                crumb.level = Breadcrumb::Severity::ERROR
+                crumb.level = :error
               end
-              crumb.type = Breadcrumb::Type::HTTP
+              crumb.type = :http
               crumb.category = "kemal.request"
               crumb.data = {
                 method:      context.request.method.upcase,
