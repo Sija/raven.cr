@@ -44,9 +44,17 @@ module Raven
     # events asynchronously, or pass `true` to to use standard `spawn`.
     #
     # ```
-    # ->(event : Raven::Event) { spawn { Raven.send_event(event) }; nil }
+    # ->(event : Raven::Event) { spawn { Raven.send_event(event) } }
     # ```
     property async : Bool | Proc(Event, Nil) | Nil
+
+    # ditto
+    def async=(block : Proc(Event, _))
+      @async = ->(event : Event) {
+        block.call(event)
+        nil
+      }
+    end
 
     # `KEMAL_ENV` by default.
     property current_environment : String?
@@ -174,9 +182,17 @@ module Raven
     # Optional `Proc`, called when the Sentry server cannot be contacted for any reason.
     #
     # ```
-    # ->(event : Raven::Event::HashType) { spawn { MyJobProcessor.send_email(event); nil } }
+    # ->(event : Raven::Event::HashType) { spawn { MyJobProcessor.send_email(event) } }
     # ```
     property transport_failure_callback : Proc(Event::HashType, Nil)?
+
+    # ditto
+    def transport_failure_callback=(block : Proc(Event::HashType, _))
+      @transport_failure_callback = ->(event : Event::HashType) {
+        block.call(event)
+        nil
+      }
+    end
 
     # Errors object - an Array that contains error messages.
     getter errors = [] of String

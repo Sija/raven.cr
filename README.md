@@ -117,7 +117,6 @@ When an error or message occurs, the notification is immediately sent to Sentry.
 # define your own handler
 config.async = ->(event : Raven::Event) {
   spawn { Raven.send_event(event) }
-  nil
 }
 # or use default implementation based on fibers (i.e. the one above)
 config.async = true
@@ -133,7 +132,6 @@ config.async = ->(event : Raven::Event) {
   SentryJob.async.perform(event.to_hash)
   # or with JSON string
   # SentryJob.async.perform(event.to_json)
-  nil
 }
 
 class SentryJob
@@ -156,7 +154,6 @@ If Raven fails to send an event to Sentry for any reason (either the Sentry serv
 ```crystal
 config.transport_failure_callback = ->(event : Raven::Event::HashType) {
   AdminMailer.async.perform("Oh god, it's on fire!", event)
-  nil
 }
 ```
 
