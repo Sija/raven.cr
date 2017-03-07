@@ -33,7 +33,7 @@ module Raven
     end
 
     def send_event(event : Event | Event::HashType)
-      event = event.is_a?(Event) ? event.to_hash.to_h : event
+      event = event.is_a?(Event) ? event.to_hash : event
       unless @state.should_try?
         failed_send nil, event
         return
