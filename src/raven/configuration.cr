@@ -46,12 +46,26 @@ module Raven
     # ```
     # ->(event : Raven::Event) { spawn { Raven.send_event(event) } }
     # ```
-    property async : Bool | Proc(Event, Nil) | Nil
+    property async : Proc(Event, Nil)?
 
     # ditto
     def async=(block : Proc(Event, _))
       @async = ->(event : Event) {
         block.call(event)
+        nil
+      }
+    end
+
+    # Sets `async` callback to either `Fiber`-based implementation (see below),
+    # or `nil`, depending on the given *switch* value.
+    #
+    # ```
+    # ->(event : Event) { spawn { Raven.send_event(event) } }
+    # ```
+    def async=(switch : Bool)
+      return @async = nil unless switch
+      @async = ->(event : Event) {
+        spawn { Raven.send_event(event) }
         nil
       }
     end

@@ -110,11 +110,7 @@ module Raven
       if (event = Event.from(obj, configuration: configuration, context: context))
         event.initialize_with **options
         yield event
-        async = configuration.async
-        if async.as?(Bool) == true
-          async = ->(event : Event) { spawn { send_event(event) }; nil }
-        end
-        if async.is_a?(Event -> Nil)
+        if async = configuration.async
           begin
             async.call(event)
           rescue ex
