@@ -32,6 +32,9 @@ module Raven
         "X-Sentry-Auth" => auth_header,
         "Content-Type"  => options[:content_type],
       }
+      if configuration.encoding.gzip?
+        headers["Content-Encoding"] = "gzip"
+      end
       response = client.post "#{path}/api/#{project_id}/store/", headers, data
       unless response.success?
         raise Error.new response.headers["X-Sentry-Error"]? || response.status_message

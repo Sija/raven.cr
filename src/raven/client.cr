@@ -53,18 +53,21 @@ module Raven
 
     private def encode(data)
       data = @processors.reduce(data) { |v, p| p.process(v) }
-      encoded = data.to_json
+
+      io = IO::Memory.new
+      data.to_json(io)
+      io.rewind
 
       case configuration.encoding
       when .gzip?
-        io_encoded = IO::Memory.new(encoded)
         io_gzipped = IO::Memory.new
-        Gzip::Writer.open(io_gzipped) do |deflate|
-          IO.copy(io_encoded, deflate)
+        Gzip::Writer.open(io_gzipped) do |gzip|
+          IO.copy(io, gzip)
         end
-        {"application/octet-stream", Base64.strict_encode(io_gzipped)}
+        io_gzipped.rewind
+        {"application/octet-stream", io_gzipped}
       when .json?
-        {"application/json", encoded}
+        {"application/json", io}
       else
         raise "Invalid configuration encoding"
       end

@@ -80,9 +80,7 @@ module Raven
     end
 
     # Encoding type for event bodies.
-    #
-    # TODO: switch to `Encoding::GZIP` after Crystal v0.21.0
-    property encoding : Encoding = Encoding::JSON
+    property encoding : Encoding = Encoding::GZIP
 
     # Whitelist of environments that will send notifications to Sentry.
     property environments = [] of String
