@@ -9,6 +9,6 @@ dependencies:
     github: sija/any_hash.cr
     branch: master
 
-crystal: 0.21.0
+crystal: 0.21.1
 
 license: MIT
