@@ -36,12 +36,12 @@ module Raven
       {% else %}
         {
           {% for var in @type.instance_vars %}
-            :{{var.name.id}} => ((%v = @{{var.name.id}}) \
+            :{{var.name.id}} => ((v = @{{var.name.id}}) \
               .responds_to?(:to_hash) \
-                ? %v.try(&.to_hash)
-                : %v.is_a?(Array) \
-                  ? %v.map { |i| i.responds_to?(:to_hash) ? i.to_hash : i }
-                  : %v
+                ? v.try(&.to_hash)
+                : v.is_a?(Array) \
+                  ? v.map { |i| i.responds_to?(:to_hash) ? i.to_hash : i }
+                  : v
             ),
           {% end %}
         }

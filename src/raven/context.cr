@@ -22,7 +22,7 @@ module Raven
     end
 
     class_getter runtime_context : AnyHash::JSON do
-      v = Raven.sys_command_compiled("crystal -v").match /^(.+) (\d+.*)$/
+      v = Crystal::DESCRIPTION.match /^(.+?) (\d+.*)$/
       _, name, version = v.not_nil!
       {
         name:    name,

@@ -1,5 +1,5 @@
 name: raven
-version: 0.4.0
+version: 0.5.0
 
 authors:
   - Sijawusz Pur Rahnama <sija@sija.pl>
@@ -9,6 +9,6 @@ dependencies:
     github: sija/any_hash.cr
     branch: master
 
-crystal: 0.21.0
+crystal: 0.21.1
 
 license: MIT

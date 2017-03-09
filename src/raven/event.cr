@@ -156,7 +156,6 @@ module Raven
           frame.in_app = line.in_app?
         end
       end
-
       event.culprit = get_culprit(iface.frames)
     end
 
@@ -260,11 +259,11 @@ module Raven
         environment: @environment,
         fingerprint: @fingerprint,
         modules:     @modules,
-        extra:       extra.to_h,
-        tags:        tags.to_h,
-        user:        user.to_h,
-        contexts:    contexts.to_h,
-        breadcrumbs: @breadcrumbs.size > 0 ? @breadcrumbs.to_hash : nil,
+        extra:       @extra,
+        tags:        @tags,
+        user:        @user,
+        contexts:    @contexts,
+        breadcrumbs: @breadcrumbs.empty? ? nil : @breadcrumbs.to_hash,
         message:     message,
       }.to_any_json
 

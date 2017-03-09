@@ -20,7 +20,7 @@ module Raven
       @buffer = Array(Breadcrumb?).new(size, nil)
     end
 
-    def record(crumb : Breadcrumb? = nil) : Void
+    def record(crumb : Breadcrumb) : Void
       @buffer.shift
       @buffer << crumb
     end

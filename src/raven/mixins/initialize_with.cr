@@ -25,16 +25,35 @@ module Raven
     # NOTE: Magic inside!
     module InitializeWith
       def initialize_with(**attributes)
-        {% for method in @type.methods.select { |m| m.name.ends_with?('=') && m.args.size == 1 } %}
-          {% property_name = method.name[0...-1].id %}
-          if arg = attributes[:{{property_name}}]?
-            self.{{property_name}} = arg
-          end
-        {% end %}
-        {% for var in @type.instance_vars %}
-          if arg = attributes[:{{var.name.id}}]?
-            @{{var.name.id}} = arg if arg.is_a?({{var.type.id}})
-          end
+        {% begin %}
+          %set = [] of Symbol
+
+          {% properties = @type.methods.select { |m| m.name.ends_with?('=') && m.args.size == 1 } %}
+          {% properties = properties.map(&.name[0...-1].id).uniq %}
+
+          {% for property in properties %}
+            if arg = attributes[:{{property}}]?
+              unless %set.includes?(:{{property}})
+                self.{{property}} = arg
+                %set << :{{property}}
+              end
+            end
+          {% end %}
+
+          {% ivars = @type.instance_vars %}
+          {% ivars = ivars.map { |i| [i.name.id, i.type.id] }.uniq %}
+
+          {% for ivar in ivars %}
+            {% name = ivar[0]; type = ivar[1] %}
+            if arg = attributes[:{{name}}]?
+              unless %set.includes?(:{{name}})
+                if arg.is_a?({{type}})
+                  @{{name}} = arg
+                  %set << :{{name}}
+                end
+              end
+            end
+          {% end %}
         {% end %}
         self
       end
