@@ -104,10 +104,10 @@ module Raven
     # ```
     def capture(obj : Exception | String, **options, &block)
       unless configuration.capture_allowed?(obj)
-        logger.debug "#{obj.inspect} excluded from capture: #{configuration.error_messages}"
+        logger.debug "'#{obj}' excluded from capture: #{configuration.error_messages}"
         return false
       end
-      if (event = Event.from(obj, configuration: configuration, context: context))
+      Event.from(obj, configuration: configuration, context: context).tap do |event|
         event.initialize_with **options
         yield event
         if async = configuration.async
@@ -121,7 +121,6 @@ module Raven
           send_event(event)
         end
         @last_event_id = event.id
-        event
       end
     end
 

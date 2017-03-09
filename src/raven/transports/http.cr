@@ -35,11 +35,11 @@ module Raven
       if configuration.encoding.gzip?
         headers["Content-Encoding"] = "gzip"
       end
-      response = client.post "#{path}/api/#{project_id}/store/", headers, data
-      unless response.success?
-        raise Error.new response.headers["X-Sentry-Error"]? || response.status_message
+      client.post("#{path}/api/#{project_id}/store/", headers, data).tap do |response|
+        unless response.success?
+          raise Error.new response.headers["X-Sentry-Error"]? || response.status_message
+        end
       end
-      response
     end
   end
 end

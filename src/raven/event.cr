@@ -75,17 +75,6 @@ module Raven
     any_json_property :contexts, :user, :tags, :extra
 
     def self.from(exc : Exception, **options)
-      configuration = options[:configuration]? || Raven.configuration
-      # Try to prevent error reporting loops
-      if exc.is_a?(Raven::Error)
-        configuration.logger.debug "Refusing to capture Raven error: #{exc.inspect}"
-        return
-      end
-      if configuration.excluded_exceptions.includes?(exc.class.name)
-        configuration.logger.debug "User excluded error: #{exc.inspect}"
-        return
-      end
-
       new(**options).tap do |event|
         # Messages limited to 10kb
         event.message = "#{exc.class}: #{exc.message}".byte_slice(0, 9_999)
@@ -134,29 +123,13 @@ module Raven
           iface.stacktrace =
             if e.backtrace? && !backtraces.includes?(e.backtrace.object_id)
               backtraces << e.backtrace.object_id
-              Interface::Stacktrace.new do |stacktrace|
-                stacktrace_interface_from stacktrace, event, e.backtrace
+              Interface::Stacktrace.new(backtrace: e.backtrace) do |stacktrace|
+                event.culprit = get_culprit(stacktrace.frames)
               end
             end
         end
       end
       event.interface :exception, values: values
-    end
-
-    protected def self.stacktrace_interface_from(iface, event, backtrace)
-      iface.frames = [] of Interface::Stacktrace::Frame
-
-      backtrace = Backtrace.parse(backtrace)
-      backtrace.lines.reverse_each do |line|
-        iface.frames << Interface::Stacktrace::Frame.new do |frame|
-          frame.abs_path = line.file
-          frame.function = line.method
-          frame.lineno = line.number
-          frame.colno = line.column
-          frame.in_app = line.in_app?
-        end
-      end
-      event.culprit = get_culprit(iface.frames)
     end
 
     protected def self.get_culprit(frames)
@@ -232,9 +205,7 @@ module Raven
     end
 
     def backtrace=(backtrace)
-      interface :stacktrace do |iface|
-        self.class.stacktrace_interface_from iface.as(Interface::Stacktrace), self, backtrace
-      end
+      interface :stacktrace, backtrace: backtrace
     end
 
     def list_shard_specs

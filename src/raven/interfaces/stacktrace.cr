@@ -6,43 +6,34 @@ module Raven
       :stacktrace
     end
 
+    def backtrace=(backtrace)
+      @frames.clear
+      backtrace = Backtrace.parse(backtrace)
+      backtrace.lines.reverse_each do |line|
+        @frames << Frame.from_backtrace_line(line)
+      end
+    end
+
     # Not actually an interface, but I want to use the same style
     class Frame < Interface
       property abs_path : String?
+      property filename : String?
       property function : String?
+      property package : String?
       property lineno : Int32?
       property colno : Int32?
       property? in_app : Bool?
 
-      def under_src_path?
-        return unless src_path = Configuration::SRC_PATH
-        abs_path.try &.starts_with?(src_path)
-      end
-
-      def relative_path
-        return unless path = abs_path
-        return path unless path.starts_with?('/')
-        return unless under_src_path?
-        if prefix = Configuration::SRC_PATH
-          path[prefix.chomp(File::SEPARATOR).size + 1..-1]
+      def self.from_backtrace_line(line)
+        new.tap do |frame|
+          frame.abs_path = line.file
+          frame.filename = line.relative_path
+          frame.function = line.method
+          frame.package = line.shard_name
+          frame.lineno = line.number
+          frame.colno = line.column
+          frame.in_app = line.in_app?
         end
-      end
-
-      def filename
-        relative_path
-      end
-
-      def package
-        relative_path.try &.match(Raven.configuration.modules_path_pattern).try do |match|
-          match["name"]
-        end
-      end
-
-      def to_hash
-        data = super
-        data[:filename] = filename
-        data[:package] = package
-        data.to_h
       end
     end
   end
