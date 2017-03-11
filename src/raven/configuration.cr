@@ -254,9 +254,12 @@ module Raven
 
       # For anyone who wants to read the base server string
       @dsn = String.build do |str|
-        str << "#{@scheme}://#{@host}"
-        str << ":#{@port}" if @port
-        str << "#{@path}" if @path
+        str << @scheme << "://"
+        str << @public_key << '@' if @public_key
+        str << @host
+        str << ':' << @port if @port
+        str << @path if @path
+        str << '/' << @project_id if @project_id
       end
     end
 
