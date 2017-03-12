@@ -32,6 +32,10 @@ module Raven
       @processors = @configuration.processors.map &.new(self)
     end
 
+    def send_feedback(event_id : String, data : Hash)
+      transport.send_feedback(event_id, data)
+    end
+
     def send_event(event : Event | Event::HashType)
       event = event.is_a?(Event) ? event.to_hash : event
       unless @state.should_try?
