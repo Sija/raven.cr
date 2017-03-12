@@ -254,28 +254,17 @@ module Raven
 
       # For anyone who wants to read the base server string
       @dsn = String.build do |str|
-        str << "#{@scheme}://#{@host}"
-        str << ":#{@port}" if @port
-        str << "#{@path}" if @path
+        str << @scheme << "://"
+        str << @public_key << '@' if @public_key
+        str << @host
+        str << ':' << @port if @port
+        str << @path if @path
+        str << '/' << @project_id if @project_id
       end
     end
 
     def dsn=(value : String)
       self.dsn = URI.parse(value)
-    end
-
-    def capture_allowed?(message_or_exc = nil)
-      @errors = [] of String
-      valid? &&
-        capture_in_current_environment? &&
-        capture_allowed_by_callback?(message_or_exc)
-    end
-
-    def error_messages : String
-      errors = @errors.map_with_index do |e, i|
-        i > 0 ? e.downcase : e
-      end
-      errors.join(", ")
     end
 
     def detect_release : String?
@@ -309,17 +298,48 @@ module Raven
       Raven.sys_command_compiled("git rev-parse HEAD")
     end
 
+    # Try to resolve the hostname to an FQDN, but fall back to whatever
+    # the load name is.
+    private def resolve_hostname
+      System.hostname
+    end
+
+    def capture_allowed?
+      @errors = [] of String
+      valid? && capture_in_current_environment?
+    end
+
+    def capture_allowed?(message_or_exc)
+      @errors = [] of String
+      capture_allowed? &&
+        !raven_error?(message_or_exc) &&
+        !excluded_exception?(message_or_exc) &&
+        capture_allowed_by_callback?(message_or_exc)
+    end
+
     private def capture_in_current_environment?
       return true unless environments.any? && !environments.includes?(@current_environment)
       @errors << "Not configured to send/capture in environment '#{@current_environment}'"
       false
     end
 
-    private def capture_allowed_by_callback?(obj)
-      return true if !obj || !should_capture
-      return true if should_capture.try &.call(obj)
+    private def capture_allowed_by_callback?(message_or_exc)
+      return true if !should_capture || should_capture.try &.call(message_or_exc)
       @errors << "#should_capture returned false"
       false
+    end
+
+    def raven_error?(message_or_exc)
+      return false unless message_or_exc.is_a?(Raven::Error)
+      @errors << "Refusing to capture Raven error: #{message_or_exc.inspect}"
+      true
+    end
+
+    def excluded_exception?(ex)
+      return false unless ex.is_a?(Exception)
+      return false unless excluded_exceptions.includes?(ex.class.name)
+      @errors << "User excluded error: #{ex.inspect}"
+      true
     end
 
     private def valid?
@@ -338,10 +358,11 @@ module Raven
       valid
     end
 
-    # Try to resolve the hostname to an FQDN, but fall back to whatever
-    # the load name is.
-    private def resolve_hostname
-      System.hostname
+    def error_messages : String
+      errors = @errors.map_with_index do |e, i|
+        i > 0 ? e.downcase : e
+      end
+      errors.join(", ")
     end
   end
 end

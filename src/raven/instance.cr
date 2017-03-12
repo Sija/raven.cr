@@ -76,6 +76,29 @@ module Raven
       configure
     end
 
+    # Sends User Feedback to Sentry server.
+    #
+    # *data* should be a `Hash(String, String)` with following keys:
+    # - *name*
+    # - *email* (populated from `context.user[:email]` if left empty)
+    # - *comments*
+    #
+    # ```
+    # Raven.send_feedback(Raven.last_event_id, {
+    #   "name"     => "...",
+    #   "email"    => "...",
+    #   "comments" => "...",
+    # })
+    # ```
+    #
+    # NOTE: Sentry server records single (last) feedback for a given *event_id*.
+    def send_feedback(event_id : String, data : Hash)
+      if email = context.user[:email]?
+        data["email"] ||= email.to_s
+      end
+      client.send_feedback(event_id, data)
+    end
+
     # Send an event to the configured Sentry server.
     #
     # ```
@@ -104,10 +127,10 @@ module Raven
     # ```
     def capture(obj : Exception | String, **options, &block)
       unless configuration.capture_allowed?(obj)
-        logger.debug "#{obj.inspect} excluded from capture: #{configuration.error_messages}"
+        logger.debug "'#{obj}' excluded from capture: #{configuration.error_messages}"
         return false
       end
-      if (event = Event.from(obj, configuration: configuration, context: context))
+      Event.from(obj, configuration: configuration, context: context).tap do |event|
         event.initialize_with **options
         yield event
         if async = configuration.async
@@ -121,7 +144,6 @@ module Raven
           send_event(event)
         end
         @last_event_id = event.id
-        event
       end
     end
 

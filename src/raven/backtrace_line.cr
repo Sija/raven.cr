@@ -74,6 +74,26 @@ module Raven
       io << "<Line: " << self << ">"
     end
 
+    def under_src_path?
+      return unless src_path = Configuration::SRC_PATH
+      file.try &.starts_with?(src_path)
+    end
+
+    def relative_path
+      return unless path = file
+      return path unless path.starts_with?('/')
+      return unless under_src_path?
+      if prefix = Configuration::SRC_PATH
+        path[prefix.chomp(File::SEPARATOR).size + 1..-1]
+      end
+    end
+
+    def shard_name
+      relative_path
+        .try &.match(Raven.configuration.modules_path_pattern)
+        .try &.[]("name")
+    end
+
     def in_app?
       !!(file =~ Raven.configuration.in_app_pattern)
     end

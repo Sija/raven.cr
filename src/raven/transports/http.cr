@@ -18,6 +18,30 @@ module Raven
       end
     end
 
+    def send_feedback(event_id, data)
+      headers = ::HTTP::Headers.new
+      # TODO: find a better way to determine value for `Origin`
+      if origin = configuration.server_name
+        headers["Origin"] = origin
+      end
+      params = ::HTTP::Params.build do |form|
+        form.add "eventId", event_id
+        form.add "dsn", configuration.dsn
+      end
+      path = String.build do |str|
+        str << configuration.scheme << "://" << configuration.host
+        str << ':' << configuration.port if configuration.port
+        str << configuration.path << "/api/embed/error-page/"
+        str << '?' << params
+      end
+      logger.debug "HTTP Transport connecting to #{path}"
+      ::HTTP::Client.post_form(path, data, headers).tap do |response|
+        unless response.success?
+          raise Error.new response.status_message
+        end
+      end
+    end
+
     def send_event(auth_header, data, **options)
       unless configuration.capture_allowed?
         logger.debug "Event not sent: #{configuration.error_messages}"
@@ -35,11 +59,11 @@ module Raven
       if configuration.encoding.gzip?
         headers["Content-Encoding"] = "gzip"
       end
-      response = client.post "#{path}/api/#{project_id}/store/", headers, data
-      unless response.success?
-        raise Error.new response.headers["X-Sentry-Error"]? || response.status_message
+      client.post("#{path}/api/#{project_id}/store/", headers, data).tap do |response|
+        unless response.success?
+          raise Error.new response.headers["X-Sentry-Error"]? || response.status_message
+        end
       end
-      response
     end
   end
 end
