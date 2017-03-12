@@ -22,8 +22,7 @@ module Raven
 
   macro sys_command_compiled(command)
     %result = {{ system("#{command.id} || true").stringify.strip }}
-    return if %result.empty?
-    %result
+    %result.empty? ? nil : %result
   end
 
   def self.sys_command(command)

@@ -210,6 +210,7 @@ module Raven
 
     def list_shard_specs
       shards_list = Raven.sys_command_compiled("shards list")
+      return unless shards_list
       deps = shards_list.scan /\* (?<name>.+?) \((?<version>.+?)\)/m
       unless deps.empty?
         deps.map { |match| {match["name"], match["version"]} }.to_h
