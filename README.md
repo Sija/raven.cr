@@ -20,6 +20,7 @@ yet there are no tests written, so use it at your own risk! - or kindly send a P
 - [x] Breadcrumbs
 - [x] Integrations ([Kemal](https://github.com/kemalcr/kemal), [Sidekiq.cr](https://github.com/mperham/sidekiq.cr))
 - [x] Async support
+- [x] User Feedback (`Raven.send_feedback` + Kemal handler)
 
 ### TODO
 
