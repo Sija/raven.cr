@@ -46,12 +46,12 @@
     };
   </script>
 
+  <h2>Internal Server Error (500)</h2>
+
   <%- if ::Kemal.config.env == "production" %>
-    <h2>Internal Server Error (500)</h2>
     <script>
       showReportDialog();
     </script>
-
   <%- else -%>
     <pre><%= HTML.escape(ex.inspect_with_backtrace) %></pre>
     <a href="javascript:void(null)" onclick="showReportDialog()">
