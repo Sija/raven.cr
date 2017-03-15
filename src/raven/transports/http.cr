@@ -29,8 +29,8 @@ module Raven
 
     def send_feedback(event_id, data)
       headers = ::HTTP::Headers.new
-      # TODO: find a better way to determine value for `Origin`
-      if origin = configuration.server_name
+      # https://github.com/getsentry/sentry-swift/blob/7e0ae98ad49c16331a43c9a58b03be3e56c7a5a3/Sources/SentryEndpoint.swift#L154
+      if origin = configuration.dsn
         headers["Origin"] = origin
       end
       params = ::HTTP::Params.build do |form|
