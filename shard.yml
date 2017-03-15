@@ -7,7 +7,6 @@ authors:
 dependencies:
   any_hash:
     github: sija/any_hash.cr
-    branch: master
 
 crystal: 0.21.1
 
