@@ -14,6 +14,10 @@ module Raven
       end
     end
 
+    def culprit : Frame?
+      frames.reverse.find(&.in_app?) || frames.last?
+    end
+
     # Not actually an interface, but I want to use the same style
     class Frame < Interface
       property abs_path : String?

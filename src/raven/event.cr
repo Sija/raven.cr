@@ -47,6 +47,11 @@ module Raven
     # The name of the transaction (or culprit) which caused this exception.
     property culprit : String?
 
+    # :nodoc:
+    def culprit=(frame : Interface::Stacktrace::Frame)
+      self.culprit = self.class.format_culprit_name(frame)
+    end
+
     # Identifies the host SDK from which the event was recorded.
     property server_name : String?
 
@@ -102,6 +107,16 @@ module Raven
       exc.__raven_context
     end
 
+    protected def self.format_culprit_name(frame)
+      return unless frame
+      parts = {
+        [nil, frame.filename],
+        ["in", frame.function],
+        ["at line", frame.lineno],
+      }
+      parts.reject(&.last.nil?).flatten.compact.join ' '
+    end
+
     protected def self.add_exception_interface(event, exc)
       exceptions = [exc] of Exception
       context = Set(UInt64).new({exc.object_id})
@@ -124,23 +139,12 @@ module Raven
             if e.backtrace? && !backtraces.includes?(e.backtrace.object_id)
               backtraces << e.backtrace.object_id
               Interface::Stacktrace.new(backtrace: e.backtrace) do |stacktrace|
-                event.culprit = get_culprit(stacktrace.frames)
+                event.culprit = stacktrace.culprit
               end
             end
         end
       end
       event.interface :exception, values: values
-    end
-
-    protected def self.get_culprit(frames)
-      lastframe = frames.reverse.find(&.in_app?) || frames.last
-      return unless lastframe
-      parts = {
-        [nil, lastframe.filename],
-        ["in", lastframe.function],
-        ["at line", lastframe.lineno],
-      }
-      msg = parts.reject(&.last.nil?).flatten.compact.join ' '
     end
 
     def initialize(**options)
