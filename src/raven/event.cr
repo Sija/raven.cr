@@ -209,7 +209,9 @@ module Raven
     end
 
     def backtrace=(backtrace)
-      interface :stacktrace, backtrace: backtrace
+      interface(:stacktrace, backtrace: backtrace).tap do |stacktrace|
+        self.culprit ||= stacktrace.as(Interface::Stacktrace).culprit
+      end
     end
 
     def list_shard_specs
