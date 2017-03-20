@@ -14,7 +14,9 @@ module Raven
     property client : ::HTTP::Client { build_client }
 
     private def build_client
-      ::HTTP::Client.new(configuration.host.not_nil!, configuration.port).tap do |client|
+      ssl = configuration.ssl
+      ssl = configuration.scheme == "https" if ssl.nil?
+      ::HTTP::Client.new(configuration.host.not_nil!, configuration.port, ssl).tap do |client|
         client.before_request do |request|
           request.headers["User-Agent"] = Client::USER_AGENT
         end
