@@ -34,30 +34,32 @@ module Raven
     end
 
     def process(key, value)
-      case
-      when value.is_a?(Hash)
+      case value
+      when Hash
         process(value)
-      when value.is_a?(Array)
+      when Array
         value.map! { |i| process(key, i).as(typeof(i)) }
-      when key.to_s == "query_string"
-        if value.is_a?(String)
+      when String
+        case
+        when value.to_s =~ fields_pattern && (json = parse_json_or_nil(value))
+          process(json).to_json
+        when matches_regexes?(key, value)
+          STRING_MASK
+        when key == :query_string || key == "query_string"
           sanitize_query_string(value)
         else
           value
         end
-      when value.is_a?(String)
-        if fields_pattern.match(value.to_s) && (json = JSON.parse_raw(value) rescue nil)
-          process(json).to_json
-        elsif matches_regexes?(key, value)
-          STRING_MASK
-        else
-          value
-        end
-      when value.is_a?(Number) && matches_regexes?(key, value)
-        INT_MASK
+      when Number
+        matches_regexes?(key, value) ? INT_MASK : value
       else
         value
       end
+    end
+
+    private def parse_json_or_nil(string)
+      return unless string.starts_with?('[') || string.starts_with?('{')
+      JSON.parse_raw(string) rescue nil
     end
 
     private def sanitize_query_string(query_string)
@@ -68,8 +70,8 @@ module Raven
     end
 
     private def matches_regexes?(key, value)
-      return true if fields_pattern.match(key.to_s)
-      return true if sanitize_credit_cards? && CREDIT_CARD_PATTERN.match(value.to_s)
+      return true if sanitize_credit_cards? && value.to_s =~ CREDIT_CARD_PATTERN
+      return true if key.to_s =~ fields_pattern
     end
   end
 end

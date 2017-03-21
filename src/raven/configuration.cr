@@ -158,6 +158,14 @@ module Raven
     # NOTE: DSN component - set automatically if DSN provided.
     property scheme : String?
 
+    {% if flag?(:without_openssl) %}
+      # SSL flag passed to `Raven::Client`.
+      property ssl : Bool?
+    {% else %}
+      # SSL context passed to `Raven::Client`.
+      property ssl : OpenSSL::SSL::Context::Client?
+    {% end %}
+
     # Secret key for authentication with the Sentry server
     #
     # NOTE: If you provide a DSN, this will be set automatically.

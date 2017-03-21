@@ -25,6 +25,15 @@ module Raven
         call_next context
       rescue ex
         Raven.capture(ex) do |event|
+          lookup_result = context.route_lookup
+          if lookup_result.found?
+            lookup_result.payload.as(::Kemal::Route).tap do |route|
+              # https://github.com/kemalcr/kemal/pull/332
+              if route.responds_to?(:method) && route.responds_to?(:path)
+                event.culprit = "#{route.method} #{route.path}"
+              end
+            end
+          end
           request = context.request
           if CAPTURE_DATA_FOR_METHODS.includes? request.method
             params = context.params

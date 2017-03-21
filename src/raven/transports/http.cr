@@ -2,10 +2,21 @@ require "http/client"
 
 module Raven
   class Transport::HTTP < Transport
+    class Error < Error
+      property response : ::HTTP::Client::Response
+
+      def initialize(@response)
+        message = @response.headers["X-Sentry-Error"]? || @response.status_message
+        super(message)
+      end
+    end
+
     property client : ::HTTP::Client { build_client }
 
     private def build_client
-      ::HTTP::Client.new(configuration.host.not_nil!, configuration.port).tap do |client|
+      ssl = configuration.ssl
+      ssl = configuration.scheme == "https" if ssl.nil?
+      ::HTTP::Client.new(configuration.host.not_nil!, configuration.port, ssl).tap do |client|
         client.before_request do |request|
           request.headers["User-Agent"] = Client::USER_AGENT
         end
@@ -20,8 +31,8 @@ module Raven
 
     def send_feedback(event_id, data)
       headers = ::HTTP::Headers.new
-      # TODO: find a better way to determine value for `Origin`
-      if origin = configuration.server_name
+      # https://github.com/getsentry/sentry-swift/blob/7e0ae98ad49c16331a43c9a58b03be3e56c7a5a3/Sources/SentryEndpoint.swift#L154
+      if origin = configuration.dsn
         headers["Origin"] = origin
       end
       params = ::HTTP::Params.build do |form|
@@ -36,9 +47,7 @@ module Raven
       end
       logger.debug "HTTP Transport connecting to #{path}"
       ::HTTP::Client.post_form(path, data, headers).tap do |response|
-        unless response.success?
-          raise Error.new response.status_message
-        end
+        raise Error.new response unless response.success?
       end
     end
 
@@ -60,9 +69,7 @@ module Raven
         headers["Content-Encoding"] = "gzip"
       end
       client.post("#{path}/api/#{project_id}/store/", headers, data).tap do |response|
-        unless response.success?
-          raise Error.new response.headers["X-Sentry-Error"]? || response.status_message
-        end
+        raise Error.new response unless response.success?
       end
     end
   end

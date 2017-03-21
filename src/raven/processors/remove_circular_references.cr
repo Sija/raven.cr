@@ -6,12 +6,13 @@ module Raven
 
       case data
       when Hash
-        visited << data.to_h.object_id
+        visited << data.object_id
         data.each do |k, v|
           data[k] = process(v, visited) rescue "!!!"
         end
-        data.to_h
+        data
       when Array
+        visited << data.object_id
         data.map! { |v| process(v, visited).as(typeof(v)) }
       else
         data

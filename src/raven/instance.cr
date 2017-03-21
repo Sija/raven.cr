@@ -65,9 +65,7 @@ module Raven
     # end
     # ```
     def configure
-      self.client = Client.new(configuration)
-      report_status
-      client
+      self.client = Client.new(configuration).tap { report_status }
     end
 
     # ditto

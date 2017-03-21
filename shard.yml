@@ -1,5 +1,5 @@
 name: raven
-version: 0.6.0
+version: 0.7.0
 
 authors:
   - Sijawusz Pur Rahnama <sija@sija.pl>
@@ -7,7 +7,6 @@ authors:
 dependencies:
   any_hash:
     github: sija/any_hash.cr
-    branch: master
 
 crystal: 0.21.1
 
