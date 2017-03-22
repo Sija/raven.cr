@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta id="repository-name" content="github.com/Sija/raven.cr">
+  <link href="../css/style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="../js/doc.js"></script>
+  <title>Raven::Interface - github.com/Sija/raven.cr</title>
+</head>
+<body>
+
+<div id="types-list">
+  <div id="search-box">
+    <input type="search" id="search-input" placeholder="Search...">
+  </div>
+
+  <ul>
+    <li><a href="../index.html">README</a></li>
+  </ul>
+
+  <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Exception" data-name="exception">
+      <a href="../Exception.html">Exception</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Logger" data-name="logger">
+      <a href="../Logger.html">Logger</a>
+      
+    </li>
+  
+  <li class="parent open current" data-id="github.com/Sija/raven.cr/Raven" data-name="raven">
+      <a href="../Raven.html">Raven</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Backtrace" data-name="raven::backtrace">
+      <a href="../Raven/Backtrace.html">Backtrace</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Backtrace/Line" data-name="raven::backtrace::line">
+      <a href="../Raven/Backtrace/Line.html">Line</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Breadcrumb" data-name="raven::breadcrumb">
+      <a href="../Raven/Breadcrumb.html">Breadcrumb</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Breadcrumb/Severity" data-name="raven::breadcrumb::severity">
+      <a href="../Raven/Breadcrumb/Severity.html">Severity</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Breadcrumb/Type" data-name="raven::breadcrumb::type">
+      <a href="../Raven/Breadcrumb/Type.html">Type</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/BreadcrumbBuffer" data-name="raven::breadcrumbbuffer">
+      <a href="../Raven/BreadcrumbBuffer.html">BreadcrumbBuffer</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Client" data-name="raven::client">
+      <a href="../Raven/Client.html">Client</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Client/State" data-name="raven::client::state">
+      <a href="../Raven/Client/State.html">State</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Client/State/Status" data-name="raven::client::state::status">
+      <a href="../Raven/Client/State/Status.html">Status</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Configuration" data-name="raven::configuration">
+      <a href="../Raven/Configuration.html">Configuration</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Configuration/Encoding" data-name="raven::configuration::encoding">
+      <a href="../Raven/Configuration/Encoding.html">Encoding</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Context" data-name="raven::context">
+      <a href="../Raven/Context.html">Context</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Delegators" data-name="raven::delegators">
+      <a href="../Raven/Delegators.html">Delegators</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Error" data-name="raven::error">
+      <a href="../Raven/Error.html">Error</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Event" data-name="raven::event">
+      <a href="../Raven/Event.html">Event</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Event/HashType" data-name="raven::event::hashtype">
+      <a href="../Raven/Event/HashType.html">HashType</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Event/Severity" data-name="raven::event::severity">
+      <a href="../Raven/Event/Severity.html">Severity</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Instance" data-name="raven::instance">
+      <a href="../Raven/Instance.html">Instance</a>
+      
+    </li>
+  
+  <li class="parent current" data-id="github.com/Sija/raven.cr/Raven/Interface" data-name="raven::interface">
+      <a href="../Raven/Interface.html">Interface</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Interface/Exception" data-name="raven::interface::exception">
+      <a href="../Raven/Interface/Exception.html">Exception</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Interface/HTTP" data-name="raven::interface::http">
+      <a href="../Raven/Interface/HTTP.html">HTTP</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Interface/Message" data-name="raven::interface::message">
+      <a href="../Raven/Interface/Message.html">Message</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Interface/SingleException" data-name="raven::interface::singleexception">
+      <a href="../Raven/Interface/SingleException.html">SingleException</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Interface/Stacktrace" data-name="raven::interface::stacktrace">
+      <a href="../Raven/Interface/Stacktrace.html">Stacktrace</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Interface/Stacktrace/Frame" data-name="raven::interface::stacktrace::frame">
+      <a href="../Raven/Interface/Stacktrace/Frame.html">Frame</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Interface/Template" data-name="raven::interface::template">
+      <a href="../Raven/Interface/Template.html">Template</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Kemal" data-name="raven::kemal">
+      <a href="../Raven/Kemal.html">Kemal</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Kemal/ExceptionHandler" data-name="raven::kemal::exceptionhandler">
+      <a href="../Raven/Kemal/ExceptionHandler.html">ExceptionHandler</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Kemal/LogHandler" data-name="raven::kemal::loghandler">
+      <a href="../Raven/Kemal/LogHandler.html">LogHandler</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Kemal/UserFeedbackHandler" data-name="raven::kemal::userfeedbackhandler">
+      <a href="../Raven/Kemal/UserFeedbackHandler.html">UserFeedbackHandler</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Logger" data-name="raven::logger">
+      <a href="../Raven/Logger.html">Logger</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Mixin" data-name="raven::mixin">
+      <a href="../Raven/Mixin.html">Mixin</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Mixin/InitializeWith" data-name="raven::mixin::initializewith">
+      <a href="../Raven/Mixin/InitializeWith.html">InitializeWith</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Processor" data-name="raven::processor">
+      <a href="../Raven/Processor.html">Processor</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/Compact" data-name="raven::processor::compact">
+      <a href="../Raven/Processor/Compact.html">Compact</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/Cookies" data-name="raven::processor::cookies">
+      <a href="../Raven/Processor/Cookies.html">Cookies</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/HTTPHeaders" data-name="raven::processor::httpheaders">
+      <a href="../Raven/Processor/HTTPHeaders.html">HTTPHeaders</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/PostData" data-name="raven::processor::postdata">
+      <a href="../Raven/Processor/PostData.html">PostData</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/RemoveCircularReferences" data-name="raven::processor::removecircularreferences">
+      <a href="../Raven/Processor/RemoveCircularReferences.html">RemoveCircularReferences</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/RemoveStacktrace" data-name="raven::processor::removestacktrace">
+      <a href="../Raven/Processor/RemoveStacktrace.html">RemoveStacktrace</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/SanitizeData" data-name="raven::processor::sanitizedata">
+      <a href="../Raven/Processor/SanitizeData.html">SanitizeData</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/UTF8Conversion" data-name="raven::processor::utf8conversion">
+      <a href="../Raven/Processor/UTF8Conversion.html">UTF8Conversion</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Sidekiq" data-name="raven::sidekiq">
+      <a href="../Raven/Sidekiq.html">Sidekiq</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Sidekiq/ExceptionHandler" data-name="raven::sidekiq::exceptionhandler">
+      <a href="../Raven/Sidekiq/ExceptionHandler.html">ExceptionHandler</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Transport" data-name="raven::transport">
+      <a href="../Raven/Transport.html">Transport</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Transport/Dummy" data-name="raven::transport::dummy">
+      <a href="../Raven/Transport/Dummy.html">Dummy</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Transport/HTTP" data-name="raven::transport::http">
+      <a href="../Raven/Transport/HTTP.html">HTTP</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Transport/HTTP/Error" data-name="raven::transport::http::error">
+      <a href="../Raven/Transport/HTTP/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+</div>
+
+<div id="main-content">
+<h1 class="type-name">
+
+  <span class="kind">abstract class</span> Raven::Interface
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Raven/Interface.html">Raven::Interface</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+  <h2>Included Modules</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type"><a href="../Raven/Mixin/InitializeWith.html">Raven::Mixin::InitializeWith</a></li>
+  
+  </ul>
+
+
+
+
+
+  <h2>Direct Known Subclasses</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type"><a href="../Raven/Interface/Exception.html">Raven::Interface::Exception</a></li>
+  
+    <li class="other-type"><a href="../Raven/Interface/HTTP.html">Raven::Interface::HTTP</a></li>
+  
+    <li class="other-type"><a href="../Raven/Interface/Message.html">Raven::Interface::Message</a></li>
+  
+    <li class="other-type"><a href="../Raven/Interface/SingleException.html">Raven::Interface::SingleException</a></li>
+  
+    <li class="other-type"><a href="../Raven/Interface/Stacktrace.html">Raven::Interface::Stacktrace</a></li>
+  
+    <li class="other-type"><a href="../Raven/Interface/Stacktrace/Frame.html">Raven::Interface::Stacktrace::Frame</a></li>
+  
+    <li class="other-type"><a href="../Raven/Interface/Template.html">Raven::Interface::Template</a></li>
+  
+  </ul>
+
+
+
+
+
+
+  <h2>Defined in:</h2>
+  
+    
+      <a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/interface.cr#L2" target="_blank">raven/interface.cr</a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>Class Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%28name%3ASymbol%29-class-method" class="signature"><strong>.[]</strong>(name : Symbol)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#registered-class-method" class="signature"><strong>.registered</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sentry_alias%3ASymbol-class-method" class="signature"><strong>.sentry_alias</strong> : Symbol</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <h2>Instance Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#to_hash-instance-method" class="signature"><strong>#to_hash</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method" class="signature"><strong>#to_json</strong>(json : JSON::Builder)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+  <h3>Instance methods inherited from module <code><a href="../Raven/Mixin/InitializeWith.html">Raven::Mixin::InitializeWith</a></code></h3>
+  
+  
+    <a href="../Raven/Mixin/InitializeWith.html#initialize_with-instance-method" class="tooltip">
+      <span>initialize_with</span>
+    initialize_with</a>
+    
+  
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>Class Method Detail</h2>
+  
+    <div class="entry-detail" id="&#91;&#93;&#40;name:Symbol&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>[]</strong>(name : Symbol)
+
+        <a class="method-permalink" href="#%5B%5D%28name%3ASymbol%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/interface.cr#L7" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="registered-class-method">
+      <div class="signature">
+        
+        def self.<strong>registered</strong>
+
+        <a class="method-permalink" href="#registered-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/interface.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sentry_alias:Symbol-class-method">
+      <div class="signature">
+        
+        def self.<strong>sentry_alias</strong> : Symbol
+
+        <a class="method-permalink" href="#sentry_alias%3ASymbol-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/interface.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+  <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail" id="to_hash-instance-method">
+      <div class="signature">
+        
+        def <strong>to_hash</strong>
+
+        <a class="method-permalink" href="#to_hash-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/interface.cr#L33" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json&#40;json:JSON::Builder&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>to_json</strong>(json : JSON::Builder)
+
+        <a class="method-permalink" href="#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/interface.cr#L51" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>

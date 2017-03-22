@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta id="repository-name" content="github.com/Sija/raven.cr">
+  <link href="../css/style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="../js/doc.js"></script>
+  <title>Raven::Event - github.com/Sija/raven.cr</title>
+</head>
+<body>
+
+<div id="types-list">
+  <div id="search-box">
+    <input type="search" id="search-input" placeholder="Search...">
+  </div>
+
+  <ul>
+    <li><a href="../index.html">README</a></li>
+  </ul>
+
+  <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Exception" data-name="exception">
+      <a href="../Exception.html">Exception</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Logger" data-name="logger">
+      <a href="../Logger.html">Logger</a>
+      
+    </li>
+  
+  <li class="parent open current" data-id="github.com/Sija/raven.cr/Raven" data-name="raven">
+      <a href="../Raven.html">Raven</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Backtrace" data-name="raven::backtrace">
+      <a href="../Raven/Backtrace.html">Backtrace</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Backtrace/Line" data-name="raven::backtrace::line">
+      <a href="../Raven/Backtrace/Line.html">Line</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Breadcrumb" data-name="raven::breadcrumb">
+      <a href="../Raven/Breadcrumb.html">Breadcrumb</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Breadcrumb/Severity" data-name="raven::breadcrumb::severity">
+      <a href="../Raven/Breadcrumb/Severity.html">Severity</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Breadcrumb/Type" data-name="raven::breadcrumb::type">
+      <a href="../Raven/Breadcrumb/Type.html">Type</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/BreadcrumbBuffer" data-name="raven::breadcrumbbuffer">
+      <a href="../Raven/BreadcrumbBuffer.html">BreadcrumbBuffer</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Client" data-name="raven::client">
+      <a href="../Raven/Client.html">Client</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Client/State" data-name="raven::client::state">
+      <a href="../Raven/Client/State.html">State</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Client/State/Status" data-name="raven::client::state::status">
+      <a href="../Raven/Client/State/Status.html">Status</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Configuration" data-name="raven::configuration">
+      <a href="../Raven/Configuration.html">Configuration</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Configuration/Encoding" data-name="raven::configuration::encoding">
+      <a href="../Raven/Configuration/Encoding.html">Encoding</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Context" data-name="raven::context">
+      <a href="../Raven/Context.html">Context</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Delegators" data-name="raven::delegators">
+      <a href="../Raven/Delegators.html">Delegators</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Error" data-name="raven::error">
+      <a href="../Raven/Error.html">Error</a>
+      
+    </li>
+  
+  <li class="parent current" data-id="github.com/Sija/raven.cr/Raven/Event" data-name="raven::event">
+      <a href="../Raven/Event.html">Event</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Event/HashType" data-name="raven::event::hashtype">
+      <a href="../Raven/Event/HashType.html">HashType</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Event/Severity" data-name="raven::event::severity">
+      <a href="../Raven/Event/Severity.html">Severity</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Instance" data-name="raven::instance">
+      <a href="../Raven/Instance.html">Instance</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Interface" data-name="raven::interface">
+      <a href="../Raven/Interface.html">Interface</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Interface/Exception" data-name="raven::interface::exception">
+      <a href="../Raven/Interface/Exception.html">Exception</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Interface/HTTP" data-name="raven::interface::http">
+      <a href="../Raven/Interface/HTTP.html">HTTP</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Interface/Message" data-name="raven::interface::message">
+      <a href="../Raven/Interface/Message.html">Message</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Interface/SingleException" data-name="raven::interface::singleexception">
+      <a href="../Raven/Interface/SingleException.html">SingleException</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Interface/Stacktrace" data-name="raven::interface::stacktrace">
+      <a href="../Raven/Interface/Stacktrace.html">Stacktrace</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Interface/Stacktrace/Frame" data-name="raven::interface::stacktrace::frame">
+      <a href="../Raven/Interface/Stacktrace/Frame.html">Frame</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Interface/Template" data-name="raven::interface::template">
+      <a href="../Raven/Interface/Template.html">Template</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Kemal" data-name="raven::kemal">
+      <a href="../Raven/Kemal.html">Kemal</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Kemal/ExceptionHandler" data-name="raven::kemal::exceptionhandler">
+      <a href="../Raven/Kemal/ExceptionHandler.html">ExceptionHandler</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Kemal/LogHandler" data-name="raven::kemal::loghandler">
+      <a href="../Raven/Kemal/LogHandler.html">LogHandler</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Kemal/UserFeedbackHandler" data-name="raven::kemal::userfeedbackhandler">
+      <a href="../Raven/Kemal/UserFeedbackHandler.html">UserFeedbackHandler</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Logger" data-name="raven::logger">
+      <a href="../Raven/Logger.html">Logger</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Mixin" data-name="raven::mixin">
+      <a href="../Raven/Mixin.html">Mixin</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Mixin/InitializeWith" data-name="raven::mixin::initializewith">
+      <a href="../Raven/Mixin/InitializeWith.html">InitializeWith</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Processor" data-name="raven::processor">
+      <a href="../Raven/Processor.html">Processor</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/Compact" data-name="raven::processor::compact">
+      <a href="../Raven/Processor/Compact.html">Compact</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/Cookies" data-name="raven::processor::cookies">
+      <a href="../Raven/Processor/Cookies.html">Cookies</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/HTTPHeaders" data-name="raven::processor::httpheaders">
+      <a href="../Raven/Processor/HTTPHeaders.html">HTTPHeaders</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/PostData" data-name="raven::processor::postdata">
+      <a href="../Raven/Processor/PostData.html">PostData</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/RemoveCircularReferences" data-name="raven::processor::removecircularreferences">
+      <a href="../Raven/Processor/RemoveCircularReferences.html">RemoveCircularReferences</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/RemoveStacktrace" data-name="raven::processor::removestacktrace">
+      <a href="../Raven/Processor/RemoveStacktrace.html">RemoveStacktrace</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/SanitizeData" data-name="raven::processor::sanitizedata">
+      <a href="../Raven/Processor/SanitizeData.html">SanitizeData</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/UTF8Conversion" data-name="raven::processor::utf8conversion">
+      <a href="../Raven/Processor/UTF8Conversion.html">UTF8Conversion</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Sidekiq" data-name="raven::sidekiq">
+      <a href="../Raven/Sidekiq.html">Sidekiq</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Sidekiq/ExceptionHandler" data-name="raven::sidekiq::exceptionhandler">
+      <a href="../Raven/Sidekiq/ExceptionHandler.html">ExceptionHandler</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Transport" data-name="raven::transport">
+      <a href="../Raven/Transport.html">Transport</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Transport/Dummy" data-name="raven::transport::dummy">
+      <a href="../Raven/Transport/Dummy.html">Dummy</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Transport/HTTP" data-name="raven::transport::http">
+      <a href="../Raven/Transport/HTTP.html">HTTP</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Transport/HTTP/Error" data-name="raven::transport::http::error">
+      <a href="../Raven/Transport/HTTP/Error.html">Error</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+</div>
+
+<div id="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Raven::Event
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Raven/Event.html">Raven::Event</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+  <h2>Included Modules</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type"><a href="../Raven/Mixin/InitializeWith.html">Raven::Mixin::InitializeWith</a></li>
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>Defined in:</h2>
+  
+    
+      <a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L4" target="_blank">raven/event.cr</a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>Constant Summary</h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="PLATFORM">
+        <strong>PLATFORM</strong> = <code><span class="s">&quot;crystal&quot;</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>A string representing the platform the SDK is submitting from.</p>
+
+<p>This will be used by the Sentry interface to customize
+various components in the interface.</p>
+      </dd>
+      
+    
+      <dt class="entry-const" id="SDK">
+        <strong>SDK</strong> = <code>{name: <span class="s">&quot;raven.cr&quot;</span>, version: <span class="t">Raven</span><span class="t">::</span><span class="t">VERSION</span>}</code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Information about the SDK sending the event.</p>
+      </dd>
+      
+    
+  </dl>
+
+
+
+  <h2>Class Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#from%28exc%3AException%2C%2A%2Aoptions%29-class-method" class="signature"><strong>.from</strong>(exc : Exception, **options)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from%28message%3AString%2C%2A%2Aoptions%29-class-method" class="signature"><strong>.from</strong>(message : String, **options)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <h2>Instance Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#backtrace%3D%28backtrace%29-instance-method" class="signature"><strong>#backtrace=</strong>(backtrace)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#breadcrumbs%3ABreadcrumbBuffer-instance-method" class="signature"><strong>#breadcrumbs</strong> : BreadcrumbBuffer</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#breadcrumbs%3D%28breadcrumbs%3ABreadcrumbBuffer%29-instance-method" class="signature"><strong>#breadcrumbs=</strong>(breadcrumbs : BreadcrumbBuffer)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#configuration%3AConfiguration-instance-method" class="signature"><strong>#configuration</strong> : Configuration</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#configuration%3D%28configuration%3AConfiguration%29-instance-method" class="signature"><strong>#configuration=</strong>(configuration : Configuration)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#context%3AContext-instance-method" class="signature"><strong>#context</strong> : Context</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#context%3D%28context%3AContext%29-instance-method" class="signature"><strong>#context=</strong>(context : Context)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#contexts-instance-method" class="signature"><strong>#contexts</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#contexts%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#contexts=</strong>(hash : Hash | NamedTuple?)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#contexts%3D%28contexts%3AAnyHash%3A%3AJSON%29-instance-method" class="signature"><strong>#contexts=</strong>(contexts : AnyHash::JSON)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#culprit%3AString%3F-instance-method" class="signature"><strong>#culprit</strong> : String?</a>
+        
+          <div class="summary"><p>The name of the transaction (or culprit) which caused this exception.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#culprit%3D%28culprit%3AString%3F%29-instance-method" class="signature"><strong>#culprit=</strong>(culprit : String?)</a>
+        
+          <div class="summary"><p>The name of the transaction (or culprit) which caused this exception.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#environment%3AString%3F-instance-method" class="signature"><strong>#environment</strong> : String?</a>
+        
+          <div class="summary"><p>The environment name, such as <code>production</code> or <code>staging</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#environment%3D%28environment%3AString%3F%29-instance-method" class="signature"><strong>#environment=</strong>(environment : String?)</a>
+        
+          <div class="summary"><p>The environment name, such as <code>production</code> or <code>staging</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#extra-instance-method" class="signature"><strong>#extra</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#extra%3D%28extra%3AAnyHash%3A%3AJSON%29-instance-method" class="signature"><strong>#extra=</strong>(extra : AnyHash::JSON)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#extra%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#extra=</strong>(hash : Hash | NamedTuple?)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fingerprint%3AArray%28String%29%3F-instance-method" class="signature"><strong>#fingerprint</strong> : Array(String)?</a>
+        
+          <div class="summary"><p>An array of strings used to dictate the deduplication of this event.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fingerprint%3D%28fingerprint%3AArray%28String%29%3F%29-instance-method" class="signature"><strong>#fingerprint=</strong>(fingerprint : Array(String)?)</a>
+        
+          <div class="summary"><p>An array of strings used to dictate the deduplication of this event.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#id%3AString-instance-method" class="signature"><strong>#id</strong> : String</a>
+        
+          <div class="summary"><p>Hexadecimal string representing a uuid4 value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#id%3D%28id%3AString%29-instance-method" class="signature"><strong>#id=</strong>(id : String)</a>
+        
+          <div class="summary"><p>Hexadecimal string representing a uuid4 value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#interface%28name%3ASymbol%2C%2A%2Aoptions%3AObject%29-instance-method" class="signature"><strong>#interface</strong>(name : Symbol, **options : Object)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#interface%28name%3ASymbol%2Coptions%3ANamedTuple%29-instance-method" class="signature"><strong>#interface</strong>(name : Symbol, options : NamedTuple)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#interface%28name%3ASymbol%29-instance-method" class="signature"><strong>#interface</strong>(name : Symbol)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#interface%28name%3ASymbol%2Coptions%3ANamedTuple%2C%26block%29-instance-method" class="signature"><strong>#interface</strong>(name : Symbol, options : NamedTuple, &block)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#interface%28name%3ASymbol%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#interface</strong>(name : Symbol, **options, &block)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#level%3ASeverity%3F-instance-method" class="signature"><strong>#level</strong> : Severity?</a>
+        
+          <div class="summary"><p>The record severity.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#level%3D%28severity%3ASymbol%29-instance-method" class="signature"><strong>#level=</strong>(severity : Symbol)</a>
+        
+          <div class="summary"><p>The record severity.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#level%3D%28level%3ASeverity%3F%29-instance-method" class="signature"><strong>#level=</strong>(level : Severity?)</a>
+        
+          <div class="summary"><p>The record severity.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#list_shard_specs-instance-method" class="signature"><strong>#list_shard_specs</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#logger%3AString%3F-instance-method" class="signature"><strong>#logger</strong> : String?</a>
+        
+          <div class="summary"><p>The name of the logger which created the record.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#logger%3D%28logger%3AString%3F%29-instance-method" class="signature"><strong>#logger=</strong>(logger : String?)</a>
+        
+          <div class="summary"><p>The name of the logger which created the record.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#message-instance-method" class="signature"><strong>#message</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#message%3D%28message_with_params%29-instance-method" class="signature"><strong>#message=</strong>(message_with_params)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#message%3D%28message%3AString%29-instance-method" class="signature"><strong>#message=</strong>(message : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#modules%3AHash%28String%2CString%29%3F-instance-method" class="signature"><strong>#modules</strong> : Hash(String, String)?</a>
+        
+          <div class="summary"><p>A list of relevant modules and their versions.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#modules%3D%28modules%3AHash%28String%2CString%29%3F%29-instance-method" class="signature"><strong>#modules=</strong>(modules : Hash(String, String)?)</a>
+        
+          <div class="summary"><p>A list of relevant modules and their versions.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#release%3AString%3F-instance-method" class="signature"><strong>#release</strong> : String?</a>
+        
+          <div class="summary"><p>The release version of the application.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#release%3D%28release%3AString%3F%29-instance-method" class="signature"><strong>#release=</strong>(release : String?)</a>
+        
+          <div class="summary"><p>The release version of the application.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#server_name%3AString%3F-instance-method" class="signature"><strong>#server_name</strong> : String?</a>
+        
+          <div class="summary"><p>Identifies the host SDK from which the event was recorded.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#server_name%3D%28server_name%3AString%3F%29-instance-method" class="signature"><strong>#server_name=</strong>(server_name : String?)</a>
+        
+          <div class="summary"><p>Identifies the host SDK from which the event was recorded.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tags-instance-method" class="signature"><strong>#tags</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tags%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#tags=</strong>(hash : Hash | NamedTuple?)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tags%3D%28tags%3AAnyHash%3A%3AJSON%29-instance-method" class="signature"><strong>#tags=</strong>(tags : AnyHash::JSON)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#timestamp%3ATime-instance-method" class="signature"><strong>#timestamp</strong> : Time</a>
+        
+          <div class="summary"><p>Indicates when the logging record was created (in the Sentry SDK).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#timestamp%3D%28timestamp%3ATime%29-instance-method" class="signature"><strong>#timestamp=</strong>(timestamp : Time)</a>
+        
+          <div class="summary"><p>Indicates when the logging record was created (in the Sentry SDK).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_hash%3AHashType-instance-method" class="signature"><strong>#to_hash</strong> : HashType</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method" class="signature"><strong>#to_json</strong>(json : JSON::Builder)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#user-instance-method" class="signature"><strong>#user</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#user%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#user=</strong>(hash : Hash | NamedTuple?)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#user%3D%28user%3AAnyHash%3A%3AJSON%29-instance-method" class="signature"><strong>#user=</strong>(user : AnyHash::JSON)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+  <h3>Instance methods inherited from module <code><a href="../Raven/Mixin/InitializeWith.html">Raven::Mixin::InitializeWith</a></code></h3>
+  
+  
+    <a href="../Raven/Mixin/InitializeWith.html#initialize_with-instance-method" class="tooltip">
+      <span>initialize_with</span>
+    initialize_with</a>
+    
+  
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>Class Method Detail</h2>
+  
+    <div class="entry-detail" id="from&#40;exc:Exception,**options&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>from</strong>(exc : <a href="../Exception.html">Exception</a>, **options)
+
+        <a class="method-permalink" href="#from%28exc%3AException%2C%2A%2Aoptions%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L82" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from&#40;message:String,**options&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>from</strong>(message : String, **options)
+
+        <a class="method-permalink" href="#from%28message%3AString%2C%2A%2Aoptions%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L97" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>
+
+        <a class="method-permalink" href="#new-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L150" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+  <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail" id="backtrace&#61;&#40;backtrace&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>backtrace=</strong>(backtrace)
+
+        <a class="method-permalink" href="#backtrace%3D%28backtrace%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L211" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="breadcrumbs:BreadcrumbBuffer-instance-method">
+      <div class="signature">
+        
+        def <strong>breadcrumbs</strong> : <a href="../Raven/BreadcrumbBuffer.html">BreadcrumbBuffer</a>
+
+        <a class="method-permalink" href="#breadcrumbs%3ABreadcrumbBuffer-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L78" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="breadcrumbs&#61;&#40;breadcrumbs:BreadcrumbBuffer&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>breadcrumbs=</strong>(breadcrumbs : <a href="../Raven/BreadcrumbBuffer.html">BreadcrumbBuffer</a>)
+
+        <a class="method-permalink" href="#breadcrumbs%3D%28breadcrumbs%3ABreadcrumbBuffer%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L78" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="configuration:Configuration-instance-method">
+      <div class="signature">
+        
+        def <strong>configuration</strong> : <a href="../Raven/Configuration.html">Configuration</a>
+
+        <a class="method-permalink" href="#configuration%3AConfiguration-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L77" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="configuration&#61;&#40;configuration:Configuration&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>configuration=</strong>(configuration : <a href="../Raven/Configuration.html">Configuration</a>)
+
+        <a class="method-permalink" href="#configuration%3D%28configuration%3AConfiguration%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L77" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="context:Context-instance-method">
+      <div class="signature">
+        
+        def <strong>context</strong> : <a href="../Raven/Context.html">Context</a>
+
+        <a class="method-permalink" href="#context%3AContext-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L76" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="context&#61;&#40;context:Context&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>context=</strong>(context : <a href="../Raven/Context.html">Context</a>)
+
+        <a class="method-permalink" href="#context%3D%28context%3AContext%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L76" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="contexts-instance-method">
+      <div class="signature">
+        
+        def <strong>contexts</strong>
+
+        <a class="method-permalink" href="#contexts-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="contexts&#61;&#40;hash:Hash|NamedTuple?&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>contexts=</strong>(hash : Hash | NamedTuple?)
+
+        <a class="method-permalink" href="#contexts%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L80" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="contexts&#61;&#40;contexts:AnyHash::JSON&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>contexts=</strong>(contexts : AnyHash::JSON)
+
+        <a class="method-permalink" href="#contexts%3D%28contexts%3AAnyHash%3A%3AJSON%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="culprit:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>culprit</strong> : String?
+
+        <a class="method-permalink" href="#culprit%3AString%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>The name of the transaction (or culprit) which caused this exception.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L48" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="culprit&#61;&#40;culprit:String?&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>culprit=</strong>(culprit : String?)
+
+        <a class="method-permalink" href="#culprit%3D%28culprit%3AString%3F%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>The name of the transaction (or culprit) which caused this exception.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L48" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="environment:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>environment</strong> : String?
+
+        <a class="method-permalink" href="#environment%3AString%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>The environment name, such as <code>production</code> or <code>staging</code>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L71" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="environment&#61;&#40;environment:String?&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>environment=</strong>(environment : String?)
+
+        <a class="method-permalink" href="#environment%3D%28environment%3AString%3F%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>The environment name, such as <code>production</code> or <code>staging</code>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L71" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="extra-instance-method">
+      <div class="signature">
+        
+        def <strong>extra</strong>
+
+        <a class="method-permalink" href="#extra-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="extra&#61;&#40;extra:AnyHash::JSON&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>extra=</strong>(extra : AnyHash::JSON)
+
+        <a class="method-permalink" href="#extra%3D%28extra%3AAnyHash%3A%3AJSON%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="extra&#61;&#40;hash:Hash|NamedTuple?&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>extra=</strong>(hash : Hash | NamedTuple?)
+
+        <a class="method-permalink" href="#extra%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L80" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fingerprint:Array&#40;String&#41;?-instance-method">
+      <div class="signature">
+        
+        def <strong>fingerprint</strong> : Array(String)?
+
+        <a class="method-permalink" href="#fingerprint%3AArray%28String%29%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>An array of strings used to dictate the deduplication of this event.</p>
+
+<p><span class="flag purple">NOTE</span>  A value of <code>{{ default }}</code> will be replaced with the built-in behavior,
+thus allowing you to extend it, or completely replace it.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L68" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fingerprint&#61;&#40;fingerprint:Array&#40;String&#41;?&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>fingerprint=</strong>(fingerprint : Array(String)?)
+
+        <a class="method-permalink" href="#fingerprint%3D%28fingerprint%3AArray%28String%29%3F%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>An array of strings used to dictate the deduplication of this event.</p>
+
+<p><span class="flag purple">NOTE</span>  A value of <code>{{ default }}</code> will be replaced with the built-in behavior,
+thus allowing you to extend it, or completely replace it.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L68" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="id:String-instance-method">
+      <div class="signature">
+        
+        def <strong>id</strong> : String
+
+        <a class="method-permalink" href="#id%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Hexadecimal string representing a uuid4 value.</p>
+
+<p><span class="flag purple">NOTE</span>  The length is exactly 32 characters (no dashes!)</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L31" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="id&#61;&#40;id:String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>id=</strong>(id : String)
+
+        <a class="method-permalink" href="#id%3D%28id%3AString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Hexadecimal string representing a uuid4 value.</p>
+
+<p><span class="flag purple">NOTE</span>  The length is exactly 32 characters (no dashes!)</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L31" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="interface&#40;name:Symbol,**options:Object&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>interface</strong>(name : Symbol, **options : Object)
+
+        <a class="method-permalink" href="#interface%28name%3ASymbol%2C%2A%2Aoptions%3AObject%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L175" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="interface&#40;name:Symbol,options:NamedTuple&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>interface</strong>(name : Symbol, options : NamedTuple)
+
+        <a class="method-permalink" href="#interface%28name%3ASymbol%2Coptions%3ANamedTuple%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L180" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="interface&#40;name:Symbol&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>interface</strong>(name : Symbol)
+
+        <a class="method-permalink" href="#interface%28name%3ASymbol%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L170" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="interface&#40;name:Symbol,options:NamedTuple,&amp;block&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>interface</strong>(name : Symbol, options : NamedTuple, &block)
+
+        <a class="method-permalink" href="#interface%28name%3ASymbol%2Coptions%3ANamedTuple%2C%26block%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L191" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="interface&#40;name:Symbol,**options,&amp;block&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>interface</strong>(name : Symbol, **options, &block)
+
+        <a class="method-permalink" href="#interface%28name%3ASymbol%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L184" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="level:Severity?-instance-method">
+      <div class="signature">
+        
+        def <strong>level</strong> : <a href="../Raven/Event/Severity.html">Severity</a>?
+
+        <a class="method-permalink" href="#level%3ASeverity%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>The record severity. Defaults to <code>:error</code>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L37" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="level&#61;&#40;severity:Symbol&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>level=</strong>(severity : Symbol)
+
+        <a class="method-permalink" href="#level%3D%28severity%3ASymbol%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>The record severity. Defaults to <code>:error</code>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L40" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="level&#61;&#40;level:Severity?&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>level=</strong>(level : <a href="../Raven/Event/Severity.html">Severity</a>?)
+
+        <a class="method-permalink" href="#level%3D%28level%3ASeverity%3F%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>The record severity. Defaults to <code>:error</code>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L37" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="list_shard_specs-instance-method">
+      <div class="signature">
+        
+        def <strong>list_shard_specs</strong>
+
+        <a class="method-permalink" href="#list_shard_specs-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L217" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="logger:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>logger</strong> : String?
+
+        <a class="method-permalink" href="#logger%3AString%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>The name of the logger which created the record.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L45" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="logger&#61;&#40;logger:String?&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>logger=</strong>(logger : String?)
+
+        <a class="method-permalink" href="#logger%3D%28logger%3AString%3F%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>The name of the logger which created the record.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L45" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="message-instance-method">
+      <div class="signature">
+        
+        def <strong>message</strong>
+
+        <a class="method-permalink" href="#message-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L195" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="message&#61;&#40;message_with_params&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>message=</strong>(message_with_params)
+
+        <a class="method-permalink" href="#message%3D%28message_with_params%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L203" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="message&#61;&#40;message:String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>message=</strong>(message : String)
+
+        <a class="method-permalink" href="#message%3D%28message%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L199" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="modules:Hash&#40;String,String&#41;?-instance-method">
+      <div class="signature">
+        
+        def <strong>modules</strong> : Hash(String, String)?
+
+        <a class="method-permalink" href="#modules%3AHash%28String%2CString%29%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>A list of relevant modules and their versions.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L74" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="modules&#61;&#40;modules:Hash&#40;String,String&#41;?&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>modules=</strong>(modules : Hash(String, String)?)
+
+        <a class="method-permalink" href="#modules%3D%28modules%3AHash%28String%2CString%29%3F%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>A list of relevant modules and their versions.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L74" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="release:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>release</strong> : String?
+
+        <a class="method-permalink" href="#release%3AString%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>The release version of the application.</p>
+
+<p><span class="flag purple">NOTE</span>  This value will generally be something along the lines of
+the git SHA for the given project.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L62" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="release&#61;&#40;release:String?&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>release=</strong>(release : String?)
+
+        <a class="method-permalink" href="#release%3D%28release%3AString%3F%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>The release version of the application.</p>
+
+<p><span class="flag purple">NOTE</span>  This value will generally be something along the lines of
+the git SHA for the given project.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L62" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="server_name:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>server_name</strong> : String?
+
+        <a class="method-permalink" href="#server_name%3AString%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Identifies the host SDK from which the event was recorded.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L56" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="server_name&#61;&#40;server_name:String?&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>server_name=</strong>(server_name : String?)
+
+        <a class="method-permalink" href="#server_name%3D%28server_name%3AString%3F%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Identifies the host SDK from which the event was recorded.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L56" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tags-instance-method">
+      <div class="signature">
+        
+        def <strong>tags</strong>
+
+        <a class="method-permalink" href="#tags-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tags&#61;&#40;hash:Hash|NamedTuple?&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>tags=</strong>(hash : Hash | NamedTuple?)
+
+        <a class="method-permalink" href="#tags%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L80" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tags&#61;&#40;tags:AnyHash::JSON&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>tags=</strong>(tags : AnyHash::JSON)
+
+        <a class="method-permalink" href="#tags%3D%28tags%3AAnyHash%3A%3AJSON%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="timestamp:Time-instance-method">
+      <div class="signature">
+        
+        def <strong>timestamp</strong> : Time
+
+        <a class="method-permalink" href="#timestamp%3ATime-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Indicates when the logging record was created (in the Sentry SDK).</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L34" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="timestamp&#61;&#40;timestamp:Time&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>timestamp=</strong>(timestamp : Time)
+
+        <a class="method-permalink" href="#timestamp%3D%28timestamp%3ATime%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Indicates when the logging record was created (in the Sentry SDK).</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L34" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_hash:HashType-instance-method">
+      <div class="signature">
+        
+        def <strong>to_hash</strong> : <a href="../Raven/Event/HashType.html">HashType</a>
+
+        <a class="method-permalink" href="#to_hash%3AHashType-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L226" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_json&#40;json:JSON::Builder&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>to_json</strong>(json : JSON::Builder)
+
+        <a class="method-permalink" href="#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L255" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="user-instance-method">
+      <div class="signature">
+        
+        def <strong>user</strong>
+
+        <a class="method-permalink" href="#user-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="user&#61;&#40;hash:Hash|NamedTuple?&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>user=</strong>(hash : Hash | NamedTuple?)
+
+        <a class="method-permalink" href="#user%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/event.cr#L80" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="user&#61;&#40;user:AnyHash::JSON&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>user=</strong>(user : AnyHash::JSON)
+
+        <a class="method-permalink" href="#user%3D%28user%3AAnyHash%3A%3AJSON%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
