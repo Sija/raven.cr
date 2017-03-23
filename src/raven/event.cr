@@ -65,7 +65,7 @@ module Raven
     #
     # NOTE: A value of `{{ default }}` will be replaced with the built-in behavior,
     # thus allowing you to extend it, or completely replace it.
-    property fingerprint : Array(String)?
+    property fingerprint : Array(String) { [] of String }
 
     # The environment name, such as `production` or `staging`.
     property environment : String?

@@ -41,7 +41,7 @@ module Raven
         value.map! { |i| process(key, i).as(typeof(i)) }
       when String
         case
-        when value.to_s =~ fields_pattern && (json = parse_json_or_nil(value))
+        when value =~ fields_pattern && (json = parse_json_or_nil(value))
           process(json).to_json
         when matches_regexes?(key, value)
           STRING_MASK
