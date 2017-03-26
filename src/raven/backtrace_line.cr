@@ -1,30 +1,26 @@
 module Raven
   # Handles backtrace parsing line by line
   struct Backtrace::Line
-    # Examples:
-    #
-    # - `0x103a7bbee: __crystal_main at ??`
-    # - `0x100e1ea72: *CallStack::unwind:Array(Pointer(Void)) at ??`
-    # - `0x102dff5e7: *Foo::Bar#_baz:Foo::Bam at /home/fooBAR/code/awesome-shard.cr/lib/foo/src/foo/bar.cr 50:7`
-    # - `0x102de9035: *Foo::Bar::bar_by_id<String>:Foo::Bam at /home/fooBAR/code/awesome-shard.cr/lib/foo/src/foo/bar.cr 29:9`
-    # - `0x102cfe8f4: *Fiber#run:(IO::FileDescriptor | Nil) at /usr/local/Cellar/crystal-lang/0.20.5_2/src/fiber.cr 114:3`
-    CRYSTAL_METHOD_FORMAT = /\*?(?<method>.*?) at (?<file>[^:]+)(?:\s(?<line>\d+)(?:\:(?<col>\d+))?)?$/
+    # :nodoc:
+    ADDR_FORMAT = /(?<addr>0x[a-f0-9]+)/i
 
-    # Examples:
-    #
-    # - `0x102cee376: ~procProc(Nil)@/usr/local/Cellar/crystal-lang/0.20.5_2/src/http/server.cr:148 at ??`
-    # - `0x102ce57db: ~procProc(HTTP::Server::Context, String)@lib/kemal/src/kemal/route.cr:11 at ??`
-    # - `0x1002d5180: ~procProc(HTTP::Server::Context, (File::PReader | HTTP::ChunkedContent | HTTP::Server::Response | HTTP::Server::Response::Output | HTTP::UnknownLengthContent | HTTP::WebSocket::Protocol::StreamIO | IO::ARGF | IO::Delimited | IO::FileDescriptor | IO::Hexdump | IO::Memory | IO::MultiWriter | IO::Sized | Int32 | OpenSSL::SSL::Socket | String::Builder | Zip::ChecksumReader | Zip::ChecksumWriter | Zlib::Deflate | Zlib::Inflate | Nil))@src/foo/bar/baz.cr:420 at ??`
-    CRYSTAL_PROC_FORMAT = /\~(?<proc_method>[^@]+)@(?<proc_file>[^:]+)(?:\:(?<proc_line>\d+)) at \?+$/
+    CALLSTACK_PATTERNS = {
+      # Examples:
+      #
+      # - `0x103a7bbee: __crystal_main at ??`
+      # - `0x100e1ea72: *CallStack::unwind:Array(Pointer(Void)) at ??`
+      # - `0x102dff5e7: *Foo::Bar#_baz:Foo::Bam at /home/fooBAR/code/awesome-shard.cr/lib/foo/src/foo/bar.cr 50:7`
+      # - `0x102de9035: *Foo::Bar::bar_by_id<String>:Foo::Bam at /home/fooBAR/code/awesome-shard.cr/lib/foo/src/foo/bar.cr 29:9`
+      # - `0x102cfe8f4: *Fiber#run:(IO::FileDescriptor | Nil) at /usr/local/Cellar/crystal-lang/0.20.5_2/src/fiber.cr 114:3`
+      CRYSTAL_METHOD: /^#{ADDR_FORMAT}: \*?(?<method>.*?) at (?<file>[^:]+)(?:\s(?<line>\d+)(?:\:(?<col>\d+))?)?$/,
 
-    # See `CRYSTAL_PROC_FORMAT` and `CRYSTAL_METHOD_FORMAT`.
-    #
-    # Examples:
-    #
-    # - `0x103a7bbee: __crystal_main at ??`
-    # - `0x102cfe8f4: *Fiber#run:(IO::FileDescriptor | Nil) at /usr/local/Cellar/crystal-lang/0.20.5_2/src/fiber.cr 114:3`
-    # - `0x102cee376: ~procProc(Nil)@/usr/local/Cellar/crystal-lang/0.20.5_2/src/http/server.cr:148 at ??`
-    CRYSTAL_INPUT_FORMAT = /^(?<addr>0x[a-z0-9]+): #{CRYSTAL_PROC_FORMAT + CRYSTAL_METHOD_FORMAT}/
+      # Examples:
+      #
+      # - `0x102cee376: ~procProc(Nil)@/usr/local/Cellar/crystal-lang/0.20.5_2/src/http/server.cr:148 at ??`
+      # - `0x102ce57db: ~procProc(HTTP::Server::Context, String)@lib/kemal/src/kemal/route.cr:11 at ??`
+      # - `0x1002d5180: ~procProc(HTTP::Server::Context, (File::PReader | HTTP::ChunkedContent | HTTP::Server::Response | HTTP::Server::Response::Output | HTTP::UnknownLengthContent | HTTP::WebSocket::Protocol::StreamIO | IO::ARGF | IO::Delimited | IO::FileDescriptor | IO::Hexdump | IO::Memory | IO::MultiWriter | IO::Sized | Int32 | OpenSSL::SSL::Socket | String::Builder | Zip::ChecksumReader | Zip::ChecksumWriter | Zlib::Deflate | Zlib::Inflate | Nil))@src/foo/bar/baz.cr:420 at ??`
+      CRYSTAL_PROC: /^#{ADDR_FORMAT}: \~(?<method>[^@]+)@(?<file>[^:]+)(?:\:(?<line>\d+)) at \?+$/,
+    }
 
     # The file portion of the line (such as `app/models/user.cr`).
     getter file : String?
@@ -42,16 +38,19 @@ module Raven
       value =~ /^\?+$/
     end
 
+    private def self.nil_on_empty(value)
+      empty_marker?(value) ? nil : value
+    end
+
     # Parses a single line of a given backtrace, where *unparsed_line* is
     # the raw line from `caller` or some backtrace.
     # Returns the parsed backtrace line.
     def self.parse(unparsed_line : String) : Line
-      if match = unparsed_line.match(CRYSTAL_INPUT_FORMAT)
-        file = match["proc_file"]? || match["file"]?
-        file = nil if empty_marker?(file)
-        number = match["proc_line"]? || match["line"]?
-        column = match["col"]?
-        method = match["proc_method"]? || match["method"]?
+      if CALLSTACK_PATTERNS.values.any? &.match(unparsed_line)
+        file = nil_on_empty $~["file"]?
+        number = $~["line"]?
+        column = $~["col"]?
+        method = $~["method"]?
       end
       new(file, number.try(&.to_i), column.try(&.to_i), method)
     end
