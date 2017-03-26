@@ -1,6 +1,6 @@
 module Raven
   class Backtrace
-    IGNORED_LINES_PATTERN = /_sigtramp|__crystal_(sigfault|exception)_handler|CallStack|caller:|raise<(.+?)>:NoReturn/
+    IGNORED_LINES_PATTERN = /_sigtramp|__crystal_(sigfault_handler|raise)|CallStack|caller:|raise<(.+?)>:NoReturn/
 
     class_getter default_filters = [
       ->(line : String) { line.match(IGNORED_LINES_PATTERN) ? nil : line },
