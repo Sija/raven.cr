@@ -3,9 +3,6 @@ require "json"
 
 module Raven
   class Configuration
-    # :nodoc:
-    SRC_PATH = {{ flag?(:debug) ? `pwd`.strip.stringify : nil }}
-
     # Array of required properties needed to be set, before
     # `Configuration` is considered valid.
     REQUIRED_OPTIONS = %i(host public_key secret_key project_id)
@@ -28,13 +25,16 @@ module Raven
       Processor::Compact,
     ] of Processor.class
 
+    # Root path used in `#in_app_pattern`.
+    property root_path : String? = {{ flag?(:debug) ? `pwd`.strip.stringify : nil }}
+
     # Directories to be recognized as part of your app. e.g. if you
     # have an `engines` dir at the root of your project, you may want
     # to set this to something like `/(src|engines)/`
     property app_dirs_pattern = /src/
 
     # `Regex` pattern matched against `Backtrace::Line#file`.
-    property in_app_pattern : Regex { /^(#{SRC_PATH}\/)?(#{app_dirs_pattern})/ }
+    property in_app_pattern : Regex { /^(#{root_path}\/)?(#{app_dirs_pattern})/ }
 
     # Path pattern matching directories to be recognized as your app modules.
     # Defaults to standard Shards setup (`lib/shard-name/...`).
