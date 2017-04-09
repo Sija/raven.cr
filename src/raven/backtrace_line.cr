@@ -73,8 +73,11 @@ module Raven
       io << "<Line: " << self << ">"
     end
 
+    # FIXME: untangle it from global `Raven`.
+    protected delegate :configuration, to: Raven
+
     def under_src_path?
-      return unless src_path = Configuration::SRC_PATH
+      return unless src_path = configuration.src_path
       file.try &.starts_with?(src_path)
     end
 
@@ -82,19 +85,19 @@ module Raven
       return unless path = file
       return path unless path.starts_with?('/')
       return unless under_src_path?
-      if prefix = Configuration::SRC_PATH
+      if prefix = configuration.src_path
         path[prefix.chomp(File::SEPARATOR).size + 1..-1]
       end
     end
 
     def shard_name
       relative_path
-        .try &.match(Raven.configuration.modules_path_pattern)
+        .try &.match(configuration.modules_path_pattern)
         .try &.[]("name")
     end
 
     def in_app?
-      !!(file =~ Raven.configuration.in_app_pattern)
+      !!(file =~ configuration.in_app_pattern)
     end
   end
 end
