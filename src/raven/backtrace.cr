@@ -9,7 +9,7 @@ module Raven
     getter lines : Array(Line)
 
     def self.parse(backtrace : Array(String), **options)
-      filters = default_filters
+      filters = default_filters.dup
       if f = options[:filters]?
         filters.concat(f)
       end
