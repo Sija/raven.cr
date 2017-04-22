@@ -8,6 +8,6 @@ dependencies:
   any_hash:
     github: sija/any_hash.cr
 
-crystal: 0.21.1
+crystal: 0.22.0
 
 license: MIT
