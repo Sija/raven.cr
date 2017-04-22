@@ -79,10 +79,10 @@ module Raven
 
     private def generate_auth_header
       fields = {
-        "sentry_version": PROTOCOL_VERSION,
-        "sentry_client":  USER_AGENT,
-        "sentry_key":     configuration.public_key,
-        "sentry_secret":  configuration.secret_key,
+        sentry_version: PROTOCOL_VERSION,
+        sentry_client:  USER_AGENT,
+        sentry_key:     configuration.public_key,
+        sentry_secret:  configuration.secret_key,
       }
       "Sentry " + fields.map { |key, value| "#{key}=#{value}" }.join(", ")
     end

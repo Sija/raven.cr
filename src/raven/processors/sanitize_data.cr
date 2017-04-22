@@ -66,7 +66,7 @@ module Raven
       query_hash = HTTP::Params.parse(query_string).to_h
       query_hash = process(query_hash)
       query_hash = query_hash.map { |k, v| [k.as(String), v.as(String)] }.to_h rescue nil
-      HTTP::Params.from_hash(query_hash).to_s if query_hash
+      HTTP::Params.encode(query_hash).to_s if query_hash
     end
 
     private def matches_regexes?(key, value)
