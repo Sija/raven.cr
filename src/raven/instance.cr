@@ -160,6 +160,35 @@ module Raven
       capture(obj, **options) { }
     end
 
+    # Captures an exception with given *klass*, *message*
+    # and optional *backtrace*.
+    #
+    # ```
+    # Raven.capture "FooBarError", "Foo got bar!"
+    # ```
+    #
+    # NOTE: Useful in scenarios where you need to reconstruct the error
+    # (usually along with a backtrace from external source), while
+    # having no access to the actual Exception object.
+    def capture(klass : String, message : String, backtrace = nil, **options, &block)
+      formatted_message = "#{klass}: #{message}"
+      capture(formatted_message, **options) do |event|
+        ex = Interface::SingleException.new do |iface|
+          iface.module = klass.split("::")[0...-1].join("::")
+          iface.type = klass
+          iface.value = message
+
+          if backtrace
+            iface.stacktrace = Interface::Stacktrace.new(backtrace: backtrace) do |stacktrace|
+              event.culprit = stacktrace.culprit
+            end
+          end
+        end
+        event.interface :exception, values: [ex]
+        yield event
+      end
+    end
+
     # Capture and process any exceptions from the given block.
     #
     # ```
