@@ -21,13 +21,13 @@ yet there are no tests written, so use it at your own risk! - or kindly send a P
 - [x] Integrations ([Kemal](https://github.com/kemalcr/kemal), [Sidekiq.cr](https://github.com/mperham/sidekiq.cr))
 - [x] Async support
 - [x] User Feedback (`Raven.send_feedback` + Kemal handler)
+- [x] Crash handler
 
 ### TODO
 
 - [ ] Tests
 - [ ] Exponential backoff in case of connection error
 - [ ] Caching unsent events for later send
-- [ ] Catching app crashes, kind of a bin wrapper perhaps?
 
 ## Installation
 
