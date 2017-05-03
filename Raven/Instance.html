@@ -120,6 +120,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/CrashHandler" data-name="raven::crashhandler">
+      <a href="../Raven/CrashHandler.html">CrashHandler</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Delegators" data-name="raven::delegators">
       <a href="../Raven/Delegators.html">Delegators</a>
       
@@ -406,7 +411,7 @@ sending errors to multiple sentry projects in a large application.</p>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L24" target="_blank">raven/instance.cr</a>
+      <a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L24" target="_blank">raven/instance.cr</a>
     
     <br/>
   
@@ -460,6 +465,13 @@ sending errors to multiple sentry projects in a large application.</p>
         <a href="#capture%28obj%3AException%7CString%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#capture</strong>(obj : Exception | String, **options, &block)</a>
         
           <div class="summary"><p>Captures given <code><a href="../Exception.html">Exception</a></code> or <code>String</code> object and yields created <code><a href="../Raven/Event.html">Raven::Event</a></code> before sending to Sentry.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#capture%28klass%3AString%2Cmessage%3AString%2Cbacktrace%3Dnil%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#capture</strong>(klass : String, message : String, backtrace = <span class="n">nil</span>, **options, &block)</a>
+        
+          <div class="summary"><p>Captures an exception with given <em>klass</em>, <em>message</em> and optional <em>backtrace</em>.</p></div>
         
       </li>
     
@@ -601,7 +613,7 @@ sending errors to multiple sentry projects in a large application.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -640,7 +652,7 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L200" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L229" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -656,7 +668,7 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L241" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L270" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -678,7 +690,7 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L170" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L199" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -704,7 +716,7 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L159" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L159" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -727,7 +739,32 @@ created <code><a href="../Raven/Event.html">Raven::Event</a></code> before sendi
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L126" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L126" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="capture&#40;klass:String,message:String,backtrace&#61;nil,**options,&amp;block&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>capture</strong>(klass : String, message : String, backtrace = <span class="n">nil</span>, **options, &block)
+
+        <a class="method-permalink" href="#capture%28klass%3AString%2Cmessage%3AString%2Cbacktrace%3Dnil%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Captures an exception with given <em>klass</em>, <em>message</em>
+and optional <em>backtrace</em>.</p>
+
+<pre><code><span class="t">Raven</span>.capture <span class="s">&quot;FooBarError&quot;</span>, <span class="s">&quot;Foo got bar&#33;&quot;</span></code></pre>
+
+<p><span class="flag purple">NOTE</span>  Useful in scenarios where you need to reconstruct the error
+(usually along with a backtrace from external source), while
+having no access to the actual Exception object.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L173" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -746,7 +783,7 @@ Sentry server.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -778,7 +815,7 @@ Sentry server.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -814,7 +851,7 @@ Sentry server.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L72" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L72" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -836,7 +873,7 @@ Sentry server.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L67" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L67" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -852,7 +889,7 @@ Sentry server.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L42" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L42" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -875,7 +912,7 @@ and is completely arbitrary.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L237" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L266" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -891,7 +928,7 @@ and is completely arbitrary.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L114" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L114" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -907,7 +944,7 @@ and is completely arbitrary.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -923,7 +960,7 @@ and is completely arbitrary.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -941,7 +978,7 @@ and is completely arbitrary.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L51" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L51" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -962,7 +999,7 @@ and is completely arbitrary.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L106" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L106" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -992,7 +1029,7 @@ and is completely arbitrary.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L93" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L93" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1015,7 +1052,7 @@ application version, environment, role, and server names.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L225" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L254" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1038,7 +1075,7 @@ values. All other values are arbitrary.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/instance.cr#L213" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L242" target="_blank">View source</a>]
         
       </div>
     </div>

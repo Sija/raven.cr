@@ -120,6 +120,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/CrashHandler" data-name="raven::crashhandler">
+      <a href="Raven/CrashHandler.html">CrashHandler</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Delegators" data-name="raven::delegators">
       <a href="Raven/Delegators.html">Delegators</a>
       
@@ -371,11 +376,11 @@ yet there are no tests written, so use it at your own risk! - or kindly send a P
 
 <h3>Feature support</h3>
 
-<ul><li>[x] Processors (data scrubbers)</li><li>[x] Interfaces (Message, Exception, Stacktrace, User, HTTP, ...)</li><li>[x] Contexts (tags, extra, <code>os</code>, <code>runtime</code>)</li><li>[x] Breadcrumbs</li><li>[x] Integrations (<a href="https://github.com/kemalcr/kemal" target="_blank">Kemal</a>, <a href="https://github.com/mperham/sidekiq.cr" target="_blank">Sidekiq.cr</a>)</li><li>[x] Async support</li><li>[x] User Feedback (<code>Raven.send_feedback</code> + Kemal handler)</li></ul>
+<ul><li>[x] Processors (data scrubbers)</li><li>[x] Interfaces (Message, Exception, Stacktrace, User, HTTP, ...)</li><li>[x] Contexts (tags, extra, <code>os</code>, <code>runtime</code>)</li><li>[x] Breadcrumbs</li><li>[x] Integrations (<a href="https://github.com/kemalcr/kemal" target="_blank">Kemal</a>, <a href="https://github.com/mperham/sidekiq.cr" target="_blank">Sidekiq.cr</a>)</li><li>[x] Async support</li><li>[x] User Feedback (<code>Raven.send_feedback</code> + Kemal handler)</li><li>[x] Crash handler</li></ul>
 
 <h3>TODO</h3>
 
-<ul><li>[ ] Tests</li><li>[ ] Exponential backoff in case of connection error</li><li>[ ] Caching unsent events for later send</li><li>[ ] Catching app crashes, kind of a bin wrapper perhaps?</li></ul>
+<ul><li>[ ] Tests</li><li>[ ] Exponential backoff in case of connection error</li><li>[ ] Caching unsent events for later send</li></ul>
 
 <h2>Installation</h2>
 
@@ -502,6 +507,46 @@ config.async <span class="o">=</span> <span class="n">true</span></code></pre>
 <span class="t">Raven</span>.extra_context happiness: <span class="s">&quot;very&quot;</span></code></pre>
 
 <p>For more information, see <a href="https://docs.sentry.io/clients/ruby/context/" target="_blank">Context</a>.</p>
+
+<h2>Crash Handler</h2>
+
+<p>Since Crystal doesn't provide native handlers for unhandled exceptions
+and sigfaults, <em>raven.cr</em> introduces its own crash handler compiled as
+external binary.</p>
+
+<h3>Setup</h3>
+
+<p>Easiest way of using it is adding appropriate entry to project's <code>shard.yml</code>:</p>
+
+<pre><code class='language-yaml'>targets:
+  # other target definitions if any...
+
+  sentry.crash_handler:
+    main: lib/raven/src/crash_handler.cr</code></pre>
+
+<p>With above entry defined in <code>targets</code>, running <code>shards build</code> should result in
+binary built in <code>bin/sentry.crash_handler</code>.</p>
+
+<p><strong>NOTE</strong>: While building you might specify <code>SENTRY_DSN</code> env variable, which will be
+compiled into the binary (as plain-text) and used by the handler as
+<em>Sentry</em> endpoint.</p>
+
+<pre><code class='language-bash'>SENTRY_DSN=&lt;private_dsn> shards build sentry.crash_handler</code></pre>
+
+<p>Pass <code>--release</code> flag to disable debug messages.</p>
+
+<h3>Usage</h3>
+
+<p>You need to run your app with previously built <code>bin/sentry.crash_handler</code> in
+front.</p>
+
+<pre><code class='language-bash'>bin/sentry.crash_handler bin/your_app --some arguments --passed to your program</code></pre>
+
+<p>As one would expect, <code>STDIN</code> is passed to the original process, while
+<code>STDOUT</code> and <code>STDERR</code> are piped back from it.</p>
+
+<p><strong>NOTE</strong>: You can always pass <code>SENTRY_DSN</code> env variable during execution
+in case you didn't do it while building the wrapper.</p>
 
 <h2>More Information</h2>
 

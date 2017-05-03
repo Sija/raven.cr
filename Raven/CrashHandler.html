@@ -5,7 +5,7 @@
   <meta id="repository-name" content="github.com/Sija/raven.cr">
   <link href="../css/style.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="../js/doc.js"></script>
-  <title>Raven::Delegators - github.com/Sija/raven.cr</title>
+  <title>Raven::CrashHandler - github.com/Sija/raven.cr</title>
 </head>
 <body>
 
@@ -120,12 +120,12 @@
       
     </li>
   
-  <li class=" " data-id="github.com/Sija/raven.cr/Raven/CrashHandler" data-name="raven::crashhandler">
+  <li class=" current" data-id="github.com/Sija/raven.cr/Raven/CrashHandler" data-name="raven::crashhandler">
       <a href="../Raven/CrashHandler.html">CrashHandler</a>
       
     </li>
   
-  <li class=" current" data-id="github.com/Sija/raven.cr/Raven/Delegators" data-name="raven::delegators">
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Delegators" data-name="raven::delegators">
       <a href="../Raven/Delegators.html">Delegators</a>
       
     </li>
@@ -362,17 +362,15 @@
 <div id="main-content">
 <h1 class="type-name">
 
-  <span class="kind">module</span> Raven::Delegators
+  <span class="kind">class</span> Raven::CrashHandler
 
 </h1>
 
 
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Raven/CrashHandler.html">Raven::CrashHandler</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
-  <h2>Overview</h2>
-
-  <p><code><a href="../Raven.html#instance-class-method">Raven.instance</a></code> delegators.</p>
 
 
 
@@ -390,14 +388,80 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L9" target="_blank">raven.cr</a>
+      <a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L4" target="_blank">crash_handler.cr</a>
     
     <br/>
   
 
 
 
+  
+    <h2>Constant Summary</h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="CRYSTAL_CRASH_PATTERN">
+        <strong>CRYSTAL_CRASH_PATTERN</strong> = <code><span class="s">/&#40;&#91;^\n&#93;&#43;&#41;\n&#40;\&#91;</span><span class="i">#{</span></span><span class="t">Backtrace</span><span class="t">::</span><span class="t">Line</span><span class="t">::</span><span class="t">ADDR_FORMAT</span><span class="s"><span class="i">}</span>\&#93; .*&#41;&#36;/</span>m</code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Example:</p>
 
+<pre><code><span class="t">Invalid</span> memory access (signal <span class="n">11</span>) at address <span class="n">0x20</span>
+[<span class="n">0x1057a9fab</span>] <span class="o">*</span><span class="t">CallStack</span><span class="t">::</span>print_backtrace<span class="n">:Int32</span> <span class="n">+107</span>
+[<span class="n">0x105798aac</span>] __crystal_sigfault_handler <span class="n">+60</span>
+[<span class="n">0x7fff9ca0652a</span>] _sigtramp <span class="n">+26</span>
+[<span class="n">0x105cb35a1</span>] <span class="t">GC_realloc</span> <span class="n">+50</span>
+[<span class="n">0x1057870bb</span>] __crystal_realloc <span class="n">+11</span>
+[<span class="n">0x1057d3ecc</span>] <span class="o">*</span><span class="t">Pointer</span>(<span class="t">UInt8</span>)@Pointer(<span class="t">T</span>)<span class="c">#realloc&lt;Int32&gt;:Pointer&#40;UInt8&#41; &#43;28</span>
+[<span class="n">0x10578706c</span>] __crystal_main <span class="n">+2940</span>
+[<span class="n">0x105798128</span>] main <span class="n">+40</span></code></pre>
+      </dd>
+      
+    
+      <dt class="entry-const" id="CRYSTAL_EXCEPTION_PATTERN">
+        <strong>CRYSTAL_EXCEPTION_PATTERN</strong> = <code><span class="s">/&#40;&#91;^\n&#93;&#43;&#41; \&#40;&#40;&#91;A-Z&#93;\w&#43;&#41;\&#41;\n&#40;</span><span class="i">#{</span></span><span class="t">Backtrace</span><span class="t">::</span><span class="t">Line</span><span class="t">::</span><span class="t">ADDR_FORMAT</span><span class="s"><span class="i">}</span>: .*&#41;&#36;/</span>m</code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Example:</p>
+
+<pre><code>execvp: <span class="t">No</span> such file or directory (<span class="t">Errno</span>)
+<span class="n">0x108a4ab85</span>: <span class="o">*</span><span class="t">CallStack</span><span class="t">::</span>unwind<span class="n">:Array</span>(<span class="t">Pointer</span>(<span class="t">Void</span>)) at ??
+<span class="n">0x108a4ab21</span>: <span class="o">*</span><span class="t">CallStack</span><span class="c">#initialize:Array&#40;Pointer&#40;Void&#41;&#41; at ??</span>
+<span class="n">0x108a4aaf8</span>: <span class="o">*</span><span class="t">CallStack</span><span class="t">::</span><span class="k">new</span><span class="n">:CallStack</span> at ??
+<span class="n">0x108a391d1</span>: <span class="o">*</span>raise<span class="o"><</span><span class="t">Errno</span><span class="o">></span><span class="n">:NoReturn</span> at ??
+<span class="n">0x108a9fdf5</span>: <span class="o">*</span><span class="t">Process</span><span class="t">::</span>exec_internal<span class="o"><</span><span class="t">String</span>, <span class="t">Array</span>(<span class="t">Pointer</span>(<span class="t">UInt8</span>)), <span class="t">Nil</span>, <span class="t">Bool</span>, <span class="t">IO</span><span class="t">::</span><span class="t">FileDescriptor</span>, <span class="t">IO</span><span class="t">::</span><span class="t">FileDescriptor</span>, (<span class="t">IO</span><span class="t">::</span><span class="t">FileDescriptor</span> <span class="o">|</span> <span class="t">IO</span><span class="t">::</span><span class="t">MultiWriter</span>), <span class="t">Nil</span><span class="o">></span><span class="n">:Nil</span> at ??
+<span class="n">0x108a9f2de</span>: <span class="o">*</span><span class="t">Process</span><span class="c">#initialize&lt;String, Nil, Nil, Bool, Bool, IO::FileDescriptor, IO::FileDescriptor, IO::MultiWriter, Nil&gt;:Nil at ??</span>
+<span class="n">0x108a9ed3b</span>: <span class="o">*</span><span class="t">Process</span><span class="t">::</span><span class="k">new</span><span class="o"><</span><span class="t">String</span>, <span class="t">Nil</span>, <span class="t">Nil</span>, <span class="t">Bool</span>, <span class="t">Bool</span>, <span class="t">IO</span><span class="t">::</span><span class="t">FileDescriptor</span>, <span class="t">IO</span><span class="t">::</span><span class="t">FileDescriptor</span>, <span class="t">IO</span><span class="t">::</span><span class="t">MultiWriter</span>, <span class="t">Nil</span><span class="o">></span><span class="n">:Process</span> at ??
+<span class="n">0x108a9ec65</span>: <span class="o">*</span><span class="t">Process</span><span class="t">::</span>run<span class="n">:input</span><span class="n">:output</span><span class="n">:error</span><span class="o"><</span><span class="t">String</span>, <span class="t">IO</span><span class="t">::</span><span class="t">FileDescriptor</span>, <span class="t">IO</span><span class="t">::</span><span class="t">FileDescriptor</span>, <span class="t">IO</span><span class="t">::</span><span class="t">MultiWriter</span><span class="o">></span><span class="n">:Process</span><span class="t">::</span><span class="t">Status</span> at ??
+<span class="n">0x108a2d948</span>: __crystal_main at ??
+<span class="n">0x108a3f6a8</span>: main at ??</code></pre>
+      </dd>
+      
+    
+      <dt class="entry-const" id="DEFAULT_OPTS">
+        <strong>DEFAULT_OPTS</strong> = <code>{logger: <span class="s">&quot;raven.crash_handler&quot;</span>, fingerprint: [<span class="s">&quot;&#123;&#123; default &#125;&#125;&quot;</span>, <span class="s">&quot;process.crash&quot;</span>]}</code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Default event options.</p>
+      </dd>
+      
+    
+  </dl>
+
+
+
+  <h2>Class Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28name%2Cargs%29-class-method" class="signature"><strong>.new</strong>(name, args)</a>
+        
+      </li>
+    
+  </ul>
 
 
 
@@ -405,22 +469,16 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#annotate_exception%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#annotate_exception</strong>(*args, **options, &block)</a>
+        <a href="#args%3AArray%28String%29%3F-instance-method" class="signature"><strong>#args</strong> : Array(String)?</a>
+        
+          <div class="summary"><p>An <code>Array</code> of arguments passed to process.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#annotate_exception%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#annotate_exception</strong>(*args, **options)</a>
+        <a href="#args%3D%28args%3AArray%28String%29%3F%29-instance-method" class="signature"><strong>#args=</strong>(args : Array(String)?)</a>
         
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#breadcrumbs%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#breadcrumbs</strong>(*args, **options, &block)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#breadcrumbs%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#breadcrumbs</strong>(*args, **options)</a>
+          <div class="summary"><p>An <code>Array</code> of arguments passed to process.</p></div>
         
       </li>
     
@@ -431,16 +489,6 @@
     
       <li class="entry-summary">
         <a href="#capture%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#capture</strong>(*args, **options)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#client%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#client</strong>(*args, **options)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#client%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#client</strong>(*args, **options, &block)</a>
         
       </li>
     
@@ -475,82 +523,78 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#extra_context%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#extra_context</strong>(*args, **options, &block)</a>
+        <a href="#exit_code%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#exit_code</strong>(*args, **options, &block)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#extra_context%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#extra_context</strong>(*args, **options)</a>
+        <a href="#exit_code%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#exit_code</strong>(*args, **options)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#last_event_id%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#last_event_id</strong>(*args, **options)</a>
+        <a href="#logger-instance-method" class="signature"><strong>#logger</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#last_event_id%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#last_event_id</strong>(*args, **options, &block)</a>
+        <a href="#logger%3D%28logger%3A%3A%3ALogger%29-instance-method" class="signature"><strong>#logger=</strong>(logger : ::Logger)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#logger%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#logger</strong>(*args, **options)</a>
+        <a href="#name%3AString-instance-method" class="signature"><strong>#name</strong> : String</a>
+        
+          <div class="summary"><p>Process executable path.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#logger%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#logger</strong>(*args, **options, &block)</a>
+        <a href="#name%3D%28name%3AString%29-instance-method" class="signature"><strong>#name=</strong>(name : String)</a>
+        
+          <div class="summary"><p>Process executable path.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#report_status%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#report_status</strong>(*args, **options, &block)</a>
+        <a href="#process_status-instance-method" class="signature"><strong>#process_status</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#report_status%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#report_status</strong>(*args, **options)</a>
+        <a href="#process_status%3F%3AProcess%3A%3AStatus%3F-instance-method" class="signature"><strong>#process_status?</strong> : Process::Status?</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#send_event%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#send_event</strong>(*args, **options, &block)</a>
+        <a href="#raven-instance-method" class="signature"><strong>#raven</strong></a>
+        
+          <div class="summary"><p><span class="flag yellow">FIXME</span>  doesn't work yet due to usage of global Raven within <code><a href="../Raven/Backtrace/Line.html">Backtrace::Line</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#send_event%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#send_event</strong>(*args, **options)</a>
+        <a href="#run%3AVoid-instance-method" class="signature"><strong>#run</strong> : Void</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#send_feedback%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#send_feedback</strong>(*args, **options)</a>
+        <a href="#started_at-instance-method" class="signature"><strong>#started_at</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#send_feedback%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#send_feedback</strong>(*args, **options, &block)</a>
+        <a href="#started_at%3F%3ATime%3F-instance-method" class="signature"><strong>#started_at?</strong> : Time?</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#tags_context%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#tags_context</strong>(*args, **options)</a>
+        <a href="#success%3F%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#success?</strong>(*args, **options)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#tags_context%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#tags_context</strong>(*args, **options, &block)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#user_context%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#user_context</strong>(*args, **options)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#user_context%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#user_context</strong>(*args, **options, &block)</a>
+        <a href="#success%3F%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#success?</strong>(*args, **options, &block)</a>
         
       </li>
     
@@ -562,73 +606,78 @@
 
 <div class="methods-inherited">
   
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
 </div>
 
+
+  <h2>Class Method Detail</h2>
+  
+    <div class="entry-detail" id="new&#40;name,args&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(name, args)
+
+        <a class="method-permalink" href="#new%28name%2Cargs%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L69" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
 
 
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="annotate_exception&#40;*args,**options,&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="args:Array&#40;String&#41;?-instance-method">
       <div class="signature">
         
-        def <strong>annotate_exception</strong>(*args, **options, &block)
+        def <strong>args</strong> : Array(String)?
 
-        <a class="method-permalink" href="#annotate_exception%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
+        <a class="method-permalink" href="#args%3AArray%28String%29%3F-instance-method">#</a>
       </div>
+      
+        <div class="doc"><p>An <code>Array</code> of arguments passed to process.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L46" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="annotate_exception&#40;*args,**options&#41;-instance-method">
+    <div class="entry-detail" id="args&#61;&#40;args:Array&#40;String&#41;?&#41;-instance-method">
       <div class="signature">
         
-        def <strong>annotate_exception</strong>(*args, **options)
+        def <strong>args=</strong>(args : Array(String)?)
 
-        <a class="method-permalink" href="#annotate_exception%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
+        <a class="method-permalink" href="#args%3D%28args%3AArray%28String%29%3F%29-instance-method">#</a>
       </div>
+      
+        <div class="doc"><p>An <code>Array</code> of arguments passed to process.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="breadcrumbs&#40;*args,**options,&amp;block&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>breadcrumbs</strong>(*args, **options, &block)
-
-        <a class="method-permalink" href="#breadcrumbs%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="breadcrumbs&#40;*args,**options&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>breadcrumbs</strong>(*args, **options)
-
-        <a class="method-permalink" href="#breadcrumbs%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L46" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -644,7 +693,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L55" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -660,39 +709,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="client&#40;*args,**options&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>client</strong>(*args, **options)
-
-        <a class="method-permalink" href="#client%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="client&#40;*args,**options,&amp;block&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>client</strong>(*args, **options, &block)
-
-        <a class="method-permalink" href="#client%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L55" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -708,7 +725,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L55" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -724,7 +741,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L55" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -740,7 +757,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L55" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -756,7 +773,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L55" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -772,7 +789,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L55" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -788,263 +805,237 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L55" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="extra_context&#40;*args,**options,&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="exit_code&#40;*args,**options,&amp;block&#41;-instance-method">
       <div class="signature">
         
-        def <strong>extra_context</strong>(*args, **options, &block)
+        def <strong>exit_code</strong>(*args, **options, &block)
 
-        <a class="method-permalink" href="#extra_context%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
+        <a class="method-permalink" href="#exit_code%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L145" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="extra_context&#40;*args,**options&#41;-instance-method">
+    <div class="entry-detail" id="exit_code&#40;*args,**options&#41;-instance-method">
       <div class="signature">
         
-        def <strong>extra_context</strong>(*args, **options)
+        def <strong>exit_code</strong>(*args, **options)
 
-        <a class="method-permalink" href="#extra_context%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
+        <a class="method-permalink" href="#exit_code%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L145" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="last_event_id&#40;*args,**options&#41;-instance-method">
+    <div class="entry-detail" id="logger-instance-method">
       <div class="signature">
         
-        def <strong>last_event_id</strong>(*args, **options)
+        def <strong>logger</strong>
 
-        <a class="method-permalink" href="#last_event_id%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
+        <a class="method-permalink" href="#logger-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L58" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="last_event_id&#40;*args,**options,&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="logger&#61;&#40;logger:::Logger&#41;-instance-method">
       <div class="signature">
         
-        def <strong>last_event_id</strong>(*args, **options, &block)
+        def <strong>logger=</strong>(logger : <a href="../Logger.html">::Logger</a>)
 
-        <a class="method-permalink" href="#last_event_id%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
+        <a class="method-permalink" href="#logger%3D%28logger%3A%3A%3ALogger%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="name:String-instance-method">
+      <div class="signature">
+        
+        def <strong>name</strong> : String
+
+        <a class="method-permalink" href="#name%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Process executable path.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L44" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="logger&#40;*args,**options&#41;-instance-method">
+    <div class="entry-detail" id="name&#61;&#40;name:String&#41;-instance-method">
       <div class="signature">
         
-        def <strong>logger</strong>(*args, **options)
+        def <strong>name=</strong>(name : String)
 
-        <a class="method-permalink" href="#logger%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
+        <a class="method-permalink" href="#name%3D%28name%3AString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Process executable path.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L44" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="process_status-instance-method">
+      <div class="signature">
+        
+        def <strong>process_status</strong>
+
+        <a class="method-permalink" href="#process_status-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L143" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="logger&#40;*args,**options,&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="process_status?:Process::Status?-instance-method">
       <div class="signature">
         
-        def <strong>logger</strong>(*args, **options, &block)
+        def <strong>process_status?</strong> : Process::Status?
 
-        <a class="method-permalink" href="#logger%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
+        <a class="method-permalink" href="#process_status%3F%3AProcess%3A%3AStatus%3F-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L143" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="report_status&#40;*args,**options,&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="raven-instance-method">
       <div class="signature">
         
-        def <strong>report_status</strong>(*args, **options, &block)
+        def <strong>raven</strong>
 
-        <a class="method-permalink" href="#report_status%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
+        <a class="method-permalink" href="#raven-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p><span class="flag yellow">FIXME</span>  doesn't work yet due to usage of global Raven within <code><a href="../Raven/Backtrace/Line.html">Backtrace::Line</a></code>.</p>
+
+<pre><code>getter raven : <span class="t">Instance</span> { <span class="t">Instance</span>.<span class="k">new</span> }</code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L53" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="run:Void-instance-method">
+      <div class="signature">
+        
+        def <strong>run</strong> : Void
+
+        <a class="method-permalink" href="#run%3AVoid-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L156" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="report_status&#40;*args,**options&#41;-instance-method">
+    <div class="entry-detail" id="started_at-instance-method">
       <div class="signature">
         
-        def <strong>report_status</strong>(*args, **options)
+        def <strong>started_at</strong>
 
-        <a class="method-permalink" href="#report_status%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
+        <a class="method-permalink" href="#started_at-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L142" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="send_event&#40;*args,**options,&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="started_at?:Time?-instance-method">
       <div class="signature">
         
-        def <strong>send_event</strong>(*args, **options, &block)
+        def <strong>started_at?</strong> : Time?
 
-        <a class="method-permalink" href="#send_event%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
+        <a class="method-permalink" href="#started_at%3F%3ATime%3F-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L142" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="send_event&#40;*args,**options&#41;-instance-method">
+    <div class="entry-detail" id="success?&#40;*args,**options&#41;-instance-method">
       <div class="signature">
         
-        def <strong>send_event</strong>(*args, **options)
+        def <strong>success?</strong>(*args, **options)
 
-        <a class="method-permalink" href="#send_event%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
+        <a class="method-permalink" href="#success%3F%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L145" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="send_feedback&#40;*args,**options&#41;-instance-method">
+    <div class="entry-detail" id="success?&#40;*args,**options,&amp;block&#41;-instance-method">
       <div class="signature">
         
-        def <strong>send_feedback</strong>(*args, **options)
+        def <strong>success?</strong>(*args, **options, &block)
 
-        <a class="method-permalink" href="#send_feedback%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
+        <a class="method-permalink" href="#success%3F%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="send_feedback&#40;*args,**options,&amp;block&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>send_feedback</strong>(*args, **options, &block)
-
-        <a class="method-permalink" href="#send_feedback%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="tags_context&#40;*args,**options&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>tags_context</strong>(*args, **options)
-
-        <a class="method-permalink" href="#tags_context%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="tags_context&#40;*args,**options,&amp;block&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>tags_context</strong>(*args, **options, &block)
-
-        <a class="method-permalink" href="#tags_context%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="user_context&#40;*args,**options&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>user_context</strong>(*args, **options)
-
-        <a class="method-permalink" href="#user_context%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="user_context&#40;*args,**options,&amp;block&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>user_context</strong>(*args, **options, &block)
-
-        <a class="method-permalink" href="#user_context%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L145" target="_blank">View source</a>]
         
       </div>
     </div>

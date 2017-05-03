@@ -120,6 +120,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/CrashHandler" data-name="raven::crashhandler">
+      <a href="../../Raven/CrashHandler.html">CrashHandler</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Delegators" data-name="raven::delegators">
       <a href="../../Raven/Delegators.html">Delegators</a>
       
@@ -387,7 +392,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/backtrace_line.cr#L3" target="_blank">raven/backtrace_line.cr</a>
+      <a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/backtrace_line.cr#L3" target="_blank">raven/backtrace_line.cr</a>
     
     <br/>
   
@@ -399,39 +404,9 @@
   
   <dl>
     
-      <dt class="entry-const" id="CRYSTAL_INPUT_FORMAT">
-        <strong>CRYSTAL_INPUT_FORMAT</strong> = <code><span class="s">/^&#40;?&lt;addr&gt;0x&#91;a-z0-9&#93;&#43;&#41;: </span><span class="i">#{</span></span><span class="t">CRYSTAL_PROC_FORMAT</span> <span class="o">+</span> <span class="t">CRYSTAL_METHOD_FORMAT</span><span class="s"><span class="i">}</span>/</span></code>
+      <dt class="entry-const" id="CALLSTACK_PATTERNS">
+        <strong>CALLSTACK_PATTERNS</strong> = <code>{<span class="t">CRYSTAL_METHOD</span>: <span class="s">/^</span><span class="i">#{</span></span><span class="t">ADDR_FORMAT</span><span class="s"><span class="i">}</span>: \*?&#40;?&lt;method&gt;.*?&#41; at &#40;?&lt;file&gt;&#91;^:&#93;&#43;&#41;&#40;?:\s&#40;?&lt;line&gt;\d&#43;&#41;&#40;?:\:&#40;?&lt;col&gt;\d&#43;&#41;&#41;?&#41;?&#36;/</span>, <span class="t">CRYSTAL_PROC</span>: <span class="s">/^</span><span class="i">#{</span></span><span class="t">ADDR_FORMAT</span><span class="s"><span class="i">}</span>: \~&#40;?&lt;method&gt;&#91;^&#64;&#93;&#43;&#41;&#64;&#40;?&lt;file&gt;&#91;^:&#93;&#43;&#41;&#40;?:\:&#40;?&lt;line&gt;\d&#43;&#41;&#41; at \?&#43;&#36;/</span>, <span class="t">CRYSTAL_CRASH</span>: <span class="s">/^\&#91;</span><span class="i">#{</span></span><span class="t">ADDR_FORMAT</span><span class="s"><span class="i">}</span>\&#93; \*?&#40;?&lt;method&gt;.*?&#41; \&#43;\d&#43;&#40;?: \&#40;&#40;?&lt;times&gt;\d&#43;&#41; times\&#41;&#41;?&#36;/</span>}</code>
       </dt>
-      
-      <dd class="entry-const-doc">
-        <p>See <code><a href="../../Raven/Backtrace/Line.html#CRYSTAL_PROC_FORMAT">CRYSTAL_PROC_FORMAT</a></code> and <code><a href="../../Raven/Backtrace/Line.html#CRYSTAL_METHOD_FORMAT">CRYSTAL_METHOD_FORMAT</a></code>.</p>
-
-<p>Examples:</p>
-
-<ul><li><code>0x103a7bbee: __crystal_main at ??</code></li><li><code>0x102cfe8f4: *Fiber#run:(IO::FileDescriptor | Nil) at /usr/local/Cellar/crystal-lang/0.20.5_2/src/fiber.cr 114:3</code></li><li><code>0x102cee376: ~procProc(Nil)@/usr/local/Cellar/crystal-lang/0.20.5_2/src/http/server.cr:148 at ??</code></li></ul>
-      </dd>
-      
-    
-      <dt class="entry-const" id="CRYSTAL_METHOD_FORMAT">
-        <strong>CRYSTAL_METHOD_FORMAT</strong> = <code><span class="s">/\*?&#40;?&lt;method&gt;.*?&#41; at &#40;?&lt;file&gt;&#91;^:&#93;&#43;&#41;&#40;?:\s&#40;?&lt;line&gt;\d&#43;&#41;&#40;?:\:&#40;?&lt;col&gt;\d&#43;&#41;&#41;?&#41;?&#36;/</span></code>
-      </dt>
-      
-      <dd class="entry-const-doc">
-        <p>Examples:</p>
-
-<ul><li><code>0x103a7bbee: __crystal_main at ??</code></li><li><code>0x100e1ea72: *CallStack::unwind:Array(Pointer(Void)) at ??</code></li><li><code>0x102dff5e7: *Foo::Bar#_baz:Foo::Bam at /home/fooBAR/code/awesome-shard.cr/lib/foo/src/foo/bar.cr 50:7</code></li><li><code>0x102de9035: *Foo::Bar::bar_by_id<String>:Foo::Bam at /home/fooBAR/code/awesome-shard.cr/lib/foo/src/foo/bar.cr 29:9</code></li><li><code>0x102cfe8f4: *Fiber#run:(IO::FileDescriptor | Nil) at /usr/local/Cellar/crystal-lang/0.20.5_2/src/fiber.cr 114:3</code></li></ul>
-      </dd>
-      
-    
-      <dt class="entry-const" id="CRYSTAL_PROC_FORMAT">
-        <strong>CRYSTAL_PROC_FORMAT</strong> = <code><span class="s">/\~&#40;?&lt;proc_method&gt;&#91;^&#64;&#93;&#43;&#41;&#64;&#40;?&lt;proc_file&gt;&#91;^:&#93;&#43;&#41;&#40;?:\:&#40;?&lt;proc_line&gt;\d&#43;&#41;&#41; at \?&#43;&#36;/</span></code>
-      </dt>
-      
-      <dd class="entry-const-doc">
-        <p>Examples:</p>
-
-<ul><li><code>0x102cee376: ~procProc(Nil)@/usr/local/Cellar/crystal-lang/0.20.5_2/src/http/server.cr:148 at ??</code></li><li><code>0x102ce57db: ~procProc(HTTP::Server::Context, String)@lib/kemal/src/kemal/route.cr:11 at ??</code></li><li><code>0x1002d5180: ~procProc(HTTP::Server::Context, (File::PReader | HTTP::ChunkedContent | HTTP::Server::Response | HTTP::Server::Response::Output | HTTP::UnknownLengthContent | HTTP::WebSocket::Protocol::StreamIO | IO::ARGF | IO::Delimited | IO::FileDescriptor | IO::Hexdump | IO::Memory | IO::MultiWriter | IO::Sized | Int32 | OpenSSL::SSL::Socket | String::Builder | Zip::ChecksumReader | Zip::ChecksumWriter | Zlib::Deflate | Zlib::Inflate | Nil))@src/foo/bar/baz.cr:420 at ??</code></li></ul>
-      </dd>
       
     
   </dl>
@@ -575,7 +550,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/backtrace_line.cr#L59" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/backtrace_line.cr#L73" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -595,7 +570,7 @@ Returns the parsed backtrace line.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/backtrace_line.cr#L48" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/backtrace_line.cr#L63" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -632,7 +607,7 @@ Returns the parsed backtrace line.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/backtrace_line.cr#L36" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/backtrace_line.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -650,7 +625,7 @@ Returns the parsed backtrace line.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/backtrace_line.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/backtrace_line.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -680,7 +655,7 @@ Returns the parsed backtrace line.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/backtrace_line.cr#L97" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/backtrace_line.cr#L114" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -696,7 +671,7 @@ Returns the parsed backtrace line.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/backtrace_line.cr#L73" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/backtrace_line.cr#L87" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -714,7 +689,7 @@ Returns the parsed backtrace line.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/backtrace_line.cr#L39" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/backtrace_line.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -732,7 +707,7 @@ Returns the parsed backtrace line.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/backtrace_line.cr#L33" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/backtrace_line.cr#L44" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -748,7 +723,7 @@ Returns the parsed backtrace line.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/backtrace_line.cr#L82" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/backtrace_line.cr#L99" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -764,7 +739,7 @@ Returns the parsed backtrace line.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/backtrace_line.cr#L91" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/backtrace_line.cr#L108" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -782,7 +757,7 @@ Returns the parsed backtrace line.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/backtrace_line.cr#L65" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/backtrace_line.cr#L79" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -798,7 +773,7 @@ Returns the parsed backtrace line.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/backtrace_line.cr#L77" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/backtrace_line.cr#L94" target="_blank">View source</a>]
         
       </div>
     </div>

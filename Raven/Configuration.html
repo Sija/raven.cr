@@ -120,6 +120,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/CrashHandler" data-name="raven::crashhandler">
+      <a href="../Raven/CrashHandler.html">CrashHandler</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Delegators" data-name="raven::delegators">
       <a href="../Raven/Delegators.html">Delegators</a>
       
@@ -383,7 +388,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L5" target="_blank">raven/configuration.cr</a>
+      <a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L5" target="_blank">raven/configuration.cr</a>
     
     <br/>
   
@@ -465,9 +470,9 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#async%3D%28switch%3ABool%29-instance-method" class="signature"><strong>#async=</strong>(switch : Bool)</a>
+        <a href="#async%3D%28block%3AProc%28Event%2C_%29%29-instance-method" class="signature"><strong>#async=</strong>(block : Proc(Event, _))</a>
         
-          <div class="summary"><p>Sets <code><a href="../Raven/Configuration.html#async%3AProc%28Event%2CNil%29%3F-instance-method">#async</a></code> callback to either <code>Fiber</code>-based implementation (see below), or <code>nil</code>, depending on the given <em>switch</em> value.</p></div>
+          <div class="summary"><p>Provide a <code>Proc</code> object that responds to <code>call</code> to send events asynchronously, or pass <code>true</code> to to use standard <code>spawn</code>.</p></div>
         
       </li>
     
@@ -479,19 +484,19 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#async%3D%28block%3AProc%28Event%2C_%29%29-instance-method" class="signature"><strong>#async=</strong>(block : Proc(Event, _))</a>
+        <a href="#async%3D%28switch%3ABool%29-instance-method" class="signature"><strong>#async=</strong>(switch : Bool)</a>
         
-          <div class="summary"><p>Provide a <code>Proc</code> object that responds to <code>call</code> to send events asynchronously, or pass <code>true</code> to to use standard <code>spawn</code>.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#capture_allowed%3F-instance-method" class="signature"><strong>#capture_allowed?</strong></a>
+          <div class="summary"><p>Sets <code><a href="../Raven/Configuration.html#async%3AProc%28Event%2CNil%29%3F-instance-method">#async</a></code> callback to either <code>Fiber</code>-based implementation (see below), or <code>nil</code>, depending on the given <em>switch</em> value.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#capture_allowed%3F%28message_or_exc%29-instance-method" class="signature"><strong>#capture_allowed?</strong>(message_or_exc)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#capture_allowed%3F-instance-method" class="signature"><strong>#capture_allowed?</strong></a>
         
       </li>
     
@@ -914,6 +919,20 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
+        <a href="#src_path%3AString%3F-instance-method" class="signature"><strong>#src_path</strong> : String?</a>
+        
+          <div class="summary"><p>Used in <code><a href="../Raven/Configuration.html#in_app_pattern-instance-method">#in_app_pattern</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#src_path%3D%28src_path%3AString%3F%29-instance-method" class="signature"><strong>#src_path=</strong>(src_path : String?)</a>
+        
+          <div class="summary"><p>Used in <code><a href="../Raven/Configuration.html#in_app_pattern-instance-method">#in_app_pattern</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#ssl%3AOpenSSL%3A%3ASSL%3A%3AContext%3A%3AClient%3F-instance-method" class="signature"><strong>#ssl</strong> : OpenSSL::SSL::Context::Client?</a>
         
           <div class="summary"><p>SSL context passed to <code><a href="../Raven/Client.html">Raven::Client</a></code>.</p></div>
@@ -952,14 +971,14 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#transport_failure_callback%3D%28transport_failure_callback%3AProc%28Event%3A%3AHashType%2CNil%29%3F%29-instance-method" class="signature"><strong>#transport_failure_callback=</strong>(transport_failure_callback : Proc(Event::HashType, Nil)?)</a>
+        <a href="#transport_failure_callback%3D%28block%3AProc%28Event%3A%3AHashType%2C_%29%29-instance-method" class="signature"><strong>#transport_failure_callback=</strong>(block : Proc(Event::HashType, _))</a>
         
           <div class="summary"><p>Optional <code>Proc</code>, called when the Sentry server cannot be contacted for any reason.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#transport_failure_callback%3D%28block%3AProc%28Event%3A%3AHashType%2C_%29%29-instance-method" class="signature"><strong>#transport_failure_callback=</strong>(block : Proc(Event::HashType, _))</a>
+        <a href="#transport_failure_callback%3D%28transport_failure_callback%3AProc%28Event%3A%3AHashType%2CNil%29%3F%29-instance-method" class="signature"><strong>#transport_failure_callback=</strong>(transport_failure_callback : Proc(Event::HashType, Nil)?)</a>
         
           <div class="summary"><p>Optional <code>Proc</code>, called when the Sentry server cannot be contacted for any reason.</p></div>
         
@@ -1003,7 +1022,7 @@ before passing to other processors.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L220" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L220" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1028,7 +1047,7 @@ to set this to something like <code>/(src|engines)/</code></p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1048,7 +1067,7 @@ to set this to something like <code>/(src|engines)/</code></p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1069,49 +1088,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L49" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="async&#61;&#40;switch:Bool&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>async=</strong>(switch : Bool)
-
-        <a class="method-permalink" href="#async%3D%28switch%3ABool%29-instance-method">#</a>
-      </div>
-      
-        <div class="doc"><p>Sets <code><a href="../Raven/Configuration.html#async%3AProc%28Event%2CNil%29%3F-instance-method">#async</a></code> callback to either <code>Fiber</code>-based implementation (see below),
-or <code>nil</code>, depending on the given <em>switch</em> value.</p>
-
-<pre><code>->(event : <span class="t">Event</span>) { spawn { <span class="t">Raven</span>.send_event(event) } }</code></pre></div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L65" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="async&#61;&#40;async:Proc&#40;Event,Nil&#41;?&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>async=</strong>(async : Proc(<a href="../Raven/Event.html">Event</a>, Nil)?)
-
-        <a class="method-permalink" href="#async%3D%28async%3AProc%28Event%2CNil%29%3F%29-instance-method">#</a>
-      </div>
-      
-        <div class="doc"><p>Provide a <code>Proc</code> object that responds to <code>call</code> to send
-events asynchronously, or pass <code>true</code> to to use standard <code>spawn</code>.</p>
-
-<pre><code>->(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>) { spawn { <span class="t">Raven</span>.send_event(event) } }</code></pre></div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1132,23 +1109,49 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L52" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L52" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="capture_allowed?-instance-method">
+    <div class="entry-detail" id="async&#61;&#40;async:Proc&#40;Event,Nil&#41;?&#41;-instance-method">
       <div class="signature">
         
-        def <strong>capture_allowed?</strong>
+        def <strong>async=</strong>(async : Proc(<a href="../Raven/Event.html">Event</a>, Nil)?)
 
-        <a class="method-permalink" href="#capture_allowed%3F-instance-method">#</a>
+        <a class="method-permalink" href="#async%3D%28async%3AProc%28Event%2CNil%29%3F%29-instance-method">#</a>
       </div>
+      
+        <div class="doc"><p>Provide a <code>Proc</code> object that responds to <code>call</code> to send
+events asynchronously, or pass <code>true</code> to to use standard <code>spawn</code>.</p>
+
+<pre><code>->(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>) { spawn { <span class="t">Raven</span>.send_event(event) } }</code></pre></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L315" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L49" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="async&#61;&#40;switch:Bool&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>async=</strong>(switch : Bool)
+
+        <a class="method-permalink" href="#async%3D%28switch%3ABool%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Sets <code><a href="../Raven/Configuration.html#async%3AProc%28Event%2CNil%29%3F-instance-method">#async</a></code> callback to either <code>Fiber</code>-based implementation (see below),
+or <code>nil</code>, depending on the given <em>switch</em> value.</p>
+
+<pre><code>->(event : <span class="t">Event</span>) { spawn { <span class="t">Raven</span>.send_event(event) } }</code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L65" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1164,7 +1167,23 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L320" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L320" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="capture_allowed?-instance-method">
+      <div class="signature">
+        
+        def <strong>capture_allowed?</strong>
+
+        <a class="method-permalink" href="#capture_allowed%3F-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L315" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1182,7 +1201,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L110" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L110" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1200,7 +1219,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L110" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L110" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1218,7 +1237,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L74" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L74" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1236,7 +1255,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L74" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L74" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1252,7 +1271,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L278" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L278" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1270,7 +1289,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L178" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L178" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1286,7 +1305,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L274" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L274" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1302,7 +1321,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L240" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L240" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1320,7 +1339,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L83" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L83" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1338,7 +1357,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L83" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L83" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1356,7 +1375,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L86" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L86" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1374,7 +1393,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L86" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L86" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1390,7 +1409,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L369" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L369" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1408,7 +1427,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L218" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L218" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1430,7 +1449,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L93" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L93" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1452,7 +1471,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L93" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L93" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1468,7 +1487,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L346" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L346" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1490,7 +1509,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L100" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L100" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1512,7 +1531,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L100" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L100" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1530,7 +1549,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L103" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L103" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1548,7 +1567,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L103" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L103" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1566,7 +1585,7 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1599,7 +1618,7 @@ defaults to <code><a href="../Raven/Logger.html">Raven::Logger</a></code>.</p></
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L107" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L107" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1618,7 +1637,7 @@ defaults to <code><a href="../Raven/Logger.html">Raven::Logger</a></code>.</p></
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L107" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L107" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1637,7 +1656,7 @@ Defaults to standard Shards setup (<code>lib/shard-name/...</code>).</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1656,7 +1675,7 @@ Defaults to standard Shards setup (<code>lib/shard-name/...</code>).</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1674,7 +1693,7 @@ Defaults to standard Shards setup (<code>lib/shard-name/...</code>).</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L113" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L113" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1692,7 +1711,7 @@ Defaults to standard Shards setup (<code>lib/shard-name/...</code>).</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L113" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L113" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1710,7 +1729,7 @@ Defaults to standard Shards setup (<code>lib/shard-name/...</code>).</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L116" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L116" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1728,7 +1747,7 @@ Defaults to standard Shards setup (<code>lib/shard-name/...</code>).</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L116" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L116" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1747,7 +1766,7 @@ You should probably append to this rather than overwrite it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L120" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L120" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1766,7 +1785,7 @@ You should probably append to this rather than overwrite it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L120" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L120" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1786,7 +1805,7 @@ You should probably append to this rather than overwrite it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L125" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L125" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1806,7 +1825,7 @@ You should probably append to this rather than overwrite it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L125" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L125" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1824,7 +1843,7 @@ You should probably append to this rather than overwrite it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L128" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L128" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1858,7 +1877,7 @@ You should probably append to this rather than overwrite it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L139" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L139" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1878,7 +1897,7 @@ You should probably append to this rather than overwrite it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L139" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L139" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1894,7 +1913,7 @@ You should probably append to this rather than overwrite it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L340" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L340" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1912,7 +1931,7 @@ You should probably append to this rather than overwrite it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L200" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L200" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1930,7 +1949,7 @@ You should probably append to this rather than overwrite it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L200" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L200" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1949,7 +1968,7 @@ We automatically try to set this to a git SHA or Capistrano release.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L143" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L143" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1968,7 +1987,7 @@ We automatically try to set this to a git SHA or Capistrano release.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L143" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L143" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1986,7 +2005,7 @@ We automatically try to set this to a git SHA or Capistrano release.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L146" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L146" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2004,7 +2023,7 @@ We automatically try to set this to a git SHA or Capistrano release.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L146" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L146" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2024,7 +2043,7 @@ a hash key, will be censored and not sent to Sentry.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L151" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L151" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2044,7 +2063,7 @@ a hash key, will be censored and not sent to Sentry.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L151" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L151" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2062,7 +2081,7 @@ a hash key, will be censored and not sent to Sentry.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L154" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L154" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2080,7 +2099,7 @@ a hash key, will be censored and not sent to Sentry.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L154" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L154" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2100,7 +2119,7 @@ a hash key, will be censored and not sent to Sentry.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L159" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L159" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2120,7 +2139,7 @@ a hash key, will be censored and not sent to Sentry.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L159" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L159" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2140,7 +2159,7 @@ a hash key, will be censored and not sent to Sentry.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L172" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L172" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2160,7 +2179,7 @@ a hash key, will be censored and not sent to Sentry.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L172" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L172" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2178,7 +2197,7 @@ a hash key, will be censored and not sent to Sentry.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L175" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L175" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2196,7 +2215,7 @@ a hash key, will be censored and not sent to Sentry.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L175" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L175" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2214,7 +2233,7 @@ a hash key, will be censored and not sent to Sentry.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L181" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L181" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2232,7 +2251,7 @@ a hash key, will be censored and not sent to Sentry.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L181" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L181" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2255,7 +2274,7 @@ or an <code><a href="../Exception.html">Exception</a></code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L191" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L191" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2278,7 +2297,7 @@ or an <code><a href="../Exception.html">Exception</a></code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L191" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L191" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2296,7 +2315,7 @@ or an <code><a href="../Exception.html">Exception</a></code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L194" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L194" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2314,7 +2333,43 @@ or an <code><a href="../Exception.html">Exception</a></code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L194" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L194" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="src_path:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>src_path</strong> : String?
+
+        <a class="method-permalink" href="#src_path%3AString%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Used in <code><a href="../Raven/Configuration.html#in_app_pattern-instance-method">#in_app_pattern</a></code>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L29" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="src_path&#61;&#40;src_path:String?&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>src_path=</strong>(src_path : String?)
+
+        <a class="method-permalink" href="#src_path%3D%28src_path%3AString%3F%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Used in <code><a href="../Raven/Configuration.html#in_app_pattern-instance-method">#in_app_pattern</a></code>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2378,7 +2433,7 @@ or an <code><a href="../Exception.html">Exception</a></code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L197" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L197" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2412,27 +2467,7 @@ or an <code><a href="../Exception.html">Exception</a></code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L207" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="transport_failure_callback&#61;&#40;transport_failure_callback:Proc&#40;Event::HashType,Nil&#41;?&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>transport_failure_callback=</strong>(transport_failure_callback : Proc(<a href="../Raven/Event/HashType.html">Event::HashType</a>, Nil)?)
-
-        <a class="method-permalink" href="#transport_failure_callback%3D%28transport_failure_callback%3AProc%28Event%3A%3AHashType%2CNil%29%3F%29-instance-method">#</a>
-      </div>
-      
-        <div class="doc"><p>Optional <code>Proc</code>, called when the Sentry server cannot be contacted for any reason.</p>
-
-<pre><code>->(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span><span class="t">::</span><span class="t">HashType</span>) { spawn { <span class="t">MyJobProcessor</span>.send_email(event) } }</code></pre></div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L207" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L207" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2452,7 +2487,27 @@ or an <code><a href="../Exception.html">Exception</a></code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/396e2c85d40f435d83c4ca9a15e87c5e7ee4af10/src/raven/configuration.cr#L210" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L210" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="transport_failure_callback&#61;&#40;transport_failure_callback:Proc&#40;Event::HashType,Nil&#41;?&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>transport_failure_callback=</strong>(transport_failure_callback : Proc(<a href="../Raven/Event/HashType.html">Event::HashType</a>, Nil)?)
+
+        <a class="method-permalink" href="#transport_failure_callback%3D%28transport_failure_callback%3AProc%28Event%3A%3AHashType%2CNil%29%3F%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Optional <code>Proc</code>, called when the Sentry server cannot be contacted for any reason.</p>
+
+<pre><code>->(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span><span class="t">::</span><span class="t">HashType</span>) { spawn { <span class="t">MyJobProcessor</span>.send_email(event) } }</code></pre></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/configuration.cr#L207" target="_blank">View source</a>]
         
       </div>
     </div>
