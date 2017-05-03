@@ -10,9 +10,7 @@ module Raven
 
     def self.parse(backtrace : Array(String), **options)
       filters = default_filters.dup
-      if f = options[:filters]?
-        filters.concat(f)
-      end
+      options[:filters]?.try { |f| filters.concat(f) }
 
       filtered_lines = backtrace.map do |line|
         filters.reduce(line) do |nested_line, proc|
