@@ -41,7 +41,7 @@ module Raven
         value.map! { |i| process(key, i).as(typeof(i)) }
       when String
         case
-        when value.to_s =~ fields_pattern && (json = parse_json_or_nil(value))
+        when value =~ fields_pattern && (json = parse_json_or_nil(value))
           process(json).to_json
         when matches_regexes?(key, value)
           STRING_MASK
@@ -66,7 +66,7 @@ module Raven
       query_hash = HTTP::Params.parse(query_string).to_h
       query_hash = process(query_hash)
       query_hash = query_hash.map { |k, v| [k.as(String), v.as(String)] }.to_h rescue nil
-      HTTP::Params.from_hash(query_hash).to_s if query_hash
+      HTTP::Params.encode(query_hash).to_s if query_hash
     end
 
     private def matches_regexes?(key, value)

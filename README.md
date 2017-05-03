@@ -21,13 +21,13 @@ yet there are no tests written, so use it at your own risk! - or kindly send a P
 - [x] Integrations ([Kemal](https://github.com/kemalcr/kemal), [Sidekiq.cr](https://github.com/mperham/sidekiq.cr))
 - [x] Async support
 - [x] User Feedback (`Raven.send_feedback` + Kemal handler)
+- [x] Crash handler
 
 ### TODO
 
 - [ ] Tests
 - [ ] Exponential backoff in case of connection error
 - [ ] Caching unsent events for later send
-- [ ] Catching app crashes, kind of a bin wrapper perhaps?
 
 ## Installation
 
@@ -176,6 +176,52 @@ Raven.extra_context happiness: "very"
 ```
 
 For more information, see [Context](https://docs.sentry.io/clients/ruby/context/).
+
+## Crash Handler
+
+Since Crystal doesn't provide native handlers for unhandled exceptions
+and sigfaults, *raven.cr* introduces its own crash handler compiled as
+external binary.
+
+### Setup
+
+Easiest way of using it is adding appropriate entry to project's `shard.yml`:
+
+```yaml
+targets:
+  # other target definitions if any...
+
+  sentry.crash_handler:
+    main: lib/raven/src/crash_handler.cr
+```
+
+With above entry defined in `targets`, running `shards build` should result in
+binary built in `bin/sentry.crash_handler`.
+
+__NOTE__: While building you might specify `SENTRY_DSN` env variable, which will be
+compiled into the binary (as plain-text) and used by the handler as
+*Sentry* endpoint.
+
+```bash
+SENTRY_DSN=<private_dsn> shards build sentry.crash_handler
+```
+
+Pass `--release` flag to disable debug messages.
+
+### Usage
+
+You need to run your app with previously built `bin/sentry.crash_handler` in
+front.
+
+```bash
+bin/sentry.crash_handler bin/your_app --some arguments --passed to your program
+```
+
+As one would expect, `STDIN` is passed to the original process, while
+`STDOUT` and `STDERR` are piped back from it.
+
+__NOTE__: You can always pass `SENTRY_DSN` env variable during execution
+in case you didn't do it while building the wrapper.
 
 ## More Information
 

@@ -1,6 +1,10 @@
 require "kemal"
 
 module Raven
+  # ```
+  # require "raven/integrations/kemal"
+  # ```
+  #
   # It's recommended to enable `Configuration#async` when using Kemal.
   #
   # ```
