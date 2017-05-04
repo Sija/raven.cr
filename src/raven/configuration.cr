@@ -18,12 +18,15 @@ module Raven
       Processor::RemoveCircularReferences,
       # Processor::RemoveStacktrace,
       Processor::Cookies,
-      Processor::PostData,
+      Processor::RequestMethodData,
       Processor::HTTPHeaders,
       Processor::UTF8Conversion,
       Processor::SanitizeData,
       Processor::Compact,
     ] of Processor.class
+
+    # Array of default request methods for which data should be removed.
+    DEFAULT_REQUEST_METHODS_FOR_DATA_SANITIZATION = %w(POST PUT PATCH)
 
     # Used in `#in_app_pattern`.
     property src_path : String? = {{ flag?(:debug) ? `pwd`.strip.stringify : nil }}
@@ -153,6 +156,11 @@ module Raven
     # Sanitize additional HTTP headers - only `Authorization` is removed by default.
     property sanitize_http_headers = [] of String | Regex
 
+    # Request methods for which data should be removed.
+    #
+    # See `DEFAULT_REQUEST_METHODS_FOR_DATA_SANITIZATION`.
+    property sanitize_data_for_request_methods : Array(String)
+
     # Can be one of `"http"`, `"https"`, or `"dummy"`.
     #
     # NOTE: DSN component - set automatically if DSN provided.
@@ -223,6 +231,7 @@ module Raven
       @excluded_exceptions = IGNORE_DEFAULT.dup
       @logger = Logger.new(STDOUT)
       @processors = DEFAULT_PROCESSORS.dup
+      @sanitize_data_for_request_methods = DEFAULT_REQUEST_METHODS_FOR_DATA_SANITIZATION.dup
       @release = detect_release
       @server_name = resolve_hostname
 
