@@ -11,6 +11,7 @@ module Raven
   # Raven.configure do |config|
   #   # ...
   #   config.async = true
+  #   config.current_environment = Kemal.config.env
   # end
   # ```
   module Kemal

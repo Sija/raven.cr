@@ -146,14 +146,20 @@ module Raven
     property release : String?
 
     # Should sanitize values that look like credit card numbers?
+    #
+    # See `Processor::SanitizeData::CREDIT_CARD_PATTERN`.
     property? sanitize_credit_cards = true
 
     # By default, Sentry censors `Hash` values when their keys match things like
     # `"secret"`, `"password"`, etc. Provide an `Array` of `String`s that, when matched in
     # a hash key, will be censored and not sent to Sentry.
+    #
+    # See `Processor::SanitizeData::DEFAULT_FIELDS`.
     property sanitize_fields = [] of String | Regex
 
     # Sanitize additional HTTP headers - only `Authorization` is removed by default.
+    #
+    # See `Processor::HTTPHeaders::DEFAULT_FIELDS`.
     property sanitize_http_headers = [] of String | Regex
 
     # Request methods for which data should be removed.
