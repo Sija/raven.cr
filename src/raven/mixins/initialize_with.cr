@@ -41,7 +41,7 @@ module Raven
           {% end %}
 
           {% ivars = @type.instance_vars %}
-          {% ivars = ivars.map { |i| [i.name.id, i.type.id] }.uniq %}
+          {% ivars = ivars.map { |i| [i.name.id, i.type.name] }.uniq %}
 
           {% for ivar in ivars %}
             {% name = ivar[0]; type = ivar[1] %}
