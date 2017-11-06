@@ -33,12 +33,12 @@ module Raven
       end
 
       def call(context)
-        time = Time.now
+        time = Time.monotonic
         begin
           @wrapped.try(&.call(context)) || call_next(context)
         ensure
           if log_requests?
-            elapsed = Time.now - time
+            elapsed = Time.monotonic - time
 
             Raven.breadcrumbs.record do |crumb|
               unless (200...400).includes? context.response.status_code
