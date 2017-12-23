@@ -8,7 +8,7 @@ module Raven
     # to it.
     #
     # ```
-    # Kemal.config.logger = Raven::Kemal::LogHandler.new(Kemal::CommonLogHandler.new)
+    # Kemal.config.logger = Raven::Kemal::LogHandler.new(Kemal::LogHandler.new)
     # # ...
     # Kemal.config.add_handler(...)
     # # ...
