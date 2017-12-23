@@ -12,6 +12,6 @@ targets:
   crash_handler:
     main: src/crash_handler.cr
 
-crystal: 0.22.0
+crystal: 0.24.1
 
 license: MIT
