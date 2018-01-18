@@ -1,4 +1,4 @@
-require "secure_random"
+require "random"
 
 module Raven
   class Event
@@ -152,7 +152,7 @@ module Raven
       @configuration = options[:configuration]? || Raven.configuration
       @breadcrumbs = options[:breadcrumbs]? || Raven.breadcrumbs
       @context = options[:context]? || Raven.context
-      @id = SecureRandom.uuid.delete('-')
+      @id = Random.new.base64
       @timestamp = Time.now
       @server_name = @configuration.server_name
       @release = @configuration.release
