@@ -1,4 +1,5 @@
 # raven.cr [![Build Status](https://travis-ci.org/Sija/raven.cr.svg?branch=master)](https://travis-ci.org/Sija/raven.cr)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FSija%2Fraven.cr.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FSija%2Fraven.cr?ref=badge_shield)
 
 A client and integration layer for the [Sentry](https://github.com/getsentry/sentry) error reporting API.
 
@@ -248,3 +249,7 @@ crystal spec
 ## Contributors
 
 - [sija](https://github.com/sija) Sijawusz Pur Rahnama - creator, maintainer
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FSija%2Fraven.cr.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FSija%2Fraven.cr?ref=badge_large)
