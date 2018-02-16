@@ -105,8 +105,8 @@ module Raven
 
     def shard_name
       relative_path
-        .try &.match(configuration.modules_path_pattern)
-        .try &.[]("name")
+        .try(&.match(configuration.modules_path_pattern))
+        .try(&.[]("name"))
     end
 
     def in_app?
