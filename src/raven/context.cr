@@ -22,7 +22,7 @@ module Raven
     end
 
     class_getter runtime_context : AnyHash::JSON do
-      v = Crystal::DESCRIPTION.match /^(.+?) (\d+.*)$/
+      v = Crystal::DESCRIPTION.match /^(.+?) (\d+[^\n]+)\n+LLVM: (\d+[^\n]+)\nDefault target: (.+?)$/m
       _, name, version = v.not_nil!
       {
         name:    name,

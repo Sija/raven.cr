@@ -14,7 +14,12 @@ class Logger
   end
 
   protected def self.deansify(message)
-    message.gsub(/\x1b[^m]*m/, "")
+    case message
+    when Nil       then nil
+    when String    then message.gsub(/\x1b[^m]*m/, "")
+    when Exception then deansify(message.message)
+    else                deansify(message.to_s)
+    end
   end
 
   private def write(severity, datetime, progname, message)

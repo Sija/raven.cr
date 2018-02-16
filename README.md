@@ -7,11 +7,6 @@ from folks at [@getsentry](https://github.com/getsentry).
 
 ## Status
 
-### Stability
-
-LGTM (aside of few `FIXME` flags [here and there](https://github.com/sija/raven.cr/search?q=FIXME)…)
-yet there are no tests written, so use it at your own risk! - or kindly send a PR :)
-
 ### Feature support
 
 - [x] Processors (data scrubbers)
@@ -21,7 +16,7 @@ yet there are no tests written, so use it at your own risk! - or kindly send a P
 - [x] Integrations ([Kemal](https://github.com/kemalcr/kemal), [Sidekiq.cr](https://github.com/mperham/sidekiq.cr))
 - [x] Async support
 - [x] User Feedback (`Raven.send_feedback` + Kemal handler)
-- [x] Crash handler
+- [x] Crash Handler
 
 ### TODO
 
@@ -47,25 +42,31 @@ require "raven"
 
 ### Raven only runs when SENTRY_DSN is set
 
-Raven will capture and send exceptions to the Sentry server whenever its DSN is set. This makes environment-based configuration easy - if you don't want to send errors in a certain environment, just don't set the DSN in that environment!
+Raven will capture and send exceptions to the Sentry server whenever its DSN is set.
+This makes environment-based configuration easy - if you don't want to send
+errors in a certain environment, just don't set the DSN in that environment!
 
 ```bash
 # Set your SENTRY_DSN environment variable.
-export SENTRY_DSN=http://public:secret@example.com/project-id
+export SENTRY_DSN=https://public:secret@example.com/project-id
 ```
 
 ```crystal
 # Or you can configure the client in the code (not recommended - keep your DSN secret!)
 Raven.configure do |config|
-  config.dsn = "http://public:secret@example.com/project-id"
+  config.dsn = "https://public:secret@example.com/project-id"
 end
 ```
 
 ### Raven doesn't report some kinds of data by default.
 
-Raven ignores some exceptions by default - most of these are related to 404s or controller actions not being found. [For a complete list, see the `IGNORE_DEFAULT` constant](https://github.com/sija/raven.cr/blob/master/src/raven/configuration.cr).
+Raven ignores some exceptions by default - most of these are related to 404s or
+controller actions not being found. [For a complete list, see the `IGNORE_DEFAULT` constant](https://github.com/sija/raven.cr/blob/master/src/raven/configuration.cr).
 
-Raven doesn't report POST data or cookies by default. In addition, it will attempt to remove any obviously sensitive data, such as credit card or Social Security numbers. For more information about how Sentry processes your data, [check out the documentation on the `processors` config setting.](https://docs.sentry.io/clients/ruby/config/)
+Raven doesn't report `POST`, `PUT`, `PATCH` data or cookies by default.
+In addition, it will attempt to remove any obviously sensitive data,
+such as credit card or Social Security numbers.
+For more information about how Sentry processes your data, [check out the documentation on the `processors` config setting.](https://docs.sentry.io/clients/ruby/config/)
 
 ### Call
 
@@ -79,8 +80,8 @@ end
 
 begin
   1 / 0
-rescue exception : DivisionByZero
-  Raven.capture(exception)
+rescue ex : DivisionByZero
+  Raven.capture(ex)
 end
 ```
 
@@ -112,7 +113,8 @@ end
 
 #### async
 
-When an error or message occurs, the notification is immediately sent to Sentry. Raven can be configured to send asynchronously:
+When an error or message occurs, the notification is immediately sent to Sentry.
+Raven can be configured to send asynchronously:
 
 ```crystal
 # define your own handler
@@ -125,7 +127,12 @@ config.async = true
 
 If the `async` callback raises an exception, Raven will attempt to send synchronously.
 
-We recommend creating a background job, using your background job processor, that will send Sentry notifications in the background. Rather than enqueuing an entire `Raven::Event` object, we recommend providing the `Hash` representation of an event as a job argument. Here’s an example for Sidekiq.cr:
+We recommend creating a background job, using your background job processor,
+that will send Sentry notifications in the background.
+Rather than enqueuing an entire `Raven::Event` object, we recommend providing
+the `Hash` representation of an event as a job argument.
+
+Here’s an example for *Sidekiq.cr*:
 
 ```crystal
 config.async = ->(event : Raven::Event) {
@@ -137,6 +144,7 @@ config.async = ->(event : Raven::Event) {
 
 class SentryJob
   include Sidekiq::Worker
+
   sidekiq_options do |job|
     job.queue = "sentry"
     job.retry = true
@@ -150,7 +158,9 @@ end
 
 #### transport_failure_callback
 
-If Raven fails to send an event to Sentry for any reason (either the Sentry server has returned a 4XX or 5XX response), this Proc will be called.
+If Raven fails to send an event to Sentry for any reason
+(either the Sentry server has returned a 4XX or 5XX response),
+this `Proc` will be called.
 
 ```crystal
 config.transport_failure_callback = ->(event : Raven::Event::HashType) {
@@ -160,7 +170,9 @@ config.transport_failure_callback = ->(event : Raven::Event::HashType) {
 
 #### Context
 
-Much of the usefulness of Sentry comes from additional context data with the events. Raven makes this very convenient by providing methods to set thread local context data that is then submitted automatically with all events.
+Much of the usefulness of Sentry comes from additional context data with the events.
+Raven makes this very convenient by providing methods to set thread local
+context data that is then submitted automatically with all events.
 
 There are three primary methods for providing request context:
 

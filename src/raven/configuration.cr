@@ -18,12 +18,15 @@ module Raven
       Processor::RemoveCircularReferences,
       # Processor::RemoveStacktrace,
       Processor::Cookies,
-      Processor::PostData,
+      Processor::RequestMethodData,
       Processor::HTTPHeaders,
       Processor::UTF8Conversion,
       Processor::SanitizeData,
       Processor::Compact,
     ] of Processor.class
+
+    # Array of default request methods for which data should be removed.
+    DEFAULT_REQUEST_METHODS_FOR_DATA_SANITIZATION = %w(POST PUT PATCH)
 
     # Used in `#in_app_pattern`.
     property src_path : String? = {{ flag?(:debug) ? `pwd`.strip.stringify : nil }}
@@ -143,15 +146,26 @@ module Raven
     property release : String?
 
     # Should sanitize values that look like credit card numbers?
+    #
+    # See `Processor::SanitizeData::CREDIT_CARD_PATTERN`.
     property? sanitize_credit_cards = true
 
     # By default, Sentry censors `Hash` values when their keys match things like
     # `"secret"`, `"password"`, etc. Provide an `Array` of `String`s that, when matched in
     # a hash key, will be censored and not sent to Sentry.
+    #
+    # See `Processor::SanitizeData::DEFAULT_FIELDS`.
     property sanitize_fields = [] of String | Regex
 
     # Sanitize additional HTTP headers - only `Authorization` is removed by default.
+    #
+    # See `Processor::HTTPHeaders::DEFAULT_FIELDS`.
     property sanitize_http_headers = [] of String | Regex
+
+    # Request methods for which data should be removed.
+    #
+    # See `DEFAULT_REQUEST_METHODS_FOR_DATA_SANITIZATION`.
+    property sanitize_data_for_request_methods : Array(String)
 
     # Can be one of `"http"`, `"https"`, or `"dummy"`.
     #
@@ -223,6 +237,7 @@ module Raven
       @excluded_exceptions = IGNORE_DEFAULT.dup
       @logger = Logger.new(STDOUT)
       @processors = DEFAULT_PROCESSORS.dup
+      @sanitize_data_for_request_methods = DEFAULT_REQUEST_METHODS_FOR_DATA_SANITIZATION.dup
       @release = detect_release
       @server_name = resolve_hostname
 
@@ -299,7 +314,7 @@ module Raven
 
       # Capistrano 3.0 - 3.1.x
       File.read_lines(File.join(project_root, "..", "revisions.log"))
-          .last.strip.sub(/.*as release ([0-9]+).*/, "\1") rescue nil
+        .last.strip.sub(/.*as release ([0-9]+).*/, "\1") rescue nil
     end
 
     private def detect_release_from_git

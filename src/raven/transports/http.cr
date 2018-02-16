@@ -46,7 +46,7 @@ module Raven
         str << '?' << params
       end
       logger.debug "HTTP Transport connecting to #{path}"
-      ::HTTP::Client.post_form(path, data, headers).tap do |response|
+      ::HTTP::Client.post(path, data, form: form, headers: headers).tap do |response|
         raise Error.new response unless response.success?
       end
     end
