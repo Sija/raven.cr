@@ -1,3 +1,3 @@
 module Raven
-  VERSION = "0.8.1-dev"
+  VERSION = "0.9.0"
 end
