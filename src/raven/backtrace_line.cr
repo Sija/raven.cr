@@ -7,19 +7,17 @@ module Raven
     CALLSTACK_PATTERNS = {
       # Examples:
       #
-      # - `0x103a7bbee: __crystal_main at ??`
-      # - `0x100e1ea72: *CallStack::unwind:Array(Pointer(Void)) at ??`
-      # - `0x102dff5e7: *Foo::Bar#_baz:Foo::Bam at /home/fooBAR/code/awesome-shard.cr/lib/foo/src/foo/bar.cr 50:7`
-      # - `0x102de9035: *Foo::Bar::bar_by_id<String>:Foo::Bam at /home/fooBAR/code/awesome-shard.cr/lib/foo/src/foo/bar.cr 29:9`
-      # - `0x102cfe8f4: *Fiber#run:(IO::FileDescriptor | Nil) at /usr/local/Cellar/crystal-lang/0.20.5_2/src/fiber.cr 114:3`
-      CRYSTAL_METHOD: /^#{ADDR_FORMAT}: \*?(?<method>.*?) at (?<file>[^:]+)(?:\s(?<line>\d+)(?:\:(?<col>\d+))?)?$/,
+      # - `lib/foo/src/foo/bar.cr:50:7 in '*Foo::Bar#_baz:Foo::Bam'`
+      # - `lib/foo/src/foo/bar.cr:29:9 in '*Foo::Bar::bar_by_id<String>:Foo::Bam'`
+      # - `/usr/local/Cellar/crystal-lang/0.24.1/src/fiber.cr:114:3 in '*Fiber#run:(IO::FileDescriptor | Nil)'`
+      CRYSTAL_METHOD: /^(?<file>[^:]+)(?:\:(?<line>\d+)(?:\:(?<col>\d+))?)? in '\*?(?<method>.*?)'( at #{ADDR_FORMAT})?$/,
 
       # Examples:
       #
-      # - `0x102cee376: ~procProc(Nil)@/usr/local/Cellar/crystal-lang/0.20.5_2/src/http/server.cr:148 at ??`
-      # - `0x102ce57db: ~procProc(HTTP::Server::Context, String)@lib/kemal/src/kemal/route.cr:11 at ??`
-      # - `0x1002d5180: ~procProc(HTTP::Server::Context, (File::PReader | HTTP::ChunkedContent | HTTP::Server::Response | HTTP::Server::Response::Output | HTTP::UnknownLengthContent | HTTP::WebSocket::Protocol::StreamIO | IO::ARGF | IO::Delimited | IO::FileDescriptor | IO::Hexdump | IO::Memory | IO::MultiWriter | IO::Sized | Int32 | OpenSSL::SSL::Socket | String::Builder | Zip::ChecksumReader | Zip::ChecksumWriter | Zlib::Deflate | Zlib::Inflate | Nil))@src/foo/bar/baz.cr:420 at ??`
-      CRYSTAL_PROC: /^#{ADDR_FORMAT}: \~(?<method>[^@]+)@(?<file>[^:]+)(?:\:(?<line>\d+)) at \?+$/,
+      # - `~procProc(Nil)@/usr/local/Cellar/crystal-lang/0.24.1/src/http/server.cr:148 at 0x102cee376`
+      # - `~procProc(HTTP::Server::Context, String)@lib/kemal/src/kemal/route.cr:11 at 0x102ce57db`
+      # - `~procProc(HTTP::Server::Context, (File::PReader | HTTP::ChunkedContent | HTTP::Server::Response | HTTP::Server::Response::Output | HTTP::UnknownLengthContent | HTTP::WebSocket::Protocol::StreamIO | IO::ARGF | IO::Delimited | IO::FileDescriptor | IO::Hexdump | IO::Memory | IO::MultiWriter | IO::Sized | Int32 | OpenSSL::SSL::Socket | String::Builder | Zip::ChecksumReader | Zip::ChecksumWriter | Zlib::Deflate | Zlib::Inflate | Nil))@src/foo/bar/baz.cr:420`
+      CRYSTAL_PROC: /^(?<method>~[^@]+)@(?<file>[^:]+)(?:\:(?<line>\d+))( at #{ADDR_FORMAT})?$/,
 
       # Examples:
       #
