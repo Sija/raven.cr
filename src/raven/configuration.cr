@@ -341,7 +341,7 @@ module Raven
     end
 
     private def capture_in_current_environment?
-      return true unless environments.any? && !environments.includes?(@current_environment)
+      return true if environments.empty? || environments.includes?(@current_environment)
       @errors << "Not configured to send/capture in environment '#{@current_environment}'"
       false
     end
