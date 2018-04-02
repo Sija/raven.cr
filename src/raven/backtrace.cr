@@ -3,7 +3,7 @@ module Raven
     IGNORED_LINES_PATTERN = /_sigtramp|__crystal_(sigfault_handler|raise)|CallStack|caller:|raise<(.+?)>:NoReturn/
 
     class_getter default_filters = [
-      ->(line : String) { line.match(IGNORED_LINES_PATTERN) ? nil : line },
+      ->(line : String) { line unless line.match(IGNORED_LINES_PATTERN) },
     ] of String -> String?
 
     getter lines : Array(Line)

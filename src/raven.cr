@@ -22,12 +22,11 @@ module Raven
 
   macro sys_command_compiled(command)
     %result = {{ system("#{command.id} || true").stringify.strip }}
-    %result.empty? ? nil : %result
+    %result unless %result.empty?
   end
 
   def self.sys_command(command)
     result = `#{command} 2>&1`.strip rescue nil
-    return if result.nil? || result.empty? || !$?.success?
-    result
+    result unless result.nil? || result.empty? || !$?.success?
   end
 end
