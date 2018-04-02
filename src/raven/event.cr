@@ -13,6 +13,10 @@ module Raven
       FATAL
     end
 
+    # See Sentry server default limits at
+    # https://github.com/getsentry/sentry/blob/master/src/sentry/conf/server.py
+    MAX_MESSAGE_SIZE_IN_BYTES = 1024 * 8
+
     # A string representing the platform the SDK is submitting from.
     #
     # This will be used by the Sentry interface to customize
@@ -82,7 +86,7 @@ module Raven
     def self.from(exc : Exception, **options)
       new(**options).tap do |event|
         # Messages limited to 10kb
-        event.message = "#{exc.class}: #{exc.message}".byte_slice(0, 9_999)
+        event.message = "#{exc.class}: #{exc.message}".byte_slice(0, MAX_MESSAGE_SIZE_IN_BYTES)
 
         exc_context = get_exception_context(exc)
         # FIXME: would be nice to be able to call
@@ -96,7 +100,7 @@ module Raven
 
     def self.from(message : String, **options)
       # Messages limited to 10kb
-      message = message.byte_slice(0, 9_999)
+      message = message.byte_slice(0, MAX_MESSAGE_SIZE_IN_BYTES)
 
       new(**options).tap do |event|
         event.message = {message, options[:message_params]?}
