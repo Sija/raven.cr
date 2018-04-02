@@ -197,14 +197,12 @@ module Raven
     # end
     # ```
     def capture(**options, &block)
-      begin
-        yield
-      rescue e : Raven::Error
-        raise e # Don't capture Raven errors
-      rescue e : Exception
-        capture(e, **options)
-        raise e
-      end
+      yield
+    rescue e : Raven::Error
+      raise e # Don't capture Raven errors
+    rescue e : Exception
+      capture(e, **options)
+      raise e
     end
 
     # Provides extra context to the exception prior to it being handled by
