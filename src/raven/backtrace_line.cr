@@ -83,7 +83,7 @@ module Raven
     end
 
     def inspect(io)
-      io << "<Line: " << self << ">"
+      io << "Backtrace::Line(" << self << ')'
     end
 
     # FIXME: untangle it from global `Raven`.

@@ -38,9 +38,9 @@ module Raven
     end
 
     def inspect(io)
-      io << "<Backtrace: "
+      io << "#<Backtrace: "
       @lines.join(", ", io, &.inspect(io))
-      io << ">"
+      io << '>'
     end
   end
 end
