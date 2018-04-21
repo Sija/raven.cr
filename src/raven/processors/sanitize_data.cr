@@ -79,7 +79,7 @@ module Raven
       query_hash = HTTP::Params.parse(query_string).to_h
       query_hash = utf8_processor.process(query_hash)
       query_hash = process(query_hash)
-      query_hash = query_hash.map { |k, v| [k.as(String), v.as(String)] }.to_h rescue nil
+      query_hash = query_hash.map { |k, v| {k.as(String), v.as(String)} }.to_h rescue nil
       HTTP::Params.encode(query_hash).to_s if query_hash
     end
 
