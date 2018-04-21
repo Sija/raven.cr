@@ -145,6 +145,13 @@ module Raven
     # We automatically try to set this to a git SHA or Capistrano release.
     property release : String?
 
+    # The sampling factor to apply to events. A value of `0.0` will not send
+    # any events, and a value of `1.0` will send 100% of events.
+    property sample_rate : Float64 = 1.0
+
+    # `Random` instance used when `sample_rate` is set.
+    property random : Random { Random::DEFAULT }
+
     # Should sanitize values that look like credit card numbers?
     #
     # See `Processor::SanitizeData::CREDIT_CARD_PATTERN`.
@@ -333,7 +340,7 @@ module Raven
 
     def capture_allowed?
       @errors = [] of String
-      valid? && capture_in_current_environment?
+      valid? && capture_in_current_environment? && sample_allowed?
     end
 
     def capture_allowed?(message_or_exc)
@@ -353,6 +360,13 @@ module Raven
     private def capture_allowed_by_callback?(message_or_exc)
       return true if !should_capture || should_capture.try &.call(message_or_exc)
       @errors << "#should_capture returned false"
+      false
+    end
+
+    private def sample_allowed?
+      return true if sample_rate == 1.0
+      return true unless random.rand >= sample_rate
+      @errors << "Excluded by random sample"
       false
     end
 
