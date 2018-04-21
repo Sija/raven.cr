@@ -27,9 +27,11 @@ module Raven
 
     def initialize(@configuration)
       @state = State.new
-      # FIXME: why do i need this line to make compiler happy?
       @processors = [] of Processor
-      @processors = @configuration.processors.map &.new(self)
+
+      @configuration.processors.each do |klass|
+        @processors << klass.new(self)
+      end
     end
 
     def send_feedback(event_id : String, data : Hash)
