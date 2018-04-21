@@ -20,7 +20,6 @@ from folks at [@getsentry](https://github.com/getsentry).
 
 ### TODO
 
-- [ ] Tests
 - [ ] Exponential backoff in case of connection error
 - [ ] Caching unsent events for later send
 
