@@ -9,6 +9,8 @@ dependencies:
     github: sija/any_hash.cr
 
 development_dependencies:
+  timecop:
+    github: TobiasGSmollett/timecop.cr
   ameba:
     github: veelenga/ameba
 
