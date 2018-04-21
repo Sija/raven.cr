@@ -166,9 +166,9 @@ module Raven
       initialize_with **options
 
       contexts.merge! @context.contexts
-      user.merge! @context.user
-      extra.merge! @context.extra
-      tags.merge! @configuration.tags, @context.tags
+      user.merge! @context.user, options[:user]?
+      extra.merge! @context.extra, options[:extra]?
+      tags.merge! @configuration.tags, @context.tags, options[:tags]?
     end
 
     def interface(name : Symbol)
