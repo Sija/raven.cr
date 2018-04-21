@@ -21,7 +21,7 @@ module Raven
   class_getter instance : Raven::Instance { Raven::Instance.new }
 
   macro sys_command_compiled(command)
-    %result = {{ system("#{command.id} || true").stringify.strip }}
+    %result = {{ `#{command.id} || true`.stringify.strip }}
     %result unless %result.empty?
   end
 

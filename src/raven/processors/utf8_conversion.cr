@@ -16,7 +16,8 @@ module Raven
           ex.callstack = data.callstack
         end
       when String
-        !data.valid_encoding? ? clean_invalid_utf8_bytes(data) : data
+        return data if data.valid_encoding?
+        clean_invalid_utf8_bytes(data)
       else
         data
       end
