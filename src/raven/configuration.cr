@@ -305,18 +305,22 @@ module Raven
       detect_release_from_git || detect_release_from_capistrano || detect_release_from_heroku
     end
 
-    private def detect_release_from_heroku
-      sys_dyno_info = File.read("/etc/heroku/dyno").strip rescue nil
-      return unless sys_dyno_info
+    private def running_on_heroku?
+      File.directory?("/etc/heroku")
+    end
 
-      # being overly cautious, because if we raise an error Raven won't start
-      begin
-        hash = JSON.parse(sys_dyno_info)
-        hash.try(&.[]?("release")).try(&.[]?("commit")).try(&.as_s)
-      rescue JSON::Error
-        logger.error "Cannot parse Heroku JSON: #{sys_dyno_info}"
-        nil
+    private def heroku_dyno_metadata_message
+      "You are running on Heroku but haven't enabled Dyno Metadata. For Sentry's" \
+      "release detection to work correctly, please run `heroku labs:enable runtime-dyno-metadata`"
+    end
+
+    private def detect_release_from_heroku
+      return unless running_on_heroku?
+      if commit = ENV["HEROKU_SLUG_COMMIT"]?
+        return commit
       end
+      logger.warn(heroku_dyno_metadata_message)
+      nil
     end
 
     private def detect_release_from_capistrano
