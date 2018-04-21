@@ -21,6 +21,10 @@ module Raven
         end
       end
 
+      private def cookies_to_string(cookies : HTTP::Cookies)
+        cookies.to_h.map(&.last.to_cookie_header).join "; "
+      end
+
       def call(context)
         call_next context
       rescue ex
@@ -39,6 +43,7 @@ module Raven
           event.logger ||= "kemal"
           event.interface :http, {
             headers:      headers_to_hash(request.headers),
+            cookies:      cookies_to_string(request.cookies),
             method:       request.method.upcase,
             url:          Kemal.build_request_url(request),
             query_string: request.query,
