@@ -243,7 +243,7 @@ module Raven
     getter errors = [] of String
 
     def initialize
-      @current_environment = ENV["KEMAL_ENV"]?
+      @current_environment = current_environment_from_env
       @exclude_loggers = [Logger::PROGNAME]
       @excluded_exceptions = IGNORE_DEFAULT.dup
       @logger = Logger.new(STDOUT)
@@ -349,6 +349,10 @@ module Raven
 
     private def server_name_from_env
       heroku_dyno_name || resolve_hostname
+    end
+
+    private def current_environment_from_env
+      ENV["SENTRY_CURRENT_ENV"]? || ENV["KEMAL_ENV"]? || "default"
     end
 
     def capture_allowed?
