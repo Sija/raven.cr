@@ -250,7 +250,7 @@ module Raven
       @processors = DEFAULT_PROCESSORS.dup
       @sanitize_data_for_request_methods = DEFAULT_REQUEST_METHODS_FOR_DATA_SANITIZATION.dup
       @release = detect_release
-      @server_name = resolve_hostname
+      @server_name = server_name_from_env
 
       # try runtime ENV variable first
       if dsn = ENV["SENTRY_DSN"]?
@@ -336,10 +336,19 @@ module Raven
       Raven.sys_command_compiled("git rev-parse HEAD")
     end
 
+    private def heroku_dyno_name
+      return unless running_on_heroku?
+      ENV["DYNO"]?
+    end
+
     # Try to resolve the hostname to an FQDN, but fall back to whatever
     # the load name is.
     private def resolve_hostname
       System.hostname
+    end
+
+    private def server_name_from_env
+      heroku_dyno_name || resolve_hostname
     end
 
     def capture_allowed?
