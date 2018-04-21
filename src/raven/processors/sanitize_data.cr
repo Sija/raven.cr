@@ -9,15 +9,19 @@ module Raven
     CREDIT_CARD_PATTERN = /\b(?:3[47]\d|(?:4\d|5[1-5]|65)\d{2}|6011)\d{12}\b/
 
     property sanitize_fields : Array(String | Regex)
+    property sanitize_fields_excluded : Array(String | Regex)
     property? sanitize_credit_cards : Bool
 
     private getter fields_pattern : Regex {
-      Regex.union(DEFAULT_FIELDS | sanitize_fields)
+      fields = DEFAULT_FIELDS | sanitize_fields
+      fields -= sanitize_fields_excluded
+      Regex.union(fields)
     }
 
     def initialize(client)
       super
       @sanitize_fields = client.configuration.sanitize_fields
+      @sanitize_fields_excluded = client.configuration.sanitize_fields_excluded
       @sanitize_credit_cards = client.configuration.sanitize_credit_cards?
     end
 

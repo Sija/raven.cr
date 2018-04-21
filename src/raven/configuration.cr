@@ -157,6 +157,10 @@ module Raven
     # See `Processor::SanitizeData::DEFAULT_FIELDS`.
     property sanitize_fields = [] of String | Regex
 
+    # If you're sure you want to override the default sanitization values, you can
+    # add to them to an array of `String`s here, e.g. `%w(authorization password)`.
+    property sanitize_fields_excluded = [] of String | Regex
+
     # Sanitize additional HTTP headers - only `Authorization` is removed by default.
     #
     # See `Processor::HTTPHeaders::DEFAULT_FIELDS`.
