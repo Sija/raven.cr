@@ -17,7 +17,7 @@ module Raven
 
       private def headers_to_hash(headers : HTTP::Headers)
         headers.each_with_object(AnyHash::JSON.new) do |(k, v), hash|
-          hash[k] = v.size == 1 ? v.first : v
+          hash[k] = v.join ", "
         end
       end
 
