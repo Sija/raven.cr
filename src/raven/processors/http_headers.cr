@@ -4,8 +4,14 @@ module Raven
 
     property sanitize_http_headers : Array(String | Regex)
 
+    private def use_boundary?(field)
+      !(field.is_a?(Regex) || DEFAULT_FIELDS.includes?(field))
+    end
+
     private getter fields_pattern : Regex {
-      Regex.union(DEFAULT_FIELDS | sanitize_http_headers)
+      fields = DEFAULT_FIELDS | sanitize_http_headers
+      fields.map! { |f| use_boundary?(f) ? /\b#{f}\b/ : f }
+      Regex.union(fields)
     }
 
     def initialize(client)

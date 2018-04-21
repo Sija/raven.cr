@@ -12,9 +12,14 @@ module Raven
     property sanitize_fields_excluded : Array(String | Regex)
     property? sanitize_credit_cards : Bool
 
+    private def use_boundary?(field)
+      !(field.is_a?(Regex) || DEFAULT_FIELDS.includes?(field))
+    end
+
     private getter fields_pattern : Regex {
       fields = DEFAULT_FIELDS | sanitize_fields
       fields -= sanitize_fields_excluded
+      fields.map! { |f| use_boundary?(f) ? /\b#{f}\b/ : f }
       Regex.union(fields)
     }
 
