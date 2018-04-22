@@ -27,6 +27,7 @@ module Raven
 
   def self.sys_command(command)
     result = `#{command} 2>&1`.strip rescue nil
+    # ameba:disable NegatedConditionsInUnless
     result unless result.nil? || result.empty? || !$?.success?
   end
 end
