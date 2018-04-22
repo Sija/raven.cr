@@ -158,6 +158,7 @@ module Raven
       @context = options[:context]? || Raven.context
       @id = UUID.random.hexstring
       @timestamp = Time.now
+      @level = Severity::ERROR
       @server_name = @configuration.server_name
       @release = @configuration.release
       @environment = @configuration.current_environment
