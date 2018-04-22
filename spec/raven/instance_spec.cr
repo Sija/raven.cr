@@ -1,5 +1,17 @@
 require "../spec_helper"
 
+module Raven::Test
+  module ExceptionTag; end
+
+  class BaseException < ::Exception; end
+
+  class SubException < BaseException; end
+
+  class TaggedException < BaseException
+    include ExceptionTag
+  end
+end
+
 private class InstanceTest < Raven::Instance
   getter last_sent_event : Raven::Event?
 
@@ -92,6 +104,68 @@ describe Raven::Instance do
         with_instance do |instance|
           instance.capture(Raven::Error.new).should be_false
           instance.last_sent_event.should be_nil
+        end
+      end
+
+      context "for an excluded exception type" do
+        context "defined by string type" do
+          it "returns false for a class match" do
+            with_instance do |instance|
+              instance.configuration.excluded_exceptions << "Raven::Test::BaseException"
+              instance.capture(Raven::Test::BaseException.new).should be_false
+            end
+          end
+
+          pending "returns false for a top class match" do
+            with_instance do |instance|
+              instance.configuration.excluded_exceptions << "::Raven::Test::BaseException"
+              instance.capture(Raven::Test::BaseException.new).should be_false
+            end
+          end
+
+          pending "returns false for a sub class match" do
+            with_instance do |instance|
+              instance.configuration.excluded_exceptions << "Raven::Test::BaseException"
+              instance.capture(Raven::Test::SubException.new).should be_false
+            end
+          end
+
+          pending "returns false for a tagged class match" do
+            with_instance do |instance|
+              instance.configuration.excluded_exceptions << "Raven::Test::ExceptionTag"
+              instance.capture(Raven::Test::TaggedException.new).should be_false
+            end
+          end
+
+          it "returns Raven::Event for an undefined exception class" do
+            with_instance do |instance|
+              instance.configuration.excluded_exceptions << "Raven::Test::NonExistentException"
+              instance.capture(Raven::Test::BaseException.new).should be_a(Raven::Event)
+            end
+          end
+        end
+
+        context "defined by class type" do
+          pending "returns false for a class match" do
+            with_instance do |instance|
+              instance.configuration.excluded_exceptions << Raven::Test::BaseException
+              instance.capture(Raven::Test::BaseException.new).should be_false
+            end
+          end
+
+          pending "returns false for a sub class match" do
+            with_instance do |instance|
+              instance.configuration.excluded_exceptions << Raven::Test::BaseException
+              instance.capture(Raven::Test::SubException.new).should be_false
+            end
+          end
+
+          pending "returns false for a tagged class match" do
+            with_instance do |instance|
+              instance.configuration.excluded_exceptions << Raven::Test::ExceptionTag
+              instance.capture(Raven::Test::TaggedException.new).should be_false
+            end
+          end
         end
       end
     end
