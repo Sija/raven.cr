@@ -84,14 +84,18 @@ module Raven
     any_json_property :contexts, :user, :tags, :extra
 
     def self.from(exc : Exception, **options)
+      # FIXME: would be nice to be able to call
+      # `event.initialize_with(exc_context)` somehow...
+      exc_context = get_exception_context(exc)
+      if extra = options[:extra]?
+        options = options.merge(extra: exc_context.merge(extra))
+      else
+        options = options.merge(extra: exc_context)
+      end
+
       new(**options).tap do |event|
         # Messages limited to 10kb
         event.message = "#{exc.class}: #{exc.message}".byte_slice(0, MAX_MESSAGE_SIZE_IN_BYTES)
-
-        exc_context = get_exception_context(exc)
-        # FIXME: would be nice to be able to call
-        # `event.initialize_with(exc_context)` somehow...
-        event.extra.merge! exc_context
 
         exc.callstack ||= CallStack.new
         add_exception_interface(event, exc)
