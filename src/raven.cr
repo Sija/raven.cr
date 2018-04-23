@@ -21,12 +21,12 @@ module Raven
   class_getter instance : Raven::Instance { Raven::Instance.new }
 
   macro sys_command_compiled(command)
-    %result = {{ `#{command.id} || true`.stringify.strip }}
+    %result = {{ `(#{command.id} || true) 2>/dev/null`.stringify.strip }}
     %result unless %result.empty?
   end
 
   def self.sys_command(command)
-    result = `#{command} 2>&1`.strip rescue nil
+    result = `(#{command}) 2>/dev/null`.strip rescue nil
     # ameba:disable NegatedConditionsInUnless
     result unless result.nil? || result.empty? || !$?.success?
   end
