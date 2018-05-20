@@ -1,4 +1,5 @@
 require "http"
+require "../../http/*"
 
 module Raven
   module Kemal
@@ -12,48 +13,35 @@ module Raven
     # ```
     class ExceptionHandler
       include HTTP::Handler
+      include Raven::HTTPHandler
 
-      CAPTURE_DATA_FOR_METHODS = %w(POST PUT PATCH)
+      # See `::Kemal::Route`
+      CULPRIT_PATTERN_KEYS = %i(method path)
 
-      private def headers_to_hash(headers : HTTP::Headers)
-        headers.each_with_object(AnyHash::JSON.new) do |(k, v), hash|
-          hash[k] = v.join ", "
-        end
+      def initialize(
+        @culprit_pattern = "%{method} %{path}",
+        @capture_data_for_methods = %w(POST PUT PATCH),
+        @default_logger = "kemal"
+      )
       end
 
-      private def cookies_to_string(cookies : HTTP::Cookies)
-        cookies.to_h.map(&.last.to_cookie_header).join "; "
+      def build_raven_culprit_context(context : HTTP::Server::Context)
+        context.route if context.route_defined?
       end
 
-      def call(context)
-        call_next context
-      rescue ex
-        Raven.capture(ex) do |event|
-          lookup_result = context.route_lookup
-          if lookup_result.found?
-            lookup_result.payload.as(::Kemal::Route).tap do |route|
-              event.culprit = "#{route.method} #{route.path}"
-            end
-          end
-          request = context.request
-          if CAPTURE_DATA_FOR_METHODS.includes? request.method
-            params = context.params
-            data = AnyHash::JSON.new.merge! params.body.to_h, params.json
-          end
-          event.logger ||= "kemal"
-          event.interface :http, {
-            headers:      headers_to_hash(request.headers),
-            cookies:      cookies_to_string(request.cookies),
-            method:       request.method.upcase,
-            url:          Kemal.build_request_url(request),
-            query_string: request.query,
-            data:         data,
-          }
-          if context.responds_to?(:kemal_authorized_username?)
-            event.user[:username] ||= context.kemal_authorized_username?
-          end
+      def build_raven_http_url(context : HTTP::Server::Context)
+        Kemal.build_request_url(context.request)
+      end
+
+      def build_raven_http_data(context : HTTP::Server::Context)
+        params = context.params
+        AnyHash::JSON.new.merge!(params.body.to_h, params.json)
+      end
+
+      def on_raven_event(event : Raven::Event, context : HTTP::Server::Context)
+        if context.responds_to?(:kemal_authorized_username?)
+          event.user[:username] ||= context.kemal_authorized_username?
         end
-        raise ex
       end
     end
   end
