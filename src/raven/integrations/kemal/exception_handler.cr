@@ -1,5 +1,5 @@
 require "http"
-require "../../http/*"
+require "../http/*"
 
 module Raven
   module Kemal

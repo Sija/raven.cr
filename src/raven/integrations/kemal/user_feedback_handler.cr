@@ -1,4 +1,4 @@
-require "../../shared/*"
+require "../shared/*"
 
 module Raven
   module Kemal
@@ -20,7 +20,7 @@ module Raven
       protected def render_view(ex)
         production? = ::Kemal.config.env == "production" # ameba:disable UselessAssign
         {% begin %}
-          render "{{__DIR__.id}}/../../views/shared/user_feedback.ecr"
+          render "{{__DIR__.id}}/../shared/views/user_feedback.ecr"
         {% end %}
       end
     end
