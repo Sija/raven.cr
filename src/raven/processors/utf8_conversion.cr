@@ -27,7 +27,7 @@ module Raven
       str = str.encode("UTF-16", invalid: :skip)
       str = String.new(str, "UTF-16")
       str = str.encode("UTF-8", invalid: :skip)
-      str = String.new(str, "UTF-8")
+      str = String.new(str, "UTF-8") # ameba:disable UselessAssign
     end
   end
 end
