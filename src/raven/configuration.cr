@@ -330,7 +330,7 @@ module Raven
 
       # Capistrano 3.0 - 3.1.x
       File.read_lines(File.join(project_root, "..", "revisions.log"))
-          .last.strip.sub(/.*as release ([0-9]+).*/, "\1") rescue nil
+        .last.strip.sub(/.*as release ([0-9]+).*/, "\1") rescue nil
     end
 
     private def detect_release_from_git
