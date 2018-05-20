@@ -35,7 +35,7 @@
 </head>
 
 <body>
-  <script src="https://cdn.ravenjs.com/3.24.2/raven.min.js"></script>
+  <script src="https://cdn.ravenjs.com/3.25.2/raven.min.js"></script>
   <script>
     var showReportDialog = function() {
       Raven.showReportDialog({
@@ -48,7 +48,7 @@
 
   <h2>Internal Server Error (500)</h2>
 
-  <%- if ::Kemal.config.env == "production" %>
+  <%- if production? -%>
     <script>
       showReportDialog();
     </script>

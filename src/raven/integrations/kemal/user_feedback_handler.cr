@@ -1,3 +1,5 @@
+require "../../shared/*"
+
 module Raven
   module Kemal
     # Kemal handler capturing all `Exception`s handled by Raven
@@ -13,20 +15,12 @@ module Raven
     #
     # NOTE: Should be added always as the first handler.
     class UserFeedbackHandler < ::Kemal::Handler
-      def call(context)
-        call_next context
-      rescue ex
-        raise ex unless Raven.configuration.capture_allowed? ex
-        context.response.tap do |response|
-          response.status_code = 500
-          response.print render_view(ex)
-        end
-        context
-      end
+      include Raven::UserFeedbackHandler
 
       protected def render_view(ex)
+        production? = ::Kemal.config.env == "production" # ameba:disable UselessAssign
         {% begin %}
-          render "{{__DIR__.id}}/views/user_feedback.ecr"
+          render "{{__DIR__.id}}/../../views/shared/user_feedback.ecr"
         {% end %}
       end
     end
