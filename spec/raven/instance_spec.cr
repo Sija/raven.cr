@@ -146,14 +146,14 @@ describe Raven::Instance do
         end
 
         context "defined by class type" do
-          pending "returns false for a class match" do
+          it "returns false for a class match" do
             with_instance do |instance|
               instance.configuration.excluded_exceptions << Raven::Test::BaseException
               instance.capture(Raven::Test::BaseException.new).should be_false
             end
           end
 
-          pending "returns false for a sub class match" do
+          it "returns false for a sub class match" do
             with_instance do |instance|
               instance.configuration.excluded_exceptions << Raven::Test::BaseException
               instance.capture(Raven::Test::SubException.new).should be_false
