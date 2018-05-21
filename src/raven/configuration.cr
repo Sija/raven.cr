@@ -316,6 +316,7 @@ module Raven
 
     private def detect_release_from_heroku
       return unless running_on_heroku?
+      return if ENV["CI"]?
       if commit = ENV["HEROKU_SLUG_COMMIT"]?
         return commit
       end
