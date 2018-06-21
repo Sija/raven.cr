@@ -141,7 +141,7 @@ describe Raven::Event do
     config = Raven::Configuration.new
 
     it "should not persist tags between unrelated events" do
-      with_event_hash(tags: {"foo" => "bar"}, configuration: config) do |hash1|
+      with_event_hash(tags: {"foo" => "bar"}, configuration: config) do
         with_event_hash(configuration: config) do |hash2|
           hash2[:tags].should eq({} of String => String)
         end

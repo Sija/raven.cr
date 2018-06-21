@@ -58,7 +58,7 @@ describe Raven::Processor::SanitizeData do
             "mypasswd"               => "hello",
             "test"                   => 1,
             :ssn                     => "123-45-6789", # test symbol handling
-            "social_security_number" => 123456789,
+            "social_security_number" => 123_456_789,
             "user_field"             => "user",
             "user_field_foo"         => "hello",
             "query_string"           => "foo=bar%E9", # test utf8 handling
@@ -98,7 +98,7 @@ describe Raven::Processor::SanitizeData do
           "mypasswd"               => "hello",
           "test"                   => 1,
           "ssn"                    => "123-45-6789",
-          "social_security_number" => 123456789,
+          "social_security_number" => 123_456_789,
           "user_field"             => "user",
           "user_field_foo"         => "hello",
         }.to_json,
@@ -156,7 +156,7 @@ describe Raven::Processor::SanitizeData do
   it "should filter credit card values" do
     data = {
       "ccnumba"     => "4242424242424242",
-      "ccnumba_int" => 4242424242424242,
+      "ccnumba_int" => 4242424242424242, # ameba:disable LargeNumbers
     }
 
     result = processor.process(data)
@@ -171,12 +171,12 @@ describe Raven::Processor::SanitizeData do
 
       data = {
         "ccnumba"     => "4242424242424242",
-        "ccnumba_int" => 4242424242424242,
+        "ccnumba_int" => 4242424242424242, # ameba:disable LargeNumbers
       }
 
       result = processor.process(data)
       result["ccnumba"].should eq("4242424242424242")
-      result["ccnumba_int"].should eq(4242424242424242)
+      result["ccnumba_int"].should eq(4242424242424242) # ameba:disable LargeNumbers
     end
   end
 

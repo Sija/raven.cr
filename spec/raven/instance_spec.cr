@@ -186,7 +186,7 @@ describe Raven::Instance do
     context "when async raises an exception" do
       it "sends the result of Event.capture via fallback" do
         with_instance do |instance|
-          instance.configuration.async = ->(e : Raven::Event) { raise ArgumentError.new }
+          instance.configuration.async = ->(_e : Raven::Event) { raise ArgumentError.new }
 
           instance.capture("Test message", id: "foo", logger: "bar")
           instance.last_sent_event.try(&.message).should eq("Test message")
@@ -199,7 +199,7 @@ describe Raven::Instance do
     context "with should_capture callback" do
       it "sends the result of Event.capture according to the result of should_capture" do
         with_instance do |instance|
-          instance.configuration.should_capture = ->(obj : Exception | String) { false }
+          instance.configuration.should_capture = ->(_obj : Exception | String) { false }
 
           instance.capture(build_exception).should be_false
           instance.last_sent_event.should be_nil
