@@ -1,6 +1,5 @@
 module Raven
   class Context
-
     @@mutex = Mutex.new
     @@current : self?
 

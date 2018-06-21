@@ -10,7 +10,7 @@ module Raven
     # Array of exception classes that should never be sent.
     IGNORE_DEFAULT = [
       "Kemal::Exceptions::RouteNotFound",
-    ]
+    ] of Exception.class | String
 
     # Note the order - we have to remove circular references and bad characters
     # before passing to other processors.
@@ -100,7 +100,7 @@ module Raven
     # See `IGNORE_DEFAULT`.
     #
     # NOTE: You should probably append to this rather than overwrite it.
-    property excluded_exceptions : Array(String)
+    property excluded_exceptions : Array(Exception.class | String)
 
     # NOTE: DSN component - set automatically if DSN provided.
     property host : String?
@@ -330,7 +330,7 @@ module Raven
 
       # Capistrano 3.0 - 3.1.x
       File.read_lines(File.join(project_root, "..", "revisions.log"))
-          .last.strip.sub(/.*as release ([0-9]+).*/, "\1") rescue nil
+        .last.strip.sub(/.*as release ([0-9]+).*/, "\1") rescue nil
     end
 
     private def detect_release_from_git
@@ -396,7 +396,12 @@ module Raven
 
     def excluded_exception?(ex)
       return false unless ex.is_a?(Exception)
-      return false unless excluded_exceptions.includes?(ex.class.name)
+      return false unless excluded_exceptions.any? do |klass|
+                            case klass
+                            when Exception.class then klass >= ex.class
+                            when String          then klass == ex.class.name
+                            end
+                          end
       @errors << "User excluded error: #{ex.inspect}"
       true
     end

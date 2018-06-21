@@ -32,6 +32,14 @@ module Raven
 
     def process(data)
       case data
+      when Hash(String, JSON::Any)
+        data = data.each_with_object(AnyHash::JSON.new) do |(k, v), memo|
+          case v = v.raw
+          when AnyHash::JSONTypes::Value
+            memo[k] = process(k, v)
+          end
+        end
+        data.to_h
       when Hash
         data = data.each_with_object(data.to_any_json) do |(k, v), memo|
           memo[k] = process(k, v)
@@ -68,7 +76,7 @@ module Raven
 
     private def parse_json_or_nil(string)
       return unless string.starts_with?('[') || string.starts_with?('{')
-      JSON.parse_raw(string) rescue nil
+      JSON.parse(string).raw rescue nil
     end
 
     private getter utf8_processor : Processor::UTF8Conversion {

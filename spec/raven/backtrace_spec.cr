@@ -11,8 +11,7 @@ describe Raven::Backtrace do
     backtrace.inspect.should match(/#<Backtrace: .*>$/)
   end
 
-  # TODO: works in Crystal > 0.24.2
-  pending "#to_s" do
+  it "#to_s" do
     backtrace.to_s.should match(/backtrace_spec.cr:4/)
   end
 
