@@ -7,12 +7,14 @@ authors:
 dependencies:
   any_hash:
     github: sija/any_hash.cr
+    version: 0.2.1
 
 development_dependencies:
   timecop:
     github: TobiasGSmollett/timecop.cr
   ameba:
     github: veelenga/ameba
+    version: 0.7.0
 
 targets:
   crash_handler:
