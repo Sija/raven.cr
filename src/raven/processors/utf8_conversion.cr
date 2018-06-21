@@ -9,8 +9,15 @@ module Raven
         data.to_h
       when Array
         data.map! { |v| process(v).as(typeof(v)) }
+      when Exception
+        return data unless message = data.message
+        return data if message.valid_encoding?
+        data.class.new(clean_invalid_utf8_bytes(message), data.cause).tap do |ex|
+          ex.callstack = data.callstack
+        end
       when String
-        !data.valid_encoding? ? clean_invalid_utf8_bytes(data) : data
+        return data if data.valid_encoding?
+        clean_invalid_utf8_bytes(data)
       else
         data
       end
@@ -20,7 +27,7 @@ module Raven
       str = str.encode("UTF-16", invalid: :skip)
       str = String.new(str, "UTF-16")
       str = str.encode("UTF-8", invalid: :skip)
-      str = String.new(str, "UTF-8")
+      str = String.new(str, "UTF-8") # ameba:disable UselessAssign
     end
   end
 end

@@ -107,12 +107,13 @@ module Raven
       client.send_event(event)
     end
 
-    # FIXME
-    # @[ThreadLocal]
+    @last_event_id_mutex = Mutex.new
     @last_event_id : String?
 
     def last_event_id
-      @last_event_id
+      @last_event_id_mutex.synchronize do
+        @last_event_id
+      end
     end
 
     # Captures given `Exception` or `String` object and yields
@@ -141,7 +142,9 @@ module Raven
         else
           send_event(event)
         end
-        @last_event_id = event.id
+        @last_event_id_mutex.synchronize do
+          @last_event_id = event.id
+        end
       end
     end
 
@@ -197,14 +200,12 @@ module Raven
     # end
     # ```
     def capture(**options, &block)
-      begin
-        yield
-      rescue e : Raven::Error
-        raise e # Don't capture Raven errors
-      rescue e : Exception
-        capture(e, **options)
-        raise e
-      end
+      yield
+    rescue e : Raven::Error
+      raise e # Don't capture Raven errors
+    rescue e : Exception
+      capture(e, **options)
+      raise e
     end
 
     # Provides extra context to the exception prior to it being handled by

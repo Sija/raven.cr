@@ -18,7 +18,7 @@ module Raven
     def should_try?
       return true if @status.online?
 
-      interval = @retry_after || {@retry_number, 6}.min.seconds
+      interval = @retry_after || ({@retry_number, 6}.min ** 2).seconds
       if timestamp = @last_check
         return true if (Time.now - timestamp) >= interval
       else

@@ -56,7 +56,7 @@ module Raven
       to: raven
 
     property logger : ::Logger {
-      Logger.new({{ flag?(:release) ? nil : "STDOUT".id }}).tap do |logger|
+      Logger.new({{ "STDOUT".id unless flag?(:release) }}).tap do |logger|
         logger.level = {{ flag?(:debug) ? "Logger::DEBUG".id : "Logger::ERROR".id }}
 
         "#{logger.progname}.crash_handler".tap do |progname|

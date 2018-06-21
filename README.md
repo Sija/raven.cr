@@ -1,4 +1,4 @@
-# raven.cr [![Build Status](https://travis-ci.org/Sija/raven.cr.svg?branch=master)](https://travis-ci.org/Sija/raven.cr)
+# raven.cr [![Build Status](https://travis-ci.org/Sija/raven.cr.svg?branch=master)](https://travis-ci.org/Sija/raven.cr) [![Releases](https://img.shields.io/github/release/Sija/raven.cr.svg)](https://github.com/Sija/raven.cr/releases) [![License](https://img.shields.io/github/license/Sija/raven.cr.svg)](https://github.com/Sija/raven.cr/blob/master/LICENSE) [![Join the chat at https://gitter.im/raven-cr/Lobby](https://badges.gitter.im/raven-cr/Lobby.svg)](https://gitter.im/raven-cr/Lobby)
 
 A client and integration layer for the [Sentry](https://github.com/getsentry/sentry) error reporting API.
 
@@ -13,14 +13,13 @@ from folks at [@getsentry](https://github.com/getsentry).
 - [x] Interfaces (Message, Exception, Stacktrace, User, HTTP, ...)
 - [x] Contexts (tags, extra, `os`, `runtime`)
 - [x] Breadcrumbs
-- [x] Integrations ([Kemal](https://github.com/kemalcr/kemal), [Sidekiq.cr](https://github.com/mperham/sidekiq.cr))
+- [x] Integrations ([Kemal](https://github.com/kemalcr/kemal), [Amber](https://github.com/amberframework/amber), [Sidekiq.cr](https://github.com/mperham/sidekiq.cr))
 - [x] Async support
 - [x] User Feedback (`Raven.send_feedback` + Kemal handler)
 - [x] Crash Handler
 
 ### TODO
 
-- [ ] Tests
 - [ ] Exponential backoff in case of connection error
 - [ ] Caching unsent events for later send
 

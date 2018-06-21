@@ -52,7 +52,7 @@ module Raven
     end
 
     private def self.nil_on_empty(value)
-      empty_marker?(value) ? nil : value
+      value unless empty_marker?(value)
     end
 
     # Parses a single line of a given backtrace, where *unparsed_line* is
@@ -83,7 +83,7 @@ module Raven
     end
 
     def inspect(io)
-      io << "<Line: " << self << ">"
+      io << "Backtrace::Line(" << self << ')'
     end
 
     # FIXME: untangle it from global `Raven`.

@@ -2,16 +2,19 @@ module Raven
   class BreadcrumbBuffer
     include Enumerable(Breadcrumb)
 
-    # FIXME
-    # @[ThreadLocal]
+    @@mutex = Mutex.new
     @@current : self?
 
     def self.current
-      @@current ||= new
+      @@mutex.synchronize do
+        @@current ||= new
+      end
     end
 
     def self.clear!
-      @@current = nil
+      @@mutex.synchronize do
+        @@current = nil
+      end
     end
 
     getter buffer : Array(Breadcrumb?)
