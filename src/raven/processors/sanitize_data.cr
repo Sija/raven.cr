@@ -32,6 +32,14 @@ module Raven
 
     def process(data)
       case data
+      when Hash(String, JSON::Any)
+        data = data.each_with_object(AnyHash::JSON.new) do |(k, v), memo|
+          case v = v.raw
+          when AnyHash::JSONTypes::Value
+            memo[k] = process(k, v)
+          end
+        end
+        data.to_h
       when Hash
         data = data.each_with_object(data.to_any_json) do |(k, v), memo|
           memo[k] = process(k, v)
