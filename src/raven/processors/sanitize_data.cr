@@ -68,7 +68,7 @@ module Raven
 
     private def parse_json_or_nil(string)
       return unless string.starts_with?('[') || string.starts_with?('{')
-      JSON.parse_raw(string) rescue nil
+      JSON.parse(string).raw rescue nil
     end
 
     private getter utf8_processor : Processor::UTF8Conversion {
