@@ -79,7 +79,7 @@ end
 
 begin
   1 / 0
-rescue ex : DivisionByZero
+rescue ex : DivisionByZeroError
   Raven.capture(ex)
 end
 ```
