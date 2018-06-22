@@ -1,3 +1,5 @@
+require "amber"
+
 module Raven
   # ```
   # require "raven/integrations/amber"
