@@ -7,7 +7,7 @@ authors:
 dependencies:
   any_hash:
     github: sija/any_hash.cr
-    version: 0.2.1
+    version: 0.2.2
 
 development_dependencies:
   timecop:
