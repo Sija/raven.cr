@@ -234,6 +234,34 @@ As one would expect, `STDIN` is passed to the original process, while
 __NOTE__: You can always pass `SENTRY_DSN` env variable during execution
 in case you didn't do it while building the wrapper.
 
+## Integrations
+
+### Kemal
+
+```crystal
+require "raven/integrations/kemal"
+```
+
+It's recommended to enable `Configuration#async` when using Kemal.
+
+```crystal
+Raven.configure do |config|
+  # ...
+  config.async = true
+  config.current_environment = Kemal.config.env
+end
+```
+
+Exception handler capturing all unhandled `Exception`s.
+
+After capturing exception is re-raised.
+
+```crystal
+Kemal.config.add_handler(Raven::Kemal::ExceptionHandler.new)
+# ...
+Kemal.run
+```
+
 ## More Information
 
 * [Documentation](https://docs.sentry.io/clients/ruby)
