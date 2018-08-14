@@ -26,7 +26,7 @@ module Raven
       end
 
       def build_raven_culprit_context(context : HTTP::Server::Context)
-        context.route if context.route_defined?
+        context.route if context.route_found?
       end
 
       def build_raven_http_url(context : HTTP::Server::Context)
