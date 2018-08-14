@@ -23,7 +23,7 @@ module Raven
       def initialize(@wrapped = nil)
       end
 
-      def next=(handler : HTTP::Handler | Proc | Nil)
+      def next=(handler : HTTP::Handler | HTTP::Handler::HandlerProc | Nil)
         @wrapped.try(&.next=(handler)) || (@next = handler)
       end
 
