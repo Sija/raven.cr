@@ -5,7 +5,7 @@ module Raven
   class Configuration
     # Array of required properties needed to be set, before
     # `Configuration` is considered valid.
-    REQUIRED_OPTIONS = %i(host public_key secret_key project_id)
+    REQUIRED_OPTIONS = %i(host public_key project_id)
 
     # Array of exception classes that should never be sent.
     IGNORE_DEFAULT = [
@@ -191,7 +191,10 @@ module Raven
       property ssl : OpenSSL::SSL::Context::Client?
     {% end %}
 
-    # Secret key for authentication with the Sentry server
+    # Secret key for authentication with the Sentry server.
+    #
+    # DEPRECATED: This is deprecated and not necessary for newer Sentry
+    # installations any more.
     #
     # NOTE: If you provide a DSN, this will be set automatically.
     property secret_key : String?

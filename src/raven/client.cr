@@ -84,8 +84,10 @@ module Raven
         sentry_version: PROTOCOL_VERSION,
         sentry_client:  USER_AGENT,
         sentry_key:     configuration.public_key,
-        sentry_secret:  configuration.secret_key,
       }
+      if secret_key = configuration.secret_key
+        fields = fields.merge(sentry_secret: secret_key)
+      end
       "Sentry " + fields.map { |key, value| "#{key}=#{value}" }.join(", ")
     end
 

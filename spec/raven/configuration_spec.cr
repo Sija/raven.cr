@@ -143,7 +143,6 @@ describe Raven::Configuration do
         configuration.capture_allowed?.should be_false
         configuration.errors.should eq([
           "No :public_key specified",
-          "No :secret_key specified",
           "No :project_id specified",
         ])
       end
