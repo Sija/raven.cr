@@ -14,7 +14,7 @@ development_dependencies:
     github: TobiasGSmollett/timecop.cr
   ameba:
     github: veelenga/ameba
-    version: 0.7.0
+    version: 0.8.0
 
 targets:
   crash_handler:

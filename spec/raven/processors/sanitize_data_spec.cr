@@ -156,7 +156,7 @@ describe Raven::Processor::SanitizeData do
   it "should filter credit card values" do
     data = {
       "ccnumba"     => "4242424242424242",
-      "ccnumba_int" => 4242424242424242, # ameba:disable LargeNumbers
+      "ccnumba_int" => 4242424242424242,
     }
 
     result = processor.process(data)
@@ -171,12 +171,12 @@ describe Raven::Processor::SanitizeData do
 
       data = {
         "ccnumba"     => "4242424242424242",
-        "ccnumba_int" => 4242424242424242, # ameba:disable LargeNumbers
+        "ccnumba_int" => 4242424242424242,
       }
 
       result = processor.process(data)
       result["ccnumba"].should eq("4242424242424242")
-      result["ccnumba_int"].should eq(4242424242424242) # ameba:disable LargeNumbers
+      result["ccnumba_int"].should eq(4242424242424242)
     end
   end
 
