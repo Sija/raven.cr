@@ -30,7 +30,7 @@ Add this to your application's `shard.yml`:
 ```yaml
 dependencies:
   raven:
-    github: sija/raven.cr
+    github: Sija/raven.cr
 ```
 
 ## Usage
@@ -60,7 +60,7 @@ end
 ### Raven doesn't report some kinds of data by default.
 
 Raven ignores some exceptions by default - most of these are related to 404s or
-controller actions not being found. [For a complete list, see the `IGNORE_DEFAULT` constant](https://github.com/sija/raven.cr/blob/master/src/raven/configuration.cr).
+controller actions not being found. [For a complete list, see the `IGNORE_DEFAULT` constant](https://github.com/Sija/raven.cr/blob/master/src/raven/configuration.cr).
 
 Raven doesn't report `POST`, `PUT`, `PATCH` data or cookies by default.
 In addition, it will attempt to remove any obviously sensitive data,
@@ -237,8 +237,8 @@ in case you didn't do it while building the wrapper.
 ## More Information
 
 * [Documentation](https://docs.sentry.io/clients/ruby)
-* [Bug Tracker](https://github.com/sija/raven.cr/issues)
-* [Code](https://github.com/sija/raven.cr)
+* [Bug Tracker](https://github.com/Sija/raven.cr/issues)
+* [Code](https://github.com/Sija/raven.cr)
 * [Mailing List](https://groups.google.com/group/getsentry)
 * [IRC](irc://irc.freenode.net/sentry) (irc.freenode.net, #sentry)
 
@@ -250,12 +250,12 @@ crystal spec
 
 ## Contributing
 
-1. [Fork it](https://github.com/sija/raven.cr/fork)
+1. [Fork it](https://github.com/Sija/raven.cr/fork)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new [Pull Request](https://github.com/sija/raven.cr/pulls)
+5. Create a new [Pull Request](https://github.com/Sija/raven.cr/pulls)
 
 ## Contributors
 
-- [sija](https://github.com/sija) Sijawusz Pur Rahnama - creator, maintainer
+- [@Sija](https://github.com/Sija) Sijawusz Pur Rahnama - creator, maintainer

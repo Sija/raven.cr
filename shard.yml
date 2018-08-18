@@ -6,7 +6,7 @@ authors:
 
 dependencies:
   any_hash:
-    github: sija/any_hash.cr
+    github: Sija/any_hash.cr
     version: 0.2.2
 
 development_dependencies:
