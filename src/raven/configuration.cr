@@ -8,9 +8,7 @@ module Raven
     REQUIRED_OPTIONS = %i(host public_key project_id)
 
     # Array of exception classes that should never be sent.
-    IGNORE_DEFAULT = [
-      "Kemal::Exceptions::RouteNotFound",
-    ] of Exception.class | String
+    IGNORE_DEFAULT = [] of Exception.class | String
 
     # Note the order - we have to remove circular references and bad characters
     # before passing to other processors.

@@ -24,4 +24,6 @@ module Raven
   end
 end
 
+Raven::Configuration::IGNORE_DEFAULT << Amber::Exceptions::RouteNotFound
+
 require "./amber/**"
