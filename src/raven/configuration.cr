@@ -360,7 +360,9 @@ module Raven
 
     def capture_allowed?
       @errors = [] of String
-      valid? && capture_in_current_environment? && sample_allowed?
+      valid? &&
+        capture_in_current_environment? &&
+        sample_allowed?
     end
 
     def capture_allowed?(message_or_exc)
