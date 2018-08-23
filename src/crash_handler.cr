@@ -20,19 +20,14 @@ module Raven
     # Example:
     #
     # ```
-    # execvp: No such file or directory (Errno)
-    # 0x108a4ab85: *CallStack::unwind:Array(Pointer(Void)) at ??
-    # 0x108a4ab21: *CallStack#initialize:Array(Pointer(Void)) at ??
-    # 0x108a4aaf8: *CallStack::new:CallStack at ??
-    # 0x108a391d1: *raise<Errno>:NoReturn at ??
-    # 0x108a9fdf5: *Process::exec_internal<String, Array(Pointer(UInt8)), Nil, Bool, IO::FileDescriptor, IO::FileDescriptor, (IO::FileDescriptor | IO::MultiWriter), Nil>:Nil at ??
-    # 0x108a9f2de: *Process#initialize<String, Nil, Nil, Bool, Bool, IO::FileDescriptor, IO::FileDescriptor, IO::MultiWriter, Nil>:Nil at ??
-    # 0x108a9ed3b: *Process::new<String, Nil, Nil, Bool, Bool, IO::FileDescriptor, IO::FileDescriptor, IO::MultiWriter, Nil>:Process at ??
-    # 0x108a9ec65: *Process::run:input:output:error<String, IO::FileDescriptor, IO::FileDescriptor, IO::MultiWriter>:Process::Status at ??
-    # 0x108a2d948: __crystal_main at ??
-    # 0x108a3f6a8: main at ??
+    # Unhandled exception: Index out of bounds (IndexError)
+    #   from /usr/local/Cellar/crystal/0.26.0/src/indexable.cr:596:8 in 'at'
+    #   from /eval:1:1 in '__crystal_main'
+    #   from /usr/local/Cellar/crystal/0.26.0/src/crystal/main.cr:104:5 in 'main_user_code'
+    #   from /usr/local/Cellar/crystal/0.26.0/src/crystal/main.cr:93:7 in 'main'
+    #   from /usr/local/Cellar/crystal/0.26.0/src/crystal/main.cr:133:3 in 'main'
     # ```
-    CRYSTAL_EXCEPTION_PATTERN = /([^\n]+) \(([A-Z]\w+)\)\n(#{Backtrace::Line::ADDR_FORMAT}: .*)$/m
+    CRYSTAL_EXCEPTION_PATTERN = /Unhandled exception: ([^\n]+) \(([A-Z]\w+)\)\n(.*)$/m
 
     # Default event options.
     DEFAULT_OPTS = {
@@ -177,6 +172,7 @@ module Raven
             capture_crystal_crash(msg, backtrace)
           when CRYSTAL_EXCEPTION_PATTERN
             _, msg, klass, backtrace = $~
+            backtrace = backtrace.gsub /^\s*from\s*/m, ""
             capture_crystal_exception(klass, msg, backtrace)
           else
             capture_process_failure(exit_code, output, error)
