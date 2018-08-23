@@ -79,6 +79,7 @@ module Raven
       if file
         io << " at " << file
         io << ':' << number if number
+        io << ':' << column if column
       end
     end
 
