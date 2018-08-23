@@ -118,7 +118,7 @@ module Raven
     protected def self.format_culprit_name(frame)
       return unless frame
       parts = {
-        [nil, frame.filename],
+        [nil, frame.filename || frame.abs_path],
         ["in", frame.function],
         ["at line", frame.lineno],
       }
