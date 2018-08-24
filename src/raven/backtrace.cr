@@ -18,9 +18,7 @@ module Raven
         end
       end.compact
 
-      lines = filtered_lines.map do |unparsed_line|
-        Line.parse(unparsed_line)
-      end
+      lines = filtered_lines.map &->Line.parse(String)
       new(lines)
     end
 
