@@ -71,7 +71,8 @@ module Raven
       }
     end
 
-    # `KEMAL_ENV` by default.
+    # Defaults to `SENTRY_CURRENT_ENV` or `KEMAL_ENV` `ENV` variables if set,
+    # `"default"` otherwise.
     property current_environment : String?
 
     # Encoding type for event bodies.
@@ -156,8 +157,8 @@ module Raven
     property? sanitize_credit_cards = true
 
     # By default, Sentry censors `Hash` values when their keys match things like
-    # `"secret"`, `"password"`, etc. Provide an `Array` of `String`s that, when matched in
-    # a hash key, will be censored and not sent to Sentry.
+    # `"secret"`, `"password"`, etc. Provide an `Array` of `String`s that,
+    # when matched in a hash key, will be censored and not sent to Sentry.
     #
     # See `Processor::SanitizeData::DEFAULT_FIELDS`.
     property sanitize_fields = [] of String | Regex
@@ -225,10 +226,13 @@ module Raven
     # Timeout when waiting for the server to return data.
     property read_timeout : Time::Span = 2.seconds
 
-    # Optional `Proc`, called when the Sentry server cannot be contacted for any reason.
+    # Optional `Proc`, called when the Sentry server cannot be contacted
+    # for any reason.
     #
     # ```
-    # ->(event : Raven::Event::HashType) { spawn { MyJobProcessor.send_email(event) } }
+    # ->(event : Raven::Event::HashType) {
+    #   spawn { MyJobProcessor.send_email(event) }
+    # }
     # ```
     property transport_failure_callback : Proc(Event::HashType, Nil)?
 
@@ -240,7 +244,7 @@ module Raven
       }
     end
 
-    # Errors object - an Array that contains error messages.
+    # Errors object - an `Array` containing error messages.
     getter errors = [] of String
 
     def initialize

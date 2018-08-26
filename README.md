@@ -59,8 +59,8 @@ end
 
 ### Raven doesn't report some kinds of data by default.
 
-Raven ignores some exceptions by default - most of these are related to 404s or
-controller actions not being found. [For a complete list, see the `IGNORE_DEFAULT` constant](https://github.com/Sija/raven.cr/blob/master/src/raven/configuration.cr).
+If used with integrations, Raven ignores some exceptions by default - most of
+these are related to 404s or controller actions not being found.
 
 Raven doesn't report `POST`, `PUT`, `PATCH` data or cookies by default.
 In addition, it will attempt to remove any obviously sensitive data,
@@ -101,8 +101,9 @@ Raven.configure do |config|
 end
 ```
 
-And, while not necessary if using `SENTRY_DSN`, you can also provide an `environments`
-setting. Raven will only capture events when `KEMAL_ENV` matches an environment in the list.
+And, while not necessary if using `SENTRY_DSN`, you can also provide an
+`environments` setting. Raven will only capture events when
+`SENTRY_CURRENT_ENV` or `KEMAL_ENV` matches an environment in the list.
 
 ```crystal
 Raven.configure do |config|
