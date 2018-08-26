@@ -11,7 +11,7 @@ module Raven
     # cli.run(server)
     # ```
     class ExceptionHandler < ::Sidekiq::ExceptionHandler::Base
-      def call(ex : Exception, context : Hash(String, JSON::Type)? = nil)
+      def call(ex : Exception, context : Hash(String, JSON::Any)? = nil)
         Raven.capture(ex) do |event|
           event.logger ||= "sidekiq"
           event.extra.merge! context

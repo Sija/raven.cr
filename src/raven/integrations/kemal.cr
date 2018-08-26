@@ -24,4 +24,6 @@ module Raven
   end
 end
 
+Raven::Configuration::IGNORE_DEFAULT << Kemal::Exceptions::RouteNotFound
+
 require "./kemal/*"

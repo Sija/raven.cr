@@ -1,3 +1,5 @@
+require "amber"
+
 module Raven
   # ```
   # require "raven/integrations/amber"
@@ -21,5 +23,7 @@ module Raven
     end
   end
 end
+
+Raven::Configuration::IGNORE_DEFAULT << Amber::Exceptions::RouteNotFound
 
 require "./amber/**"

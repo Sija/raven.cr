@@ -1,25 +1,25 @@
 name: raven
-version: 1.0.0-rc3
+version: 1.0.0
 
 authors:
   - Sijawusz Pur Rahnama <sija@sija.pl>
 
 dependencies:
   any_hash:
-    github: sija/any_hash.cr
-    version: 0.2.1
+    github: Sija/any_hash.cr
+    version: 0.2.2
 
 development_dependencies:
   timecop:
     github: TobiasGSmollett/timecop.cr
   ameba:
     github: veelenga/ameba
-    version: 0.7.0
+    version: 0.8.0
 
 targets:
   crash_handler:
     main: src/crash_handler.cr
 
-crystal: 0.25.0
+crystal: 0.26.0
 
 license: MIT
