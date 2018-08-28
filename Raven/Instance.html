@@ -1,24 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.26.0">
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="../js/doc.js"></script>
+<script type="text/javascript">
+  CrystalDoc.base_path = "../";
+</script>
+
   <meta id="repository-name" content="github.com/Sija/raven.cr">
-  <link href="../css/style.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript" src="../js/doc.js"></script>
   <title>Raven::Instance - github.com/Sija/raven.cr</title>
 </head>
 <body>
 
-<div id="types-list">
-  <div id="search-box">
-    <input type="search" id="search-input" placeholder="Search...">
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false">
+    </div>
+
+    <div class="repository-links">
+      <a href="../index.html">README</a>
+    </div>
   </div>
 
-  <ul>
-    <li><a href="../index.html">README</a></li>
-  </ul>
+  <div class="search-results" class="hidden">
+    <ul class="search-list"></ul>
+  </div>
 
-  <ul>
+  <div class="types-list">
+    <ul>
   
   <li class=" " data-id="github.com/Sija/raven.cr/Exception" data-name="exception">
       <a href="../Exception.html">Exception</a>
@@ -34,6 +50,36 @@
       <a href="../Raven.html">Raven</a>
       
         <ul>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Amber" data-name="raven::amber">
+      <a href="../Raven/Amber.html">Amber</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Amber/Pipe" data-name="raven::amber::pipe">
+      <a href="../Raven/Amber/Pipe.html">Pipe</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Amber/Pipe/Error" data-name="raven::amber::pipe::error">
+      <a href="../Raven/Amber/Pipe/Error.html">Error</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Amber/Pipe/UserFeedback" data-name="raven::amber::pipe::userfeedback">
+      <a href="../Raven/Amber/Pipe/UserFeedback.html">UserFeedback</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
   
   <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Backtrace" data-name="raven::backtrace">
       <a href="../Raven/Backtrace.html">Backtrace</a>
@@ -54,6 +100,11 @@
       <a href="../Raven/Breadcrumb.html">Breadcrumb</a>
       
         <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Breadcrumb/Logger" data-name="raven::breadcrumb::logger">
+      <a href="../Raven/Breadcrumb/Logger.html">Logger</a>
+      
+    </li>
   
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Breadcrumb/Severity" data-name="raven::breadcrumb::severity">
       <a href="../Raven/Breadcrumb/Severity.html">Severity</a>
@@ -152,6 +203,11 @@
   
 </ul>
 
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/HTTPHandler" data-name="raven::httphandler">
+      <a href="../Raven/HTTPHandler.html">HTTPHandler</a>
       
     </li>
   
@@ -275,11 +331,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/PostData" data-name="raven::processor::postdata">
-      <a href="../Raven/Processor/PostData.html">PostData</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/RemoveCircularReferences" data-name="raven::processor::removecircularreferences">
       <a href="../Raven/Processor/RemoveCircularReferences.html">RemoveCircularReferences</a>
       
@@ -287,6 +338,11 @@
   
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/RemoveStacktrace" data-name="raven::processor::removestacktrace">
       <a href="../Raven/Processor/RemoveStacktrace.html">RemoveStacktrace</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/RequestMethodData" data-name="raven::processor::requestmethoddata">
+      <a href="../Raven/Processor/RequestMethodData.html">RequestMethodData</a>
       
     </li>
   
@@ -350,6 +406,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/UserFeedbackHandler" data-name="raven::userfeedbackhandler">
+      <a href="../Raven/UserFeedbackHandler.html">UserFeedbackHandler</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -357,9 +418,11 @@
   
 </ul>
 
+  </div>
 </div>
 
-<div id="main-content">
+
+<div class="main-content">
 <h1 class="type-name">
 
   <span class="kind">class</span> Raven::Instance
@@ -411,7 +474,9 @@ sending errors to multiple sentry projects in a large application.</p>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L24" target="_blank">raven/instance.cr</a>
+      <a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L24" target="_blank">
+        raven/instance.cr
+      </a>
     
     <br/>
   
@@ -420,7 +485,7 @@ sending errors to multiple sentry projects in a large application.</p>
 
 
 
-  <h2>Class Method Summary</h2>
+  <h2>Constructors</h2>
   <ul class="list-summary">
     
       <li class="entry-summary">
@@ -429,6 +494,8 @@ sending errors to multiple sentry projects in a large application.</p>
       </li>
     
   </ul>
+
+
 
 
 
@@ -526,7 +593,7 @@ sending errors to multiple sentry projects in a large application.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#last_event_id%3AString%3F-instance-method" class="signature"><strong>#last_event_id</strong> : String?</a>
+        <a href="#last_event_id-instance-method" class="signature"><strong>#last_event_id</strong></a>
         
       </li>
     
@@ -589,7 +656,13 @@ sending errors to multiple sentry projects in a large application.</p>
     
 
 
+    
+
+
   
+    
+
+
     
 
 
@@ -600,9 +673,9 @@ sending errors to multiple sentry projects in a large application.</p>
 </div>
 
 
-  <h2>Class Method Detail</h2>
+  <h2>Constructor Detail</h2>
   
-    <div class="entry-detail" id="new&#40;context&#61;nil,config&#61;nil&#41;-class-method">
+    <div class="entry-detail" id="new(context=nil,config=nil)-class-method">
       <div class="signature">
         
         def self.<strong>new</strong>(context = <span class="n">nil</span>, config = <span class="n">nil</span>)
@@ -613,7 +686,7 @@ sending errors to multiple sentry projects in a large application.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -621,9 +694,11 @@ sending errors to multiple sentry projects in a large application.</p>
 
 
 
+
+
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="annotate_exception&#40;exc,**options&#41;-instance-method">
+    <div class="entry-detail" id="annotate_exception(exc,**options)-instance-method">
       <div class="signature">
         
         def <strong>annotate_exception</strong>(exc, **options)
@@ -645,14 +720,14 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
 <pre><code><span class="k">begin</span>
   raise <span class="s">&quot;Hello&quot;</span>
 <span class="k">rescue</span> ex
-  <span class="t">Raven</span>.annotate_exception(ex, user: {id: <span class="n">1</span>, email: <span class="s">&quot;foo&#64;example.com&quot;</span>})
+  <span class="t">Raven</span>.annotate_exception(ex, user: {id: <span class="n">1</span>, email: <span class="s">&quot;foo@example.com&quot;</span>})
   raise ex
 <span class="k">end</span></code></pre></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L229" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L230" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -668,12 +743,12 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L270" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L271" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="capture&#40;**options,&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="capture(**options,&amp;block)-instance-method">
       <div class="signature">
         
         def <strong>capture</strong>(**options, &block)
@@ -690,12 +765,12 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L199" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L202" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="capture&#40;obj:Exception|String,**options&#41;-instance-method">
+    <div class="entry-detail" id="capture(obj:Exception|String,**options)-instance-method">
       <div class="signature">
         
         def <strong>capture</strong>(obj : <a href="../Exception.html">Exception</a> | String, **options)
@@ -711,17 +786,17 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
   <span class="t">Raven</span>.capture e
 <span class="k">end</span>
 
-<span class="t">Raven</span>.capture <span class="s">&quot;boo&#33;&quot;</span></code></pre></div>
+<span class="t">Raven</span>.capture <span class="s">&quot;boo!&quot;</span></code></pre></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L159" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L162" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="capture&#40;obj:Exception|String,**options,&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="capture(obj:Exception|String,**options,&amp;block)-instance-method">
       <div class="signature">
         
         def <strong>capture</strong>(obj : <a href="../Exception.html">Exception</a> | String, **options, &block)
@@ -732,19 +807,19 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
         <div class="doc"><p>Captures given <code><a href="../Exception.html">Exception</a></code> or <code>String</code> object and yields
 created <code><a href="../Raven/Event.html">Raven::Event</a></code> before sending to Sentry.</p>
 
-<pre><code><span class="t">Raven</span>.capture(<span class="s">&quot;boo&#33;&quot;</span>) <span class="k">do</span> <span class="o">|</span>event<span class="o">|</span>
+<pre><code><span class="t">Raven</span>.capture(<span class="s">&quot;boo!&quot;</span>) <span class="k">do</span> <span class="o">|</span>event<span class="o">|</span>
   event.extra.merge! foo: <span class="s">&quot;bar&quot;</span>
 <span class="k">end</span></code></pre></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L126" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L127" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="capture&#40;klass:String,message:String,backtrace&#61;nil,**options,&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="capture(klass:String,message:String,backtrace=nil,**options,&amp;block)-instance-method">
       <div class="signature">
         
         def <strong>capture</strong>(klass : String, message : String, backtrace = <span class="n">nil</span>, **options, &block)
@@ -755,7 +830,7 @@ created <code><a href="../Raven/Event.html">Raven::Event</a></code> before sendi
         <div class="doc"><p>Captures an exception with given <em>klass</em>, <em>message</em>
 and optional <em>backtrace</em>.</p>
 
-<pre><code><span class="t">Raven</span>.capture <span class="s">&quot;FooBarError&quot;</span>, <span class="s">&quot;Foo got bar&#33;&quot;</span></code></pre>
+<pre><code><span class="t">Raven</span>.capture <span class="s">&quot;FooBarError&quot;</span>, <span class="s">&quot;Foo got bar!&quot;</span></code></pre>
 
 <p><span class="flag purple">NOTE</span>  Useful in scenarios where you need to reconstruct the error
 (usually along with a backtrace from external source), while
@@ -764,7 +839,7 @@ having no access to the actual Exception object.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L173" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L176" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -783,12 +858,12 @@ Sentry server.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="client&#61;&#40;client:Client&#41;-instance-method">
+    <div class="entry-detail" id="client=(client:Client)-instance-method">
       <div class="signature">
         
         def <strong>client=</strong>(client : <a href="../Raven/Client.html">Client</a>)
@@ -815,12 +890,12 @@ Sentry server.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="configuration&#61;&#40;configuration:Configuration&#41;-instance-method">
+    <div class="entry-detail" id="configuration=(configuration:Configuration)-instance-method">
       <div class="signature">
         
         def <strong>configuration=</strong>(configuration : <a href="../Raven/Configuration.html">Configuration</a>)
@@ -834,7 +909,7 @@ Sentry server.</p></div>
       </div>
     </div>
   
-    <div class="entry-detail" id="configure&#40;&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="configure(&amp;block)-instance-method">
       <div class="signature">
         
         def <strong>configure</strong>(&block)
@@ -851,7 +926,7 @@ Sentry server.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L72" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L72" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -873,7 +948,7 @@ Sentry server.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L67" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L67" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -889,12 +964,12 @@ Sentry server.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L42" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L42" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="extra_context&#40;hash&#61;nil,**options&#41;-instance-method">
+    <div class="entry-detail" id="extra_context(hash=nil,**options)-instance-method">
       <div class="signature">
         
         def <strong>extra_context</strong>(hash = <span class="n">nil</span>, **options)
@@ -912,28 +987,28 @@ and is completely arbitrary.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L266" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L267" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="last_event_id:String?-instance-method">
+    <div class="entry-detail" id="last_event_id-instance-method">
       <div class="signature">
         
-        def <strong>last_event_id</strong> : String?
+        def <strong>last_event_id</strong>
 
-        <a class="method-permalink" href="#last_event_id%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#last_event_id-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L114" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L113" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="logger&#40;*args,**options,&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="logger(*args,**options,&amp;block)-instance-method">
       <div class="signature">
         
         def <strong>logger</strong>(*args, **options, &block)
@@ -944,12 +1019,12 @@ and is completely arbitrary.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="logger&#40;*args,**options&#41;-instance-method">
+    <div class="entry-detail" id="logger(*args,**options)-instance-method">
       <div class="signature">
         
         def <strong>logger</strong>(*args, **options)
@@ -960,7 +1035,7 @@ and is completely arbitrary.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -978,12 +1053,12 @@ and is completely arbitrary.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L51" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L51" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="send_event&#40;event&#41;-instance-method">
+    <div class="entry-detail" id="send_event(event)-instance-method">
       <div class="signature">
         
         def <strong>send_event</strong>(event)
@@ -999,12 +1074,12 @@ and is completely arbitrary.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L106" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L106" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="send_feedback&#40;event_id:String,data:Hash&#41;-instance-method">
+    <div class="entry-detail" id="send_feedback(event_id:String,data:Hash)-instance-method">
       <div class="signature">
         
         def <strong>send_feedback</strong>(event_id : String, data : Hash)
@@ -1029,12 +1104,12 @@ and is completely arbitrary.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L93" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L93" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="tags_context&#40;hash&#61;nil,**options&#41;-instance-method">
+    <div class="entry-detail" id="tags_context(hash=nil,**options)-instance-method">
       <div class="signature">
         
         def <strong>tags_context</strong>(hash = <span class="n">nil</span>, **options)
@@ -1052,12 +1127,12 @@ application version, environment, role, and server names.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L254" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L255" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="user_context&#40;hash&#61;nil,**options&#41;-instance-method">
+    <div class="entry-detail" id="user_context(hash=nil,**options)-instance-method">
       <div class="signature">
         
         def <strong>user_context</strong>(hash = <span class="n">nil</span>, **options)
@@ -1070,12 +1145,12 @@ application version, environment, role, and server names.</p>
 <p>It is recommending that you send at least the <code>:id</code> and <code>:email</code>
 values. All other values are arbitrary.</p>
 
-<pre><code><span class="t">Raven</span>.user_context(id: <span class="n">1</span>, email: <span class="s">&quot;foo&#64;example.com&quot;</span>)</code></pre></div>
+<pre><code><span class="t">Raven</span>.user_context(id: <span class="n">1</span>, email: <span class="s">&quot;foo@example.com&quot;</span>)</code></pre></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/instance.cr#L242" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/instance.cr#L243" target="_blank">View source</a>]
         
       </div>
     </div>

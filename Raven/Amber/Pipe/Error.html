@@ -14,7 +14,7 @@
 </script>
 
   <meta id="repository-name" content="github.com/Sija/raven.cr">
-  <title>Raven::Transport::HTTP::Error - github.com/Sija/raven.cr</title>
+  <title>Raven::Amber::Pipe::Error - github.com/Sija/raven.cr</title>
 </head>
 <body>
 
@@ -51,17 +51,17 @@
       
         <ul>
   
-  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Amber" data-name="raven::amber">
+  <li class="parent open current" data-id="github.com/Sija/raven.cr/Raven/Amber" data-name="raven::amber">
       <a href="../../../Raven/Amber.html">Amber</a>
       
         <ul>
   
-  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Amber/Pipe" data-name="raven::amber::pipe">
+  <li class="parent open current" data-id="github.com/Sija/raven.cr/Raven/Amber/Pipe" data-name="raven::amber::pipe">
       <a href="../../../Raven/Amber/Pipe.html">Pipe</a>
       
         <ul>
   
-  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Amber/Pipe/Error" data-name="raven::amber::pipe::error">
+  <li class=" current" data-id="github.com/Sija/raven.cr/Raven/Amber/Pipe/Error" data-name="raven::amber::pipe::error">
       <a href="../../../Raven/Amber/Pipe/Error.html">Error</a>
       
     </li>
@@ -376,7 +376,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="github.com/Sija/raven.cr/Raven/Transport" data-name="raven::transport">
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Transport" data-name="raven::transport">
       <a href="../../../Raven/Transport.html">Transport</a>
       
         <ul>
@@ -386,12 +386,12 @@
       
     </li>
   
-  <li class="parent open current" data-id="github.com/Sija/raven.cr/Raven/Transport/HTTP" data-name="raven::transport::http">
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Transport/HTTP" data-name="raven::transport::http">
       <a href="../../../Raven/Transport/HTTP.html">HTTP</a>
       
         <ul>
   
-  <li class=" current" data-id="github.com/Sija/raven.cr/Raven/Transport/HTTP/Error" data-name="raven::transport::http::error">
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Transport/HTTP/Error" data-name="raven::transport::http::error">
       <a href="../../../Raven/Transport/HTTP/Error.html">Error</a>
       
     </li>
@@ -425,19 +425,42 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Raven::Transport::HTTP::Error
+  <span class="kind">class</span> Raven::Amber::Pipe::Error
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Raven/Transport/HTTP/Error.html">Raven::Transport::HTTP::Error</a></li><li class="superclass"><a href="../../../Raven/Error.html">Raven::Error</a></li><li class="superclass"><a href="../../../Exception.html">Exception</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../../Raven/Amber/Pipe/Error.html">Raven::Amber::Pipe::Error</a></li><li class="superclass">Amber::Pipe::Base</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+  <h2>Overview</h2>
+
+  <p>Error pipe capturing all unhandled <code><a href="../../../Exception.html">Exception</a></code>s.
+After capturing exception is re-raised.</p>
+
+<pre><code><span class="t">Amber</span><span class="t">::</span><span class="t">Server</span>.configure <span class="k">do</span> <span class="o">|</span>app<span class="o">|</span>
+  pipeline <span class="n">:web</span> <span class="k">do</span>
+    <span class="c"># ...</span>
+    plug <span class="t">Amber</span><span class="t">::</span><span class="t">Pipe</span><span class="t">::</span><span class="t">Error</span>.<span class="k">new</span>
+    plug <span class="t">Raven</span><span class="t">::</span><span class="t">Amber</span><span class="t">::</span><span class="t">Pipe</span><span class="t">::</span><span class="t">Error</span>.<span class="k">new</span>
+    <span class="c"># ...</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+
+<p><span class="flag purple">NOTE</span>  Need to be plugged after <code>::Amber::Pipe::Error</code>.</p>
 
 
 
 
 
-
-
+  <h2>Included Modules</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type"><a href="../../../Raven/HTTPHandler.html">Raven::HTTPHandler</a></li>
+  
+  </ul>
 
 
 
@@ -451,8 +474,8 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/transports/http.cr#L5" target="_blank">
-        raven/transports/http.cr
+      <a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/amber/pipes/error.cr#L22" target="_blank">
+        raven/integrations/amber/pipes/error.cr
       </a>
     
     <br/>
@@ -460,13 +483,29 @@
 
 
 
+  
+    <h2>Constant Summary</h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="CULPRIT_PATTERN_KEYS">
+        <strong>CULPRIT_PATTERN_KEYS</strong> = <code>[<span class="n">:verb</span>, <span class="n">:resource</span>, <span class="n">:controller</span>, <span class="n">:action</span>, <span class="n">:valve</span>, <span class="n">:scope</span>, <span class="n">:trail</span>] <span class="k">of</span> <span class="t">::</span><span class="t">Symbol</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>See <code>::Amber::Route</code></p>
+      </dd>
+      
+    
+  </dl>
+
 
 
   <h2>Constructors</h2>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28response%29-class-method" class="signature"><strong>.new</strong>(response)</a>
+        <a href="#new%28culprit_pattern%3D%26quot%3B%25%7Bverb%7D%25%7Bcontroller%7D%23%25%7Baction%7D%28%25%7Bvalve%7D%29%26quot%3B%2Ccapture_data_for_methods%3D%5B%26quot%3BPOST%26quot%3B%2C%26quot%3BPUT%26quot%3B%2C%26quot%3BPATCH%26quot%3B%5Dof%3A%3AString%2Cdefault_logger%3D%26quot%3Bamber%26quot%3B%29-class-method" class="signature"><strong>.new</strong>(culprit_pattern = <span class="s">&quot;%{verb} %{controller}#%{action} (%{valve})&quot;</span>, capture_data_for_methods = [<span class="s">&quot;POST&quot;</span>, <span class="s">&quot;PUT&quot;</span>, <span class="s">&quot;PATCH&quot;</span>] <span class="k">of</span> <span class="t">::</span><span class="t">String</span>, default_logger = <span class="s">&quot;amber&quot;</span>)</a>
         
       </li>
     
@@ -480,12 +519,17 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#response%3A%3A%3AHTTP%3A%3AClient%3A%3AResponse-instance-method" class="signature"><strong>#response</strong> : ::HTTP::Client::Response</a>
+        <a href="#build_raven_culprit_context%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="signature"><strong>#build_raven_culprit_context</strong>(context : HTTP::Server::Context)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#response%3D%28response%3A%3A%3AHTTP%3A%3AClient%3A%3AResponse%29-instance-method" class="signature"><strong>#response=</strong>(response : ::HTTP::Client::Response)</a>
+        <a href="#build_raven_http_data%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="signature"><strong>#build_raven_http_data</strong>(context : HTTP::Server::Context)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#build_raven_http_url%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="signature"><strong>#build_raven_http_url</strong>(context : HTTP::Server::Context)</a>
         
       </li>
     
@@ -499,6 +543,65 @@
   
     
 
+  <h3>Instance methods inherited from module <code><a href="../../../Raven/HTTPHandler.html">Raven::HTTPHandler</a></code></h3>
+  
+  
+    <a href="../../../Raven/HTTPHandler.html#build_raven_culprit_context%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="tooltip">
+      <span>build_raven_culprit_context(context : HTTP::Server::Context)</span>
+    build_raven_culprit_context</a>, 
+    
+  
+    <a href="../../../Raven/HTTPHandler.html#build_raven_http_data%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="tooltip">
+      <span>build_raven_http_data(context : HTTP::Server::Context)</span>
+    build_raven_http_data</a>, 
+    
+  
+    <a href="../../../Raven/HTTPHandler.html#build_raven_http_url%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="tooltip">
+      <span>build_raven_http_url(context : HTTP::Server::Context)</span>
+    build_raven_http_url</a>, 
+    
+  
+    <a href="../../../Raven/HTTPHandler.html#call%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="tooltip">
+      <span>call(context : HTTP::Server::Context)</span>
+    call</a>, 
+    
+  
+    <a href="../../../Raven/HTTPHandler.html#capture_data_for_methods-instance-method" class="tooltip">
+      <span>capture_data_for_methods</span>
+    capture_data_for_methods</a>, 
+    
+  
+    <a href="../../../Raven/HTTPHandler.html#capture_data_for_methods%3D%28capture_data_for_methods%29-instance-method" class="tooltip">
+      <span>capture_data_for_methods=(capture_data_for_methods)</span>
+    capture_data_for_methods=</a>, 
+    
+  
+    <a href="../../../Raven/HTTPHandler.html#culprit_pattern%3AString%3F-instance-method" class="tooltip">
+      <span>culprit_pattern : String?</span>
+    culprit_pattern</a>, 
+    
+  
+    <a href="../../../Raven/HTTPHandler.html#culprit_pattern%3D%28culprit_pattern%3AString%3F%29-instance-method" class="tooltip">
+      <span>culprit_pattern=(culprit_pattern : String?)</span>
+    culprit_pattern=</a>, 
+    
+  
+    <a href="../../../Raven/HTTPHandler.html#default_logger%3AString%3F-instance-method" class="tooltip">
+      <span>default_logger : String?</span>
+    default_logger</a>, 
+    
+  
+    <a href="../../../Raven/HTTPHandler.html#default_logger%3D%28default_logger%3AString%3F%29-instance-method" class="tooltip">
+      <span>default_logger=(default_logger : String?)</span>
+    default_logger=</a>, 
+    
+  
+    <a href="../../../Raven/HTTPHandler.html#on_raven_event%28event%3ARaven%3A%3AEvent%2Ccontext%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="tooltip">
+      <span>on_raven_event(event : Raven::Event, context : HTTP::Server::Context)</span>
+    on_raven_event</a>
+    
+  
+
 
     
 
@@ -509,19 +612,15 @@
   
     
 
-  <h3>Instance methods inherited from class <code><a href="../../../Exception.html">Exception</a></code></h3>
-  
-  
-    <a href="../../../Exception.html#__raven_context-instance-method" class="tooltip">
-      <span>__raven_context</span>
-    __raven_context</a>, 
+
     
-  
-    <a href="../../../Exception.html#__raven_context%3D%28__raven_context%3AAnyHash%3A%3AJSON%29-instance-method" class="tooltip">
-      <span>__raven_context=(__raven_context : AnyHash::JSON)<br/>__raven_context=(hash : Hash | NamedTuple?)</span>
-    __raven_context=</a>
+
+
     
+
+
   
+    
 
 
     
@@ -556,18 +655,18 @@
 
   <h2>Constructor Detail</h2>
   
-    <div class="entry-detail" id="new(response)-class-method">
+    <div class="entry-detail" id="new(culprit_pattern=&amp;quot;%{verb}%{controller}#%{action}(%{valve})&amp;quot;,capture_data_for_methods=[&amp;quot;POST&amp;quot;,&amp;quot;PUT&amp;quot;,&amp;quot;PATCH&amp;quot;]of::String,default_logger=&amp;quot;amber&amp;quot;)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(response)
+        def self.<strong>new</strong>(culprit_pattern = <span class="s">&quot;%{verb} %{controller}#%{action} (%{valve})&quot;</span>, capture_data_for_methods = [<span class="s">&quot;POST&quot;</span>, <span class="s">&quot;PUT&quot;</span>, <span class="s">&quot;PATCH&quot;</span>] <span class="k">of</span> <span class="t">::</span><span class="t">String</span>, default_logger = <span class="s">&quot;amber&quot;</span>)
 
-        <a class="method-permalink" href="#new%28response%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28culprit_pattern%3D%26quot%3B%25%7Bverb%7D%25%7Bcontroller%7D%23%25%7Baction%7D%28%25%7Bvalve%7D%29%26quot%3B%2Ccapture_data_for_methods%3D%5B%26quot%3BPOST%26quot%3B%2C%26quot%3BPUT%26quot%3B%2C%26quot%3BPATCH%26quot%3B%5Dof%3A%3AString%2Cdefault_logger%3D%26quot%3Bamber%26quot%3B%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/transports/http.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/amber/pipes/error.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -579,34 +678,50 @@
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="response:::HTTP::Client::Response-instance-method">
+    <div class="entry-detail" id="build_raven_culprit_context(context:HTTP::Server::Context)-instance-method">
       <div class="signature">
         
-        def <strong>response</strong> : ::HTTP::Client::Response
+        def <strong>build_raven_culprit_context</strong>(context : HTTP::Server::Context)
 
-        <a class="method-permalink" href="#response%3A%3A%3AHTTP%3A%3AClient%3A%3AResponse-instance-method">#</a>
+        <a class="method-permalink" href="#build_raven_culprit_context%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/transports/http.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/amber/pipes/error.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="response=(response:::HTTP::Client::Response)-instance-method">
+    <div class="entry-detail" id="build_raven_http_data(context:HTTP::Server::Context)-instance-method">
       <div class="signature">
         
-        def <strong>response=</strong>(response : ::HTTP::Client::Response)
+        def <strong>build_raven_http_data</strong>(context : HTTP::Server::Context)
 
-        <a class="method-permalink" href="#response%3D%28response%3A%3A%3AHTTP%3A%3AClient%3A%3AResponse%29-instance-method">#</a>
+        <a class="method-permalink" href="#build_raven_http_data%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/transports/http.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/amber/pipes/error.cr#L44" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="build_raven_http_url(context:HTTP::Server::Context)-instance-method">
+      <div class="signature">
+        
+        def <strong>build_raven_http_url</strong>(context : HTTP::Server::Context)
+
+        <a class="method-permalink" href="#build_raven_http_url%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/amber/pipes/error.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>

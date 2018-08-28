@@ -1,24 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.26.0">
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="../js/doc.js"></script>
+<script type="text/javascript">
+  CrystalDoc.base_path = "../";
+</script>
+
   <meta id="repository-name" content="github.com/Sija/raven.cr">
-  <link href="../css/style.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript" src="../js/doc.js"></script>
   <title>Raven::Event - github.com/Sija/raven.cr</title>
 </head>
 <body>
 
-<div id="types-list">
-  <div id="search-box">
-    <input type="search" id="search-input" placeholder="Search...">
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false">
+    </div>
+
+    <div class="repository-links">
+      <a href="../index.html">README</a>
+    </div>
   </div>
 
-  <ul>
-    <li><a href="../index.html">README</a></li>
-  </ul>
+  <div class="search-results" class="hidden">
+    <ul class="search-list"></ul>
+  </div>
 
-  <ul>
+  <div class="types-list">
+    <ul>
   
   <li class=" " data-id="github.com/Sija/raven.cr/Exception" data-name="exception">
       <a href="../Exception.html">Exception</a>
@@ -34,6 +50,36 @@
       <a href="../Raven.html">Raven</a>
       
         <ul>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Amber" data-name="raven::amber">
+      <a href="../Raven/Amber.html">Amber</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Amber/Pipe" data-name="raven::amber::pipe">
+      <a href="../Raven/Amber/Pipe.html">Pipe</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Amber/Pipe/Error" data-name="raven::amber::pipe::error">
+      <a href="../Raven/Amber/Pipe/Error.html">Error</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Amber/Pipe/UserFeedback" data-name="raven::amber::pipe::userfeedback">
+      <a href="../Raven/Amber/Pipe/UserFeedback.html">UserFeedback</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
   
   <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Backtrace" data-name="raven::backtrace">
       <a href="../Raven/Backtrace.html">Backtrace</a>
@@ -54,6 +100,11 @@
       <a href="../Raven/Breadcrumb.html">Breadcrumb</a>
       
         <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Breadcrumb/Logger" data-name="raven::breadcrumb::logger">
+      <a href="../Raven/Breadcrumb/Logger.html">Logger</a>
+      
+    </li>
   
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Breadcrumb/Severity" data-name="raven::breadcrumb::severity">
       <a href="../Raven/Breadcrumb/Severity.html">Severity</a>
@@ -135,7 +186,7 @@
       
     </li>
   
-  <li class="parent current" data-id="github.com/Sija/raven.cr/Raven/Event" data-name="raven::event">
+  <li class="parent open current" data-id="github.com/Sija/raven.cr/Raven/Event" data-name="raven::event">
       <a href="../Raven/Event.html">Event</a>
       
         <ul>
@@ -152,6 +203,11 @@
   
 </ul>
 
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/HTTPHandler" data-name="raven::httphandler">
+      <a href="../Raven/HTTPHandler.html">HTTPHandler</a>
       
     </li>
   
@@ -275,11 +331,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/PostData" data-name="raven::processor::postdata">
-      <a href="../Raven/Processor/PostData.html">PostData</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/RemoveCircularReferences" data-name="raven::processor::removecircularreferences">
       <a href="../Raven/Processor/RemoveCircularReferences.html">RemoveCircularReferences</a>
       
@@ -287,6 +338,11 @@
   
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/RemoveStacktrace" data-name="raven::processor::removestacktrace">
       <a href="../Raven/Processor/RemoveStacktrace.html">RemoveStacktrace</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/RequestMethodData" data-name="raven::processor::requestmethoddata">
+      <a href="../Raven/Processor/RequestMethodData.html">RequestMethodData</a>
       
     </li>
   
@@ -350,6 +406,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/UserFeedbackHandler" data-name="raven::userfeedbackhandler">
+      <a href="../Raven/UserFeedbackHandler.html">UserFeedbackHandler</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -357,9 +418,11 @@
   
 </ul>
 
+  </div>
 </div>
 
-<div id="main-content">
+
+<div class="main-content">
 <h1 class="type-name">
 
   <span class="kind">class</span> Raven::Event
@@ -395,7 +458,9 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L4" target="_blank">raven/event.cr</a>
+      <a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L4" target="_blank">
+        raven/event.cr
+      </a>
     
     <br/>
   
@@ -406,6 +471,16 @@
     <h2>Constant Summary</h2>
   
   <dl>
+    
+      <dt class="entry-const" id="MAX_MESSAGE_SIZE_IN_BYTES">
+        <strong>MAX_MESSAGE_SIZE_IN_BYTES</strong> = <code><span class="n">1024</span> <span class="o">*</span> <span class="n">8</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>See Sentry server default limits at
+https://github.com/getsentry/sentry/blob/master/src/sentry/conf/server.py</p>
+      </dd>
+      
     
       <dt class="entry-const" id="PLATFORM">
         <strong>PLATFORM</strong> = <code><span class="s">&quot;crystal&quot;</span></code>
@@ -432,6 +507,18 @@ various components in the interface.</p>
 
 
 
+  <h2>Constructors</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        
+      </li>
+    
+  </ul>
+
+
+
   <h2>Class Method Summary</h2>
   <ul class="list-summary">
     
@@ -442,11 +529,6 @@ various components in the interface.</p>
     
       <li class="entry-summary">
         <a href="#from%28message%3AString%2C%2A%2Aoptions%29-class-method" class="signature"><strong>.from</strong>(message : String, **options)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
         
       </li>
     
@@ -775,6 +857,9 @@ various components in the interface.</p>
     
 
 
+    
+
+
   
     
 
@@ -782,7 +867,13 @@ various components in the interface.</p>
     
 
 
+    
+
+
   
+    
+
+
     
 
 
@@ -793,39 +884,7 @@ various components in the interface.</p>
 </div>
 
 
-  <h2>Class Method Detail</h2>
-  
-    <div class="entry-detail" id="from&#40;exc:Exception,**options&#41;-class-method">
-      <div class="signature">
-        
-        def self.<strong>from</strong>(exc : <a href="../Exception.html">Exception</a>, **options)
-
-        <a class="method-permalink" href="#from%28exc%3AException%2C%2A%2Aoptions%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L82" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="from&#40;message:String,**options&#41;-class-method">
-      <div class="signature">
-        
-        def self.<strong>from</strong>(message : String, **options)
-
-        <a class="method-permalink" href="#from%28message%3AString%2C%2A%2Aoptions%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L97" target="_blank">View source</a>]
-        
-      </div>
-    </div>
+  <h2>Constructor Detail</h2>
   
     <div class="entry-detail" id="new-class-method">
       <div class="signature">
@@ -838,7 +897,44 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L150" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+  <h2>Class Method Detail</h2>
+  
+    <div class="entry-detail" id="from(exc:Exception,**options)-class-method">
+      <div class="signature">
+        
+        def self.<strong>from</strong>(exc : <a href="../Exception.html">Exception</a>, **options)
+
+        <a class="method-permalink" href="#from%28exc%3AException%2C%2A%2Aoptions%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L86" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from(message:String,**options)-class-method">
+      <div class="signature">
+        
+        def self.<strong>from</strong>(message : String, **options)
+
+        <a class="method-permalink" href="#from%28message%3AString%2C%2A%2Aoptions%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L105" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -848,7 +944,7 @@ various components in the interface.</p>
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="backtrace&#61;&#40;backtrace&#41;-instance-method">
+    <div class="entry-detail" id="backtrace=(backtrace)-instance-method">
       <div class="signature">
         
         def <strong>backtrace=</strong>(backtrace)
@@ -859,7 +955,7 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L211" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L220" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -875,12 +971,12 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L78" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L82" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="breadcrumbs&#61;&#40;breadcrumbs:BreadcrumbBuffer&#41;-instance-method">
+    <div class="entry-detail" id="breadcrumbs=(breadcrumbs:BreadcrumbBuffer)-instance-method">
       <div class="signature">
         
         def <strong>breadcrumbs=</strong>(breadcrumbs : <a href="../Raven/BreadcrumbBuffer.html">BreadcrumbBuffer</a>)
@@ -891,7 +987,7 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L78" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L82" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -907,12 +1003,12 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L77" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L81" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="configuration&#61;&#40;configuration:Configuration&#41;-instance-method">
+    <div class="entry-detail" id="configuration=(configuration:Configuration)-instance-method">
       <div class="signature">
         
         def <strong>configuration=</strong>(configuration : <a href="../Raven/Configuration.html">Configuration</a>)
@@ -923,7 +1019,7 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L77" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L81" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -939,12 +1035,12 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L76" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L80" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="context&#61;&#40;context:Context&#41;-instance-method">
+    <div class="entry-detail" id="context=(context:Context)-instance-method">
       <div class="signature">
         
         def <strong>context=</strong>(context : <a href="../Raven/Context.html">Context</a>)
@@ -955,7 +1051,7 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L76" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L80" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -974,7 +1070,7 @@ various components in the interface.</p>
       </div>
     </div>
   
-    <div class="entry-detail" id="contexts&#61;&#40;hash:Hash|NamedTuple?&#41;-instance-method">
+    <div class="entry-detail" id="contexts=(hash:Hash|NamedTuple?)-instance-method">
       <div class="signature">
         
         def <strong>contexts=</strong>(hash : Hash | NamedTuple?)
@@ -985,12 +1081,12 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L80" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L84" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="contexts&#61;&#40;contexts:AnyHash::JSON&#41;-instance-method">
+    <div class="entry-detail" id="contexts=(contexts:AnyHash::JSON)-instance-method">
       <div class="signature">
         
         def <strong>contexts=</strong>(contexts : AnyHash::JSON)
@@ -1017,12 +1113,12 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L48" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L52" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="culprit&#61;&#40;culprit:String?&#41;-instance-method">
+    <div class="entry-detail" id="culprit=(culprit:String?)-instance-method">
       <div class="signature">
         
         def <strong>culprit=</strong>(culprit : String?)
@@ -1035,7 +1131,7 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L48" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L52" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1053,12 +1149,12 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L71" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L75" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="environment&#61;&#40;environment:String?&#41;-instance-method">
+    <div class="entry-detail" id="environment=(environment:String?)-instance-method">
       <div class="signature">
         
         def <strong>environment=</strong>(environment : String?)
@@ -1071,7 +1167,7 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L71" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L75" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1090,7 +1186,7 @@ various components in the interface.</p>
       </div>
     </div>
   
-    <div class="entry-detail" id="extra&#61;&#40;extra:AnyHash::JSON&#41;-instance-method">
+    <div class="entry-detail" id="extra=(extra:AnyHash::JSON)-instance-method">
       <div class="signature">
         
         def <strong>extra=</strong>(extra : AnyHash::JSON)
@@ -1104,7 +1200,7 @@ various components in the interface.</p>
       </div>
     </div>
   
-    <div class="entry-detail" id="extra&#61;&#40;hash:Hash|NamedTuple?&#41;-instance-method">
+    <div class="entry-detail" id="extra=(hash:Hash|NamedTuple?)-instance-method">
       <div class="signature">
         
         def <strong>extra=</strong>(hash : Hash | NamedTuple?)
@@ -1115,7 +1211,7 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L80" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L84" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1136,12 +1232,12 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L68" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L72" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="fingerprint&#61;&#40;fingerprint:Array&#40;String&#41;&#41;-instance-method">
+    <div class="entry-detail" id="fingerprint=(fingerprint:Array(String))-instance-method">
       <div class="signature">
         
         def <strong>fingerprint=</strong>(fingerprint : Array(String))
@@ -1170,12 +1266,12 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="id&#61;&#40;id:String&#41;-instance-method">
+    <div class="entry-detail" id="id=(id:String)-instance-method">
       <div class="signature">
         
         def <strong>id=</strong>(id : String)
@@ -1190,12 +1286,12 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="interface&#40;name:Symbol,**options:Object&#41;-instance-method">
+    <div class="entry-detail" id="interface(name:Symbol,**options:Object)-instance-method">
       <div class="signature">
         
         def <strong>interface</strong>(name : Symbol, **options : Object)
@@ -1206,12 +1302,12 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L175" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L184" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="interface&#40;name:Symbol,options:NamedTuple&#41;-instance-method">
+    <div class="entry-detail" id="interface(name:Symbol,options:NamedTuple)-instance-method">
       <div class="signature">
         
         def <strong>interface</strong>(name : Symbol, options : NamedTuple)
@@ -1222,12 +1318,12 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L180" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L189" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="interface&#40;name:Symbol&#41;-instance-method">
+    <div class="entry-detail" id="interface(name:Symbol)-instance-method">
       <div class="signature">
         
         def <strong>interface</strong>(name : Symbol)
@@ -1238,12 +1334,12 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L170" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L179" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="interface&#40;name:Symbol,options:NamedTuple,&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="interface(name:Symbol,options:NamedTuple,&amp;block)-instance-method">
       <div class="signature">
         
         def <strong>interface</strong>(name : Symbol, options : NamedTuple, &block)
@@ -1254,12 +1350,12 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L191" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L200" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="interface&#40;name:Symbol,**options,&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="interface(name:Symbol,**options,&amp;block)-instance-method">
       <div class="signature">
         
         def <strong>interface</strong>(name : Symbol, **options, &block)
@@ -1270,7 +1366,7 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L184" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L193" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1288,12 +1384,12 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="level&#61;&#40;severity:Symbol&#41;-instance-method">
+    <div class="entry-detail" id="level=(severity:Symbol)-instance-method">
       <div class="signature">
         
         def <strong>level=</strong>(severity : Symbol)
@@ -1306,12 +1402,12 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L40" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L44" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="level&#61;&#40;level:Severity?&#41;-instance-method">
+    <div class="entry-detail" id="level=(level:Severity?)-instance-method">
       <div class="signature">
         
         def <strong>level=</strong>(level : <a href="../Raven/Event/Severity.html">Severity</a>?)
@@ -1324,7 +1420,7 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1340,7 +1436,7 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L217" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L226" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1358,12 +1454,12 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L45" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="logger&#61;&#40;logger:String?&#41;-instance-method">
+    <div class="entry-detail" id="logger=(logger:String?)-instance-method">
       <div class="signature">
         
         def <strong>logger=</strong>(logger : String?)
@@ -1376,7 +1472,7 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L45" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1392,12 +1488,12 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L195" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L204" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="message&#61;&#40;message_with_params&#41;-instance-method">
+    <div class="entry-detail" id="message=(message_with_params)-instance-method">
       <div class="signature">
         
         def <strong>message=</strong>(message_with_params)
@@ -1408,12 +1504,12 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L203" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L212" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="message&#61;&#40;message:String&#41;-instance-method">
+    <div class="entry-detail" id="message=(message:String)-instance-method">
       <div class="signature">
         
         def <strong>message=</strong>(message : String)
@@ -1424,12 +1520,12 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L199" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L208" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="modules:Hash&#40;String,String&#41;?-instance-method">
+    <div class="entry-detail" id="modules:Hash(String,String)?-instance-method">
       <div class="signature">
         
         def <strong>modules</strong> : Hash(String, String)?
@@ -1442,12 +1538,12 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L74" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L78" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="modules&#61;&#40;modules:Hash&#40;String,String&#41;?&#41;-instance-method">
+    <div class="entry-detail" id="modules=(modules:Hash(String,String)?)-instance-method">
       <div class="signature">
         
         def <strong>modules=</strong>(modules : Hash(String, String)?)
@@ -1460,7 +1556,7 @@ thus allowing you to extend it, or completely replace it.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L74" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L78" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1481,12 +1577,12 @@ the git SHA for the given project.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L62" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L66" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="release&#61;&#40;release:String?&#41;-instance-method">
+    <div class="entry-detail" id="release=(release:String?)-instance-method">
       <div class="signature">
         
         def <strong>release=</strong>(release : String?)
@@ -1502,7 +1598,7 @@ the git SHA for the given project.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L62" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L66" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1520,12 +1616,12 @@ the git SHA for the given project.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L56" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L60" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="server_name&#61;&#40;server_name:String?&#41;-instance-method">
+    <div class="entry-detail" id="server_name=(server_name:String?)-instance-method">
       <div class="signature">
         
         def <strong>server_name=</strong>(server_name : String?)
@@ -1538,7 +1634,7 @@ the git SHA for the given project.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L56" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L60" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1557,7 +1653,7 @@ the git SHA for the given project.</p></div>
       </div>
     </div>
   
-    <div class="entry-detail" id="tags&#61;&#40;hash:Hash|NamedTuple?&#41;-instance-method">
+    <div class="entry-detail" id="tags=(hash:Hash|NamedTuple?)-instance-method">
       <div class="signature">
         
         def <strong>tags=</strong>(hash : Hash | NamedTuple?)
@@ -1568,12 +1664,12 @@ the git SHA for the given project.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L80" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L84" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="tags&#61;&#40;tags:AnyHash::JSON&#41;-instance-method">
+    <div class="entry-detail" id="tags=(tags:AnyHash::JSON)-instance-method">
       <div class="signature">
         
         def <strong>tags=</strong>(tags : AnyHash::JSON)
@@ -1600,12 +1696,12 @@ the git SHA for the given project.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="timestamp&#61;&#40;timestamp:Time&#41;-instance-method">
+    <div class="entry-detail" id="timestamp=(timestamp:Time)-instance-method">
       <div class="signature">
         
         def <strong>timestamp=</strong>(timestamp : Time)
@@ -1618,7 +1714,7 @@ the git SHA for the given project.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1634,12 +1730,12 @@ the git SHA for the given project.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L226" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L235" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="to_json&#40;json:JSON::Builder&#41;-instance-method">
+    <div class="entry-detail" id="to_json(json:JSON::Builder)-instance-method">
       <div class="signature">
         
         def <strong>to_json</strong>(json : JSON::Builder)
@@ -1650,7 +1746,7 @@ the git SHA for the given project.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L255" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L264" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1669,7 +1765,7 @@ the git SHA for the given project.</p></div>
       </div>
     </div>
   
-    <div class="entry-detail" id="user&#61;&#40;hash:Hash|NamedTuple?&#41;-instance-method">
+    <div class="entry-detail" id="user=(hash:Hash|NamedTuple?)-instance-method">
       <div class="signature">
         
         def <strong>user=</strong>(hash : Hash | NamedTuple?)
@@ -1680,12 +1776,12 @@ the git SHA for the given project.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/event.cr#L80" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/event.cr#L84" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="user&#61;&#40;user:AnyHash::JSON&#41;-instance-method">
+    <div class="entry-detail" id="user=(user:AnyHash::JSON)-instance-method">
       <div class="signature">
         
         def <strong>user=</strong>(user : AnyHash::JSON)

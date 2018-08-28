@@ -14,7 +14,7 @@
 </script>
 
   <meta id="repository-name" content="github.com/Sija/raven.cr">
-  <title>Raven::BreadcrumbBuffer - github.com/Sija/raven.cr</title>
+  <title>Raven::HTTPHandler - github.com/Sija/raven.cr</title>
 </head>
 <body>
 
@@ -121,7 +121,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/Sija/raven.cr/Raven/BreadcrumbBuffer" data-name="raven::breadcrumbbuffer">
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/BreadcrumbBuffer" data-name="raven::breadcrumbbuffer">
       <a href="../Raven/BreadcrumbBuffer.html">BreadcrumbBuffer</a>
       
     </li>
@@ -206,7 +206,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/Sija/raven.cr/Raven/HTTPHandler" data-name="raven::httphandler">
+  <li class=" current" data-id="github.com/Sija/raven.cr/Raven/HTTPHandler" data-name="raven::httphandler">
       <a href="../Raven/HTTPHandler.html">HTTPHandler</a>
       
     </li>
@@ -425,12 +425,11 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Raven::BreadcrumbBuffer
+  <span class="kind">module</span> Raven::HTTPHandler
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Raven/BreadcrumbBuffer.html">Raven::BreadcrumbBuffer</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -439,18 +438,19 @@
 
 
 
-  <h2>Included Modules</h2>
+
+
+
+
+
+  <h2>Direct including types</h2>
   <ul class="other-types-list">
   
-    <li class="other-type">Enumerable(<a href="../Raven/Breadcrumb.html">Raven::Breadcrumb</a>)</li>
+    <li class="other-type"><a href="../Raven/Amber/Pipe/Error.html">Raven::Amber::Pipe::Error</a></li>
+  
+    <li class="other-type"><a href="../Raven/Kemal/ExceptionHandler.html">Raven::Kemal::ExceptionHandler</a></li>
   
   </ul>
-
-
-
-
-
-
 
 
 
@@ -458,8 +458,8 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L2" target="_blank">
-        raven/breadcrumb_buffer.cr
+      <a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/http/handler.cr#L2" target="_blank">
+        raven/integrations/http/handler.cr
       </a>
     
     <br/>
@@ -467,34 +467,21 @@
 
 
 
+  
+    <h2>Constant Summary</h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="CULPRIT_PATTERN_KEYS">
+        <strong>CULPRIT_PATTERN_KEYS</strong> = <code><span class="o">[]</span> <span class="k">of</span> <span class="t">Symbol</span> <span class="o">|</span> <span class="t">String</span></code>
+      </dt>
+      
+    
+  </dl>
 
 
-  <h2>Constructors</h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#new%28size%3D100%29-class-method" class="signature"><strong>.new</strong>(size = <span class="n">100</span>)</a>
-        
-      </li>
-    
-  </ul>
 
 
-
-  <h2>Class Method Summary</h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#clear%21-class-method" class="signature"><strong>.clear!</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#current-class-method" class="signature"><strong>.current</strong></a>
-        
-      </li>
-    
-  </ul>
 
 
 
@@ -502,42 +489,61 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#buffer%3AArray%28Breadcrumb%3F%29-instance-method" class="signature"><strong>#buffer</strong> : Array(Breadcrumb?)</a>
+        <a href="#build_raven_culprit_context%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="signature"><strong>#build_raven_culprit_context</strong>(context : HTTP::Server::Context)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#each%28%26block%29-instance-method" class="signature"><strong>#each</strong>(&block)</a>
+        <a href="#build_raven_http_data%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="signature"><strong>#build_raven_http_data</strong>(context : HTTP::Server::Context)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#empty%3F-instance-method" class="signature"><strong>#empty?</strong></a>
+        <a href="#build_raven_http_url%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="signature"><strong>#build_raven_http_url</strong>(context : HTTP::Server::Context)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#members%3AArray%28Breadcrumb%29-instance-method" class="signature"><strong>#members</strong> : Array(Breadcrumb)</a>
+        <a href="#call%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="signature"><strong>#call</strong>(context : HTTP::Server::Context)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#peek-instance-method" class="signature"><strong>#peek</strong></a>
+        <a href="#capture_data_for_methods-instance-method" class="signature"><strong>#capture_data_for_methods</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#record%28crumb%3ABreadcrumb%29%3AVoid-instance-method" class="signature"><strong>#record</strong>(crumb : Breadcrumb) : Void</a>
+        <a href="#capture_data_for_methods%3D%28capture_data_for_methods%29-instance-method" class="signature"><strong>#capture_data_for_methods=</strong>(capture_data_for_methods)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#record%28crumb%3ABreadcrumb%3F%3Dnil%2C%26block%29%3AVoid-instance-method" class="signature"><strong>#record</strong>(crumb : Breadcrumb? = <span class="n">nil</span>, &block) : Void</a>
+        <a href="#culprit_pattern%3AString%3F-instance-method" class="signature"><strong>#culprit_pattern</strong> : String?</a>
+        
+          <div class="summary"><p>See <code><a href="../Raven/HTTPHandler.html#CULPRIT_PATTERN_KEYS">CULPRIT_PATTERN_KEYS</a></code></p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to_hash-instance-method" class="signature"><strong>#to_hash</strong></a>
+        <a href="#culprit_pattern%3D%28culprit_pattern%3AString%3F%29-instance-method" class="signature"><strong>#culprit_pattern=</strong>(culprit_pattern : String?)</a>
+        
+          <div class="summary"><p>See <code><a href="../Raven/HTTPHandler.html#CULPRIT_PATTERN_KEYS">CULPRIT_PATTERN_KEYS</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#default_logger%3AString%3F-instance-method" class="signature"><strong>#default_logger</strong> : String?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#default_logger%3D%28default_logger%3AString%3F%29-instance-method" class="signature"><strong>#default_logger=</strong>(default_logger : String?)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#on_raven_event%28event%3ARaven%3A%3AEvent%2Ccontext%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="signature"><strong>#on_raven_event</strong>(event : Raven::Event, context : HTTP::Server::Context)</a>
         
       </li>
     
@@ -549,223 +555,191 @@
 
 <div class="methods-inherited">
   
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
 </div>
 
 
-  <h2>Constructor Detail</h2>
-  
-    <div class="entry-detail" id="new(size=100)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(size = <span class="n">100</span>)
 
-        <a class="method-permalink" href="#new%28size%3D100%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L22" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-
-
-
-  <h2>Class Method Detail</h2>
-  
-    <div class="entry-detail" id="clear!-class-method">
-      <div class="signature">
-        
-        def self.<strong>clear!</strong>
-
-        <a class="method-permalink" href="#clear%21-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L14" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="current-class-method">
-      <div class="signature">
-        
-        def self.<strong>current</strong>
-
-        <a class="method-permalink" href="#current-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L8" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="buffer:Array(Breadcrumb?)-instance-method">
+    <div class="entry-detail" id="build_raven_culprit_context(context:HTTP::Server::Context)-instance-method">
       <div class="signature">
-        
-        def <strong>buffer</strong> : Array(<a href="../Raven/Breadcrumb.html">Breadcrumb</a>?)
+        abstract 
+        def <strong>build_raven_culprit_context</strong>(context : HTTP::Server::Context)
 
-        <a class="method-permalink" href="#buffer%3AArray%28Breadcrumb%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#build_raven_culprit_context%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/http/handler.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="each(&amp;block)-instance-method">
+    <div class="entry-detail" id="build_raven_http_data(context:HTTP::Server::Context)-instance-method">
       <div class="signature">
-        
-        def <strong>each</strong>(&block)
+        abstract 
+        def <strong>build_raven_http_data</strong>(context : HTTP::Server::Context)
 
-        <a class="method-permalink" href="#each%28%26block%29-instance-method">#</a>
+        <a class="method-permalink" href="#build_raven_http_data%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L45" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/http/handler.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="empty?-instance-method">
+    <div class="entry-detail" id="build_raven_http_url(context:HTTP::Server::Context)-instance-method">
       <div class="signature">
-        
-        def <strong>empty?</strong>
+        abstract 
+        def <strong>build_raven_http_url</strong>(context : HTTP::Server::Context)
 
-        <a class="method-permalink" href="#empty%3F-instance-method">#</a>
+        <a class="method-permalink" href="#build_raven_http_url%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L51" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/http/handler.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="members:Array(Breadcrumb)-instance-method">
+    <div class="entry-detail" id="call(context:HTTP::Server::Context)-instance-method">
       <div class="signature">
         
-        def <strong>members</strong> : Array(<a href="../Raven/Breadcrumb.html">Breadcrumb</a>)
+        def <strong>call</strong>(context : HTTP::Server::Context)
 
-        <a class="method-permalink" href="#members%3AArray%28Breadcrumb%29-instance-method">#</a>
+        <a class="method-permalink" href="#call%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/http/handler.cr#L43" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="peek-instance-method">
+    <div class="entry-detail" id="capture_data_for_methods-instance-method">
       <div class="signature">
         
-        def <strong>peek</strong>
+        def <strong>capture_data_for_methods</strong>
 
-        <a class="method-permalink" href="#peek-instance-method">#</a>
+        <a class="method-permalink" href="#capture_data_for_methods-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/http/handler.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="record(crumb:Breadcrumb):Void-instance-method">
+    <div class="entry-detail" id="capture_data_for_methods=(capture_data_for_methods)-instance-method">
       <div class="signature">
         
-        def <strong>record</strong>(crumb : <a href="../Raven/Breadcrumb.html">Breadcrumb</a>) : Void
+        def <strong>capture_data_for_methods=</strong>(capture_data_for_methods)
 
-        <a class="method-permalink" href="#record%28crumb%3ABreadcrumb%29%3AVoid-instance-method">#</a>
+        <a class="method-permalink" href="#capture_data_for_methods%3D%28capture_data_for_methods%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/http/handler.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="record(crumb:Breadcrumb?=nil,&amp;block):Void-instance-method">
+    <div class="entry-detail" id="culprit_pattern:String?-instance-method">
       <div class="signature">
         
-        def <strong>record</strong>(crumb : <a href="../Raven/Breadcrumb.html">Breadcrumb</a>? = <span class="n">nil</span>, &block) : Void
+        def <strong>culprit_pattern</strong> : String?
 
-        <a class="method-permalink" href="#record%28crumb%3ABreadcrumb%3F%3Dnil%2C%26block%29%3AVoid-instance-method">#</a>
+        <a class="method-permalink" href="#culprit_pattern%3AString%3F-instance-method">#</a>
       </div>
+      
+        <div class="doc"><p>See <code><a href="../Raven/HTTPHandler.html#CULPRIT_PATTERN_KEYS">CULPRIT_PATTERN_KEYS</a></code></p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/http/handler.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="to_hash-instance-method">
+    <div class="entry-detail" id="culprit_pattern=(culprit_pattern:String?)-instance-method">
       <div class="signature">
         
-        def <strong>to_hash</strong>
+        def <strong>culprit_pattern=</strong>(culprit_pattern : String?)
 
-        <a class="method-permalink" href="#to_hash-instance-method">#</a>
+        <a class="method-permalink" href="#culprit_pattern%3D%28culprit_pattern%3AString%3F%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>See <code><a href="../Raven/HTTPHandler.html#CULPRIT_PATTERN_KEYS">CULPRIT_PATTERN_KEYS</a></code></p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/http/handler.cr#L6" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="default_logger:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>default_logger</strong> : String?
+
+        <a class="method-permalink" href="#default_logger%3AString%3F-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L55" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/http/handler.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="default_logger=(default_logger:String?)-instance-method">
+      <div class="signature">
+        
+        def <strong>default_logger=</strong>(default_logger : String?)
+
+        <a class="method-permalink" href="#default_logger%3D%28default_logger%3AString%3F%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/http/handler.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="on_raven_event(event:Raven::Event,context:HTTP::Server::Context)-instance-method">
+      <div class="signature">
+        
+        def <strong>on_raven_event</strong>(event : <a href="../Raven/Event.html">Raven::Event</a>, context : HTTP::Server::Context)
+
+        <a class="method-permalink" href="#on_raven_event%28event%3ARaven%3A%3AEvent%2Ccontext%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/http/handler.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>

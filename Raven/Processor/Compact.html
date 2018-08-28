@@ -1,24 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.26.0">
+
+
+<link href="../../css/style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="../../js/doc.js"></script>
+<script type="text/javascript">
+  CrystalDoc.base_path = "../../";
+</script>
+
   <meta id="repository-name" content="github.com/Sija/raven.cr">
-  <link href="../../css/style.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript" src="../../js/doc.js"></script>
   <title>Raven::Processor::Compact - github.com/Sija/raven.cr</title>
 </head>
 <body>
 
-<div id="types-list">
-  <div id="search-box">
-    <input type="search" id="search-input" placeholder="Search...">
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false">
+    </div>
+
+    <div class="repository-links">
+      <a href="../../index.html">README</a>
+    </div>
   </div>
 
-  <ul>
-    <li><a href="../../index.html">README</a></li>
-  </ul>
+  <div class="search-results" class="hidden">
+    <ul class="search-list"></ul>
+  </div>
 
-  <ul>
+  <div class="types-list">
+    <ul>
   
   <li class=" " data-id="github.com/Sija/raven.cr/Exception" data-name="exception">
       <a href="../../Exception.html">Exception</a>
@@ -34,6 +50,36 @@
       <a href="../../Raven.html">Raven</a>
       
         <ul>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Amber" data-name="raven::amber">
+      <a href="../../Raven/Amber.html">Amber</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Amber/Pipe" data-name="raven::amber::pipe">
+      <a href="../../Raven/Amber/Pipe.html">Pipe</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Amber/Pipe/Error" data-name="raven::amber::pipe::error">
+      <a href="../../Raven/Amber/Pipe/Error.html">Error</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Amber/Pipe/UserFeedback" data-name="raven::amber::pipe::userfeedback">
+      <a href="../../Raven/Amber/Pipe/UserFeedback.html">UserFeedback</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
   
   <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Backtrace" data-name="raven::backtrace">
       <a href="../../Raven/Backtrace.html">Backtrace</a>
@@ -54,6 +100,11 @@
       <a href="../../Raven/Breadcrumb.html">Breadcrumb</a>
       
         <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Breadcrumb/Logger" data-name="raven::breadcrumb::logger">
+      <a href="../../Raven/Breadcrumb/Logger.html">Logger</a>
+      
+    </li>
   
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Breadcrumb/Severity" data-name="raven::breadcrumb::severity">
       <a href="../../Raven/Breadcrumb/Severity.html">Severity</a>
@@ -152,6 +203,11 @@
   
 </ul>
 
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/HTTPHandler" data-name="raven::httphandler">
+      <a href="../../Raven/HTTPHandler.html">HTTPHandler</a>
       
     </li>
   
@@ -275,11 +331,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/PostData" data-name="raven::processor::postdata">
-      <a href="../../Raven/Processor/PostData.html">PostData</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/RemoveCircularReferences" data-name="raven::processor::removecircularreferences">
       <a href="../../Raven/Processor/RemoveCircularReferences.html">RemoveCircularReferences</a>
       
@@ -287,6 +338,11 @@
   
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/RemoveStacktrace" data-name="raven::processor::removestacktrace">
       <a href="../../Raven/Processor/RemoveStacktrace.html">RemoveStacktrace</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/RequestMethodData" data-name="raven::processor::requestmethoddata">
+      <a href="../../Raven/Processor/RequestMethodData.html">RequestMethodData</a>
       
     </li>
   
@@ -350,6 +406,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/UserFeedbackHandler" data-name="raven::userfeedbackhandler">
+      <a href="../../Raven/UserFeedbackHandler.html">UserFeedbackHandler</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -357,9 +418,11 @@
   
 </ul>
 
+  </div>
 </div>
 
-<div id="main-content">
+
+<div class="main-content">
 <h1 class="type-name">
 
   <span class="kind">class</span> Raven::Processor::Compact
@@ -388,10 +451,14 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/processors/compact.cr#L2" target="_blank">raven/processors/compact.cr</a>
+      <a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/processors/compact.cr#L2" target="_blank">
+        raven/processors/compact.cr
+      </a>
     
     <br/>
   
+
+
 
 
 
@@ -429,7 +496,7 @@
 
     
 
-  <h3>Class methods inherited from class <code><a href="../../Raven/Processor.html">Raven::Processor</a></code></h3>
+  <h3>Constructor methods inherited from class <code><a href="../../Raven/Processor.html">Raven::Processor</a></code></h3>
   
   
     <a href="../../Raven/Processor.html#new%28client%3AClient%29-class-method" class="tooltip">
@@ -439,6 +506,9 @@
   
 
 
+    
+
+
   
     
 
@@ -446,7 +516,13 @@
     
 
 
+    
+
+
   
+    
+
+
     
 
 
@@ -459,9 +535,11 @@
 
 
 
+
+
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="process&#40;data&#41;-instance-method">
+    <div class="entry-detail" id="process(data)-instance-method">
       <div class="signature">
         
         def <strong>process</strong>(data)
@@ -472,7 +550,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/raven/processors/compact.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/processors/compact.cr#L3" target="_blank">View source</a>]
         
       </div>
     </div>

@@ -14,7 +14,7 @@
 </script>
 
   <meta id="repository-name" content="github.com/Sija/raven.cr">
-  <title>Raven::Kemal::LogHandler - github.com/Sija/raven.cr</title>
+  <title>Raven::Breadcrumb::Logger - github.com/Sija/raven.cr</title>
 </head>
 <body>
 
@@ -96,12 +96,12 @@
       
     </li>
   
-  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Breadcrumb" data-name="raven::breadcrumb">
+  <li class="parent open current" data-id="github.com/Sija/raven.cr/Raven/Breadcrumb" data-name="raven::breadcrumb">
       <a href="../../Raven/Breadcrumb.html">Breadcrumb</a>
       
         <ul>
   
-  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Breadcrumb/Logger" data-name="raven::breadcrumb::logger">
+  <li class=" current" data-id="github.com/Sija/raven.cr/Raven/Breadcrumb/Logger" data-name="raven::breadcrumb::logger">
       <a href="../../Raven/Breadcrumb/Logger.html">Logger</a>
       
     </li>
@@ -266,7 +266,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="github.com/Sija/raven.cr/Raven/Kemal" data-name="raven::kemal">
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Kemal" data-name="raven::kemal">
       <a href="../../Raven/Kemal.html">Kemal</a>
       
         <ul>
@@ -276,7 +276,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/Sija/raven.cr/Raven/Kemal/LogHandler" data-name="raven::kemal::loghandler">
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Kemal/LogHandler" data-name="raven::kemal::loghandler">
       <a href="../../Raven/Kemal/LogHandler.html">LogHandler</a>
       
     </li>
@@ -425,28 +425,11 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Raven::Kemal::LogHandler
+  <span class="kind">module</span> Raven::Breadcrumb::Logger
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Raven/Kemal/LogHandler.html">Raven::Kemal::LogHandler</a></li><li class="superclass">Kemal::BaseLogHandler</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
-
-
-
-
-  <h2>Overview</h2>
-
-  <p>Kemal logger capturing all sent messages and requests as breadcrumbs.</p>
-
-<p>Optionally wraps another <code>::Kemal::BaseLogHandler</code> and forwards messages
-to it.</p>
-
-<pre><code><span class="t">Kemal</span>.config.logger <span class="o">=</span> <span class="t">Raven</span><span class="t">::</span><span class="t">Kemal</span><span class="t">::</span><span class="t">LogHandler</span>.<span class="k">new</span>(<span class="t">Kemal</span><span class="t">::</span><span class="t">LogHandler</span>.<span class="k">new</span>)
-<span class="c"># ...</span>
-<span class="t">Kemal</span>.config.add_handler(...)
-<span class="c"># ...</span>
-<span class="t">Kemal</span>.run</code></pre>
 
 
 
@@ -457,6 +440,15 @@ to it.</p>
 
 
 
+
+
+
+  <h2>Direct including types</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type"><a href="../../Logger.html">Logger</a></li>
+  
+  </ul>
 
 
 
@@ -464,8 +456,8 @@ to it.</p>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/kemal/log_handler.cr#L17" target="_blank">
-        raven/integrations/kemal/log_handler.cr
+      <a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumbs/logger.cr#L3" target="_blank">
+        raven/breadcrumbs/logger.cr
       </a>
     
     <br/>
@@ -475,59 +467,9 @@ to it.</p>
 
 
 
-  <h2>Constructors</h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#new%28wrapped%3Dnil%29-class-method" class="signature"><strong>.new</strong>(wrapped = <span class="n">nil</span>)</a>
-        
-      </li>
-    
-  </ul>
 
 
 
-
-
-  <h2>Instance Method Summary</h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#call%28context%29-instance-method" class="signature"><strong>#call</strong>(context)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#log_messages%3D%28log_messages%29-instance-method" class="signature"><strong>#log_messages=</strong>(log_messages)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#log_messages%3F%3ABool-instance-method" class="signature"><strong>#log_messages?</strong> : Bool</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#log_requests%3D%28log_requests%29-instance-method" class="signature"><strong>#log_requests=</strong>(log_requests)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#log_requests%3F%3ABool-instance-method" class="signature"><strong>#log_requests?</strong> : Bool</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#next%3D%28handler%3AHTTP%3A%3AHandler%7CHTTP%3A%3AHandler%3A%3AHandlerProc%7CNil%29-instance-method" class="signature"><strong>#next=</strong>(handler : HTTP::Handler | HTTP::Handler::HandlerProc | Nil)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#write%28message%29-instance-method" class="signature"><strong>#write</strong>(message)</a>
-        
-      </li>
-    
-  </ul>
 
 
 
@@ -535,186 +477,12 @@ to it.</p>
 
 <div class="methods-inherited">
   
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
 </div>
 
 
-  <h2>Constructor Detail</h2>
-  
-    <div class="entry-detail" id="new(wrapped=nil)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(wrapped = <span class="n">nil</span>)
-
-        <a class="method-permalink" href="#new%28wrapped%3Dnil%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/kemal/log_handler.cr#L23" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 
-
-
-  <h2>Instance Method Detail</h2>
-  
-    <div class="entry-detail" id="call(context)-instance-method">
-      <div class="signature">
-        
-        def <strong>call</strong>(context)
-
-        <a class="method-permalink" href="#call%28context%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/kemal/log_handler.cr#L35" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="log_messages=(log_messages)-instance-method">
-      <div class="signature">
-        
-        def <strong>log_messages=</strong>(log_messages)
-
-        <a class="method-permalink" href="#log_messages%3D%28log_messages%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/kemal/log_handler.cr#L18" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="log_messages?:Bool-instance-method">
-      <div class="signature">
-        
-        def <strong>log_messages?</strong> : Bool
-
-        <a class="method-permalink" href="#log_messages%3F%3ABool-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/kemal/log_handler.cr#L18" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="log_requests=(log_requests)-instance-method">
-      <div class="signature">
-        
-        def <strong>log_requests=</strong>(log_requests)
-
-        <a class="method-permalink" href="#log_requests%3D%28log_requests%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/kemal/log_handler.cr#L19" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="log_requests?:Bool-instance-method">
-      <div class="signature">
-        
-        def <strong>log_requests?</strong> : Bool
-
-        <a class="method-permalink" href="#log_requests%3F%3ABool-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/kemal/log_handler.cr#L19" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="next=(handler:HTTP::Handler|HTTP::Handler::HandlerProc|Nil)-instance-method">
-      <div class="signature">
-        
-        def <strong>next=</strong>(handler : HTTP::Handler | HTTP::Handler::HandlerProc | Nil)
-
-        <a class="method-permalink" href="#next%3D%28handler%3AHTTP%3A%3AHandler%7CHTTP%3A%3AHandler%3A%3AHandlerProc%7CNil%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/kemal/log_handler.cr#L26" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="write(message)-instance-method">
-      <div class="signature">
-        
-        def <strong>write</strong>(message)
-
-        <a class="method-permalink" href="#write%28message%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/integrations/kemal/log_handler.cr#L61" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 

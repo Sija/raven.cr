@@ -1,24 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.26.0">
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="../js/doc.js"></script>
+<script type="text/javascript">
+  CrystalDoc.base_path = "../";
+</script>
+
   <meta id="repository-name" content="github.com/Sija/raven.cr">
-  <link href="../css/style.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript" src="../js/doc.js"></script>
   <title>Raven::CrashHandler - github.com/Sija/raven.cr</title>
 </head>
 <body>
 
-<div id="types-list">
-  <div id="search-box">
-    <input type="search" id="search-input" placeholder="Search...">
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false">
+    </div>
+
+    <div class="repository-links">
+      <a href="../index.html">README</a>
+    </div>
   </div>
 
-  <ul>
-    <li><a href="../index.html">README</a></li>
-  </ul>
+  <div class="search-results" class="hidden">
+    <ul class="search-list"></ul>
+  </div>
 
-  <ul>
+  <div class="types-list">
+    <ul>
   
   <li class=" " data-id="github.com/Sija/raven.cr/Exception" data-name="exception">
       <a href="../Exception.html">Exception</a>
@@ -34,6 +50,36 @@
       <a href="../Raven.html">Raven</a>
       
         <ul>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Amber" data-name="raven::amber">
+      <a href="../Raven/Amber.html">Amber</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Amber/Pipe" data-name="raven::amber::pipe">
+      <a href="../Raven/Amber/Pipe.html">Pipe</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Amber/Pipe/Error" data-name="raven::amber::pipe::error">
+      <a href="../Raven/Amber/Pipe/Error.html">Error</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Amber/Pipe/UserFeedback" data-name="raven::amber::pipe::userfeedback">
+      <a href="../Raven/Amber/Pipe/UserFeedback.html">UserFeedback</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
   
   <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Backtrace" data-name="raven::backtrace">
       <a href="../Raven/Backtrace.html">Backtrace</a>
@@ -54,6 +100,11 @@
       <a href="../Raven/Breadcrumb.html">Breadcrumb</a>
       
         <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Breadcrumb/Logger" data-name="raven::breadcrumb::logger">
+      <a href="../Raven/Breadcrumb/Logger.html">Logger</a>
+      
+    </li>
   
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Breadcrumb/Severity" data-name="raven::breadcrumb::severity">
       <a href="../Raven/Breadcrumb/Severity.html">Severity</a>
@@ -152,6 +203,11 @@
   
 </ul>
 
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/HTTPHandler" data-name="raven::httphandler">
+      <a href="../Raven/HTTPHandler.html">HTTPHandler</a>
       
     </li>
   
@@ -275,11 +331,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/PostData" data-name="raven::processor::postdata">
-      <a href="../Raven/Processor/PostData.html">PostData</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/RemoveCircularReferences" data-name="raven::processor::removecircularreferences">
       <a href="../Raven/Processor/RemoveCircularReferences.html">RemoveCircularReferences</a>
       
@@ -287,6 +338,11 @@
   
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/RemoveStacktrace" data-name="raven::processor::removestacktrace">
       <a href="../Raven/Processor/RemoveStacktrace.html">RemoveStacktrace</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/RequestMethodData" data-name="raven::processor::requestmethoddata">
+      <a href="../Raven/Processor/RequestMethodData.html">RequestMethodData</a>
       
     </li>
   
@@ -350,6 +406,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/UserFeedbackHandler" data-name="raven::userfeedbackhandler">
+      <a href="../Raven/UserFeedbackHandler.html">UserFeedbackHandler</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -357,9 +418,11 @@
   
 </ul>
 
+  </div>
 </div>
 
-<div id="main-content">
+
+<div class="main-content">
 <h1 class="type-name">
 
   <span class="kind">class</span> Raven::CrashHandler
@@ -388,7 +451,9 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L4" target="_blank">crash_handler.cr</a>
+      <a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L4" target="_blank">
+        crash_handler.cr
+      </a>
     
     <br/>
   
@@ -401,7 +466,7 @@
   <dl>
     
       <dt class="entry-const" id="CRYSTAL_CRASH_PATTERN">
-        <strong>CRYSTAL_CRASH_PATTERN</strong> = <code><span class="s">/&#40;&#91;^\n&#93;&#43;&#41;\n&#40;\&#91;</span><span class="i">#{</span></span><span class="t">Backtrace</span><span class="t">::</span><span class="t">Line</span><span class="t">::</span><span class="t">ADDR_FORMAT</span><span class="s"><span class="i">}</span>\&#93; .*&#41;&#36;/</span>m</code>
+        <strong>CRYSTAL_CRASH_PATTERN</strong> = <code><span class="s">/([^\n]+)\n(\[</span><span class="i">#{</span><span class="t">Backtrace</span><span class="t">::</span><span class="t">Line</span><span class="t">::</span><span class="t">ADDR_FORMAT</span><span class="i">}</span><span class="s">\] .*)$/</span>m</code>
       </dt>
       
       <dd class="entry-const-doc">
@@ -413,35 +478,27 @@
 [<span class="n">0x7fff9ca0652a</span>] _sigtramp <span class="n">+26</span>
 [<span class="n">0x105cb35a1</span>] <span class="t">GC_realloc</span> <span class="n">+50</span>
 [<span class="n">0x1057870bb</span>] __crystal_realloc <span class="n">+11</span>
-[<span class="n">0x1057d3ecc</span>] <span class="o">*</span><span class="t">Pointer</span>(<span class="t">UInt8</span>)@Pointer(<span class="t">T</span>)<span class="c">#realloc&lt;Int32&gt;:Pointer&#40;UInt8&#41; &#43;28</span>
+[<span class="n">0x1057d3ecc</span>] <span class="o">*</span><span class="t">Pointer</span>(<span class="t">UInt8</span>)@Pointer(<span class="t">T</span>)<span class="c">#realloc&lt;Int32&gt;:Pointer(UInt8) +28</span>
 [<span class="n">0x10578706c</span>] __crystal_main <span class="n">+2940</span>
 [<span class="n">0x105798128</span>] main <span class="n">+40</span></code></pre>
       </dd>
       
     
       <dt class="entry-const" id="CRYSTAL_EXCEPTION_PATTERN">
-        <strong>CRYSTAL_EXCEPTION_PATTERN</strong> = <code><span class="s">/&#40;&#91;^\n&#93;&#43;&#41; \&#40;&#40;&#91;A-Z&#93;\w&#43;&#41;\&#41;\n&#40;</span><span class="i">#{</span></span><span class="t">Backtrace</span><span class="t">::</span><span class="t">Line</span><span class="t">::</span><span class="t">ADDR_FORMAT</span><span class="s"><span class="i">}</span>: .*&#41;&#36;/</span>m</code>
+        <strong>CRYSTAL_EXCEPTION_PATTERN</strong> = <code><span class="s">/Unhandled exception: ([^\n]+) \(([A-Z]\w+)\)\n(.*)$/</span>m</code>
       </dt>
       
       <dd class="entry-const-doc">
         <p>Example:</p>
 
-<pre><code>execvp: <span class="t">No</span> such file or directory (<span class="t">Errno</span>)
-<span class="n">0x108a4ab85</span>: <span class="o">*</span><span class="t">CallStack</span><span class="t">::</span>unwind<span class="n">:Array</span>(<span class="t">Pointer</span>(<span class="t">Void</span>)) at ??
-<span class="n">0x108a4ab21</span>: <span class="o">*</span><span class="t">CallStack</span><span class="c">#initialize:Array&#40;Pointer&#40;Void&#41;&#41; at ??</span>
-<span class="n">0x108a4aaf8</span>: <span class="o">*</span><span class="t">CallStack</span><span class="t">::</span><span class="k">new</span><span class="n">:CallStack</span> at ??
-<span class="n">0x108a391d1</span>: <span class="o">*</span>raise<span class="o"><</span><span class="t">Errno</span><span class="o">></span><span class="n">:NoReturn</span> at ??
-<span class="n">0x108a9fdf5</span>: <span class="o">*</span><span class="t">Process</span><span class="t">::</span>exec_internal<span class="o"><</span><span class="t">String</span>, <span class="t">Array</span>(<span class="t">Pointer</span>(<span class="t">UInt8</span>)), <span class="t">Nil</span>, <span class="t">Bool</span>, <span class="t">IO</span><span class="t">::</span><span class="t">FileDescriptor</span>, <span class="t">IO</span><span class="t">::</span><span class="t">FileDescriptor</span>, (<span class="t">IO</span><span class="t">::</span><span class="t">FileDescriptor</span> <span class="o">|</span> <span class="t">IO</span><span class="t">::</span><span class="t">MultiWriter</span>), <span class="t">Nil</span><span class="o">></span><span class="n">:Nil</span> at ??
-<span class="n">0x108a9f2de</span>: <span class="o">*</span><span class="t">Process</span><span class="c">#initialize&lt;String, Nil, Nil, Bool, Bool, IO::FileDescriptor, IO::FileDescriptor, IO::MultiWriter, Nil&gt;:Nil at ??</span>
-<span class="n">0x108a9ed3b</span>: <span class="o">*</span><span class="t">Process</span><span class="t">::</span><span class="k">new</span><span class="o"><</span><span class="t">String</span>, <span class="t">Nil</span>, <span class="t">Nil</span>, <span class="t">Bool</span>, <span class="t">Bool</span>, <span class="t">IO</span><span class="t">::</span><span class="t">FileDescriptor</span>, <span class="t">IO</span><span class="t">::</span><span class="t">FileDescriptor</span>, <span class="t">IO</span><span class="t">::</span><span class="t">MultiWriter</span>, <span class="t">Nil</span><span class="o">></span><span class="n">:Process</span> at ??
-<span class="n">0x108a9ec65</span>: <span class="o">*</span><span class="t">Process</span><span class="t">::</span>run<span class="n">:input</span><span class="n">:output</span><span class="n">:error</span><span class="o"><</span><span class="t">String</span>, <span class="t">IO</span><span class="t">::</span><span class="t">FileDescriptor</span>, <span class="t">IO</span><span class="t">::</span><span class="t">FileDescriptor</span>, <span class="t">IO</span><span class="t">::</span><span class="t">MultiWriter</span><span class="o">></span><span class="n">:Process</span><span class="t">::</span><span class="t">Status</span> at ??
-<span class="n">0x108a2d948</span>: __crystal_main at ??
-<span class="n">0x108a3f6a8</span>: main at ??</code></pre>
+<pre><code><span class="t">Unhandled</span> exception: <span class="t">Index</span> <span class="k">out</span> <span class="k">of</span> bounds (<span class="t">IndexError</span>)
+  from <span class="s">/usr/</span>local<span class="s">/Cellar/</span>crystal<span class="s">/0.26.0/</span>src<span class="s">/indexable.cr:596:8 in &#39;at&#39;
+  from /</span>eval:<span class="n">1</span>:<span class="n">1</span> <span class="k">in</span> </code></pre>
       </dd>
       
     
       <dt class="entry-const" id="DEFAULT_OPTS">
-        <strong>DEFAULT_OPTS</strong> = <code>{logger: <span class="s">&quot;raven.crash_handler&quot;</span>, fingerprint: [<span class="s">&quot;&#123;&#123; default &#125;&#125;&quot;</span>, <span class="s">&quot;process.crash&quot;</span>]}</code>
+        <strong>DEFAULT_OPTS</strong> = <code>{logger: <span class="s">&quot;raven.crash_handler&quot;</span>, fingerprint: [<span class="s">&quot;{{ default }}&quot;</span>, <span class="s">&quot;process.crash&quot;</span>]}</code>
       </dt>
       
       <dd class="entry-const-doc">
@@ -453,7 +510,7 @@
 
 
 
-  <h2>Class Method Summary</h2>
+  <h2>Constructors</h2>
   <ul class="list-summary">
     
       <li class="entry-summary">
@@ -462,6 +519,8 @@
       </li>
     
   </ul>
+
+
 
 
 
@@ -612,7 +671,13 @@
     
 
 
+    
+
+
   
+    
+
+
     
 
 
@@ -623,9 +688,9 @@
 </div>
 
 
-  <h2>Class Method Detail</h2>
+  <h2>Constructor Detail</h2>
   
-    <div class="entry-detail" id="new&#40;name,args&#41;-class-method">
+    <div class="entry-detail" id="new(name,args)-class-method">
       <div class="signature">
         
         def self.<strong>new</strong>(name, args)
@@ -636,7 +701,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L69" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L64" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -644,9 +709,11 @@
 
 
 
+
+
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="args:Array&#40;String&#41;?-instance-method">
+    <div class="entry-detail" id="args:Array(String)?-instance-method">
       <div class="signature">
         
         def <strong>args</strong> : Array(String)?
@@ -659,12 +726,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L46" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="args&#61;&#40;args:Array&#40;String&#41;?&#41;-instance-method">
+    <div class="entry-detail" id="args=(args:Array(String)?)-instance-method">
       <div class="signature">
         
         def <strong>args=</strong>(args : Array(String)?)
@@ -677,12 +744,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L46" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="capture&#40;*args,**options,&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="capture(*args,**options,&amp;block)-instance-method">
       <div class="signature">
         
         def <strong>capture</strong>(*args, **options, &block)
@@ -693,12 +760,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L55" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="capture&#40;*args,**options&#41;-instance-method">
+    <div class="entry-detail" id="capture(*args,**options)-instance-method">
       <div class="signature">
         
         def <strong>capture</strong>(*args, **options)
@@ -709,12 +776,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L55" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="configuration&#40;*args,**options&#41;-instance-method">
+    <div class="entry-detail" id="configuration(*args,**options)-instance-method">
       <div class="signature">
         
         def <strong>configuration</strong>(*args, **options)
@@ -725,12 +792,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L55" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="configuration&#40;*args,**options,&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="configuration(*args,**options,&amp;block)-instance-method">
       <div class="signature">
         
         def <strong>configuration</strong>(*args, **options, &block)
@@ -741,12 +808,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L55" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="configure&#40;*args,**options&#41;-instance-method">
+    <div class="entry-detail" id="configure(*args,**options)-instance-method">
       <div class="signature">
         
         def <strong>configure</strong>(*args, **options)
@@ -757,12 +824,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L55" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="configure&#40;*args,**options,&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="configure(*args,**options,&amp;block)-instance-method">
       <div class="signature">
         
         def <strong>configure</strong>(*args, **options, &block)
@@ -773,12 +840,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L55" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="context&#40;*args,**options&#41;-instance-method">
+    <div class="entry-detail" id="context(*args,**options)-instance-method">
       <div class="signature">
         
         def <strong>context</strong>(*args, **options)
@@ -789,12 +856,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L55" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="context&#40;*args,**options,&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="context(*args,**options,&amp;block)-instance-method">
       <div class="signature">
         
         def <strong>context</strong>(*args, **options, &block)
@@ -805,12 +872,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L55" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="exit_code&#40;*args,**options,&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="exit_code(*args,**options,&amp;block)-instance-method">
       <div class="signature">
         
         def <strong>exit_code</strong>(*args, **options, &block)
@@ -821,12 +888,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L145" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L140" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="exit_code&#40;*args,**options&#41;-instance-method">
+    <div class="entry-detail" id="exit_code(*args,**options)-instance-method">
       <div class="signature">
         
         def <strong>exit_code</strong>(*args, **options)
@@ -837,7 +904,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L145" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L140" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -853,12 +920,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L58" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="logger&#61;&#40;logger:::Logger&#41;-instance-method">
+    <div class="entry-detail" id="logger=(logger:::Logger)-instance-method">
       <div class="signature">
         
         def <strong>logger=</strong>(logger : <a href="../Logger.html">::Logger</a>)
@@ -885,12 +952,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L44" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="name&#61;&#40;name:String&#41;-instance-method">
+    <div class="entry-detail" id="name=(name:String)-instance-method">
       <div class="signature">
         
         def <strong>name=</strong>(name : String)
@@ -903,7 +970,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L44" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -919,7 +986,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L143" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L138" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -935,7 +1002,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L143" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L138" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -955,7 +1022,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L48" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -971,7 +1038,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L156" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L151" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -987,7 +1054,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L142" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L137" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1003,12 +1070,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L142" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L137" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="success?&#40;*args,**options&#41;-instance-method">
+    <div class="entry-detail" id="success?(*args,**options)-instance-method">
       <div class="signature">
         
         def <strong>success?</strong>(*args, **options)
@@ -1019,12 +1086,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L145" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L140" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="success?&#40;*args,**options,&amp;block&#41;-instance-method">
+    <div class="entry-detail" id="success?(*args,**options,&amp;block)-instance-method">
       <div class="signature">
         
         def <strong>success?</strong>(*args, **options, &block)
@@ -1035,7 +1102,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/e022525cf4fa453ccd4d5ead3c2a845854f7ee3a/src/crash_handler.cr#L145" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/crash_handler.cr#L140" target="_blank">View source</a>]
         
       </div>
     </div>
