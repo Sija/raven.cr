@@ -13,7 +13,7 @@ from folks at [@getsentry](https://github.com/getsentry).
 - [x] Interfaces (Message, Exception, Stacktrace, User, HTTP, ...)
 - [x] Contexts (tags, extra, `os`, `runtime`)
 - [x] Breadcrumbs
-- [x] Integrations ([Kemal](https://github.com/kemalcr/kemal), [Amber](https://github.com/amberframework/amber), [Sidekiq.cr](https://github.com/mperham/sidekiq.cr))
+- [x] Integrations ([Kemal](https://github.com/kemalcr/kemal), [Amber](https://github.com/amberframework/amber), [Lucky](https://github.com/luckyframework/lucky), [Sidekiq.cr](https://github.com/mperham/sidekiq.cr))
 - [x] Async support
 - [x] User Feedback (`Raven.send_feedback` + Kemal handler)
 - [x] Crash Handler
