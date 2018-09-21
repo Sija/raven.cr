@@ -27,7 +27,7 @@ module Raven
     #   from /usr/local/Cellar/crystal/0.26.0/src/crystal/main.cr:93:7 in 'main'
     #   from /usr/local/Cellar/crystal/0.26.0/src/crystal/main.cr:133:3 in 'main'
     # ```
-    CRYSTAL_EXCEPTION_PATTERN = /Unhandled exception: (?<message>[^\n]+) \((?<class>[A-Z]\w+)\)\n(?<backtrace>(?:\s+from\s+.*?){1,})$/m
+    CRYSTAL_EXCEPTION_PATTERN = /Unhandled exception(?<in_fiber> in spawn(?:\(name: (?<fiber_name>.*?)\))?)?: (?<message>[^\n]+) \((?<class>[A-Z]\w+)\)\n(?<backtrace>(?:\s+from\s+.*?){1,})$/m
 
     # Default event options.
     DEFAULT_OPTS = {
@@ -100,8 +100,8 @@ module Raven
       raise e
     end
 
-    private def capture_crystal_exception(klass, msg, backtrace)
-      capture_with_options klass, msg, backtrace
+    private def capture_crystal_exception(klass, msg, backtrace, **options)
+      capture_with_options klass, msg, backtrace, **options
     end
 
     private def capture_crystal_crash(msg, backtrace)
@@ -169,8 +169,13 @@ module Raven
           msg = match["message"]
           klass = match["class"]
           backtrace = match["backtrace"]
+          in_fiber = match["in_fiber"]?
+          fiber_name = match["fiber_name"]?
           backtrace = backtrace.gsub /^\s*from\s*/m, ""
-          capture_crystal_exception(klass, msg, backtrace)
+          capture_crystal_exception(klass, msg, backtrace, extra: {
+            in_fiber:   !!in_fiber,
+            fiber_name: fiber_name,
+          })
           captured = true
         end
         unless success?
