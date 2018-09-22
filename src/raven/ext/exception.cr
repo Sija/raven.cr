@@ -1,3 +1,5 @@
 class Exception
-  any_json_property :__raven_context
+  {% for key in %i(user tags extra) %}
+    any_json_property :__raven_{{ key.id }}
+  {% end %}
 end

@@ -215,7 +215,7 @@ describe Raven::Event do
 
   context "merging exception context into extra hash" do
     exception = Exception.new
-    exception.__raven_context.merge!({
+    Raven.annotate_exception(exception, extra: {
       "context_event_key" => "context_value",
       "context_key"       => "context_value",
     })
@@ -376,7 +376,7 @@ describe Raven::Event do
       end
 
       it "adds an annotation to extra hash" do
-        Raven.annotate_exception(exception, foo: "bar")
+        Raven.annotate_exception(exception, extra: {foo: "bar"})
         Raven::Event.from(exception).extra.should eq({:foo => "bar"})
       end
 
