@@ -10,7 +10,7 @@ module Raven
     # server = HTTP::Server.new([
     #   # ...
     #   Lucky::ErrorHandler.new(action: Errors::Show),
-    #   Raven::Lucky::ErrorHandler,
+    #   Raven::Lucky::ErrorHandler.new,
     #   # ...
     # ])
     # ```
