@@ -4,7 +4,7 @@ def spawn(*, name : String? = nil, &block)
     begin
       block.call
     rescue ex
-      Raven.capture(ex, extra: {
+      Raven.capture(ex, tags: {
         in_fiber:   true,
         fiber_name: name,
       })
