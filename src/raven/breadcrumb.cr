@@ -64,7 +64,7 @@ module Raven
 
     def to_hash
       {
-        "timestamp" => @timestamp.to_utc.epoch,
+        "timestamp" => @timestamp.to_utc.to_unix,
         "type"      => @type.try(&.to_s.downcase),
         "message"   => @message,
         "data"      => data.to_h,
