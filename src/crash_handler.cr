@@ -150,11 +150,11 @@ module Raven
 
     def run : Void
       configure!
-      @started_at = Time.now
+      @started_at = Time.monotonic
 
       capture_with_options do
         output, error = run_process
-        running_for = Time.now - started_at
+        running_for = Time.monotonic - started_at
 
         context.tags.merge!({
           exit_code: exit_code,
