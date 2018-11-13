@@ -2,6 +2,7 @@ require "kemal"
 
 module Raven
   # ```
+  # require "raven"
   # require "raven/integrations/kemal"
   # ```
   #

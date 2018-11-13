@@ -2,6 +2,7 @@ require "sidekiq"
 
 module Raven
   # ```
+  # require "raven"
   # require "raven/integrations/sidekiq"
   # ```
   module Sidekiq

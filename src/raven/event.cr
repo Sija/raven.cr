@@ -84,14 +84,18 @@ module Raven
     any_json_property :contexts, :user, :tags, :extra
 
     def self.from(exc : Exception, **options)
-      # FIXME: would be nice to be able to call
-      # `event.initialize_with(exc_context)` somehow...
-      exc_context = get_exception_context(exc)
-      if extra = options[:extra]?
-        options = options.merge(extra: exc_context.merge(extra))
-      else
-        options = options.merge(extra: exc_context)
-      end
+      {% for key in %i(user tags extra) %}
+        exc_context = exc.@__raven_{{ key.id }}
+        if options_context = options[:{{ key.id }}]?
+          options = options.merge({
+            {{ key.id }}: exc_context.try(&.merge(options_context)) || options_context
+          })
+        else
+          options = options.merge({
+            {{ key.id }}: exc_context
+          })
+        end
+      {% end %}
 
       new(**options).tap do |event|
         # Messages limited to 10kb
@@ -109,10 +113,6 @@ module Raven
       new(**options).tap do |event|
         event.message = {message, options[:message_params]?}
       end
-    end
-
-    protected def self.get_exception_context(exc)
-      exc.__raven_context
     end
 
     protected def self.format_culprit_name(frame)

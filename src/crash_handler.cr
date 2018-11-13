@@ -15,7 +15,7 @@ module Raven
     # [0x10578706c] __crystal_main +2940
     # [0x105798128] main +40
     # ```
-    CRYSTAL_CRASH_PATTERN = /([^\n]+)\n(\[#{Backtrace::Line::ADDR_FORMAT}\] .*)$/m
+    CRYSTAL_CRASH_PATTERN = /(?<message>[^\n]+)\n(?<backtrace>\[#{Backtrace::Line::ADDR_FORMAT}\] .*)$/m
 
     # Example:
     #
@@ -27,7 +27,7 @@ module Raven
     #   from /usr/local/Cellar/crystal/0.26.0/src/crystal/main.cr:93:7 in 'main'
     #   from /usr/local/Cellar/crystal/0.26.0/src/crystal/main.cr:133:3 in 'main'
     # ```
-    CRYSTAL_EXCEPTION_PATTERN = /Unhandled exception: ([^\n]+) \(([A-Z]\w+)\)\n(.*)$/m
+    CRYSTAL_EXCEPTION_PATTERN = /Unhandled exception(?<in_fiber> in spawn(?:\(name: (?<fiber_name>.*?)\))?)?: (?<message>[^\n]+) \((?<class>[A-Z]\w+)\)\n(?<backtrace>(?:\s+from\s+.*?){1,})$/m
 
     # Default event options.
     DEFAULT_OPTS = {
@@ -100,8 +100,8 @@ module Raven
       raise e
     end
 
-    private def capture_crystal_exception(klass, msg, backtrace)
-      capture_with_options klass, msg, backtrace
+    private def capture_crystal_exception(klass, msg, backtrace, **options)
+      capture_with_options klass, msg, backtrace, **options
     end
 
     private def capture_crystal_crash(msg, backtrace)
@@ -150,11 +150,11 @@ module Raven
 
     def run : Void
       configure!
-      @started_at = Time.now
+      @started_at = Time.monotonic
 
       capture_with_options do
         output, error = run_process
-        running_for = Time.now - started_at
+        running_for = Time.monotonic - started_at
 
         context.tags.merge!({
           exit_code: exit_code,
@@ -164,17 +164,28 @@ module Raven
           started_at:  started_at,
         })
 
+        captured = false
+        error.scan CRYSTAL_EXCEPTION_PATTERN do |match|
+          msg = match["message"]
+          klass = match["class"]
+          backtrace = match["backtrace"]
+          in_fiber = match["in_fiber"]?
+          fiber_name = match["fiber_name"]?
+          backtrace = backtrace.gsub /^\s*from\s*/m, ""
+          capture_crystal_exception(klass, msg, backtrace, tags: {
+            in_fiber:   !!in_fiber,
+            fiber_name: fiber_name,
+          })
+          captured = true
+        end
         unless success?
-          # TODO: pluggable detectors
-          case error
-          when CRYSTAL_CRASH_PATTERN
-            _, msg, backtrace = $~
+          if error =~ CRYSTAL_CRASH_PATTERN
+            msg = $~["message"]
+            backtrace = $~["backtrace"]
             capture_crystal_crash(msg, backtrace)
-          when CRYSTAL_EXCEPTION_PATTERN
-            _, msg, klass, backtrace = $~
-            backtrace = backtrace.gsub /^\s*from\s*/m, ""
-            capture_crystal_exception(klass, msg, backtrace)
-          else
+            captured = true
+          end
+          unless captured
             capture_process_failure(exit_code, output, error)
           end
         end
