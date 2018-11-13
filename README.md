@@ -47,13 +47,13 @@ errors in a certain environment, just don't set the DSN in that environment!
 
 ```bash
 # Set your SENTRY_DSN environment variable.
-export SENTRY_DSN=https://public:secret@example.com/project-id
+export SENTRY_DSN=https://public@example.com/project-id
 ```
 
 ```crystal
 # Or you can configure the client in the code (not recommended - keep your DSN secret!)
 Raven.configure do |config|
-  config.dsn = "https://public:secret@example.com/project-id"
+  config.dsn = "https://public@example.com/project-id"
 end
 ```
 
