@@ -11,7 +11,8 @@ dependencies:
 
 development_dependencies:
   timecop:
-    github: TobiasGSmollett/timecop.cr
+    github: crystal-community/timecop.cr
+    version: ~> 0.2.0
   ameba:
     github: veelenga/ameba
     version: 0.8.0
