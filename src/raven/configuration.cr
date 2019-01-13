@@ -257,14 +257,14 @@ module Raven
       @release = detect_release
       @server_name = server_name_from_env
 
-      # try runtime ENV variable first
-      if dsn = ENV["SENTRY_DSN"]?
-        self.dsn = dsn
-      end
-      # then try compile-time ENV variable
-      # overwrites runtime if set
+      # try compile-time ENV variable
       {% if dsn = env("SENTRY_DSN") %}
         self.dsn = {{dsn}}
+      {% else %}
+        # try runtime ENV variable
+        if dsn = ENV["SENTRY_DSN"]?
+          self.dsn = dsn
+        end
       {% end %}
     end
 
