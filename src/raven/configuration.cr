@@ -244,6 +244,30 @@ module Raven
       }
     end
 
+    # Optional `Proc`, called before sending an event to the server:
+    #
+    # ```
+    # ->(event : Raven::Event, hint : Raven::Event::Hint?) {
+    #   if hint.try(&.exception).try(&.message) =~ /database unavailable/i
+    #     event.fingerprint << "database-unavailable"
+    #   end
+    #   event
+    # }
+    # ```
+    def before_send=(block : Event, Event::Hint? -> _)
+      @before_send = ->(event : Event, hint : Event::Hint?) {
+        block.call(event, hint).as(Event?)
+      }
+    end
+
+    # ditto
+    def before_send(&block : Event, Event::Hint? -> _)
+      self.before_send = block
+    end
+
+    # ditto
+    property before_send : Proc(Event, Event::Hint?, Event?)?
+
     # Errors object - an `Array` containing error messages.
     getter errors = [] of String
 

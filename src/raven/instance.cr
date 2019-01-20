@@ -103,8 +103,8 @@ module Raven
     # event = Raven::Event.new(message: "An error")
     # Raven.send_event(event)
     # ```
-    def send_event(event)
-      client.send_event(event)
+    def send_event(event, hint = nil)
+      client.send_event(event, hint)
     end
 
     @last_event_id_mutex = Mutex.new
@@ -131,16 +131,22 @@ module Raven
       end
       Event.from(obj, configuration: configuration, context: context).tap do |event|
         event.initialize_with **options
-        yield event
+        hint =
+          if obj.is_a?(String)
+            Event::Hint.new(exception: nil, message: obj)
+          else
+            Event::Hint.new(exception: obj, message: nil)
+          end
+        yield event, hint
         if async = configuration.async
           begin
             async.call(event)
           rescue ex
             logger.error "Async event sending failed: #{ex.message}"
-            send_event(event)
+            send_event(event, hint)
           end
         else
-          send_event(event)
+          send_event(event, hint)
         end
         @last_event_id_mutex.synchronize do
           @last_event_id = event.id

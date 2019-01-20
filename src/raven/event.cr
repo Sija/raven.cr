@@ -13,6 +13,9 @@ module Raven
       FATAL
     end
 
+    # Structure passed to `Configuration#before_send` callback.
+    record Hint, exception : Exception?, message : String?
+
     # See Sentry server default limits at
     # https://github.com/getsentry/sentry/blob/master/src/sentry/conf/server.py
     MAX_MESSAGE_SIZE_IN_BYTES = 1024 * 8
