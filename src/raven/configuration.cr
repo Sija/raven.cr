@@ -50,7 +50,7 @@ module Raven
     property async : Proc(Event, Nil)?
 
     # ditto
-    def async=(block : Proc(Event, _))
+    def async=(block : Event -> _)
       @async = ->(event : Event) {
         block.call(event)
         nil
@@ -237,7 +237,7 @@ module Raven
     property transport_failure_callback : Proc(Event::HashType, Nil)?
 
     # ditto
-    def transport_failure_callback=(block : Proc(Event::HashType, _))
+    def transport_failure_callback=(block : Event::HashType -> _)
       @transport_failure_callback = ->(event : Event::HashType) {
         block.call(event)
         nil
