@@ -28,10 +28,18 @@ module Raven
       @buffer << crumb
     end
 
-    def record(crumb : Breadcrumb? = nil) : Void
-      crumb ||= Breadcrumb.new
+    def record(**opts) : Void
+      crumb = Breadcrumb.new(**opts)
       yield crumb
-      self.record crumb
+      record crumb
+    end
+
+    def record(**opts) : Void
+      record(**opts) { }
+    end
+
+    def record(opts : NamedTuple) : Void
+      record(**opts)
     end
 
     def members : Array(Breadcrumb)
