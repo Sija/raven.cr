@@ -38,7 +38,16 @@ module Raven
       transport.send_feedback(event_id, data)
     end
 
-    def send_event(event : Event | Event::HashType)
+    def send_event(event : Event | Event::HashType, hint : Event::Hint? = nil)
+      if event.is_a?(Event)
+        configuration.before_send.try do |before_send|
+          event = before_send.call(event, hint)
+          unless event
+            logger.info "Discarded event because before_send returned nil"
+            return
+          end
+        end
+      end
       event = event.is_a?(Event) ? event.to_hash : event
       unless @state.should_try?
         failed_send nil, event

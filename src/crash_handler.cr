@@ -148,7 +148,7 @@ module Raven
       {output.to_s.chomp, error.to_s.chomp}
     end
 
-    def run : Void
+    def run : Nil
       configure!
       @started_at = Time.monotonic
 

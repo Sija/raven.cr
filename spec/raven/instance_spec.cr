@@ -15,7 +15,7 @@ end
 private class InstanceTest < Raven::Instance
   getter last_sent_event : Raven::Event?
 
-  def send_event(event)
+  def send_event(event, hint = nil)
     super.tap do
       @last_sent_event = event
     end

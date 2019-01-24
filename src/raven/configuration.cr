@@ -50,7 +50,7 @@ module Raven
     property async : Proc(Event, Nil)?
 
     # ditto
-    def async=(block : Proc(Event, _))
+    def async=(block : Event -> _)
       @async = ->(event : Event) {
         block.call(event)
         nil
@@ -237,12 +237,36 @@ module Raven
     property transport_failure_callback : Proc(Event::HashType, Nil)?
 
     # ditto
-    def transport_failure_callback=(block : Proc(Event::HashType, _))
+    def transport_failure_callback=(block : Event::HashType -> _)
       @transport_failure_callback = ->(event : Event::HashType) {
         block.call(event)
         nil
       }
     end
+
+    # Optional `Proc`, called before sending an event to the server:
+    #
+    # ```
+    # ->(event : Raven::Event, hint : Raven::Event::Hint?) {
+    #   if hint.try(&.exception).try(&.message) =~ /database unavailable/i
+    #     event.fingerprint << "database-unavailable"
+    #   end
+    #   event
+    # }
+    # ```
+    def before_send=(block : Event, Event::Hint? -> _)
+      @before_send = ->(event : Event, hint : Event::Hint?) {
+        block.call(event, hint).as(Event?)
+      }
+    end
+
+    # ditto
+    def before_send(&block : Event, Event::Hint? -> _)
+      self.before_send = block
+    end
+
+    # ditto
+    property before_send : Proc(Event, Event::Hint?, Event?)?
 
     # Errors object - an `Array` containing error messages.
     getter errors = [] of String
@@ -257,14 +281,14 @@ module Raven
       @release = detect_release
       @server_name = server_name_from_env
 
-      # try runtime ENV variable first
-      if dsn = ENV["SENTRY_DSN"]?
-        self.dsn = dsn
-      end
-      # then try compile-time ENV variable
-      # overwrites runtime if set
+      # try compile-time ENV variable
       {% if dsn = env("SENTRY_DSN") %}
         self.dsn = {{dsn}}
+      {% else %}
+        # try runtime ENV variable
+        if dsn = ENV["SENTRY_DSN"]?
+          self.dsn = dsn
+        end
       {% end %}
     end
 
@@ -314,11 +338,10 @@ module Raven
       File.directory?("/etc/heroku")
     end
 
-    private def heroku_dyno_metadata_message
+    private HEROKU_DYNO_METADATA_MESSAGE =
       "You are running on Heroku but haven't enabled Dyno Metadata. " \
       "For Sentry's release detection to work correctly, please run " \
       "`heroku labs:enable runtime-dyno-metadata`"
-    end
 
     private def detect_release_from_heroku
       return unless running_on_heroku?
@@ -326,7 +349,7 @@ module Raven
       if commit = ENV["HEROKU_SLUG_COMMIT"]?
         return commit
       end
-      logger.warn(heroku_dyno_metadata_message)
+      logger.warn(HEROKU_DYNO_METADATA_MESSAGE)
       nil
     end
 

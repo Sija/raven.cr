@@ -1,5 +1,7 @@
 module Raven
   class Breadcrumb
+    include Mixin::InitializeWith
+
     # The type of breadcrumb. The default type is `Type::DEFAULT` which indicates
     # no specific handling. Other types are currently:
     # - `Type::HTTP` for HTTP requests and
@@ -58,8 +60,9 @@ module Raven
     # are unsupported by the type are rendered as a key/value table.
     any_json_property :data
 
-    def initialize
+    def initialize(**options)
       @timestamp = Time.now
+      initialize_with **options
     end
 
     def to_hash
@@ -74,5 +77,3 @@ module Raven
     end
   end
 end
-
-require "./breadcrumbs/*"

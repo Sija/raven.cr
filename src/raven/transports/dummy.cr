@@ -6,7 +6,7 @@ module Raven
     def send_event(auth_header, data, **options)
       events << {
         auth_header: auth_header,
-        data:        data,
+        data:        data.to_s,
         options:     options,
       }.to_any_json
     end

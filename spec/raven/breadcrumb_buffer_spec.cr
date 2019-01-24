@@ -31,6 +31,20 @@ describe Raven::BreadcrumbBuffer do
     end
   end
 
+  it "records breadcrumbs w/a splat" do
+    with_breadcrumb_buffer do |breadcrumbs|
+      breadcrumbs.record(message: "test")
+      breadcrumbs.members.first.message.should eq("test")
+    end
+  end
+
+  it "records breadcrumbs w/a NamedTuple" do
+    with_breadcrumb_buffer do |breadcrumbs|
+      breadcrumbs.record({message: "test"})
+      breadcrumbs.members.first.message.should eq("test")
+    end
+  end
+
   it "allows peeking" do
     with_breadcrumb_buffer do |breadcrumbs|
       breadcrumbs.peek.should be_nil
