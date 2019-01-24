@@ -74,5 +74,3 @@ module Raven
     end
   end
 end
-
-require "./breadcrumbs/*"
