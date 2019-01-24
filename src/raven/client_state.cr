@@ -27,18 +27,18 @@ module Raven
       false
     end
 
-    def failure(retry_after = nil) : Void
+    def failure(retry_after = nil) : Nil
       @status = Status::ERROR
       @retry_number += 1
       @last_check = Time.now
       @retry_after = retry_after
     end
 
-    def success : Void
+    def success : Nil
       reset
     end
 
-    def reset : Void
+    def reset : Nil
       @status = Status::ONLINE
       @retry_number = 0
       @last_check = nil
