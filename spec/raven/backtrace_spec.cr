@@ -11,9 +11,11 @@ describe Raven::Backtrace do
     backtrace.inspect.should match(/#<Backtrace: .*>$/)
   end
 
-  it "#to_s" do
-    backtrace.to_s.should match(/backtrace_spec.cr:4/)
-  end
+  {% unless flag?(:release) %}
+    it "#to_s" do
+      backtrace.to_s.should match(/backtrace_spec.cr:4/)
+    end
+  {% end %}
 
   it "#==" do
     backtrace2 = Raven::Backtrace.new(backtrace.lines)
