@@ -40,13 +40,12 @@ module Raven
         form.add "dsn", configuration.dsn
       end
       path = String.build do |str|
-        str << configuration.scheme << "://" << configuration.host
-        str << ':' << configuration.port if configuration.port
-        str << configuration.path << "/api/embed/error-page/"
-        str << '?' << params
+        str << configuration.path.try &.chomp '/'
+        str << "/api/embed/error-page/?"
+        str << params
       end
       logger.debug "HTTP Transport connecting to #{path}"
-      ::HTTP::Client.post(path, form: data, headers: headers).tap do |response|
+      client.post(path, form: data, headers: headers).tap do |response|
         raise Error.new response unless response.success?
       end
     end
