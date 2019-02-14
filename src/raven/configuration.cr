@@ -71,6 +71,9 @@ module Raven
       }
     end
 
+    # Number of lines of code context to capture, or `nil` for none.
+    property context_lines : Int32? = 5
+
     # Defaults to `SENTRY_CURRENT_ENV` or `KEMAL_ENV` `ENV` variables if set,
     # `"default"` otherwise.
     property current_environment : String?

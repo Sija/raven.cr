@@ -115,5 +115,23 @@ module Raven
     def in_app?
       !!(file =~ configuration.in_app_pattern)
     end
+
+    def context
+      context_lines = configuration.context_lines
+
+      return unless context_lines && context_lines > 0
+      return unless (filename = @file)
+      return unless (lineno = @number) && lineno > 0
+      return unless File.readable?(filename)
+
+      lines = File.read_lines(filename)
+      lineidx = lineno - 1
+
+      if context_line = lines[lineidx]?
+        pre_context = lines[Math.max(0, lineidx - context_lines), context_lines]
+        post_context = lines[Math.min(lines.size, lineidx + 1), context_lines]
+        {pre_context, context_line, post_context}
+      end
+    end
   end
 end
