@@ -11,7 +11,7 @@ describe Raven::Backtrace do
     backtrace.inspect.should match(/#<Backtrace: .*>$/)
   end
 
-  {% unless flag?(:release) %}
+  {% unless flag?(:release) || !flag?(:debug) %}
     it "#to_s" do
       backtrace.to_s.should match(/backtrace_spec.cr:4/)
     end

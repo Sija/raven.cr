@@ -74,7 +74,7 @@ module Raven
     def_equals_and_hash @file, @number, @column, @method
 
     # Reconstructs the line in a readable fashion
-    def to_s(io)
+    def to_s(io) : Nil
       io << '`' << @method << '`' if @method
       if @file
         io << " at " << @file
@@ -83,7 +83,7 @@ module Raven
       end
     end
 
-    def inspect(io)
+    def inspect(io) : Nil
       io << "Backtrace::Line("
       to_s(io)
       io << ')'
@@ -92,12 +92,12 @@ module Raven
     # FIXME: untangle it from global `Raven`.
     protected delegate :configuration, to: Raven
 
-    def under_src_path?
-      return unless src_path = configuration.src_path
-      file.try &.starts_with?(src_path)
+    def under_src_path? : Bool
+      return false unless src_path = configuration.src_path
+      !!file.try(&.starts_with?(src_path))
     end
 
-    def relative_path
+    def relative_path : String?
       return unless path = file
       return path unless path.starts_with?('/')
       return unless under_src_path?
@@ -106,17 +106,17 @@ module Raven
       end
     end
 
-    def shard_name
+    def shard_name : String?
       relative_path
         .try(&.match(configuration.modules_path_pattern))
         .try(&.[]("name"))
     end
 
-    def in_app?
+    def in_app? : Bool
       !!(file =~ configuration.in_app_pattern)
     end
 
-    def context
+    def context : {Array(String), String, Array(String)}?
       context_lines = configuration.context_lines
 
       return unless context_lines && context_lines > 0

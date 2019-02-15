@@ -8,7 +8,7 @@ module Raven
 
     getter lines : Array(Line)
 
-    def self.parse(backtrace : Array(String), **options)
+    def self.parse(backtrace : Array(String), **options) : Backtrace
       filters = default_filters.dup
       options[:filters]?.try { |f| filters.concat(f) }
 
@@ -22,7 +22,7 @@ module Raven
       new(lines)
     end
 
-    def self.parse(backtrace : String, **options)
+    def self.parse(backtrace : String, **options) : Backtrace
       parse(backtrace.lines, **options)
     end
 
@@ -31,11 +31,11 @@ module Raven
 
     def_equals @lines
 
-    def to_s(io)
+    def to_s(io) : Nil
       @lines.join('\n', io)
     end
 
-    def inspect(io)
+    def inspect(io) : Nil
       io << "#<Backtrace: "
       @lines.join(", ", io, &.inspect(io))
       io << '>'
