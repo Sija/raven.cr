@@ -12,7 +12,7 @@ module Raven
       data = data.to_any_json
 
       if sanitize_request_method? data[:request, :method]?
-        data[:request, :data] = STRING_MASK
+        data[:request, :data] = nil
       end
       data.to_h
     end

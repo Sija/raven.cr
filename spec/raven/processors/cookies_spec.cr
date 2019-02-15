@@ -18,8 +18,8 @@ describe Raven::Processor::Cookies do
     result = processor.process(test_data)
     result = result.to_any_json
 
-    result[:request, :cookies].should eq("********")
-    result[:request, :headers, "Cookie"].should eq("********")
+    result[:request, :cookies].should be_nil
+    result[:request, :headers, "Cookie"].should be_nil
     result[:request, :some_other_data].should eq("still-here")
     result[:request, :headers, "Another-Header"].should eq("still-here")
   end
