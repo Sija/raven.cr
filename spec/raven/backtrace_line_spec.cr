@@ -7,6 +7,22 @@ end
 
 describe Raven::Backtrace::Line do
   describe ".parse" do
+    context "when --no-debug flag is set" do
+      it "parses line with any value as method" do
+        backtrace_line = "__crystal_main"
+        line = Raven::Backtrace::Line.parse(backtrace_line)
+
+        line.number.should be_nil
+        line.column.should be_nil
+        line.method.should eq(backtrace_line)
+        line.file.should be_nil
+        line.relative_path.should be_nil
+        line.under_src_path?.should be_false
+        line.shard_name.should be_nil
+        line.in_app?.should be_false
+      end
+    end
+
     context "with ~proc signature" do
       it "parses absolute path outside of src/ dir" do
         backtrace_line = "~proc2Proc(Fiber, (IO::FileDescriptor | Nil))@/usr/local/Cellar/crystal/0.27.2/src/fiber.cr:72"

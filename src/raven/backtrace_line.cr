@@ -33,6 +33,14 @@ module Raven
       # - `[0x10578706c] __crystal_main +2940`
       # - `[0x105798128] main +40`
       CRYSTAL_CRASH: /^\[#{ADDR_FORMAT}\] \*?(?<method>.*?) \+\d+(?: \((?<times>\d+) times\))?$/,
+
+      # Examples:
+      #
+      # - `HTTP::Server#handle_client<IO+>:Nil`
+      # - `HTTP::Server::RequestProcessor#process<IO+, IO+, IO::FileDescriptor>:Nil`
+      # - `Kemal::WebSocketHandler@HTTP::Handler#call_next<HTTP::Server::Context>:(Bool | HTTP::Server::Context | IO+ | Int32 | Nil)`
+      # - `__crystal_main`
+      CRYSTAL_METHOD_NO_DEBUG: /^(?<method>.+?)$/,
     }
 
     # The file portion of the line (such as `app/models/user.cr`).
