@@ -7,6 +7,10 @@ end
 
 describe Raven::Backtrace::Line do
   describe ".parse" do
+    it "fails to parse an empty string" do
+      expect_raises(ArgumentError) { Raven::Backtrace::Line.parse("") }
+    end
+
     context "when --no-debug flag is set" do
       it "parses line with any value as method" do
         backtrace_line = "__crystal_main"

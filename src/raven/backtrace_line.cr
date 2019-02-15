@@ -72,6 +72,8 @@ module Raven
         number = $~["line"]?
         column = $~["col"]?
         method = $~["method"]?
+      else
+        raise ArgumentError.new("Error parsing line: #{unparsed_line.inspect}")
       end
       new(file, number.try(&.to_i), column.try(&.to_i), method)
     end
