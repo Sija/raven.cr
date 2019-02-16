@@ -228,7 +228,7 @@ describe Raven::Processor::SanitizeData do
       result["sentry.interfaces.Http", "data", :query_string].as(String).should_not contain("secret")
     end
 
-    pending "handles multiple values for a key" do
+    it "handles multiple values for a key" do
       data = {
         "sentry.interfaces.Http" => {
           "data" => {
