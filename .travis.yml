@@ -5,5 +5,8 @@ install:
 
 script:
   - crystal spec
+  - crystal spec --no-debug
+  - crystal spec --release
+  - crystal spec --release --no-debug
   - crystal tool format --check src spec
   - bin/ameba src
