@@ -180,15 +180,18 @@ describe Raven::Processor::SanitizeData do
     end
   end
 
-  pending "sanitizes hashes nested in arrays" do
+  it "sanitizes hashes nested in arrays" do
     data = {
-      "empty_array" => [] of String,
-      "array"       => [{"password" => "secret"}],
+      "empty_string_array" => [] of String,
+      "int_array"          => (0..10).to_a,
+      "string_hash_array"  => [{"password" => "secret"}],
+      "symbol_hash_array"  => [{:password => "secret"}],
     }
 
     result = processor.process(data)
 
-    result["array"].should eq([{"password" => Raven::Processor::SanitizeData::STRING_MASK}])
+    result["string_hash_array"].should eq([{"password" => Raven::Processor::SanitizeData::STRING_MASK}])
+    result["symbol_hash_array"].should eq([{:password => Raven::Processor::SanitizeData::STRING_MASK}])
   end
 
   context "query strings" do

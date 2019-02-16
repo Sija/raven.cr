@@ -55,7 +55,9 @@ module Raven
       when Hash
         process(value)
       when Array
-        value.map! { |i| process(key, i).as(typeof(i)) }
+        # TODO: Simplify this clusterfuck once linked issue is closed
+        # https://github.com/crystal-lang/crystal/issues/7441
+        value.map { |i| process(key, i).as(AnyHash::JSONTypes::Value) }
       when String
         case
         when value =~ fields_pattern && (json = parse_json_or_nil(value))
