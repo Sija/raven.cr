@@ -18,11 +18,6 @@ from folks at [@getsentry](https://github.com/getsentry).
 - [x] User Feedback (`Raven.send_feedback` + Kemal handler)
 - [x] Crash Handler
 
-### TODO
-
-- [ ] Exponential backoff in case of connection error
-- [ ] Caching unsent events for later send
-
 ## Installation
 
 Add this to your application's `shard.yml`:
