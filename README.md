@@ -1,15 +1,25 @@
-![Bug fixing](https://sija.github.io/raven.cr/img/bug-fixing.svg)
+<p align="center">
+  <img src="https://sija.github.io/raven.cr/img/bug-fixing.svg" height="300" alt="Bug fixing illustration" />
+</p>
 
-# raven.cr [![Build Status](https://travis-ci.org/Sija/raven.cr.svg?branch=master)](https://travis-ci.org/Sija/raven.cr) [![Releases](https://img.shields.io/github/release/Sija/raven.cr.svg)](https://github.com/Sija/raven.cr/releases) [![License](https://img.shields.io/github/license/Sija/raven.cr.svg)](https://github.com/Sija/raven.cr/blob/master/LICENSE) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/32cb8814a14d4a6cbe39d6768142c59b)](https://www.codacy.com/app/Sija/raven.cr) [![Join the chat at https://gitter.im/raven-cr/Lobby](https://badges.gitter.im/raven-cr/Lobby.svg)](https://gitter.im/raven-cr/Lobby)
+<h1 align="center">
+  raven.cr • the Crystal client for Sentry
+</h1>
 
-A client and integration layer for the [Sentry](https://github.com/getsentry/sentry) error reporting API.
+<p align="center">
+  <a href="https://travis-ci.org/Sija/raven.cr"><img src="https://travis-ci.org/Sija/raven.cr.svg?branch=master" alt="Build Status" /></a>
+  <a href="https://www.codacy.com/app/Sija/raven.cr"><img src="https://api.codacy.com/project/badge/Grade/32cb8814a14d4a6cbe39d6768142c59b" alt="Codacy Badge" /></a>
+  <a href="https://github.com/Sija/raven.cr/releases"><img src="https://img.shields.io/github/release/Sija/raven.cr.svg" alt="Releases" /></a>
+  <a href="https://github.com/Sija/raven.cr/blob/master/LICENSE"><img src="https://img.shields.io/github/license/Sija/raven.cr.svg" alt="License" /></a>
+  <a href="https://gitter.im/raven-cr/Lobby"><img src="https://img.shields.io/gitter/room/raven-cr/Lobby.svg" alt="Gitter Chat" /></a>
+</p>
+
+An unofficial Crystal-language client and integration layer for the [Sentry](https://github.com/getsentry/sentry) error reporting API.
 
 Based on fine [raven-ruby](https://github.com/getsentry/raven-ruby) gem
 from folks at [@getsentry](https://github.com/getsentry).
 
-## Status
-
-### Feature support
+## Features
 
 - [x] Processors (data scrubbers)
 - [x] Interfaces (Message, Exception, Stacktrace, User, HTTP, ...)
@@ -17,7 +27,7 @@ from folks at [@getsentry](https://github.com/getsentry).
 - [x] Breadcrumbs
 - [x] Integrations ([Kemal](https://github.com/kemalcr/kemal), [Amber](https://github.com/amberframework/amber), [Lucky](https://github.com/luckyframework/lucky), [Sidekiq.cr](https://github.com/mperham/sidekiq.cr))
 - [x] Async support
-- [x] User Feedback (`Raven.send_feedback` + Kemal handler)
+- [x] User Feedback
 - [x] Crash Handler
 
 ## Installation
@@ -42,7 +52,7 @@ Raven will capture and send exceptions to the Sentry server whenever its DSN is 
 This makes environment-based configuration easy - if you don't want to send
 errors in a certain environment, just don't set the DSN in that environment!
 
-```bash
+```sh
 # Set your SENTRY_DSN environment variable.
 export SENTRY_DSN=https://public@example.com/project-id
 ```
@@ -54,7 +64,7 @@ Raven.configure do |config|
 end
 ```
 
-### Raven doesn't report some kinds of data by default.
+### Raven doesn't report some kinds of data by default
 
 If used with integrations, Raven ignores some exceptions by default - most of
 these are related to 404s or controller actions not being found.
@@ -83,7 +93,7 @@ end
 
 ### More configuration
 
-You're all set - but there's a few more settings you may want to know about too!
+You're all set - but there are a few more settings you may want to know about too!
 
 #### DSN
 
@@ -100,7 +110,7 @@ end
 
 And, while not necessary if using `SENTRY_DSN`, you can also provide an
 `environments` setting. Raven will only capture events when
-`SENTRY_CURRENT_ENV` or `KEMAL_ENV` matches an environment in the list.
+`SENTRY_CURRENT_ENV` or `KEMAL_ENV` matches an environment on the list.
 
 ```crystal
 Raven.configure do |config|
@@ -168,8 +178,8 @@ config.transport_failure_callback = ->(event : Raven::Event::HashType) {
 #### Context
 
 Much of the usefulness of Sentry comes from additional context data with the events.
-Raven makes this very convenient by providing methods to set thread local
-context data that is then submitted automatically with all events.
+Raven makes this very convenient by providing methods to set context data that
+is then submitted automatically with all events.
 
 There are three primary methods for providing request context:
 
@@ -189,12 +199,12 @@ For more information, see [Context](https://docs.sentry.io/clients/ruby/context/
 ## Crash Handler
 
 Since Crystal doesn't provide native handlers for unhandled exceptions
-and sigfaults, *raven.cr* introduces its own crash handler compiled as
+and segfaults, *raven.cr* introduces its own crash handler compiled as
 external binary.
 
 ### Setup
 
-Easiest way of using it is adding appropriate entry to project's `shard.yml`:
+The easiest way of using it is by adding the appropriate entry to the project's `shard.yml`:
 
 ```yaml
 targets:
@@ -204,15 +214,14 @@ targets:
     main: lib/raven/src/crash_handler.cr
 ```
 
-With above entry defined in `targets`, running `shards build` should result in
+With the above entry defined in `targets`, running `shards build` should result in
 binary built in `bin/sentry.crash_handler`.
 
 __NOTE__: While building you might specify `SENTRY_DSN` env variable, which will be
-compiled into the binary (as plain-text) and used by the handler as
-*Sentry* endpoint.
+compiled into the binary (as plain-text) and used by the handler.
 
-```bash
-SENTRY_DSN=<private_dsn> shards build sentry.crash_handler
+```sh
+SENTRY_DSN=<your_dsn> shards build sentry.crash_handler
 ```
 
 Pass `--release` flag to disable debug messages.
@@ -222,7 +231,7 @@ Pass `--release` flag to disable debug messages.
 You need to run your app with previously built `bin/sentry.crash_handler` in
 front.
 
-```bash
+```sh
 bin/sentry.crash_handler bin/your_app --some arguments --passed to your program
 ```
 
@@ -234,17 +243,9 @@ in case you didn't do it while building the wrapper.
 
 ## More Information
 
-* [Documentation](https://docs.sentry.io/clients/ruby)
-* [Bug Tracker](https://github.com/Sija/raven.cr/issues)
-* [Code](https://github.com/Sija/raven.cr)
-* [Mailing List](https://groups.google.com/group/getsentry)
-* [IRC](irc://irc.freenode.net/sentry) (irc.freenode.net, #sentry)
-
-## Development
-
-```
-crystal spec
-```
+- [Documentation](https://docs.sentry.io/clients/ruby)
+- [Bug Tracker](https://github.com/Sija/raven.cr/issues)
+- [Code Repository](https://github.com/Sija/raven.cr)
 
 ## Contributing
 
