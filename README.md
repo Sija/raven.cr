@@ -1,3 +1,5 @@
+![Bug fixing](https://sija.github.io/raven.cr/img/bug-fixing.svg)
+
 # raven.cr [![Build Status](https://travis-ci.org/Sija/raven.cr.svg?branch=master)](https://travis-ci.org/Sija/raven.cr) [![Releases](https://img.shields.io/github/release/Sija/raven.cr.svg)](https://github.com/Sija/raven.cr/releases) [![License](https://img.shields.io/github/license/Sija/raven.cr.svg)](https://github.com/Sija/raven.cr/blob/master/LICENSE) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/32cb8814a14d4a6cbe39d6768142c59b)](https://www.codacy.com/app/Sija/raven.cr) [![Join the chat at https://gitter.im/raven-cr/Lobby](https://badges.gitter.im/raven-cr/Lobby.svg)](https://gitter.im/raven-cr/Lobby)
 
 A client and integration layer for the [Sentry](https://github.com/getsentry/sentry) error reporting API.
