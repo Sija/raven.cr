@@ -150,11 +150,12 @@ module Raven
 
     def run : Nil
       configure!
-      @started_at = Time.monotonic
+      @started_at = Time.now
 
       capture_with_options do
+        start = Time.monotonic
         output, error = run_process
-        running_for = Time.monotonic - started_at
+        running_for = Time.monotonic - start
 
         context.tags.merge!({
           exit_code: exit_code,
