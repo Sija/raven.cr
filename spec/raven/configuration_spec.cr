@@ -46,6 +46,12 @@ def with_configuration_with_dsn
 end
 
 describe Raven::Configuration do
+  it "should set #src_path to current dir from default" do
+    with_configuration do |configuration|
+      configuration.src_path.should eq(Dir.current)
+    end
+  end
+
   it "should set some attributes when dsn is set" do
     with_configuration do |configuration|
       configuration.dsn = "http://12345:67890@sentry.localdomain:3000/sentry/42"

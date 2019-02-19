@@ -37,7 +37,7 @@ describe Raven::Processor::RequestMethodData do
             result = processor.process(test_data)
             result = result.to_any_json
 
-            result[:request, :data].should eq("********")
+            result[:request, :data].should be_nil
           end
         end
       end

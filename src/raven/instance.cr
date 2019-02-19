@@ -77,7 +77,7 @@ module Raven
     # Sends User Feedback to Sentry server.
     #
     # *data* should be a `Hash(String, String)` with following keys:
-    # - *name*
+    # - *name* (populated from `context.user[:username]` if left empty)
     # - *email* (populated from `context.user[:email]` if left empty)
     # - *comments*
     #
@@ -91,6 +91,9 @@ module Raven
     #
     # NOTE: Sentry server records single (last) feedback for a given *event_id*.
     def send_feedback(event_id : String, data : Hash)
+      if username = context.user[:username]?
+        data["name"] ||= username.to_s
+      end
       if email = context.user[:email]?
         data["email"] ||= email.to_s
       end

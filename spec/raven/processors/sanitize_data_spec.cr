@@ -6,6 +6,9 @@ private class SanitizeDataTest < Raven::Processor::SanitizeData
   end
 end
 
+STRING_MASK = Raven::Processor::SanitizeData::STRING_MASK
+INT_MASK    = Raven::Processor::SanitizeData::INT_MASK
+
 describe Raven::Processor::SanitizeData do
   processor = build_processor(Raven::Processor::SanitizeData)
 
@@ -71,14 +74,14 @@ describe Raven::Processor::SanitizeData do
 
       vars = result["sentry.interfaces.Http", "data"].as(Hash)
       vars["foo"].should eq("bar")
-      vars["password"].should eq(Raven::Processor::SanitizeData::STRING_MASK)
-      vars["the_secret"].should eq(Raven::Processor::SanitizeData::STRING_MASK)
-      vars["a_password_here"].should eq(Raven::Processor::SanitizeData::STRING_MASK)
-      vars["mypasswd"].should eq(Raven::Processor::SanitizeData::STRING_MASK)
+      vars["password"].should eq(STRING_MASK)
+      vars["the_secret"].should eq(STRING_MASK)
+      vars["a_password_here"].should eq(STRING_MASK)
+      vars["mypasswd"].should eq(STRING_MASK)
       vars["test"].should eq(1)
-      vars[:ssn].should eq(Raven::Processor::SanitizeData::STRING_MASK)
-      vars["social_security_number"].should eq(Raven::Processor::SanitizeData::INT_MASK)
-      vars["user_field"].should eq(Raven::Processor::SanitizeData::STRING_MASK)
+      vars[:ssn].should eq(STRING_MASK)
+      vars["social_security_number"].should eq(INT_MASK)
+      vars["user_field"].should eq(STRING_MASK)
       vars["user_field_foo"].should eq("hello")
       vars["query_string"].should eq("foo=bar")
     end
@@ -109,14 +112,14 @@ describe Raven::Processor::SanitizeData do
 
       vars = result
       vars["foo"].should eq("bar")
-      vars["password"].should eq(Raven::Processor::SanitizeData::STRING_MASK)
-      vars["the_secret"].should eq(Raven::Processor::SanitizeData::STRING_MASK)
-      vars["a_password_here"].should eq(Raven::Processor::SanitizeData::STRING_MASK)
-      vars["mypasswd"].should eq(Raven::Processor::SanitizeData::STRING_MASK)
+      vars["password"].should eq(STRING_MASK)
+      vars["the_secret"].should eq(STRING_MASK)
+      vars["a_password_here"].should eq(STRING_MASK)
+      vars["mypasswd"].should eq(STRING_MASK)
       vars["test"].should eq(1)
-      vars["ssn"].should eq(Raven::Processor::SanitizeData::STRING_MASK)
-      vars["social_security_number"].should eq(Raven::Processor::SanitizeData::INT_MASK)
-      vars["user_field"].should eq(Raven::Processor::SanitizeData::STRING_MASK)
+      vars["ssn"].should eq(STRING_MASK)
+      vars["social_security_number"].should eq(INT_MASK)
+      vars["user_field"].should eq(STRING_MASK)
       vars["user_field_foo"].should eq("hello")
     end
   end
@@ -135,7 +138,7 @@ describe Raven::Processor::SanitizeData do
 
     JSON.parse(result["data", "json"].as(String)).should eq(%w(foo bar))
     JSON.parse(result["data", "json_hash"].as(String)).should eq({"foo" => "bar"})
-    JSON.parse(result["data", "sensitive"].as(String)).should eq({"password" => Raven::Processor::SanitizeData::STRING_MASK})
+    JSON.parse(result["data", "sensitive"].as(String)).should eq({"password" => STRING_MASK})
   end
 
   it "should not fail when json is invalid" do
@@ -161,8 +164,8 @@ describe Raven::Processor::SanitizeData do
 
     result = processor.process(data)
 
-    result["ccnumba"].should eq(Raven::Processor::SanitizeData::STRING_MASK)
-    result["ccnumba_int"].should eq(Raven::Processor::SanitizeData::INT_MASK)
+    result["ccnumba"].should eq(STRING_MASK)
+    result["ccnumba_int"].should eq(INT_MASK)
   end
 
   it "should pass through credit card values if configured" do
@@ -180,15 +183,18 @@ describe Raven::Processor::SanitizeData do
     end
   end
 
-  pending "sanitizes hashes nested in arrays" do
+  it "sanitizes hashes nested in arrays" do
     data = {
-      "empty_array" => [] of String,
-      "array"       => [{"password" => "secret"}],
+      "empty_string_array" => [] of String,
+      "int_array"          => (0..10).to_a,
+      "string_hash_array"  => [{"password" => "secret"}],
+      "symbol_hash_array"  => [{:password => "secret"}],
     }
 
     result = processor.process(data)
 
-    result["array"].should eq([{"password" => Raven::Processor::SanitizeData::STRING_MASK}])
+    result["string_hash_array"].should eq([{"password" => STRING_MASK}])
+    result["symbol_hash_array"].should eq([{:password => STRING_MASK}])
   end
 
   context "query strings" do
@@ -222,7 +228,7 @@ describe Raven::Processor::SanitizeData do
       result["sentry.interfaces.Http", "data", :query_string].as(String).should_not contain("secret")
     end
 
-    pending "handles multiple values for a key" do
+    it "handles multiple values for a key" do
       data = {
         "sentry.interfaces.Http" => {
           "data" => {

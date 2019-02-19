@@ -24,6 +24,9 @@ module Raven
       property filename : String?
       property function : String?
       property package : String?
+      property context_line : String?
+      property pre_context : Array(String)?
+      property post_context : Array(String)?
       property lineno : Int32?
       property colno : Int32?
       property? in_app : Bool?
@@ -37,6 +40,10 @@ module Raven
           frame.lineno = line.number
           frame.colno = line.column
           frame.in_app = line.in_app?
+
+          if context = line.context
+            frame.pre_context, frame.context_line, frame.post_context = context
+          end
         end
       end
     end

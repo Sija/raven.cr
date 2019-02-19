@@ -5,9 +5,9 @@ module Raven
       data = data.to_any_json
 
       if req = data[:request]?.as?(Hash).try(&.to_any_json)
-        req[:cookies] = STRING_MASK if req[:cookies]?
+        req[:cookies] = nil if req[:cookies]?
         if req[:headers, "Cookie"]?
-          req[:headers, "Cookie"] = STRING_MASK
+          req[:headers, "Cookie"] = nil
         end
       end
       data.to_h

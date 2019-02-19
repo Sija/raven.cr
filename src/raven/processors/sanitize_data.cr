@@ -55,7 +55,9 @@ module Raven
       when Hash
         process(value)
       when Array
-        value.map! { |i| process(key, i).as(typeof(i)) }
+        # TODO: Simplify this clusterfuck once linked issue is closed
+        # https://github.com/crystal-lang/crystal/issues/7441
+        value.map { |i| process(key, i).as(AnyHash::JSONTypes::Value) }
       when String
         case
         when value =~ fields_pattern && (json = parse_json_or_nil(value))
@@ -84,11 +86,25 @@ module Raven
     }
 
     private def sanitize_query_string(query_string)
-      query_hash = HTTP::Params.parse(query_string).to_h
+      # TODO: figure out some cleaner solution - other than, equally bad:
+      # query_hash = HTTP::Params.parse(query_string).@raw_params
+      query_hash = {} of String => Array(String)
+      HTTP::Params.parse(query_string).each do |key, value|
+        query_hash[key] ||= [] of String
+        query_hash[key] << value
+      end
       query_hash = utf8_processor.process(query_hash)
       query_hash = process(query_hash)
-      query_hash = query_hash.map { |k, v| {k.as(String), v.as(String)} }.to_h rescue nil
-      HTTP::Params.encode(query_hash).to_s if query_hash
+      # TODO: need to make a PR with some API improvements to `HTTP::Params`
+      sanitized = String.build do |io|
+        builder = HTTP::Params::Builder.new(io)
+        query_hash.each do |name, values|
+          values.as(Array).each do |value|
+            builder.add(name.to_s, value.to_s)
+          end
+        end
+      end
+      sanitized.to_s
     end
 
     private def matches_regexes?(key, value)

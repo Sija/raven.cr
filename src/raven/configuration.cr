@@ -27,7 +27,7 @@ module Raven
     DEFAULT_REQUEST_METHODS_FOR_DATA_SANITIZATION = %w(POST PUT PATCH)
 
     # Used in `#in_app_pattern`.
-    property src_path : String? = {{ `pwd`.strip.stringify if flag?(:debug) }}
+    property src_path : String? = {{ Process::INITIAL_PWD }}
 
     # Directories to be recognized as part of your app. e.g. if you
     # have an `engines` dir at the root of your project, you may want
@@ -70,6 +70,9 @@ module Raven
         nil
       }
     end
+
+    # Number of lines of code context to capture, or `nil` for none.
+    property context_lines : Int32? = 5
 
     # Defaults to `SENTRY_CURRENT_ENV` or `KEMAL_ENV` `ENV` variables if set,
     # `"default"` otherwise.

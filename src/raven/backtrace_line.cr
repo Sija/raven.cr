@@ -33,6 +33,14 @@ module Raven
       # - `[0x10578706c] __crystal_main +2940`
       # - `[0x105798128] main +40`
       CRYSTAL_CRASH: /^\[#{ADDR_FORMAT}\] \*?(?<method>.*?) \+\d+(?: \((?<times>\d+) times\))?$/,
+
+      # Examples:
+      #
+      # - `HTTP::Server#handle_client<IO+>:Nil`
+      # - `HTTP::Server::RequestProcessor#process<IO+, IO+, IO::FileDescriptor>:Nil`
+      # - `Kemal::WebSocketHandler@HTTP::Handler#call_next<HTTP::Server::Context>:(Bool | HTTP::Server::Context | IO+ | Int32 | Nil)`
+      # - `__crystal_main`
+      CRYSTAL_METHOD_NO_DEBUG: /^(?<method>.+?)$/,
     }
 
     # The file portion of the line (such as `app/models/user.cr`).
@@ -64,6 +72,8 @@ module Raven
         number = $~["line"]?
         column = $~["col"]?
         method = $~["method"]?
+      else
+        raise ArgumentError.new("Error parsing line: #{unparsed_line.inspect}")
       end
       new(file, number.try(&.to_i), column.try(&.to_i), method)
     end
@@ -74,7 +84,7 @@ module Raven
     def_equals_and_hash @file, @number, @column, @method
 
     # Reconstructs the line in a readable fashion
-    def to_s(io)
+    def to_s(io) : Nil
       io << '`' << @method << '`' if @method
       if @file
         io << " at " << @file
@@ -83,7 +93,7 @@ module Raven
       end
     end
 
-    def inspect(io)
+    def inspect(io) : Nil
       io << "Backtrace::Line("
       to_s(io)
       io << ')'
@@ -92,12 +102,12 @@ module Raven
     # FIXME: untangle it from global `Raven`.
     protected delegate :configuration, to: Raven
 
-    def under_src_path?
-      return unless src_path = configuration.src_path
-      file.try &.starts_with?(src_path)
+    def under_src_path? : Bool
+      return false unless src_path = configuration.src_path
+      !!file.try(&.starts_with?(src_path))
     end
 
-    def relative_path
+    def relative_path : String?
       return unless path = file
       return path unless path.starts_with?('/')
       return unless under_src_path?
@@ -106,14 +116,32 @@ module Raven
       end
     end
 
-    def shard_name
+    def shard_name : String?
       relative_path
         .try(&.match(configuration.modules_path_pattern))
         .try(&.[]("name"))
     end
 
-    def in_app?
+    def in_app? : Bool
       !!(file =~ configuration.in_app_pattern)
+    end
+
+    def context : {Array(String), String, Array(String)}?
+      context_lines = configuration.context_lines
+
+      return unless context_lines && context_lines > 0
+      return unless (filename = @file)
+      return unless (lineno = @number) && lineno > 0
+      return unless File.readable?(filename)
+
+      lines = File.read_lines(filename)
+      lineidx = lineno - 1
+
+      if context_line = lines[lineidx]?
+        pre_context = lines[Math.max(0, lineidx - context_lines), context_lines]
+        post_context = lines[Math.min(lines.size, lineidx + 1), context_lines]
+        {pre_context, context_line, post_context}
+      end
     end
   end
 end

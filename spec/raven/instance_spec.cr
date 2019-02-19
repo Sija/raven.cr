@@ -1,15 +1,9 @@
 require "../spec_helper"
 
 module Raven::Test
-  module ExceptionTag; end
-
   class BaseException < ::Exception; end
 
   class SubException < BaseException; end
-
-  class TaggedException < BaseException
-    include ExceptionTag
-  end
 end
 
 private class InstanceTest < Raven::Instance
@@ -116,27 +110,6 @@ describe Raven::Instance do
             end
           end
 
-          pending "returns false for a top class match" do
-            with_instance do |instance|
-              instance.configuration.excluded_exceptions << "::Raven::Test::BaseException"
-              instance.capture(Raven::Test::BaseException.new).should be_false
-            end
-          end
-
-          pending "returns false for a sub class match" do
-            with_instance do |instance|
-              instance.configuration.excluded_exceptions << "Raven::Test::BaseException"
-              instance.capture(Raven::Test::SubException.new).should be_false
-            end
-          end
-
-          pending "returns false for a tagged class match" do
-            with_instance do |instance|
-              instance.configuration.excluded_exceptions << "Raven::Test::ExceptionTag"
-              instance.capture(Raven::Test::TaggedException.new).should be_false
-            end
-          end
-
           it "returns Raven::Event for an undefined exception class" do
             with_instance do |instance|
               instance.configuration.excluded_exceptions << "Raven::Test::NonExistentException"
@@ -157,13 +130,6 @@ describe Raven::Instance do
             with_instance do |instance|
               instance.configuration.excluded_exceptions << Raven::Test::BaseException
               instance.capture(Raven::Test::SubException.new).should be_false
-            end
-          end
-
-          pending "returns false for a tagged class match" do
-            with_instance do |instance|
-              instance.configuration.excluded_exceptions << Raven::Test::ExceptionTag
-              instance.capture(Raven::Test::TaggedException.new).should be_false
             end
           end
         end

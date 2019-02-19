@@ -142,6 +142,7 @@ module Raven
 
     private def run_process(output : IO = IO::Memory.new, error : IO = IO::Memory.new)
       @process_status = Process.run command: name, args: args,
+        shell: true,
         input: STDIN,
         output: IO::MultiWriter.new(STDOUT, output),
         error: IO::MultiWriter.new(STDERR, error)
@@ -150,11 +151,12 @@ module Raven
 
     def run : Nil
       configure!
-      @started_at = Time.monotonic
+      @started_at = Time.now
 
       capture_with_options do
+        start = Time.monotonic
         output, error = run_process
-        running_for = Time.monotonic - started_at
+        running_for = Time.monotonic - start
 
         context.tags.merge!({
           exit_code: exit_code,
