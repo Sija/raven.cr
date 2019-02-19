@@ -19,6 +19,11 @@ An unofficial Crystal-language client and integration layer for the [Sentry](htt
 Based on fine [raven-ruby](https://github.com/getsentry/raven-ruby) gem
 from folks at [@getsentry](https://github.com/getsentry).
 
+### Blog posts
+
+- [Crystal error tracking with Sentry](https://sija.pl/en/notes/crystal-error-tracking-with-sentry)
+- [Sentry error tracking for Kemal](https://sija.pl/en/notes/sentry-error-tracking-for-kemal)
+
 ## Features
 
 - [x] Processors (data scrubbers)
