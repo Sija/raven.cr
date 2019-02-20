@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.26.0">
+<meta name="generator" content="Crystal Docs 0.27.1">
 
 
 <link href="../../css/style.css" rel="stylesheet" type="text/css">
@@ -14,14 +14,14 @@
 </script>
 
   <meta id="repository-name" content="github.com/Sija/raven.cr">
-  <title>Raven::Interface::Template - github.com/Sija/raven.cr</title>
+  <title>Raven::Event::Hint - github.com/Sija/raven.cr</title>
 </head>
 <body>
 
 <div class="sidebar">
   <div class="sidebar-header">
     <div class="search-box">
-      <input type="search" class="search-input" placeholder="Search..." spellcheck="false">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
     </div>
 
     <div class="repository-links">
@@ -35,6 +35,11 @@
 
   <div class="types-list">
     <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/toplevel" data-name="top level namespace">
+      <a href="../../toplevel.html">Top Level Namespace</a>
+      
+    </li>
   
   <li class=" " data-id="github.com/Sija/raven.cr/Exception" data-name="exception">
       <a href="../../Exception.html">Exception</a>
@@ -186,13 +191,18 @@
       
     </li>
   
-  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Event" data-name="raven::event">
+  <li class="parent open current" data-id="github.com/Sija/raven.cr/Raven/Event" data-name="raven::event">
       <a href="../../Raven/Event.html">Event</a>
       
         <ul>
   
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Event/HashType" data-name="raven::event::hashtype">
       <a href="../../Raven/Event/HashType.html">HashType</a>
+      
+    </li>
+  
+  <li class=" current" data-id="github.com/Sija/raven.cr/Raven/Event/Hint" data-name="raven::event::hint">
+      <a href="../../Raven/Event/Hint.html">Hint</a>
       
     </li>
   
@@ -216,7 +226,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="github.com/Sija/raven.cr/Raven/Interface" data-name="raven::interface">
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Interface" data-name="raven::interface">
       <a href="../../Raven/Interface.html">Interface</a>
       
         <ul>
@@ -256,11 +266,6 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/Sija/raven.cr/Raven/Interface/Template" data-name="raven::interface::template">
-      <a href="../../Raven/Interface/Template.html">Template</a>
-      
-    </li>
-  
 </ul>
 
       
@@ -293,6 +298,21 @@
   
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Logger" data-name="raven::logger">
       <a href="../../Raven/Logger.html">Logger</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Lucky" data-name="raven::lucky">
+      <a href="../../Raven/Lucky.html">Lucky</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Lucky/ErrorHandler" data-name="raven::lucky::errorhandler">
+      <a href="../../Raven/Lucky/ErrorHandler.html">ErrorHandler</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -425,15 +445,19 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Raven::Interface::Template
+  <span class="kind">struct</span> Raven::Event::Hint
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Raven/Interface/Template.html">Raven::Interface::Template</a></li><li class="superclass"><a href="../../Raven/Interface.html">Raven::Interface</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Raven/Event/Hint.html">Raven::Event::Hint</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
 
 
 
+
+  <h2>Overview</h2>
+
+  <p>Structure passed to <code><a href="../../Raven/Configuration.html#before_send%28%26block%3AEvent%2CEvent%3A%3AHint%3F-%3EUNDERSCORE%29-instance-method">Configuration#before_send</a></code> callback.</p>
 
 
 
@@ -451,8 +475,8 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/interfaces/template.cr#L2" target="_blank">
-        raven/interfaces/template.cr
+      <a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/event.cr#L17" target="_blank">
+        raven/event.cr
       </a>
     
     <br/>
@@ -466,28 +490,13 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#new%28%2A%2Aattributes%2C%26block%29-class-method" class="signature"><strong>.new</strong>(**attributes, &block)</a>
+        <a href="#new%28exception%3AException%3F%2Cmessage%3AString%3F%29-class-method" class="signature"><strong>.new</strong>(exception : Exception?, message : String?)</a>
         
       </li>
     
   </ul>
 
 
-
-  <h2>Class Method Summary</h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#sentry_alias-class-method" class="signature"><strong>.sentry_alias</strong></a>
-        
-      </li>
-    
-  </ul>
 
 
 
@@ -495,62 +504,22 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#abs_path%3AString%3F-instance-method" class="signature"><strong>#abs_path</strong> : String?</a>
+        <a href="#clone-instance-method" class="signature"><strong>#clone</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#abs_path%3D%28abs_path%3AString%3F%29-instance-method" class="signature"><strong>#abs_path=</strong>(abs_path : String?)</a>
+        <a href="#copy_with%28exception_exception%3D%40exception%2Cmessage_message%3D%40message%29-instance-method" class="signature"><strong>#copy_with</strong>(exception _exception = @exception, message _message = @message)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#context_line%3AString%3F-instance-method" class="signature"><strong>#context_line</strong> : String?</a>
+        <a href="#exception%3AException%3F-instance-method" class="signature"><strong>#exception</strong> : Exception?</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#context_line%3D%28context_line%3AString%3F%29-instance-method" class="signature"><strong>#context_line=</strong>(context_line : String?)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#filename%3AString%3F-instance-method" class="signature"><strong>#filename</strong> : String?</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#filename%3D%28filename%3AString%3F%29-instance-method" class="signature"><strong>#filename=</strong>(filename : String?)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#lineno%3AInt32%3F-instance-method" class="signature"><strong>#lineno</strong> : Int32?</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#lineno%3D%28lineno%3AInt32%3F%29-instance-method" class="signature"><strong>#lineno=</strong>(lineno : Int32?)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#post_context%3AArray%28String%29%3F-instance-method" class="signature"><strong>#post_context</strong> : Array(String)?</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#post_context%3D%28post_context%3AArray%28String%29%3F%29-instance-method" class="signature"><strong>#post_context=</strong>(post_context : Array(String)?)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#pre_context%3AArray%28String%29%3F-instance-method" class="signature"><strong>#pre_context</strong> : Array(String)?</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#pre_context%3D%28pre_context%3AArray%28String%29%3F%29-instance-method" class="signature"><strong>#pre_context=</strong>(pre_context : Array(String)?)</a>
+        <a href="#message%3AString%3F-instance-method" class="signature"><strong>#message</strong> : String?</a>
         
       </li>
     
@@ -563,58 +532,6 @@
 <div class="methods-inherited">
   
     
-
-  <h3>Instance methods inherited from class <code><a href="../../Raven/Interface.html">Raven::Interface</a></code></h3>
-  
-  
-    <a href="../../Raven/Interface.html#to_hash-instance-method" class="tooltip">
-      <span>to_hash</span>
-    to_hash</a>, 
-    
-  
-    <a href="../../Raven/Interface.html#to_json%28json%3AJSON%3A%3ABuilder%29-instance-method" class="tooltip">
-      <span>to_json(json : JSON::Builder)</span>
-    to_json</a>
-    
-  
-
-
-    
-
-
-    
-
-  <h3>Class methods inherited from class <code><a href="../../Raven/Interface.html">Raven::Interface</a></code></h3>
-  
-  
-    <a href="../../Raven/Interface.html#%5B%5D%28name%3ASymbol%29-class-method" class="tooltip">
-      <span>[](name : Symbol)</span>
-    []</a>, 
-    
-  
-    <a href="../../Raven/Interface.html#registered-class-method" class="tooltip">
-      <span>registered</span>
-    registered</a>, 
-    
-  
-    <a href="../../Raven/Interface.html#sentry_alias%3ASymbol-class-method" class="tooltip">
-      <span>sentry_alias : Symbol</span>
-    sentry_alias</a>
-    
-  
-
-
-  
-    
-
-  <h3>Instance methods inherited from module <code><a href="../../Raven/Mixin/InitializeWith.html">Raven::Mixin::InitializeWith</a></code></h3>
-  
-  
-    <a href="../../Raven/Mixin/InitializeWith.html#initialize_with-instance-method" class="tooltip">
-      <span>initialize_with</span>
-    initialize_with</a>
-    
-  
 
 
     
@@ -649,252 +566,85 @@
 
   <h2>Constructor Detail</h2>
   
-    <div class="entry-detail" id="new-class-method">
+    <div class="entry-detail" id="new(exception:Exception?,message:String?)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>
+        def self.<strong>new</strong>(exception : <a href="../../Exception.html">Exception</a>?, message : String?)
 
-        <a class="method-permalink" href="#new-class-method">#</a>
+        <a class="method-permalink" href="#new%28exception%3AException%3F%2Cmessage%3AString%3F%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/interfaces/template.cr#L2" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="new(**attributes,&amp;block)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(**attributes, &block)
-
-        <a class="method-permalink" href="#new%28%2A%2Aattributes%2C%26block%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/interfaces/template.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/event.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
   
 
 
-
-  <h2>Class Method Detail</h2>
-  
-    <div class="entry-detail" id="sentry_alias-class-method">
-      <div class="signature">
-        
-        def self.<strong>sentry_alias</strong>
-
-        <a class="method-permalink" href="#sentry_alias-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/interfaces/template.cr#L10" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="abs_path:String?-instance-method">
+    <div class="entry-detail" id="clone-instance-method">
       <div class="signature">
         
-        def <strong>abs_path</strong> : String?
+        def <strong>clone</strong>
 
-        <a class="method-permalink" href="#abs_path%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#clone-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/interfaces/template.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/event.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="abs_path=(abs_path:String?)-instance-method">
+    <div class="entry-detail" id="copy_with(exception_exception=@exception,message_message=@message)-instance-method">
       <div class="signature">
         
-        def <strong>abs_path=</strong>(abs_path : String?)
+        def <strong>copy_with</strong>(exception _exception = @exception, message _message = @message)
 
-        <a class="method-permalink" href="#abs_path%3D%28abs_path%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#copy_with%28exception_exception%3D%40exception%2Cmessage_message%3D%40message%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/interfaces/template.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/event.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="context_line:String?-instance-method">
+    <div class="entry-detail" id="exception:Exception?-instance-method">
       <div class="signature">
         
-        def <strong>context_line</strong> : String?
+        def <strong>exception</strong> : <a href="../../Exception.html">Exception</a>?
 
-        <a class="method-permalink" href="#context_line%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#exception%3AException%3F-instance-method">#</a>
       </div>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/interfaces/template.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="context_line=(context_line:String?)-instance-method">
+    <div class="entry-detail" id="message:String?-instance-method">
       <div class="signature">
         
-        def <strong>context_line=</strong>(context_line : String?)
+        def <strong>message</strong> : String?
 
-        <a class="method-permalink" href="#context_line%3D%28context_line%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#message%3AString%3F-instance-method">#</a>
       </div>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/interfaces/template.cr#L6" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="filename:String?-instance-method">
-      <div class="signature">
-        
-        def <strong>filename</strong> : String?
-
-        <a class="method-permalink" href="#filename%3AString%3F-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/interfaces/template.cr#L4" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="filename=(filename:String?)-instance-method">
-      <div class="signature">
-        
-        def <strong>filename=</strong>(filename : String?)
-
-        <a class="method-permalink" href="#filename%3D%28filename%3AString%3F%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/interfaces/template.cr#L4" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="lineno:Int32?-instance-method">
-      <div class="signature">
-        
-        def <strong>lineno</strong> : Int32?
-
-        <a class="method-permalink" href="#lineno%3AInt32%3F-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/interfaces/template.cr#L7" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="lineno=(lineno:Int32?)-instance-method">
-      <div class="signature">
-        
-        def <strong>lineno=</strong>(lineno : Int32?)
-
-        <a class="method-permalink" href="#lineno%3D%28lineno%3AInt32%3F%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/interfaces/template.cr#L7" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="post_context:Array(String)?-instance-method">
-      <div class="signature">
-        
-        def <strong>post_context</strong> : Array(String)?
-
-        <a class="method-permalink" href="#post_context%3AArray%28String%29%3F-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/interfaces/template.cr#L8" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="post_context=(post_context:Array(String)?)-instance-method">
-      <div class="signature">
-        
-        def <strong>post_context=</strong>(post_context : Array(String)?)
-
-        <a class="method-permalink" href="#post_context%3D%28post_context%3AArray%28String%29%3F%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/interfaces/template.cr#L8" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="pre_context:Array(String)?-instance-method">
-      <div class="signature">
-        
-        def <strong>pre_context</strong> : Array(String)?
-
-        <a class="method-permalink" href="#pre_context%3AArray%28String%29%3F-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/interfaces/template.cr#L5" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="pre_context=(pre_context:Array(String)?)-instance-method">
-      <div class="signature">
-        
-        def <strong>pre_context=</strong>(pre_context : Array(String)?)
-
-        <a class="method-permalink" href="#pre_context%3D%28pre_context%3AArray%28String%29%3F%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/interfaces/template.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>

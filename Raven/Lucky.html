@@ -14,7 +14,7 @@
 </script>
 
   <meta id="repository-name" content="github.com/Sija/raven.cr">
-  <title>Raven::Error - github.com/Sija/raven.cr</title>
+  <title>Raven::Lucky - github.com/Sija/raven.cr</title>
 </head>
 <body>
 
@@ -186,7 +186,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/Sija/raven.cr/Raven/Error" data-name="raven::error">
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Error" data-name="raven::error">
       <a href="../Raven/Error.html">Error</a>
       
     </li>
@@ -301,7 +301,7 @@
       
     </li>
   
-  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Lucky" data-name="raven::lucky">
+  <li class="parent open current" data-id="github.com/Sija/raven.cr/Raven/Lucky" data-name="raven::lucky">
       <a href="../Raven/Lucky.html">Lucky</a>
       
         <ul>
@@ -445,12 +445,26 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Raven::Error
+  <span class="kind">module</span> Raven::Lucky
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Raven/Error.html">Raven::Error</a></li><li class="superclass"><a href="../Exception.html">Exception</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+  <h2>Overview</h2>
+
+  <pre><code><span class="k">require</span> <span class="s">&quot;raven&quot;</span>
+<span class="k">require</span> <span class="s">&quot;raven/integrations/lucky&quot;</span></code></pre>
+
+<p>It's recommended to enable <code><a href="../Raven/Configuration.html#async%3AProc%28Event%2CNil%29%3F-instance-method">Configuration#async</a></code> when using Lucky.</p>
+
+<pre><code><span class="t">Raven</span>.configure <span class="k">do</span> <span class="o">|</span>config<span class="o">|</span>
+  <span class="c"># ...</span>
+  config.async <span class="o">=</span> <span class="n">true</span>
+  config.current_environment <span class="o">=</span> <span class="t">Lucky</span><span class="t">::</span><span class="t">Env</span>.name
+<span class="k">end</span></code></pre>
 
 
 
@@ -459,16 +473,6 @@
 
 
 
-
-
-
-
-  <h2>Direct Known Subclasses</h2>
-  <ul class="other-types-list">
-  
-    <li class="other-type"><a href="../Raven/Transport/HTTP/Error.html">Raven::Transport::HTTP::Error</a></li>
-  
-  </ul>
 
 
 
@@ -478,8 +482,15 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/error.cr#L2" target="_blank">
-        raven/error.cr
+      <a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/integrations/lucky.cr#L19" target="_blank">
+        raven/integrations/lucky.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/integrations/lucky/error_handler.cr#L5" target="_blank">
+        raven/integrations/lucky/error_handler.cr
       </a>
     
     <br/>
@@ -491,6 +502,18 @@
 
 
 
+  <h2>Class Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#build_request_url%28req%3AHTTP%3A%3ARequest%29-class-method" class="signature"><strong>.build_request_url</strong>(req : HTTP::Request)</a>
+        
+          <div class="summary"><p>Returns full URL string for <code>HTTP::Request</code>.</p></div>
+        
+      </li>
+    
+  </ul>
+
 
 
 
@@ -499,74 +522,31 @@
 
 <div class="methods-inherited">
   
-    
-
-  <h3>Instance methods inherited from class <code><a href="../Exception.html">Exception</a></code></h3>
-  
-  
-    <a href="../Exception.html#__raven_extra-instance-method" class="tooltip">
-      <span>__raven_extra</span>
-    __raven_extra</a>, 
-    
-  
-    <a href="../Exception.html#__raven_extra%3D%28__raven_extra%3AAnyHash%3A%3AJSON%29-instance-method" class="tooltip">
-      <span>__raven_extra=(__raven_extra : AnyHash::JSON)<br/>__raven_extra=(hash : Hash | NamedTuple?)</span>
-    __raven_extra=</a>, 
-    
-  
-    <a href="../Exception.html#__raven_tags-instance-method" class="tooltip">
-      <span>__raven_tags</span>
-    __raven_tags</a>, 
-    
-  
-    <a href="../Exception.html#__raven_tags%3D%28__raven_tags%3AAnyHash%3A%3AJSON%29-instance-method" class="tooltip">
-      <span>__raven_tags=(__raven_tags : AnyHash::JSON)<br/>__raven_tags=(hash : Hash | NamedTuple?)</span>
-    __raven_tags=</a>, 
-    
-  
-    <a href="../Exception.html#__raven_user-instance-method" class="tooltip">
-      <span>__raven_user</span>
-    __raven_user</a>, 
-    
-  
-    <a href="../Exception.html#__raven_user%3D%28__raven_user%3AAnyHash%3A%3AJSON%29-instance-method" class="tooltip">
-      <span>__raven_user=(__raven_user : AnyHash::JSON)<br/>__raven_user=(hash : Hash | NamedTuple?)</span>
-    __raven_user=</a>
-    
-  
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
 </div>
 
 
 
+
+  <h2>Class Method Detail</h2>
+  
+    <div class="entry-detail" id="build_request_url(req:HTTP::Request)-class-method">
+      <div class="signature">
+        
+        def self.<strong>build_request_url</strong>(req : HTTP::Request)
+
+        <a class="method-permalink" href="#build_request_url%28req%3AHTTP%3A%3ARequest%29-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns full URL string for <code>HTTP::Request</code>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/integrations/lucky.cr#L21" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
 
 
 

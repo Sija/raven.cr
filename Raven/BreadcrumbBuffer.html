@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.26.0">
+<meta name="generator" content="Crystal Docs 0.27.1">
 
 
 <link href="../css/style.css" rel="stylesheet" type="text/css">
@@ -21,7 +21,7 @@
 <div class="sidebar">
   <div class="sidebar-header">
     <div class="search-box">
-      <input type="search" class="search-input" placeholder="Search..." spellcheck="false">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
     </div>
 
     <div class="repository-links">
@@ -35,6 +35,11 @@
 
   <div class="types-list">
     <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/toplevel" data-name="top level namespace">
+      <a href="../toplevel.html">Top Level Namespace</a>
+      
+    </li>
   
   <li class=" " data-id="github.com/Sija/raven.cr/Exception" data-name="exception">
       <a href="../Exception.html">Exception</a>
@@ -196,6 +201,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Event/Hint" data-name="raven::event::hint">
+      <a href="../Raven/Event/Hint.html">Hint</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Event/Severity" data-name="raven::event::severity">
       <a href="../Raven/Event/Severity.html">Severity</a>
       
@@ -256,11 +266,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Interface/Template" data-name="raven::interface::template">
-      <a href="../Raven/Interface/Template.html">Template</a>
-      
-    </li>
-  
 </ul>
 
       
@@ -293,6 +298,21 @@
   
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Logger" data-name="raven::logger">
       <a href="../Raven/Logger.html">Logger</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Lucky" data-name="raven::lucky">
+      <a href="../Raven/Lucky.html">Lucky</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Lucky/ErrorHandler" data-name="raven::lucky::errorhandler">
+      <a href="../Raven/Lucky/ErrorHandler.html">ErrorHandler</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -458,7 +478,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L2" target="_blank">
+      <a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/breadcrumb_buffer.cr#L2" target="_blank">
         raven/breadcrumb_buffer.cr
       </a>
     
@@ -527,12 +547,22 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#record%28crumb%3ABreadcrumb%29%3AVoid-instance-method" class="signature"><strong>#record</strong>(crumb : Breadcrumb) : Void</a>
+        <a href="#record%28crumb%3ABreadcrumb%29%3ANil-instance-method" class="signature"><strong>#record</strong>(crumb : Breadcrumb) : Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#record%28crumb%3ABreadcrumb%3F%3Dnil%2C%26block%29%3AVoid-instance-method" class="signature"><strong>#record</strong>(crumb : Breadcrumb? = <span class="n">nil</span>, &block) : Void</a>
+        <a href="#record%28%2A%2Aopts%2C%26block%29%3ANil-instance-method" class="signature"><strong>#record</strong>(**opts, &block) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#record%28opts%3ANamedTuple%29%3ANil-instance-method" class="signature"><strong>#record</strong>(opts : NamedTuple) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#record%28%2A%2Aopts%29%3ANil-instance-method" class="signature"><strong>#record</strong>(**opts) : Nil</a>
         
       </li>
     
@@ -595,7 +625,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/breadcrumb_buffer.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -616,7 +646,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/breadcrumb_buffer.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -632,7 +662,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/breadcrumb_buffer.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -653,7 +683,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/breadcrumb_buffer.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -669,7 +699,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L45" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/breadcrumb_buffer.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -685,7 +715,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L51" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/breadcrumb_buffer.cr#L59" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -701,7 +731,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/breadcrumb_buffer.cr#L45" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -717,39 +747,71 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/breadcrumb_buffer.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="record(crumb:Breadcrumb):Void-instance-method">
+    <div class="entry-detail" id="record(crumb:Breadcrumb):Nil-instance-method">
       <div class="signature">
         
-        def <strong>record</strong>(crumb : <a href="../Raven/Breadcrumb.html">Breadcrumb</a>) : Void
+        def <strong>record</strong>(crumb : <a href="../Raven/Breadcrumb.html">Breadcrumb</a>) : Nil
 
-        <a class="method-permalink" href="#record%28crumb%3ABreadcrumb%29%3AVoid-instance-method">#</a>
+        <a class="method-permalink" href="#record%28crumb%3ABreadcrumb%29%3ANil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/breadcrumb_buffer.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="record(crumb:Breadcrumb?=nil,&amp;block):Void-instance-method">
+    <div class="entry-detail" id="record(**opts,&amp;block):Nil-instance-method">
       <div class="signature">
         
-        def <strong>record</strong>(crumb : <a href="../Raven/Breadcrumb.html">Breadcrumb</a>? = <span class="n">nil</span>, &block) : Void
+        def <strong>record</strong>(**opts, &block) : Nil
 
-        <a class="method-permalink" href="#record%28crumb%3ABreadcrumb%3F%3Dnil%2C%26block%29%3AVoid-instance-method">#</a>
+        <a class="method-permalink" href="#record%28%2A%2Aopts%2C%26block%29%3ANil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/breadcrumb_buffer.cr#L31" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="record(opts:NamedTuple):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>record</strong>(opts : NamedTuple) : Nil
+
+        <a class="method-permalink" href="#record%28opts%3ANamedTuple%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/breadcrumb_buffer.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="record(**opts):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>record</strong>(**opts) : Nil
+
+        <a class="method-permalink" href="#record%28%2A%2Aopts%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/breadcrumb_buffer.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -765,7 +827,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/breadcrumb_buffer.cr#L55" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/breadcrumb_buffer.cr#L63" target="_blank">View source</a>]
         
       </div>
     </div>

@@ -14,7 +14,7 @@
 </script>
 
   <meta id="repository-name" content="github.com/Sija/raven.cr">
-  <title>Raven::Processor::RemoveStacktrace - github.com/Sija/raven.cr</title>
+  <title>Raven::Lucky::ErrorHandler - github.com/Sija/raven.cr</title>
 </head>
 <body>
 
@@ -301,12 +301,12 @@
       
     </li>
   
-  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Lucky" data-name="raven::lucky">
+  <li class="parent open current" data-id="github.com/Sija/raven.cr/Raven/Lucky" data-name="raven::lucky">
       <a href="../../Raven/Lucky.html">Lucky</a>
       
         <ul>
   
-  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Lucky/ErrorHandler" data-name="raven::lucky::errorhandler">
+  <li class=" current" data-id="github.com/Sija/raven.cr/Raven/Lucky/ErrorHandler" data-name="raven::lucky::errorhandler">
       <a href="../../Raven/Lucky/ErrorHandler.html">ErrorHandler</a>
       
     </li>
@@ -331,7 +331,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="github.com/Sija/raven.cr/Raven/Processor" data-name="raven::processor">
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Processor" data-name="raven::processor">
       <a href="../../Raven/Processor.html">Processor</a>
       
         <ul>
@@ -356,7 +356,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/Sija/raven.cr/Raven/Processor/RemoveStacktrace" data-name="raven::processor::removestacktrace">
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Processor/RemoveStacktrace" data-name="raven::processor::removestacktrace">
       <a href="../../Raven/Processor/RemoveStacktrace.html">RemoveStacktrace</a>
       
     </li>
@@ -445,19 +445,40 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Raven::Processor::RemoveStacktrace
+  <span class="kind">class</span> Raven::Lucky::ErrorHandler
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Raven/Processor/RemoveStacktrace.html">Raven::Processor::RemoveStacktrace</a></li><li class="superclass"><a href="../../Raven/Processor.html">Raven::Processor</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Raven/Lucky/ErrorHandler.html">Raven::Lucky::ErrorHandler</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+  <h2>Overview</h2>
+
+  <p>Exception handler capturing all unhandled <code><a href="../../Exception.html">Exception</a></code>s.
+After capturing exception is re-raised.</p>
+
+<pre><code>server <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Server</span>.<span class="k">new</span>([
+  <span class="c"># ...</span>
+  <span class="t">Lucky</span><span class="t">::</span><span class="t">ErrorHandler</span>.<span class="k">new</span>(action: <span class="t">Errors</span><span class="t">::</span><span class="t">Show</span>),
+  <span class="t">Raven</span><span class="t">::</span><span class="t">Lucky</span><span class="t">::</span><span class="t">ErrorHandler</span>.<span class="k">new</span>,
+  <span class="c"># ...</span>
+])</code></pre>
 
 
 
 
 
-
-
+  <h2>Included Modules</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type">HTTP::Handler</li>
+  
+    <li class="other-type"><a href="../../Raven/HTTPHandler.html">Raven::HTTPHandler</a></li>
+  
+  </ul>
 
 
 
@@ -471,8 +492,8 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/processors/remove_stacktrace.cr#L2" target="_blank">
-        raven/processors/remove_stacktrace.cr
+      <a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/integrations/lucky/error_handler.cr#L17" target="_blank">
+        raven/integrations/lucky/error_handler.cr
       </a>
     
     <br/>
@@ -480,7 +501,33 @@
 
 
 
+  
+    <h2>Constant Summary</h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="CULPRIT_PATTERN_KEYS">
+        <strong>CULPRIT_PATTERN_KEYS</strong> = <code>[<span class="n">:method</span>, <span class="n">:path</span>] <span class="k">of</span> <span class="t">::</span><span class="t">Symbol</span></code>
+      </dt>
+      
+      <dd class="entry-const-doc">
+        <p>See <code>::HTTP::Request</code></p>
+      </dd>
+      
+    
+  </dl>
 
+
+
+  <h2>Constructors</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28culprit_pattern%3D%26quot%3B%25%7Bmethod%7D%25%7Bpath%7D%26quot%3B%2Ccapture_data_for_methods%3D%5B%26quot%3BPOST%26quot%3B%2C%26quot%3BPUT%26quot%3B%2C%26quot%3BPATCH%26quot%3B%5Dof%3A%3AString%2Cdefault_logger%3D%26quot%3Blucky%26quot%3B%29-class-method" class="signature"><strong>.new</strong>(culprit_pattern = <span class="s">&quot;%{method} %{path}&quot;</span>, capture_data_for_methods = [<span class="s">&quot;POST&quot;</span>, <span class="s">&quot;PUT&quot;</span>, <span class="s">&quot;PATCH&quot;</span>] <span class="k">of</span> <span class="t">::</span><span class="t">String</span>, default_logger = <span class="s">&quot;lucky&quot;</span>)</a>
+        
+      </li>
+    
+  </ul>
 
 
 
@@ -490,7 +537,17 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#process%28data%29-instance-method" class="signature"><strong>#process</strong>(data)</a>
+        <a href="#build_raven_culprit_context%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="signature"><strong>#build_raven_culprit_context</strong>(context : HTTP::Server::Context)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#build_raven_http_data%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="signature"><strong>#build_raven_http_data</strong>(context : HTTP::Server::Context)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#build_raven_http_url%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="signature"><strong>#build_raven_http_url</strong>(context : HTTP::Server::Context)</a>
         
       </li>
     
@@ -504,26 +561,77 @@
   
     
 
-  <h3>Instance methods inherited from class <code><a href="../../Raven/Processor.html">Raven::Processor</a></code></h3>
+  <h3>Instance methods inherited from module <code><a href="../../Raven/HTTPHandler.html">Raven::HTTPHandler</a></code></h3>
   
   
-    <a href="../../Raven/Processor.html#process%28data%29-instance-method" class="tooltip">
-      <span>process(data)</span>
-    process</a>
+    <a href="../../Raven/HTTPHandler.html#build_raven_culprit_context%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="tooltip">
+      <span>build_raven_culprit_context(context : HTTP::Server::Context)</span>
+    build_raven_culprit_context</a>, 
+    
+  
+    <a href="../../Raven/HTTPHandler.html#build_raven_http_data%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="tooltip">
+      <span>build_raven_http_data(context : HTTP::Server::Context)</span>
+    build_raven_http_data</a>, 
+    
+  
+    <a href="../../Raven/HTTPHandler.html#build_raven_http_url%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="tooltip">
+      <span>build_raven_http_url(context : HTTP::Server::Context)</span>
+    build_raven_http_url</a>, 
+    
+  
+    <a href="../../Raven/HTTPHandler.html#call%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="tooltip">
+      <span>call(context : HTTP::Server::Context)</span>
+    call</a>, 
+    
+  
+    <a href="../../Raven/HTTPHandler.html#capture_data_for_methods-instance-method" class="tooltip">
+      <span>capture_data_for_methods</span>
+    capture_data_for_methods</a>, 
+    
+  
+    <a href="../../Raven/HTTPHandler.html#capture_data_for_methods%3D%28capture_data_for_methods%29-instance-method" class="tooltip">
+      <span>capture_data_for_methods=(capture_data_for_methods)</span>
+    capture_data_for_methods=</a>, 
+    
+  
+    <a href="../../Raven/HTTPHandler.html#culprit_pattern%3AString%3F-instance-method" class="tooltip">
+      <span>culprit_pattern : String?</span>
+    culprit_pattern</a>, 
+    
+  
+    <a href="../../Raven/HTTPHandler.html#culprit_pattern%3D%28culprit_pattern%3AString%3F%29-instance-method" class="tooltip">
+      <span>culprit_pattern=(culprit_pattern : String?)</span>
+    culprit_pattern=</a>, 
+    
+  
+    <a href="../../Raven/HTTPHandler.html#default_logger%3AString%3F-instance-method" class="tooltip">
+      <span>default_logger : String?</span>
+    default_logger</a>, 
+    
+  
+    <a href="../../Raven/HTTPHandler.html#default_logger%3D%28default_logger%3AString%3F%29-instance-method" class="tooltip">
+      <span>default_logger=(default_logger : String?)</span>
+    default_logger=</a>, 
+    
+  
+    <a href="../../Raven/HTTPHandler.html#on_raven_event%28event%3ARaven%3A%3AEvent%2Ccontext%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method" class="tooltip">
+      <span>on_raven_event(event : Raven::Event, context : HTTP::Server::Context)</span>
+    on_raven_event</a>
     
   
 
 
     
 
-  <h3>Constructor methods inherited from class <code><a href="../../Raven/Processor.html">Raven::Processor</a></code></h3>
-  
-  
-    <a href="../../Raven/Processor.html#new%28client%3AClient%29-class-method" class="tooltip">
-      <span>new(client : Client)</span>
-    new</a>
+
     
+
+
   
+    
+
+
+    
 
 
     
@@ -553,24 +661,75 @@
 </div>
 
 
+  <h2>Constructor Detail</h2>
+  
+    <div class="entry-detail" id="new(culprit_pattern=&amp;quot;%{method}%{path}&amp;quot;,capture_data_for_methods=[&amp;quot;POST&amp;quot;,&amp;quot;PUT&amp;quot;,&amp;quot;PATCH&amp;quot;]of::String,default_logger=&amp;quot;lucky&amp;quot;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(culprit_pattern = <span class="s">&quot;%{method} %{path}&quot;</span>, capture_data_for_methods = [<span class="s">&quot;POST&quot;</span>, <span class="s">&quot;PUT&quot;</span>, <span class="s">&quot;PATCH&quot;</span>] <span class="k">of</span> <span class="t">::</span><span class="t">String</span>, default_logger = <span class="s">&quot;lucky&quot;</span>)
+
+        <a class="method-permalink" href="#new%28culprit_pattern%3D%26quot%3B%25%7Bmethod%7D%25%7Bpath%7D%26quot%3B%2Ccapture_data_for_methods%3D%5B%26quot%3BPOST%26quot%3B%2C%26quot%3BPUT%26quot%3B%2C%26quot%3BPATCH%26quot%3B%5Dof%3A%3AString%2Cdefault_logger%3D%26quot%3Blucky%26quot%3B%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/integrations/lucky/error_handler.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
 
 
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="process(data)-instance-method">
+    <div class="entry-detail" id="build_raven_culprit_context(context:HTTP::Server::Context)-instance-method">
       <div class="signature">
         
-        def <strong>process</strong>(data)
+        def <strong>build_raven_culprit_context</strong>(context : HTTP::Server::Context)
 
-        <a class="method-permalink" href="#process%28data%29-instance-method">#</a>
+        <a class="method-permalink" href="#build_raven_culprit_context%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/processors/remove_stacktrace.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/integrations/lucky/error_handler.cr#L31" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="build_raven_http_data(context:HTTP::Server::Context)-instance-method">
+      <div class="signature">
+        
+        def <strong>build_raven_http_data</strong>(context : HTTP::Server::Context)
+
+        <a class="method-permalink" href="#build_raven_http_data%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/integrations/lucky/error_handler.cr#L39" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="build_raven_http_url(context:HTTP::Server::Context)-instance-method">
+      <div class="signature">
+        
+        def <strong>build_raven_http_url</strong>(context : HTTP::Server::Context)
+
+        <a class="method-permalink" href="#build_raven_http_url%28context%3AHTTP%3A%3AServer%3A%3AContext%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/integrations/lucky/error_handler.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>

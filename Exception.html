@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.26.0">
+<meta name="generator" content="Crystal Docs 0.27.1">
 
 
 <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -21,7 +21,7 @@
 <div class="sidebar">
   <div class="sidebar-header">
     <div class="search-box">
-      <input type="search" class="search-input" placeholder="Search..." spellcheck="false">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
     </div>
 
     <div class="repository-links">
@@ -35,6 +35,11 @@
 
   <div class="types-list">
     <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/toplevel" data-name="top level namespace">
+      <a href="toplevel.html">Top Level Namespace</a>
+      
+    </li>
   
   <li class=" current" data-id="github.com/Sija/raven.cr/Exception" data-name="exception">
       <a href="Exception.html">Exception</a>
@@ -196,6 +201,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Event/Hint" data-name="raven::event::hint">
+      <a href="Raven/Event/Hint.html">Hint</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Event/Severity" data-name="raven::event::severity">
       <a href="Raven/Event/Severity.html">Severity</a>
       
@@ -256,11 +266,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Interface/Template" data-name="raven::interface::template">
-      <a href="Raven/Interface/Template.html">Template</a>
-      
-    </li>
-  
 </ul>
 
       
@@ -293,6 +298,21 @@
   
   <li class=" " data-id="github.com/Sija/raven.cr/Raven/Logger" data-name="raven::logger">
       <a href="Raven/Logger.html">Logger</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Sija/raven.cr/Raven/Lucky" data-name="raven::lucky">
+      <a href="Raven/Lucky.html">Lucky</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Sija/raven.cr/Raven/Lucky/ErrorHandler" data-name="raven::lucky::errorhandler">
+      <a href="Raven/Lucky/ErrorHandler.html">ErrorHandler</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -439,7 +459,7 @@
 
   <p>Represents errors that occur during application execution.</p>
 
-<p>Exception and it's descendants are used to communicate between raise and
+<p>Exception and its descendants are used to communicate between raise and
 rescue statements in <code>begin ... end</code> blocks.
 Exception objects carry information about the exception – its type (the
 exception’s class name), an optional descriptive string, and
@@ -469,7 +489,7 @@ Exception subclasses may add additional information.</p>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/ext/exception.cr#L1" target="_blank">
+      <a href="https://github.com/Sija/raven.cr/blob/b34bc81917c7b221ebabdb537e31fe6abf14f811/src/raven/ext/exception.cr#L1" target="_blank">
         raven/ext/exception.cr
       </a>
     
@@ -488,17 +508,47 @@ Exception subclasses may add additional information.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#__raven_context-instance-method" class="signature"><strong>#__raven_context</strong></a>
+        <a href="#__raven_extra-instance-method" class="signature"><strong>#__raven_extra</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#__raven_context%3D%28__raven_context%3AAnyHash%3A%3AJSON%29-instance-method" class="signature"><strong>#__raven_context=</strong>(__raven_context : AnyHash::JSON)</a>
+        <a href="#__raven_extra%3D%28__raven_extra%3AAnyHash%3A%3AJSON%29-instance-method" class="signature"><strong>#__raven_extra=</strong>(__raven_extra : AnyHash::JSON)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#__raven_context%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#__raven_context=</strong>(hash : Hash | NamedTuple?)</a>
+        <a href="#__raven_extra%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#__raven_extra=</strong>(hash : Hash | NamedTuple?)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#__raven_tags-instance-method" class="signature"><strong>#__raven_tags</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#__raven_tags%3D%28__raven_tags%3AAnyHash%3A%3AJSON%29-instance-method" class="signature"><strong>#__raven_tags=</strong>(__raven_tags : AnyHash::JSON)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#__raven_tags%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#__raven_tags=</strong>(hash : Hash | NamedTuple?)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#__raven_user-instance-method" class="signature"><strong>#__raven_user</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#__raven_user%3D%28__raven_user%3AAnyHash%3A%3AJSON%29-instance-method" class="signature"><strong>#__raven_user=</strong>(__raven_user : AnyHash::JSON)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#__raven_user%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#__raven_user=</strong>(hash : Hash | NamedTuple?)</a>
         
       </li>
     
@@ -539,12 +589,12 @@ Exception subclasses may add additional information.</p>
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="__raven_context-instance-method">
+    <div class="entry-detail" id="__raven_extra-instance-method">
       <div class="signature">
         
-        def <strong>__raven_context</strong>
+        def <strong>__raven_extra</strong>
 
-        <a class="method-permalink" href="#__raven_context-instance-method">#</a>
+        <a class="method-permalink" href="#__raven_extra-instance-method">#</a>
       </div>
       
       <br/>
@@ -553,12 +603,12 @@ Exception subclasses may add additional information.</p>
       </div>
     </div>
   
-    <div class="entry-detail" id="__raven_context=(__raven_context:AnyHash::JSON)-instance-method">
+    <div class="entry-detail" id="__raven_extra=(__raven_extra:AnyHash::JSON)-instance-method">
       <div class="signature">
         
-        def <strong>__raven_context=</strong>(__raven_context : AnyHash::JSON)
+        def <strong>__raven_extra=</strong>(__raven_extra : AnyHash::JSON)
 
-        <a class="method-permalink" href="#__raven_context%3D%28__raven_context%3AAnyHash%3A%3AJSON%29-instance-method">#</a>
+        <a class="method-permalink" href="#__raven_extra%3D%28__raven_extra%3AAnyHash%3A%3AJSON%29-instance-method">#</a>
       </div>
       
       <br/>
@@ -567,18 +617,100 @@ Exception subclasses may add additional information.</p>
       </div>
     </div>
   
-    <div class="entry-detail" id="__raven_context=(hash:Hash|NamedTuple?)-instance-method">
+    <div class="entry-detail" id="__raven_extra=(hash:Hash|NamedTuple?)-instance-method">
       <div class="signature">
         
-        def <strong>__raven_context=</strong>(hash : Hash | NamedTuple?)
+        def <strong>__raven_extra=</strong>(hash : Hash | NamedTuple?)
 
-        <a class="method-permalink" href="#__raven_context%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#__raven_extra%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/ffcef75637cf9b07f3408015e75a081807ca50ca/src/raven/ext/exception.cr#L2" target="_blank">View source</a>]
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="__raven_tags-instance-method">
+      <div class="signature">
+        
+        def <strong>__raven_tags</strong>
+
+        <a class="method-permalink" href="#__raven_tags-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="__raven_tags=(__raven_tags:AnyHash::JSON)-instance-method">
+      <div class="signature">
+        
+        def <strong>__raven_tags=</strong>(__raven_tags : AnyHash::JSON)
+
+        <a class="method-permalink" href="#__raven_tags%3D%28__raven_tags%3AAnyHash%3A%3AJSON%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="__raven_tags=(hash:Hash|NamedTuple?)-instance-method">
+      <div class="signature">
+        
+        def <strong>__raven_tags=</strong>(hash : Hash | NamedTuple?)
+
+        <a class="method-permalink" href="#__raven_tags%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="__raven_user-instance-method">
+      <div class="signature">
+        
+        def <strong>__raven_user</strong>
+
+        <a class="method-permalink" href="#__raven_user-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="__raven_user=(__raven_user:AnyHash::JSON)-instance-method">
+      <div class="signature">
+        
+        def <strong>__raven_user=</strong>(__raven_user : AnyHash::JSON)
+
+        <a class="method-permalink" href="#__raven_user%3D%28__raven_user%3AAnyHash%3A%3AJSON%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="__raven_user=(hash:Hash|NamedTuple?)-instance-method">
+      <div class="signature">
+        
+        def <strong>__raven_user=</strong>(hash : Hash | NamedTuple?)
+
+        <a class="method-permalink" href="#__raven_user%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
         
       </div>
     </div>
