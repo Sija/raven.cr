@@ -231,7 +231,7 @@ module Raven
       return unless shards_list
       deps = shards_list.scan /\* (?<name>.+?) \((?<version>.+?)\)/m
       unless deps.empty?
-        deps.map { |match| {match["name"], match["version"]} }.to_h
+        deps.to_h { |match| {match["name"], match["version"]} }
       end
     end
 
