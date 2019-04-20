@@ -84,7 +84,7 @@ module Raven
     def_equals_and_hash @file, @number, @column, @method
 
     # Reconstructs the line in a readable fashion
-    def to_s(io) : Nil
+    def to_s(io : IO) : Nil
       io << '`' << @method << '`' if @method
       if @file
         io << " at " << @file
@@ -93,7 +93,7 @@ module Raven
       end
     end
 
-    def inspect(io) : Nil
+    def inspect(io : IO) : Nil
       io << "Backtrace::Line("
       to_s(io)
       io << ')'
