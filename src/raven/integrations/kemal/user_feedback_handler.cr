@@ -18,7 +18,7 @@ module Raven
       include Raven::UserFeedbackHandler
 
       protected def render_view(ex)
-        production? = ::Kemal.config.env == "production" # ameba:disable Lint/UselessAssign
+        production = ::Kemal.config.env == "production" # ameba:disable Lint/UselessAssign
         {% begin %}
           render "{{__DIR__.id}}/../shared/views/user_feedback.ecr"
         {% end %}
