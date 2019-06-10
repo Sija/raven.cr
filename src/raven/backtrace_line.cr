@@ -55,27 +55,21 @@ module Raven
     # The method of the line (such as index).
     getter method : String?
 
-    private def self.empty_marker?(value)
-      value =~ /^\?+$/
-    end
-
-    private def self.nil_on_empty(value)
-      value unless empty_marker?(value)
-    end
-
     # Parses a single line of a given backtrace, where *unparsed_line* is
     # the raw line from `caller` or some backtrace.
     # Returns the parsed backtrace line.
     def self.parse(unparsed_line : String) : Line
       if CALLSTACK_PATTERNS.values.any? &.match(unparsed_line)
-        file = nil_on_empty $~["file"]?
-        number = $~["line"]?
-        column = $~["col"]?
+        file = $~["file"]?
+        file = nil if file.try(&.blank?)
         method = $~["method"]?
+        method = nil if method.try(&.blank?)
+        number = $~["line"]?.try(&.to_i)
+        column = $~["col"]?.try(&.to_i)
       else
         raise ArgumentError.new("Error parsing line: #{unparsed_line.inspect}")
       end
-      new(file, number.try(&.to_i), column.try(&.to_i), method)
+      new(file, number, column, method)
     end
 
     def initialize(@file, @number, @column, @method)
@@ -84,7 +78,7 @@ module Raven
     def_equals_and_hash @file, @number, @column, @method
 
     # Reconstructs the line in a readable fashion
-    def to_s(io) : Nil
+    def to_s(io : IO) : Nil
       io << '`' << @method << '`' if @method
       if @file
         io << " at " << @file
@@ -93,7 +87,7 @@ module Raven
       end
     end
 
-    def inspect(io) : Nil
+    def inspect(io : IO) : Nil
       io << "Backtrace::Line("
       to_s(io)
       io << ')'
