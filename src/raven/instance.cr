@@ -16,8 +16,8 @@ module Raven
   #     # ...
   #
   #
-  #   rescue e
-  #     @other_raven.capture(e)
+  #   rescue ex
+  #     @other_raven.capture(ex)
   #   end
   # end
   # ```
@@ -162,8 +162,8 @@ module Raven
     # ```
     # begin
     #   # ...
-    # rescue e
-    #   Raven.capture e
+    # rescue ex
+    #   Raven.capture ex
     # end
     #
     # Raven.capture "boo!"
@@ -210,11 +210,11 @@ module Raven
     # ```
     def capture(**options, &block)
       yield
-    rescue e : Raven::Error
-      raise e # Don't capture Raven errors
-    rescue e : Exception
-      capture(e, **options)
-      raise e
+    rescue ex : Raven::Error
+      raise ex # Don't capture Raven errors
+    rescue ex : Exception
+      capture(ex, **options)
+      raise ex
     end
 
     # Provides extra context to the exception prior to it being handled by
@@ -238,7 +238,7 @@ module Raven
     # ```
     def annotate_exception(exc, **options)
       {% for key in %i(user tags extra) %}
-        if v = options[:{{ key.id }}]?
+        if v = options[{{ key }}]?
           exc.__raven_{{ key.id }}.merge!(v)
         end
       {% end %}

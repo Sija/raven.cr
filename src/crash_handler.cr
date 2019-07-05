@@ -93,11 +93,11 @@ module Raven
 
     private def capture_with_options(**options)
       yield
-    rescue e : Raven::Error
-      raise e # Don't capture Raven errors
-    rescue e : Exception
-      capture_with_options(e, **options) { }
-      raise e
+    rescue ex : Raven::Error
+      raise ex # Don't capture Raven errors
+    rescue ex : Exception
+      capture_with_options(ex, **options) { }
+      raise ex
     end
 
     private def capture_crystal_exception(klass, msg, backtrace, **options)

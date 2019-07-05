@@ -4,21 +4,34 @@ module Raven
 
     class_getter registered = {} of Symbol => Interface.class
 
-    def self.[](name : Symbol)
-      registered[name]? || raise Error.new "Unknown interface: #{name}"
+    def self.[]=(name : Symbol, klass : Interface.class)
+      registered[name] = klass
+    end
+
+    def self.[]?(name : Symbol) : Interface.class | Nil
+      registered[name]?
+    end
+
+    def self.[](name : Symbol) : Interface.class
+      self[name]? || raise ArgumentError.new "Unknown interface: #{name}"
     end
 
     def self.sentry_alias : Symbol
       {% begin %}
-        raise Error.new "Undefined {{@type.id}}.sentry_alias"
+        raise "Undefined {{ @type.id }}.sentry_alias"
       {% end %}
     end
 
     macro inherited
-      {% factory_key = @type.name.gsub(/^Raven::Interface::/, "").underscore %}
-      {% factory_key = factory_key.gsub(/::/, "_") %}
+      {%
+        factory_key = @type.name
+          .gsub(/^Raven::Interface::/, "")
+          .gsub(/::/, "_")
+          .underscore
+          .id
+      %}
 
-      ::Raven::Interface.registered[:{{factory_key.id}}] = self
+      ::Raven::Interface[{{ factory_key.symbolize }}] = self
 
       def initialize(**attributes)
         initialize_with(**attributes)
@@ -31,12 +44,10 @@ module Raven
     end
 
     def to_hash
-      {% if @type.instance_vars.empty? %}
-        return nil
-      {% else %}
+      {% unless @type.instance_vars.empty? %}
         {
           {% for var in @type.instance_vars %}
-            :{{var.name.id}} => ((v = @{{var.name.id}}) \
+            {{ var.name.id.symbolize }} => ((v = @{{ var.name.id }}) \
               .responds_to?(:to_hash) \
                 ? v.try(&.to_hash)
                 : v.is_a?(Array) \
@@ -48,9 +59,7 @@ module Raven
       {% end %}
     end
 
-    def to_json(json : JSON::Builder)
-      to_hash.to_json(json)
-    end
+    delegate :to_json, to: to_hash
   end
 end
 

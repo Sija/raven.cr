@@ -28,33 +28,41 @@ module Raven
         {% begin %}
           %set = [] of Symbol
 
-          {% properties = @type.methods.select { |m| m.name.ends_with?('=') && m.args.size == 1 } %}
-          {% properties = properties.map(&.name[0...-1].id).uniq %}
+          {%
+            properties = @type.methods
+              .select { |m| m.name.ends_with?('=') && m.args.size == 1 }
+              .map(&.name[0...-1].id)
+              .uniq
+          %}
 
           {% for property in properties %}
-            if arg = attributes[:{{property}}]?
-              unless %set.includes?(:{{property}})
-                self.{{property}} = arg
-                %set << :{{property}}
+            if arg = attributes[{{ property.symbolize }}]?
+              unless %set.includes?({{ property.symbolize }})
+                self.{{ property }} = arg
+                %set << {{ property.symbolize }}
               end
             end
           {% end %}
 
-          {% ivars = @type.instance_vars %}
-          {% ivars = ivars.map { |i| [i.name.id, i.type.name] }.uniq %}
+          {%
+            ivars = @type.instance_vars
+              .map { |v| {v.name.id, v.type.name} }
+              .uniq
+          %}
 
           {% for ivar in ivars %}
             {% name = ivar[0]; type = ivar[1] %}
-            if arg = attributes[:{{name}}]?
-              unless %set.includes?(:{{name}})
-                if arg.is_a?({{type}})
-                  @{{name}} = arg
-                  %set << :{{name}}
+            if arg = attributes[{{ name.symbolize }}]?
+              unless %set.includes?({{ name.symbolize }})
+                if arg.is_a?({{ type }})
+                  @{{ name }} = arg
+                  %set << {{ name.symbolize }}
                 end
               end
             end
           {% end %}
         {% end %}
+
         self
       end
     end

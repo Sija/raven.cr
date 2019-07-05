@@ -444,9 +444,9 @@ module Raven
       valid = true
       if dsn
         {% for key in REQUIRED_OPTIONS %}
-          unless {{ "self.#{key.id}".id }}
+          unless self.{{ key.id }}
             valid = false
-            @errors << "No :{{ key.id }} specified"
+            @errors << "No {{ key }} specified"
           end
         {% end %}
       else

@@ -61,8 +61,8 @@ module Raven
         transport.send_event(generate_auth_header, encoded_data, **options).tap do
           successful_send
         end
-      rescue e
-        failed_send e, event
+      rescue ex
+        failed_send ex, event
       end
     end
 
