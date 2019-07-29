@@ -74,7 +74,7 @@ module Raven
     # Number of lines of code context to capture, or `nil` for none.
     property context_lines : Int32? = 5
 
-    # Defaults to `SENTRY_CURRENT_ENV` or `KEMAL_ENV` `ENV` variables if set,
+    # Defaults to `SENTRY_ENVIRONMENT` variable if set,
     # `"default"` otherwise.
     property current_environment : String?
 
@@ -385,7 +385,7 @@ module Raven
     end
 
     private def current_environment_from_env
-      ENV["SENTRY_CURRENT_ENV"]? || ENV["KEMAL_ENV"]? || "default"
+      ENV["SENTRY_ENVIRONMENT"]? || "default"
     end
 
     def capture_allowed?

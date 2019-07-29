@@ -14,7 +14,7 @@ end
 
 # Make sure we reset the env in case something leaks in
 def with_clean_env
-  sentry_vars = ->{ ENV.to_h.select { |key, _| key =~ /^(SENTRY_)|KEMAL_ENV/ } }
+  sentry_vars = ->{ ENV.to_h.select { |key, _| key =~ /^SENTRY_/ } }
   previous_vars = sentry_vars.call
   begin
     previous_vars.each do |key, _|
@@ -108,23 +108,12 @@ describe Raven::Configuration do
       end
     end
 
-    it "uses `SENTRY_CURRENT_ENV` env variable" do
+    it "uses `SENTRY_ENVIRONMENT` env variable" do
       with_clean_env do
-        ENV["SENTRY_CURRENT_ENV"] = "set-with-sentry-current-env"
-        ENV["KEMAL_ENV"] = "set-with-kemal-env"
+        ENV["SENTRY_ENVIRONMENT"] = "set-with-sentry-environment"
 
         configuration = Raven::Configuration.new
-        configuration.current_environment.should eq("set-with-sentry-current-env")
-      end
-    end
-
-    it "uses `KEMAL_ENV` env variable" do
-      with_clean_env do
-        ENV["SENTRY_CURRENT_ENV"] = nil
-        ENV["KEMAL_ENV"] = "set-with-kemal-env"
-
-        configuration = Raven::Configuration.new
-        configuration.current_environment.should eq("set-with-kemal-env")
+        configuration.current_environment.should eq("set-with-sentry-environment")
       end
     end
   end
