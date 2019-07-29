@@ -334,7 +334,10 @@ module Raven
     end
 
     def detect_release : String?
-      detect_release_from_git || detect_release_from_capistrano || detect_release_from_heroku
+      detect_release_from_env ||
+        detect_release_from_git ||
+        detect_release_from_capistrano ||
+        detect_release_from_heroku
     end
 
     private def running_on_heroku?
@@ -367,6 +370,10 @@ module Raven
 
     private def detect_release_from_git
       Raven.sys_command_compiled("git rev-parse HEAD")
+    end
+
+    private def detect_release_from_env
+      ENV["SENTRY_RELEASE"]?
     end
 
     private def heroku_dyno_name

@@ -118,6 +118,23 @@ describe Raven::Configuration do
     end
   end
 
+  context "being initialized without a release" do
+    pending "defaults to nil" do
+      with_configuration do |configuration|
+        configuration.release.should be_nil
+      end
+    end
+
+    it "uses `SENTRY_RELEASE` env variable" do
+      with_clean_env do
+        ENV["SENTRY_RELEASE"] = "v1"
+
+        configuration = Raven::Configuration.new
+        configuration.release.should eq("v1")
+      end
+    end
+  end
+
   context "with a should_capture callback configured" do
     it "should not send events if #should_capture returns false" do
       with_configuration_with_dsn do |configuration|
