@@ -178,6 +178,7 @@ describe Raven::Processor::SanitizeData do
       }
 
       result = processor.process(data)
+
       result["ccnumba"].should eq("4242424242424242")
       result["ccnumba_int"].should eq(4242424242424242)
     end
@@ -238,12 +239,7 @@ describe Raven::Processor::SanitizeData do
       }
 
       result = processor.process(data)
-      result = result.to_any_json
-
-      query_string = result["sentry.interfaces.Http", "data", "query_string"].as(String).split('&')
-      query_string.should contain("foo=bar")
-      query_string.should contain("foo=fubar")
-      query_string.should contain("foo=barfoo")
+      result.should eq(data)
     end
 
     it "handles url encoded keys and values" do
@@ -257,9 +253,7 @@ describe Raven::Processor::SanitizeData do
       }
 
       result = processor.process(data)
-      result = result.to_any_json
-
-      result["sentry.interfaces.Http", "data", "query_string"].should eq(encoded_query_string)
+      result.should eq(data)
     end
   end
 
@@ -271,7 +265,6 @@ describe Raven::Processor::SanitizeData do
     }
 
     result = processor.process(data)
-
-    result.should eq({:millis_since_epoch => "1507671610403"})
+    result.should eq(data)
   end
 end
