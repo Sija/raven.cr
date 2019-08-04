@@ -7,20 +7,20 @@ authors:
 dependencies:
   any_hash:
     github: Sija/any_hash.cr
-    version: ~> 0.2.2
+    version: ~> 0.2.3
 
 development_dependencies:
   timecop:
     github: crystal-community/timecop.cr
-    version: ~> 0.2.0
+    version: ~> 0.3.0
   ameba:
-    github: veelenga/ameba
+    github: crystal-ameba/ameba
     version: ~> 0.10.0
 
 targets:
   crash_handler:
     main: src/crash_handler.cr
 
-crystal: 0.29.0
+crystal: 0.30.0
 
 license: MIT

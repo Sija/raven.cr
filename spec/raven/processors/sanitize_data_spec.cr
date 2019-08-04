@@ -247,7 +247,7 @@ describe Raven::Processor::SanitizeData do
     end
 
     it "handles url encoded keys and values" do
-      encoded_query_string = "Bio%204%24=cA%24%7C-%7C+M%28%29n3%5E"
+      encoded_query_string = "Bio+4%24=cA%24%7C-%7C+M%28%29n3%5E"
       data = {
         "sentry.interfaces.Http" => {
           "data" => {
