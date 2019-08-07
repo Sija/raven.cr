@@ -61,8 +61,8 @@ module Raven
         transport.send_event(generate_auth_header, encoded_data, **options).tap do
           successful_send
         end
-      rescue e
-        failed_send e, event
+      rescue ex
+        failed_send ex, event
       end
     end
 
@@ -104,11 +104,11 @@ module Raven
       @state.success
     end
 
-    private def failed_send(e, event)
+    private def failed_send(ex, event)
       @state.failure
-      if e
+      if ex
         logger.error "Unable to record event with remote Sentry server \
-          (#{e.class} - #{e.message}): #{e.backtrace[0..10].join('\n')}"
+          (#{ex.class} - #{ex.message}): #{ex.backtrace[0..10].join('\n')}"
       else
         logger.error "Not sending event due to previous failure(s)"
       end

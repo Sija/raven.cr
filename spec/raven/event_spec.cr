@@ -203,7 +203,7 @@ describe Raven::Event do
 
       it "prioritizes event context" do
         with_event_hash({{key.id}}: event_context, clear: false) do |hash|
-          hash[:{{key.id}}].should eq({
+          hash[{{key}}].should eq({
             "context_event_key" => "event_value",
             "context_key"       => "context_value",
             "event_key"         => "event_value",

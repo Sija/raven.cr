@@ -115,7 +115,7 @@ end
 
 And, while not necessary if using `SENTRY_DSN`, you can also provide an
 `environments` setting. Raven will only capture events when
-`SENTRY_CURRENT_ENV` or `KEMAL_ENV` matches an environment on the list.
+`SENTRY_ENVIRONMENT` matches an environment on the list.
 
 ```crystal
 Raven.configure do |config|

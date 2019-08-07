@@ -57,19 +57,25 @@ module Raven
 
     # Parses a single line of a given backtrace, where *unparsed_line* is
     # the raw line from `caller` or some backtrace.
-    # Returns the parsed backtrace line.
-    def self.parse(unparsed_line : String) : Line
-      if CALLSTACK_PATTERNS.values.any? &.match(unparsed_line)
-        file = $~["file"]?
-        file = nil if file.try(&.blank?)
-        method = $~["method"]?
-        method = nil if method.try(&.blank?)
-        number = $~["line"]?.try(&.to_i)
-        column = $~["col"]?.try(&.to_i)
-      else
-        raise ArgumentError.new("Error parsing line: #{unparsed_line.inspect}")
-      end
+    #
+    # Returns the parsed backtrace line on success or `nil` otherwise.
+    def self.parse?(unparsed_line : String) : Line?
+      return unless CALLSTACK_PATTERNS.values.any? &.match(unparsed_line)
+
+      file = $~["file"]?
+      file = nil if file.try(&.blank?)
+      method = $~["method"]?
+      method = nil if method.try(&.blank?)
+      number = $~["line"]?.try(&.to_i?)
+      column = $~["col"]?.try(&.to_i?)
+
       new(file, number, column, method)
+    end
+
+    # ditto
+    def self.parse(unparsed_line : String) : Line
+      parse?(unparsed_line) || \
+         raise ArgumentError.new("Error parsing line: #{unparsed_line.inspect}")
     end
 
     def initialize(@file, @number, @column, @method)
@@ -113,7 +119,7 @@ module Raven
     def shard_name : String?
       relative_path
         .try(&.match(configuration.modules_path_pattern))
-        .try(&.[]("name"))
+        .try(&.["name"])
     end
 
     def in_app? : Bool
@@ -124,9 +130,8 @@ module Raven
       context_lines = configuration.context_lines
 
       return unless context_lines && context_lines > 0
-      return unless (filename = @file)
       return unless (lineno = @number) && lineno > 0
-      return unless File.readable?(filename)
+      return unless (filename = @file) && File.readable?(filename)
 
       lines = File.read_lines(filename)
       lineidx = lineno - 1

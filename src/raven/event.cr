@@ -89,7 +89,7 @@ module Raven
     def self.from(exc : Exception, **options)
       {% for key in %i(user tags extra) %}
         exc_context = exc.@__raven_{{ key.id }}
-        if options_context = options[:{{ key.id }}]?
+        if options_context = options[{{ key }}]?
           options = options.merge({
             {{ key.id }}: exc_context.try(&.merge(options_context)) || options_context
           })
@@ -130,7 +130,7 @@ module Raven
 
     protected def self.add_exception_interface(event, exc)
       exceptions = [exc] of Exception
-      context = Set(UInt64).new({exc.object_id})
+      context = Set(UInt64){exc.object_id}
       backtraces = Set(UInt64).new
 
       while exc = exc.cause
@@ -264,8 +264,6 @@ module Raven
       data.to_h
     end
 
-    def to_json(json : JSON::Builder)
-      to_hash.to_json(json)
-    end
+    delegate :to_json, to: to_hash
   end
 end

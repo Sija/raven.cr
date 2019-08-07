@@ -74,7 +74,7 @@ module Raven
     # Number of lines of code context to capture, or `nil` for none.
     property context_lines : Int32? = 5
 
-    # Defaults to `SENTRY_CURRENT_ENV` or `KEMAL_ENV` `ENV` variables if set,
+    # Defaults to `SENTRY_ENVIRONMENT` variable if set,
     # `"default"` otherwise.
     property current_environment : String?
 
@@ -334,7 +334,10 @@ module Raven
     end
 
     def detect_release : String?
-      detect_release_from_git || detect_release_from_capistrano || detect_release_from_heroku
+      detect_release_from_env ||
+        detect_release_from_git ||
+        detect_release_from_capistrano ||
+        detect_release_from_heroku
     end
 
     private def running_on_heroku?
@@ -369,6 +372,10 @@ module Raven
       Raven.sys_command_compiled("git rev-parse HEAD")
     end
 
+    private def detect_release_from_env
+      ENV["SENTRY_RELEASE"]?
+    end
+
     private def heroku_dyno_name
       return unless running_on_heroku?
       ENV["DYNO"]?
@@ -385,7 +392,7 @@ module Raven
     end
 
     private def current_environment_from_env
-      ENV["SENTRY_CURRENT_ENV"]? || ENV["KEMAL_ENV"]? || "default"
+      ENV["SENTRY_ENVIRONMENT"]? || "default"
     end
 
     def capture_allowed?
@@ -444,9 +451,9 @@ module Raven
       valid = true
       if dsn
         {% for key in REQUIRED_OPTIONS %}
-          unless {{ "self.#{key.id}".id }}
+          unless self.{{ key.id }}
             valid = false
-            @errors << "No :{{ key.id }} specified"
+            @errors << "No {{ key }} specified"
           end
         {% end %}
       else
