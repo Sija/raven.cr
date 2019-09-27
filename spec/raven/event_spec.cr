@@ -93,9 +93,9 @@ describe Raven::Event do
   end
 
   context "with user context specified" do
-    Raven.user_context({"id" => "hello"})
-
     it "adds user data" do
+      Raven.user_context({"id" => "hello"})
+
       with_event_hash(clear: false) do |hash|
         hash[:user].should eq({"id" => "hello"})
       end
@@ -103,9 +103,9 @@ describe Raven::Event do
   end
 
   context "with tags context specified" do
-    Raven.tags_context({"key" => "value"})
-
     it "merges tags data" do
+      Raven.tags_context({"key" => "value"})
+
       with_event_hash(tags: {"foo" => "bar"}, clear: false) do |hash|
         hash[:tags].should eq({"key" => "value", "foo" => "bar"})
       end
@@ -113,9 +113,9 @@ describe Raven::Event do
   end
 
   context "with extra context specified" do
-    Raven.extra_context({"key" => "value"})
-
     it "merges extra data" do
+      Raven.extra_context({"key" => "value"})
+
       with_event_hash(extra: {"foo" => "bar"}, clear: false) do |hash|
         hash[:extra].should eq({"key" => "value", "foo" => "bar"})
       end
@@ -123,12 +123,12 @@ describe Raven::Event do
   end
 
   context "with configuration tags specified" do
-    config = Raven::Configuration.new
-    config.tags = {"key" => "value"}
-    config.release = "custom"
-    config.current_environment = "custom"
-
     it "merges tags data" do
+      config = Raven::Configuration.new
+      config.tags = {"key" => "value"}
+      config.release = "custom"
+      config.current_environment = "custom"
+
       with_event_hash(tags: {"foo" => "bar"}, configuration: config) do |hash|
         hash[:tags].should eq({"key" => "value", "foo" => "bar"})
         hash[:release].should eq("custom")
@@ -138,9 +138,9 @@ describe Raven::Event do
   end
 
   context "with configuration tags unspecified" do
-    config = Raven::Configuration.new
-
     it "should not persist tags between unrelated events" do
+      config = Raven::Configuration.new
+
       with_event_hash(tags: {"foo" => "bar"}, configuration: config) do
         with_event_hash(configuration: config) do |hash2|
           hash2[:tags].should eq({} of String => String)
@@ -150,29 +150,29 @@ describe Raven::Event do
   end
 
   context "tags hierarchy respected" do
-    config = Raven::Configuration.new
-    config.tags = {
-      "configuration_context_event_key" => "configuration_value",
-      "configuration_context_key"       => "configuration_value",
-      "configuration_event_key"         => "configuration_value",
-      "configuration_key"               => "configuration_value",
-    }
-
-    Raven.tags_context({
-      "configuration_context_event_key" => "context_value",
-      "configuration_context_key"       => "context_value",
-      "context_event_key"               => "context_value",
-      "context_key"                     => "context_value",
-    })
-
-    event_tags = {
-      "configuration_context_event_key" => "event_value",
-      "configuration_event_key"         => "event_value",
-      "context_event_key"               => "event_value",
-      "event_key"                       => "event_value",
-    }
-
     it "merges tags data" do
+      config = Raven::Configuration.new
+      config.tags = {
+        "configuration_context_event_key" => "configuration_value",
+        "configuration_context_key"       => "configuration_value",
+        "configuration_event_key"         => "configuration_value",
+        "configuration_key"               => "configuration_value",
+      }
+
+      Raven.tags_context({
+        "configuration_context_event_key" => "context_value",
+        "configuration_context_key"       => "context_value",
+        "context_event_key"               => "context_value",
+        "context_key"                     => "context_value",
+      })
+
+      event_tags = {
+        "configuration_context_event_key" => "event_value",
+        "configuration_event_key"         => "event_value",
+        "context_event_key"               => "event_value",
+        "event_key"                       => "event_value",
+      }
+
       with_event_hash(tags: event_tags, configuration: config, clear: false) do |hash|
         hash[:tags].should eq({
           "configuration_context_event_key" => "event_value",
@@ -189,19 +189,19 @@ describe Raven::Event do
 
   {% for key in %i(user extra tags) %}
     context "with {{key.id}} context specified" do
-      Raven::Context.clear!
-
-      Raven.{{key.id}}_context({
-        "context_event_key" => "context_value",
-        "context_key"       => "context_value",
-      })
-
-      event_context = {
-        "context_event_key" => "event_value",
-        "event_key"         => "event_value",
-      }
-
       it "prioritizes event context" do
+        Raven::Context.clear!
+
+        Raven.{{key.id}}_context({
+          "context_event_key" => "context_value",
+          "context_key"       => "context_value",
+        })
+
+        event_context = {
+          "context_event_key" => "event_value",
+          "event_key"         => "event_value",
+        }
+
         with_event_hash({{key.id}}: event_context, clear: false) do |hash|
           hash[{{key}}].should eq({
             "context_event_key" => "event_value",
@@ -214,18 +214,18 @@ describe Raven::Event do
   {% end %}
 
   context "merging exception context into extra hash" do
-    exception = Exception.new
-    Raven.annotate_exception(exception, extra: {
-      "context_event_key" => "context_value",
-      "context_key"       => "context_value",
-    })
-    event_context = {
-      "context_event_key" => "event_value",
-      "event_key"         => "event_value",
-    }
-    hash = Raven::Event.from(exception, extra: event_context).to_hash
-
     it "prioritizes event context over request context" do
+      exception = Exception.new
+      Raven.annotate_exception(exception, extra: {
+        "context_event_key" => "context_value",
+        "context_key"       => "context_value",
+      })
+      event_context = {
+        "context_event_key" => "event_value",
+        "event_key"         => "event_value",
+      }
+      hash = Raven::Event.from(exception, extra: event_context).to_hash
+
       hash[:extra].should eq({
         "context_event_key" => "event_value",
         "context_key"       => "context_value",
@@ -345,28 +345,28 @@ describe Raven::Event do
       end
 
       context "for a nested exception type" do
-        exception = Raven::Test::Exception.new(message)
-        hash = Raven::Event.from(exception).to_hash
-
         it "sends the module name as part of the exception info" do
+          exception = Raven::Test::Exception.new(message)
+          hash = Raven::Event.from(exception).to_hash
+
           exception_value_from_event_hash(hash, 0)[:module].should eq("Raven::Test")
         end
       end
 
       context "when the exception has a cause" do
-        exception = build_exception_with_cause
-        hash = Raven::Event.from(exception).to_hash
-
         it "captures the cause" do
+          exception = build_exception_with_cause
+          hash = Raven::Event.from(exception).to_hash
+
           hash[:exception].as(Hash)[:values].as(Array).size.should eq(2)
         end
       end
 
       context "when the exception has nested causes" do
-        exception = build_exception_with_two_causes
-        hash = Raven::Event.from(exception).to_hash
-
         it "captures nested causes" do
+          exception = build_exception_with_two_causes
+          hash = Raven::Event.from(exception).to_hash
+
           hash[:exception].as(Hash)[:values].as(Array).size.should eq(3)
         end
       end
