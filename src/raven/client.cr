@@ -105,8 +105,8 @@ module Raven
     end
 
     private def failed_send(ex, event)
-      @state.failure
       if ex
+        @state.failure
         logger.warn "Unable to record event with remote Sentry server \
           (#{ex.class} - #{ex.message}): #{ex.backtrace[0..10].join('\n')}"
       else
