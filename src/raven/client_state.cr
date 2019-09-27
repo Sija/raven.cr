@@ -20,7 +20,7 @@ module Raven
 
       interval = @retry_after || ({@retry_number, 6}.min ** 2).seconds
       if timestamp = @last_check
-        return true if (Time.now - timestamp) >= interval
+        return true if (Time.utc - timestamp) >= interval
       else
         return true
       end
@@ -30,7 +30,7 @@ module Raven
     def failure(retry_after = nil) : Nil
       @status = Status::ERROR
       @retry_number += 1
-      @last_check = Time.now
+      @last_check = Time.utc
       @retry_after = retry_after
     end
 

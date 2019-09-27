@@ -151,7 +151,7 @@ module Raven
 
     def run : Nil
       configure!
-      @started_at = Time.now
+      @started_at = Time.utc
 
       capture_with_options do
         start = Time.monotonic

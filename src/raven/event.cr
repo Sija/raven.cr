@@ -164,7 +164,7 @@ module Raven
       @breadcrumbs = options[:breadcrumbs]? || Raven.breadcrumbs
       @context = options[:context]? || Raven.context
       @id = UUID.random.hexstring
-      @timestamp = Time.now
+      @timestamp = Time.utc
       @level = Severity::ERROR
       @server_name = @configuration.server_name
       @release = @configuration.release

@@ -61,7 +61,7 @@ module Raven
     any_json_property :data
 
     def initialize(**options)
-      @timestamp = Time.now
+      @timestamp = Time.utc
       initialize_with **options
     end
 
