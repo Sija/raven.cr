@@ -21,7 +21,7 @@ describe Raven::Client::State do
 
   it "should try again after time passes" do
     with_client_state do |state|
-      Timecop.freeze(Time.now - 10.seconds) { state.failure }
+      Timecop.freeze(Time.utc - 10.seconds) { state.failure }
       state.should_try?.should be_true
     end
   end
@@ -36,28 +36,28 @@ describe Raven::Client::State do
 
   it "should try again after retry_after" do
     with_client_state do |state|
-      Timecop.freeze(Time.now - 2.seconds) { state.failure(1.second) }
+      Timecop.freeze(Time.utc - 2.seconds) { state.failure(1.second) }
       state.should_try?.should be_true
     end
   end
 
   it "should exponentially backoff" do
     with_client_state do |state|
-      Timecop.freeze(Time.now) do
+      Timecop.freeze(Time.utc) do
         state.failure
-        Timecop.travel(Time.now + 2.seconds)
+        Timecop.travel(Time.utc + 2.seconds)
         state.should_try?.should be_true
 
         state.failure
-        Timecop.travel(Time.now + 3.seconds)
+        Timecop.travel(Time.utc + 3.seconds)
         state.should_try?.should be_false
-        Timecop.travel(Time.now + 2.seconds)
+        Timecop.travel(Time.utc + 2.seconds)
         state.should_try?.should be_true
 
         state.failure
-        Timecop.travel(Time.now + 8.seconds)
+        Timecop.travel(Time.utc + 8.seconds)
         state.should_try?.should be_false
-        Timecop.travel(Time.now + 2.seconds)
+        Timecop.travel(Time.utc + 2.seconds)
         state.should_try?.should be_true
       end
     end

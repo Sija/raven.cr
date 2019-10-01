@@ -105,16 +105,16 @@ module Raven
     end
 
     private def failed_send(ex, event)
-      @state.failure
       if ex
-        logger.error "Unable to record event with remote Sentry server \
+        @state.failure
+        logger.warn "Unable to record event with remote Sentry server \
           (#{ex.class} - #{ex.message}): #{ex.backtrace[0..10].join('\n')}"
       else
-        logger.error "Not sending event due to previous failure(s)"
+        logger.warn "Not sending event due to previous failure(s)"
       end
 
       message = event[:message]? || "<no message value>"
-      logger.error "Failed to submit event: #{message}"
+      logger.warn "Failed to submit event: #{message}"
 
       configuration.transport_failure_callback.try &.call(event)
     end
