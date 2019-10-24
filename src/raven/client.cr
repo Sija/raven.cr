@@ -100,6 +100,18 @@ module Raven
       "Sentry " + fields.map { |key, value| "#{key}=#{value}" }.join(", ")
     end
 
+    private def get_message_from_exception(event)
+      values = event.to_any_json[:exception, :values]?.try &.as?(Array)
+      if ex = values.try(&.first?).try &.as?(Hash)
+        type, value = ex[:type]?, ex[:value]?
+        "#{type}: #{value}" if type && value
+      end
+    end
+
+    private def get_log_message(event)
+      event[:message]? || get_message_from_exception(event) || "<no message value>"
+    end
+
     private def successful_send
       @state.success
     end
@@ -113,7 +125,7 @@ module Raven
         logger.warn "Not sending event due to previous failure(s)"
       end
 
-      message = event[:message]? || "<no message value>"
+      message = get_log_message(event)
       logger.warn "Failed to submit event: #{message}"
 
       configuration.transport_failure_callback.try &.call(event)

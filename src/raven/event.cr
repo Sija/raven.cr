@@ -101,9 +101,6 @@ module Raven
       {% end %}
 
       new(**options).tap do |event|
-        # Messages limited to 10kb
-        event.message = "#{exc.class}: #{exc.message}".byte_slice(0, MAX_MESSAGE_SIZE_IN_BYTES)
-
         exc.callstack ||= CallStack.new
         add_exception_interface(event, exc)
       end
