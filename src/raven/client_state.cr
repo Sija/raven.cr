@@ -19,11 +19,8 @@ module Raven
       return true if @status.online?
 
       interval = @retry_after || ({@retry_number, 6}.min ** 2).seconds
-      if timestamp = @last_check
-        return true if (Time.utc - timestamp) >= interval
-      else
-        return true
-      end
+      return true unless last_check = @last_check
+      return true if (Time.utc - last_check) >= interval
       false
     end
 
