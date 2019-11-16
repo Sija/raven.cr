@@ -12,26 +12,6 @@ private class RandomSampleFail < Random::PCG32
   end
 end
 
-# Make sure we reset the env in case something leaks in
-def with_clean_env
-  sentry_vars = ->{ ENV.to_h.select { |key, _| key =~ /^SENTRY_/ } }
-  previous_vars = sentry_vars.call
-  begin
-    previous_vars.each do |key, _|
-      ENV.delete(key)
-    end
-    yield
-  ensure
-    extra_vars = sentry_vars.call
-    extra_vars.each do |key, _|
-      ENV.delete(key)
-    end
-    previous_vars.each do |key, value|
-      ENV[key] = value
-    end
-  end
-end
-
 def with_configuration
   with_clean_env do
     yield Raven::Configuration.new
