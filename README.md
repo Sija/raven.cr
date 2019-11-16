@@ -86,7 +86,7 @@ Raven supports two methods of capturing exceptions:
 ```crystal
 Raven.capture do
   # capture any exceptions which happen during execution of this block
-  1 / 0
+  1 // 0
 end
 
 begin
