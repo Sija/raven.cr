@@ -4,6 +4,10 @@ class ClientTest < Raven::Client
   def generate_auth_header
     super
   end
+
+  def get_message_from_exception(event)
+    super
+  end
 end
 
 def build_configuration
@@ -16,6 +20,15 @@ def with_client
 end
 
 describe Raven::Client do
+  context "#get_message_from_exception" do
+    it "returns exception class with message" do
+      event = Raven::Event.from(Exception.new("Foo!"))
+      with_client do |client|
+        client.get_message_from_exception(event.to_hash).should eq "Exception: Foo!"
+      end
+    end
+  end
+
   context "#generate_auth_header" do
     it "generates an auth header" do
       with_client do |client|

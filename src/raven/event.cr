@@ -101,18 +101,12 @@ module Raven
       {% end %}
 
       new(**options).tap do |event|
-        # Messages limited to 10kb
-        event.message = "#{exc.class}: #{exc.message}".byte_slice(0, MAX_MESSAGE_SIZE_IN_BYTES)
-
         exc.callstack ||= CallStack.new
         add_exception_interface(event, exc)
       end
     end
 
     def self.from(message : String, **options)
-      # Messages limited to 10kb
-      message = message.byte_slice(0, MAX_MESSAGE_SIZE_IN_BYTES)
-
       new(**options).tap do |event|
         event.message = {message, options[:message_params]?}
       end
@@ -209,15 +203,24 @@ module Raven
     end
 
     def message=(message : String)
-      interface :message, message: message
+      interface :message, message: trim_message(message)
     end
 
-    def message=(message_with_params)
+    def message=(message_with_params : Enumerable | Indexable)
+      message, params = message_with_params
       options = {
-        message: message_with_params.first,
-        params:  message_with_params.last,
+        message: trim_message(message),
+        params:  params,
       }
       interface :message, **options
+    end
+
+    private def trim_message(message, ellipsis = " [...]")
+      if message.size > MAX_MESSAGE_SIZE_IN_BYTES
+        message = message.byte_slice(0, MAX_MESSAGE_SIZE_IN_BYTES - ellipsis.bytesize)
+        message += ellipsis
+      end
+      message
     end
 
     def backtrace=(backtrace)

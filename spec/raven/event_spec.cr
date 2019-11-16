@@ -324,10 +324,6 @@ describe Raven::Event do
         Raven::Event.from(exception).should be_a(Raven::Event)
       end
 
-      it "sets the message to the exception's message and type" do
-        hash[:message].should eq("Exception: #{message}")
-      end
-
       it "has level ERROR" do
         hash[:level].should eq("error")
       end

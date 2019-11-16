@@ -90,7 +90,7 @@ Raven.capture do
 end
 
 begin
-  1 / 0
+  1 // 0
 rescue ex : DivisionByZeroError
   Raven.capture(ex)
 end

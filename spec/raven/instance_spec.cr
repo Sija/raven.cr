@@ -88,7 +88,6 @@ describe Raven::Instance do
       it "sends the result of Event.from" do
         with_instance do |instance|
           instance.capture(build_exception, id: "foo", logger: "bar")
-          instance.last_sent_event.try(&.message).should eq("Exception: Raven.cr test exception")
           instance.last_sent_event.try(&.id).should eq("foo")
           instance.last_sent_event.try(&.logger).should eq("bar")
         end

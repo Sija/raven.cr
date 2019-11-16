@@ -35,10 +35,18 @@ module Raven
     end
 
     def send_feedback(event_id : String, data : Hash)
+      unless configuration.valid?
+        logger.debug "Client#send_feedback with event id '#{event_id}' failed: #{configuration.error_messages}"
+        return false
+      end
       transport.send_feedback(event_id, data)
     end
 
     def send_event(event : Event | Event::HashType, hint : Event::Hint? = nil)
+      unless configuration.valid?
+        logger.debug "Client#send_event with event '#{event}' failed: #{configuration.error_messages}"
+        return false
+      end
       if event.is_a?(Event)
         configuration.before_send.try do |before_send|
           event = before_send.call(event, hint)
@@ -100,6 +108,18 @@ module Raven
       "Sentry " + fields.map { |key, value| "#{key}=#{value}" }.join(", ")
     end
 
+    private def get_message_from_exception(event)
+      values = event.to_any_json[:exception, :values]?.try &.as?(Array)
+      if ex = values.try(&.first?).try &.as?(Hash)
+        type, value = ex[:type]?, ex[:value]?
+        "#{type}: #{value}" if type && value
+      end
+    end
+
+    private def get_log_message(event)
+      event[:message]? || get_message_from_exception(event) || "<no message value>"
+    end
+
     private def successful_send
       @state.success
     end
@@ -113,7 +133,7 @@ module Raven
         logger.warn "Not sending event due to previous failure(s)"
       end
 
-      message = event[:message]? || "<no message value>"
+      message = get_log_message(event)
       logger.warn "Failed to submit event: #{message}"
 
       configuration.transport_failure_callback.try &.call(event)
