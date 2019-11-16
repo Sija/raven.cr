@@ -35,10 +35,18 @@ module Raven
     end
 
     def send_feedback(event_id : String, data : Hash)
+      unless configuration.valid?
+        logger.debug "Client#send_feedback with event id '#{event_id}' failed: #{configuration.error_messages}"
+        return false
+      end
       transport.send_feedback(event_id, data)
     end
 
     def send_event(event : Event | Event::HashType, hint : Event::Hint? = nil)
+      unless configuration.valid?
+        logger.debug "Client#send_event with event '#{event}' failed: #{configuration.error_messages}"
+        return false
+      end
       if event.is_a?(Event)
         configuration.before_send.try do |before_send|
           event = before_send.call(event, hint)

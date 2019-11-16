@@ -447,7 +447,7 @@ module Raven
       true
     end
 
-    private def valid?
+    def valid?
       valid = true
       if dsn
         {% for key in REQUIRED_OPTIONS %}

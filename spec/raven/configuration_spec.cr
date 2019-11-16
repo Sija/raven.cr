@@ -46,6 +46,20 @@ def with_configuration_with_dsn
 end
 
 describe Raven::Configuration do
+  context "#valid?" do
+    it "returns true when DSN is set" do
+      with_configuration_with_dsn do |configuration|
+        configuration.valid?.should be_true
+      end
+    end
+
+    it "returns false when DSN is empty" do
+      with_configuration do |configuration|
+        configuration.valid?.should be_false
+      end
+    end
+  end
+
   it "should set #src_path to current dir from default" do
     with_configuration do |configuration|
       configuration.src_path.should eq(Dir.current)
