@@ -121,15 +121,14 @@ module Raven
       end
     end
 
-    private def capture_process_failure(exit_code, output, error)
+    private def capture_process_failure(exit_code, error)
       msg = "Process #{name} exited with code #{exit_code}"
       cmd = (args = @args) ? "#{name} #{args.join ' '}" : name
 
       capture_with_options msg do |event|
         event.culprit = cmd
         event.extra.merge!({
-          output: output,
-          error:  error,
+          error: error,
         })
       end
     end
@@ -140,13 +139,13 @@ module Raven
     delegate :exit_code, :success?,
       to: process_status
 
-    private def run_process(output : IO = IO::Memory.new, error : IO = IO::Memory.new)
+    private def run_process(error : IO = IO::Memory.new)
       @process_status = Process.run command: name, args: args,
         shell: true,
         input: STDIN,
-        output: IO::MultiWriter.new(STDOUT, output),
+        output: STDOUT,
         error: IO::MultiWriter.new(STDERR, error)
-      {output.to_s.chomp, error.to_s.chomp}
+      error.to_s.chomp
     end
 
     def run : Nil
@@ -155,7 +154,7 @@ module Raven
 
       capture_with_options do
         start = Time.monotonic
-        output, error = run_process
+        error = run_process
         running_for = Time.monotonic - start
 
         context.tags.merge!({
@@ -188,7 +187,7 @@ module Raven
             captured = true
           end
           unless captured
-            capture_process_failure(exit_code, output, error)
+            capture_process_failure(exit_code, error)
           end
         end
 
