@@ -11,8 +11,6 @@ module Raven
       end
     end
 
-    property client : ::HTTP::Client { build_client }
-
     private def build_client
       ssl = configuration.ssl
       ssl = configuration.scheme == "https" if ssl.nil?
@@ -45,6 +43,8 @@ module Raven
         str << params
       end
       logger.debug "HTTP Transport connecting to #{path}"
+
+      client = build_client
       client.post(path, form: data, headers: headers).tap do |response|
         raise Error.new response unless response.success?
       end
@@ -55,7 +55,6 @@ module Raven
         logger.debug "Event not sent: #{configuration.error_messages}"
         return
       end
-      logger.debug "HTTP Transport connecting to #{configuration.dsn}"
 
       project_id = configuration.project_id
       path = configuration.path.try &.chomp '/'
@@ -67,6 +66,9 @@ module Raven
       if configuration.encoding.gzip?
         headers["Content-Encoding"] = "gzip"
       end
+      logger.debug "HTTP Transport connecting to #{configuration.dsn}"
+
+      client = build_client
       client.post("#{path}/api/#{project_id}/store/", headers, data).tap do |response|
         raise Error.new response unless response.success?
       end
