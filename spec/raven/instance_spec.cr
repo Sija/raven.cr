@@ -73,6 +73,21 @@ describe Raven::Instance do
       end
     end
 
+    {% for key in %i(user extra tags) %}
+      context "with {{key.id}} context specified" do
+        it "merges context hierarchy" do
+          with_instance do |instance|
+            Raven::Context.clear!
+            Raven.{{key.id}}_context(foo: :foo, bar: :bar)
+
+            instance.capture("Test message", {{key.id}}: {bar: "baz"}) do |event|
+              event.{{key.id}}.should eq({:foo => :foo, :bar => "baz"})
+            end
+          end
+        end
+      end
+    {% end %}
+
     context "with String" do
       it "sends the result of Event.from" do
         with_instance do |instance|

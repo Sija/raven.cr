@@ -1,5 +1,5 @@
 name: raven
-version: 1.5.4
+version: 1.5.5
 
 authors:
   - Sijawusz Pur Rahnama <sija@sija.pl>
@@ -15,7 +15,7 @@ development_dependencies:
     version: ~> 0.3.0
   ameba:
     github: crystal-ameba/ameba
-    version: ~> 0.10.0
+    version: ~> 0.11.0
 
 targets:
   crash_handler:
