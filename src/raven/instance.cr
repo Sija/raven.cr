@@ -132,8 +132,12 @@ module Raven
         logger.debug "'#{obj}' excluded from capture: #{configuration.error_messages}"
         return false
       end
-      Event.from(obj, configuration: configuration, context: context).tap do |event|
-        event.initialize_with **options
+      default_options = {
+        configuration: configuration,
+        context:       context,
+      }
+      options = default_options.merge(options)
+      Event.from(obj, **options).tap do |event|
         hint =
           if obj.is_a?(String)
             Event::Hint.new(exception: nil, message: obj)

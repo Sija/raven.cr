@@ -80,9 +80,8 @@ module Raven
     end
 
     private def capture_with_options(*args, **options)
-      capture(*args) do |event|
-        event.initialize_with **DEFAULT_OPTS
-        event.initialize_with **options
+      options = DEFAULT_OPTS.merge(options)
+      capture(*args, **options) do |event|
         yield event
       end
     end
