@@ -285,6 +285,23 @@ module Raven
       context.extra.merge!(hash, options)
     end
 
+    {% for key in %i(user extra tags) %}
+      # Bind {{ key.id }} context.
+      # Merges with existing context (if any).
+      #
+      # See `#{{ key.id }}_context`
+      def {{ key.id }}_context(hash = nil, **options)
+        prev_context = context.{{ key.id }}.clone
+        begin
+          context.{{ key.id }}.merge!(hash, options)
+          yield
+        ensure
+          context.{{ key.id }} = prev_context
+        end
+        context.{{ key.id }}
+      end
+    {% end %}
+
     def breadcrumbs
       BreadcrumbBuffer.current
     end

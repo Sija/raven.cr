@@ -85,6 +85,24 @@ describe Raven::Instance do
             end
           end
         end
+
+        it "use passed values only within the block" do
+          with_instance do |instance|
+            Raven::Context.clear!
+            Raven.{{key.id}}_context(will: :stay_there)
+            ctx = Raven.{{key.id}}_context(foo: :foo, bar: :bar) do
+              instance.capture("Test message", {{key.id}}: {bar: "baz"}) do |event|
+                event.{{key.id}}.should eq({
+                  :will => :stay_there,
+                  :foo => :foo,
+                  :bar => "baz"
+                })
+              end
+            end
+            ctx.should eq({:will => :stay_there})
+            Raven.{{key.id}}_context.should be(ctx)
+          end
+        end
       end
     {% end %}
 
