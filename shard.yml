@@ -1,5 +1,5 @@
 name: raven
-version: 1.5.5
+version: 1.6.0
 
 authors:
   - Sijawusz Pur Rahnama <sija@sija.pl>
@@ -12,7 +12,7 @@ dependencies:
 development_dependencies:
   timecop:
     github: crystal-community/timecop.cr
-    version: ~> 0.3.0
+    version: ~> 0.4.0
   ameba:
     github: crystal-ameba/ameba
     version: ~> 0.11.0
@@ -21,6 +21,6 @@ targets:
   crash_handler:
     main: src/crash_handler.cr
 
-crystal: 0.30.0
+crystal: 0.32.0
 
 license: MIT

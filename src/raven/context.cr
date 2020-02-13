@@ -36,10 +36,29 @@ module Raven
     any_json_property :contexts, :extra, :tags, :user
 
     def initialize
-      @contexts = {
+      self.contexts = {
         os:      self.class.os_context,
         runtime: self.class.runtime_context,
-      }.to_any_json
+      }
+      initialize_from_env
+    end
+
+    protected def initialize_from_env
+      {% for key in %i(user extra tags) %}
+        {% env_key = "SENTRY_CONTEXT_#{key.upcase.id}" %}
+
+        if %context = ENV[{{ env_key }}]?.presence
+          begin
+            if %json = JSON.parse(%context).as_h?
+              self.{{ key.id }}.merge!(%json)
+            else
+              raise Raven::Error.new("`{{ env_key.id }}` must contain a JSON-encoded hash")
+            end
+          rescue %e : JSON::ParseException
+            raise Raven::Error.new("Invalid JSON string in `{{ env_key.id }}`", cause: %e)
+          end
+        end
+      {% end %}
     end
   end
 end

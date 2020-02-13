@@ -53,11 +53,7 @@ module Raven
     property logger : ::Logger {
       Logger.new({{ "STDOUT".id unless flag?(:release) }}).tap do |logger|
         logger.level = {{ flag?(:debug) ? "Logger::DEBUG".id : "Logger::ERROR".id }}
-
-        "#{logger.progname}.crash_handler".tap do |progname|
-          logger.progname = progname
-          configuration.exclude_loggers << progname
-        end
+        logger.progname = "raven.crash_handler"
       end
     }
 
@@ -141,8 +137,8 @@ module Raven
     private def run_process(error : IO = IO::Memory.new)
       @process_status = Process.run command: name, args: args,
         shell: true,
-        input: STDIN,
-        output: STDOUT,
+        input: Process::Redirect::Inherit,
+        output: Process::Redirect::Inherit,
         error: IO::MultiWriter.new(STDERR, error)
       error.to_s.chomp
     end
