@@ -2,11 +2,15 @@ require "../spec_helper"
 
 describe Raven::Logger do
   it "should log to a given IO" do
-    io = IO::Memory.new
+    backend = Log::MemoryBackend.new
+    log = Raven::Logger.new(backend, Log::Severity::Info)
 
-    logger = Raven::Logger.new(io)
-    logger.fatal("Oh noes!")
+    log.info { "Oh YAZ!" }
+    log.fatal { "Oh noes!" }
 
-    io.to_s.should match(/FATAL -- sentry: Oh noes!\n\Z/)
+    backend.entries.map { |e| {e.severity, e.source, e.message} }.should eq([
+      {Log::Severity::Info, "sentry", "Oh YAZ!"},
+      {Log::Severity::Fatal, "sentry", "Oh noes!"},
+    ])
   end
 end

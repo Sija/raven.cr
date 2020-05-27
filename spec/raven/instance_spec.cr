@@ -16,25 +16,17 @@ private class InstanceTest < Raven::Instance
   end
 end
 
-private class LoggerTest < Raven::Logger
-  getter infos = [] of String
+private class LoggerTest < Raven::Logger; end
 
-  def info(message, *args)
-    super.tap do
-      @infos << message
-    end
-  end
-end
-
-def build_configuration
+def build_instance_configuration
   Raven::Configuration.new.tap do |config|
     config.dsn = "dummy://12345:67890@sentry.localdomain:3000/sentry/42"
-    config.logger = LoggerTest.new(nil)
+    config.logger = LoggerTest.new(Log::MemoryBackend.new, Log::Severity::Info)
   end
 end
 
 def with_instance(context = nil)
-  yield InstanceTest.new(context, build_configuration)
+  yield InstanceTest.new(context, build_instance_configuration)
 end
 
 describe Raven::Instance do
@@ -215,7 +207,8 @@ describe Raven::Instance do
         instance.configuration.silence_ready = false
 
         instance.report_status
-        instance.logger.as(LoggerTest).infos.should contain(ready_message)
+        backend = instance.logger.as(LoggerTest).backend.as(Log::MemoryBackend)
+        backend.entries.map(&.message).should contain(ready_message)
       end
     end
 
@@ -224,7 +217,8 @@ describe Raven::Instance do
         instance.configuration.silence_ready = true
 
         instance.report_status
-        instance.logger.as(LoggerTest).infos.should_not contain(ready_message)
+        backend = instance.logger.as(LoggerTest).backend.as(Log::MemoryBackend)
+        backend.entries.map(&.message).should_not contain(ready_message)
       end
     end
 
@@ -234,7 +228,8 @@ describe Raven::Instance do
         instance.configuration.dsn = "dummy://foo"
 
         instance.report_status
-        instance.logger.as(LoggerTest).infos.first.should contain(not_ready_message)
+        backend = instance.logger.as(LoggerTest).backend.as(Log::MemoryBackend)
+        backend.entries.map(&.message).first.should contain(not_ready_message)
       end
     end
 
@@ -244,7 +239,8 @@ describe Raven::Instance do
         instance.configuration.environments = %w(production)
 
         instance.report_status
-        instance.logger.as(LoggerTest).infos.should contain(
+        backend = instance.logger.as(LoggerTest).backend.as(Log::MemoryBackend)
+        backend.entries.map(&.message).should contain(
           "#{not_ready_message}: Not configured to send/capture in environment 'default'"
         )
       end

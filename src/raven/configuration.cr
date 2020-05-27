@@ -107,9 +107,9 @@ module Raven
     # NOTE: DSN component - set automatically if DSN provided.
     property host : String?
 
-    # Logger used by Raven. You can use any other `::Logger`,
+    # Logger used by Raven. You can use any other `::Log`,
     # defaults to `Raven::Logger`.
-    property logger : ::Logger
+    property logger : ::Log
 
     # Timeout waiting for the Sentry server connection to open in seconds.
     property connect_timeout : Time::Span = 1.second
@@ -278,7 +278,9 @@ module Raven
       @current_environment = current_environment_from_env
       @exclude_loggers = [Logger::PROGNAME]
       @excluded_exceptions = IGNORE_DEFAULT.dup
-      @logger = Logger.new(STDOUT)
+      # `Warning` will be deprecated in Crystal 0.35 and `Warn` does not exist
+      # in 0.34; Severity.new(4) works in both versions.
+      @logger = Logger.new(Log::IOBackend.new(STDOUT), Log::Severity.new(4))
       @processors = DEFAULT_PROCESSORS.dup
       @sanitize_data_for_request_methods = DEFAULT_REQUEST_METHODS_FOR_DATA_SANITIZATION.dup
       @release = detect_release
@@ -355,7 +357,7 @@ module Raven
       if commit = ENV["HEROKU_SLUG_COMMIT"]?
         return commit
       end
-      logger.warn(HEROKU_DYNO_METADATA_MESSAGE)
+      logger.warn { HEROKU_DYNO_METADATA_MESSAGE }
       nil
     end
 
@@ -441,6 +443,8 @@ module Raven
                             case klass
                             when Exception.class then klass >= ex.class
                             when String          then klass == ex.class.name
+                            else
+                              nil
                             end
                           end
       @errors << "User excluded error: #{ex.inspect}"

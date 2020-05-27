@@ -104,6 +104,7 @@ describe Raven::Event do
 
   context "with tags context specified" do
     it "merges tags data" do
+      Raven::Context.clear!
       Raven.tags_context({"key" => "value"})
 
       with_event_hash(tags: {"foo" => "bar"}, clear: false) do |hash|
