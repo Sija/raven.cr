@@ -96,7 +96,7 @@ describe Raven::Client do
           last_event[:options].should eq({:content_type => "application/octet-stream"})
           last_event[:data].should be_a(String)
           io = IO::Memory.new(last_event[:data].as(String))
-          Gzip::Reader.open(io) do |gzip|
+          Compress::Zlib::Reader.open(io) do |gzip|
             data = JSON.parse(gzip.gets_to_end)
             data.as_h?.should_not be_nil
             data["event_id"].should eq(event.id)

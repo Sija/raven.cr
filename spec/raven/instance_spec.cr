@@ -1,4 +1,5 @@
 require "../spec_helper"
+require "log/spec"
 
 module Raven::Test
   class BaseException < ::Exception; end
@@ -16,12 +17,10 @@ private class InstanceTest < Raven::Instance
   end
 end
 
-private class LoggerTest < Raven::Logger; end
-
 def build_instance_configuration
   Raven::Configuration.new.tap do |config|
     config.dsn = "dummy://12345:67890@sentry.localdomain:3000/sentry/42"
-    config.logger = LoggerTest.new(Log::MemoryBackend.new, Log::Severity::Info)
+    config.logger = Log.for(Raven::Logger::PROGNAME)
   end
 end
 
@@ -206,9 +205,11 @@ describe Raven::Instance do
       with_instance do |instance|
         instance.configuration.silence_ready = false
 
-        instance.report_status
-        backend = instance.logger.as(LoggerTest).backend.as(Log::MemoryBackend)
-        backend.entries.map(&.message).should contain(ready_message)
+        Log.capture do |logs|
+          instance.report_status
+
+          logs.check(:info, ready_message)
+        end
       end
     end
 
@@ -216,9 +217,11 @@ describe Raven::Instance do
       with_instance do |instance|
         instance.configuration.silence_ready = true
 
-        instance.report_status
-        backend = instance.logger.as(LoggerTest).backend.as(Log::MemoryBackend)
-        backend.entries.map(&.message).should_not contain(ready_message)
+        Log.capture do |logs|
+          instance.report_status
+
+          logs.empty
+        end
       end
     end
 
@@ -227,9 +230,11 @@ describe Raven::Instance do
         instance.configuration.silence_ready = false
         instance.configuration.dsn = "dummy://foo"
 
-        instance.report_status
-        backend = instance.logger.as(LoggerTest).backend.as(Log::MemoryBackend)
-        backend.entries.map(&.message).first.should contain(not_ready_message)
+        Log.capture do |logs|
+          instance.report_status
+
+          logs.check(:info, /#{not_ready_message}/)
+        end
       end
     end
 
@@ -238,11 +243,11 @@ describe Raven::Instance do
         instance.configuration.silence_ready = false
         instance.configuration.environments = %w(production)
 
-        instance.report_status
-        backend = instance.logger.as(LoggerTest).backend.as(Log::MemoryBackend)
-        backend.entries.map(&.message).should contain(
-          "#{not_ready_message}: Not configured to send/capture in environment 'default'"
-        )
+        Log.capture do |logs|
+          instance.report_status
+
+          logs.check(:info, "#{not_ready_message}: Not configured to send/capture in environment 'default'")
+        end
       end
     end
   end

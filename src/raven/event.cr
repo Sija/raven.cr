@@ -101,7 +101,7 @@ module Raven
       {% end %}
 
       new(**options).tap do |event|
-        exc.callstack ||= CallStack.new
+        exc.callstack ||= Exception::CallStack.new
         add_exception_interface(event, exc)
       end
     end

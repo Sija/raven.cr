@@ -15,12 +15,12 @@ development_dependencies:
     version: ~> 0.4.0
   ameba:
     github: crystal-ameba/ameba
-    version: ~> 0.11.0
+    version: ~> 0.12.0
 
 targets:
   crash_handler:
     main: src/crash_handler.cr
 
-crystal: 0.34.0
+crystal: 0.35.0
 
 license: MIT

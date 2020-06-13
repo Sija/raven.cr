@@ -278,9 +278,7 @@ module Raven
       @current_environment = current_environment_from_env
       @exclude_loggers = [Logger::PROGNAME]
       @excluded_exceptions = IGNORE_DEFAULT.dup
-      # `Warning` will be deprecated in Crystal 0.35 and `Warn` does not exist
-      # in 0.34; Severity.new(4) works in both versions.
-      @logger = Logger.new(Log::IOBackend.new(STDOUT), Log::Severity.new(4))
+      @logger = Logger.new(Log::IOBackend.new(STDOUT))
       @processors = DEFAULT_PROCESSORS.dup
       @sanitize_data_for_request_methods = DEFAULT_REQUEST_METHODS_FOR_DATA_SANITIZATION.dup
       @release = detect_release
@@ -443,8 +441,6 @@ module Raven
                             case klass
                             when Exception.class then klass >= ex.class
                             when String          then klass == ex.class.name
-                            else
-                              nil
                             end
                           end
       @errors << "User excluded error: #{ex.inspect}"

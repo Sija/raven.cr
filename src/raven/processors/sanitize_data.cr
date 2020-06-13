@@ -37,8 +37,6 @@ module Raven
           case v = v.raw
           when AnyHash::JSONTypes::Value
             memo[k] = process(k, v)
-          else
-            nil
           end
         end
         data.to_h
