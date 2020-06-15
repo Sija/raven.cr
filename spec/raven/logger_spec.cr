@@ -3,14 +3,15 @@ require "log/spec"
 
 describe Raven::Logger do
   it "should log to a given IO" do
-    log = Raven::Logger.for(Raven::Logger::PROGNAME)
+    backend = Log::MemoryBackend.new
+    log = Raven::Logger.new(backend, :info)
 
-    Raven::Logger.capture(builder: Raven::Logger.builder) do |logs|
-      log.info { "Oh YAZ!" }
-      log.fatal { "Oh noes!" }
+    log.info { "Oh YAZ!" }
+    log.fatal { "Oh noes!" }
 
-      logs.check(:info, "Oh YAZ!")
-      logs.next(:fatal, "Oh noes!")
-    end
+    logs = Log::EntriesChecker.new(backend.entries)
+
+    logs.check(:info, "Oh YAZ!")
+    logs.next(:fatal, "Oh noes!")
   end
 end
