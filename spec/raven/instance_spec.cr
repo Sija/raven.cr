@@ -20,7 +20,7 @@ end
 def build_instance_configuration
   Raven::Configuration.new.tap do |config|
     config.dsn = "dummy://12345:67890@sentry.localdomain:3000/sentry/42"
-    config.logger = Log.for(Raven::Logger::PROGNAME)
+    config.logger = Raven::Logger.for(Raven::Logger::PROGNAME)
   end
 end
 
@@ -205,7 +205,7 @@ describe Raven::Instance do
       with_instance do |instance|
         instance.configuration.silence_ready = false
 
-        Log.capture do |logs|
+        Raven::Logger.capture(builder: Raven::Logger.builder) do |logs|
           instance.report_status
 
           logs.check(:info, ready_message)
@@ -217,7 +217,7 @@ describe Raven::Instance do
       with_instance do |instance|
         instance.configuration.silence_ready = true
 
-        Log.capture do |logs|
+        Raven::Logger.capture(builder: Raven::Logger.builder) do |logs|
           instance.report_status
 
           logs.empty
@@ -230,7 +230,7 @@ describe Raven::Instance do
         instance.configuration.silence_ready = false
         instance.configuration.dsn = "dummy://foo"
 
-        Log.capture do |logs|
+        Raven::Logger.capture(builder: Raven::Logger.builder) do |logs|
           instance.report_status
 
           logs.check(:info, /#{not_ready_message}/)
@@ -243,7 +243,7 @@ describe Raven::Instance do
         instance.configuration.silence_ready = false
         instance.configuration.environments = %w(production)
 
-        Log.capture do |logs|
+        Raven::Logger.capture(builder: Raven::Logger.builder) do |logs|
           instance.report_status
 
           logs.check(:info, "#{not_ready_message}: Not configured to send/capture in environment 'default'")
