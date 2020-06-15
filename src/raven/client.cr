@@ -88,7 +88,7 @@ module Raven
       case configuration.encoding
       when .gzip?
         io_gzipped = IO::Memory.new
-        Compress::Zlib::Writer.open(io_gzipped) do |gzip|
+        Compress::Gzip::Writer.open(io_gzipped) do |gzip|
           IO.copy(io, gzip)
         end
         io_gzipped.rewind
