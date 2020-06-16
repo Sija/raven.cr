@@ -20,12 +20,17 @@ end
 def build_instance_configuration
   Raven::Configuration.new.tap do |config|
     config.dsn = "dummy://12345:67890@sentry.localdomain:3000/sentry/42"
-    config.logger = Raven::Logger.for(Raven::Logger::PROGNAME)
+    config.logger = Raven::Logger.new(Log::MemoryBackend.new, :info)
   end
 end
 
 def with_instance(context = nil)
   yield InstanceTest.new(context, build_instance_configuration)
+end
+
+private def get_logs_from_backend(instance : InstanceTest)
+  backend = instance.logger.backend.as(Log::MemoryBackend)
+  Log::EntriesChecker.new(backend.entries)
 end
 
 describe Raven::Instance do
@@ -205,11 +210,9 @@ describe Raven::Instance do
       with_instance do |instance|
         instance.configuration.silence_ready = false
 
-        Raven::Logger.capture(builder: Raven::Logger.builder) do |logs|
-          instance.report_status
+        instance.report_status
 
-          logs.check(:info, ready_message)
-        end
+        get_logs_from_backend(instance).check(:info, ready_message)
       end
     end
 
@@ -217,11 +220,9 @@ describe Raven::Instance do
       with_instance do |instance|
         instance.configuration.silence_ready = true
 
-        Raven::Logger.capture(builder: Raven::Logger.builder) do |logs|
-          instance.report_status
+        instance.report_status
 
-          logs.empty
-        end
+        get_logs_from_backend(instance).empty
       end
     end
 
@@ -230,11 +231,9 @@ describe Raven::Instance do
         instance.configuration.silence_ready = false
         instance.configuration.dsn = "dummy://foo"
 
-        Raven::Logger.capture(builder: Raven::Logger.builder) do |logs|
-          instance.report_status
+        instance.report_status
 
-          logs.check(:info, /#{not_ready_message}/)
-        end
+        get_logs_from_backend(instance).check(:info, /#{not_ready_message}/)
       end
     end
 
@@ -243,11 +242,10 @@ describe Raven::Instance do
         instance.configuration.silence_ready = false
         instance.configuration.environments = %w(production)
 
-        Raven::Logger.capture(builder: Raven::Logger.builder) do |logs|
-          instance.report_status
+        instance.report_status
 
-          logs.check(:info, "#{not_ready_message}: Not configured to send/capture in environment 'default'")
-        end
+        get_logs_from_backend(instance)
+          .check(:info, "#{not_ready_message}: Not configured to send/capture in environment 'default'")
       end
     end
   end
