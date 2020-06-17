@@ -360,11 +360,11 @@ module Raven
     end
 
     private def detect_release_from_capistrano
-      version = File.read(File.join(project_root, "REVISION")).strip rescue nil
+      version = File.read(Path[project_root, "REVISION"]).strip rescue nil
       return version if version
 
       # Capistrano 3.0 - 3.1.x
-      File.read_lines(File.join(project_root, "..", "revisions.log"))
+      File.read_lines(Path[project_root, "..", "revisions.log"])
         .last.strip.sub(/.*as release ([0-9]+).*/, "\1") rescue nil
     end
 
