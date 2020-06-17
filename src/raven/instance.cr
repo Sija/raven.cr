@@ -51,9 +51,11 @@ module Raven
     def report_status
       return if configuration.silence_ready?
       if configuration.capture_allowed?
-        logger.info "Raven #{VERSION} ready to catch errors"
+        logger.info { "Raven #{VERSION} ready to catch errors" }
       else
-        logger.info "Raven #{VERSION} configured not to capture errors: #{configuration.error_messages}"
+        logger.info {
+          "Raven #{VERSION} configured not to capture errors: #{configuration.error_messages}"
+        }
       end
     end
 
@@ -129,7 +131,9 @@ module Raven
     # ```
     def capture(obj : Exception | String, **options, &block)
       unless configuration.capture_allowed?(obj)
-        logger.debug "'#{obj}' excluded from capture: #{configuration.error_messages}"
+        logger.debug {
+          "'#{obj}' excluded from capture: #{configuration.error_messages}"
+        }
         return false
       end
       default_options = {
@@ -149,7 +153,7 @@ module Raven
           begin
             async.call(event)
           rescue ex
-            logger.error "Async event sending failed: #{ex.message}"
+            logger.error { "Async event sending failed: #{ex.message}" }
             send_event(event, hint)
           end
         else

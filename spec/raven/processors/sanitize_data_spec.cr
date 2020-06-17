@@ -9,9 +9,11 @@ end
 STRING_MASK = Raven::Processor::SanitizeData::STRING_MASK
 INT_MASK    = Raven::Processor::SanitizeData::INT_MASK
 
-describe Raven::Processor::SanitizeData do
-  processor = build_processor(Raven::Processor::SanitizeData)
+private def test_processor
+  build_processor(Raven::Processor::SanitizeData)
+end
 
+describe Raven::Processor::SanitizeData do
   context "configuration for sanitize fields" do
     it "should union default sanitize fields with user-defined sanitize fields" do
       with_processor(SanitizeDataTest) do |processor|
@@ -133,7 +135,7 @@ describe Raven::Processor::SanitizeData do
       },
     }
 
-    result = processor.process(data_with_embedded_json)
+    result = test_processor.process(data_with_embedded_json)
     result = result.to_any_json
 
     JSON.parse(result["data", "json"].as(String)).should eq(%w(foo bar))
@@ -148,7 +150,7 @@ describe Raven::Processor::SanitizeData do
       },
     }
 
-    result = processor.process(data_with_invalid_json)
+    result = test_processor.process(data_with_invalid_json)
     result = result.to_any_json
 
     expect_raises(JSON::ParseException) do
@@ -162,7 +164,7 @@ describe Raven::Processor::SanitizeData do
       "ccnumba_int" => 4242424242424242,
     }
 
-    result = processor.process(data)
+    result = test_processor.process(data)
 
     result["ccnumba"].should eq(STRING_MASK)
     result["ccnumba_int"].should eq(INT_MASK)
@@ -192,7 +194,7 @@ describe Raven::Processor::SanitizeData do
       "symbol_hash_array"  => [{:password => "secret"}],
     }
 
-    result = processor.process(data)
+    result = test_processor.process(data)
 
     result["string_hash_array"].should eq([{"password" => STRING_MASK}])
     result["symbol_hash_array"].should eq([{:password => STRING_MASK}])
@@ -208,7 +210,7 @@ describe Raven::Processor::SanitizeData do
         },
       }
 
-      result = processor.process(data)
+      result = test_processor.process(data)
       result = result.to_any_json
 
       result["sentry.interfaces.Http", "data", "query_string"].as(String).should_not contain("secret")
@@ -223,7 +225,7 @@ describe Raven::Processor::SanitizeData do
         },
       }
 
-      result = processor.process(data)
+      result = test_processor.process(data)
       result = result.to_any_json
 
       result["sentry.interfaces.Http", "data", :query_string].as(String).should_not contain("secret")
@@ -238,7 +240,7 @@ describe Raven::Processor::SanitizeData do
         },
       }
 
-      result = processor.process(data)
+      result = test_processor.process(data)
       result.should eq(data)
     end
 
@@ -252,7 +254,7 @@ describe Raven::Processor::SanitizeData do
         },
       }
 
-      result = processor.process(data)
+      result = test_processor.process(data)
       result.should eq(data)
     end
   end
@@ -264,7 +266,7 @@ describe Raven::Processor::SanitizeData do
       :millis_since_epoch => "1507671610403",
     }
 
-    result = processor.process(data)
+    result = test_processor.process(data)
     result.should eq(data)
   end
 end

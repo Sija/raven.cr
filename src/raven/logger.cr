@@ -1,13 +1,11 @@
-require "logger"
+require "log"
 
 module Raven
-  class Logger < ::Logger
+  class Logger < ::Log
     PROGNAME = "sentry"
 
-    def self.new(*args, **options)
-      super.tap do |logger|
-        logger.progname = PROGNAME
-      end
+    def self.new(backend : Backend?, level : Severity = :info)
+      new(PROGNAME, backend, level)
     end
   end
 end

@@ -32,12 +32,12 @@ module Raven
     def_equals @lines
 
     def to_s(io : IO) : Nil
-      @lines.join('\n', io)
+      @lines.join(io, '\n')
     end
 
     def inspect(io : IO) : Nil
       io << "#<Backtrace: "
-      @lines.join(", ", io, &.inspect(io))
+      @lines.join(io, ", ", &.inspect(io))
       io << '>'
     end
   end

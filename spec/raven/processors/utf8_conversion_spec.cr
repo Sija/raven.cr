@@ -27,7 +27,7 @@ describe Raven::Processor::UTF8Conversion do
 
   it "should retain #cause and #callstack in cleaned up Exception" do
     ex = Exception.new(nil, Exception.new)
-    ex.callstack = CallStack.new
+    ex.callstack = Exception::CallStack.new
 
     results = processor.process(ex)
     results.cause.should eq(ex.cause)
