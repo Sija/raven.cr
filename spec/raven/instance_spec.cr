@@ -17,18 +17,11 @@ private class InstanceTest < Raven::Instance
   end
 end
 
-def build_instance_configuration
-  Raven::Configuration.new.tap do |config|
-    config.dsn = "dummy://12345:67890@sentry.localdomain:3000/sentry/42"
-    config.logger = Raven::Logger.new(Log::MemoryBackend.new, :info)
-  end
+private def with_instance(context = nil)
+  yield InstanceTest.new(context, build_configuration)
 end
 
-def with_instance(context = nil)
-  yield InstanceTest.new(context, build_instance_configuration)
-end
-
-private def get_logs_from_backend(instance : InstanceTest)
+private def log_entries_checker_for(instance)
   backend = instance.logger.backend.as(Log::MemoryBackend)
   Log::EntriesChecker.new(backend.entries)
 end
@@ -212,7 +205,8 @@ describe Raven::Instance do
 
         instance.report_status
 
-        get_logs_from_backend(instance).check(:info, ready_message)
+        log_entries_checker_for(instance)
+          .check(:info, ready_message)
       end
     end
 
@@ -221,8 +215,8 @@ describe Raven::Instance do
         instance.configuration.silence_ready = true
 
         instance.report_status
-
-        get_logs_from_backend(instance).empty
+        log_entries_checker_for(instance)
+          .empty
       end
     end
 
@@ -232,8 +226,8 @@ describe Raven::Instance do
         instance.configuration.dsn = "dummy://foo"
 
         instance.report_status
-
-        get_logs_from_backend(instance).check(:info, /#{not_ready_message}/)
+        log_entries_checker_for(instance)
+          .check(:info, /#{not_ready_message}/)
       end
     end
 
@@ -243,9 +237,10 @@ describe Raven::Instance do
         instance.configuration.environments = %w(production)
 
         instance.report_status
-
-        get_logs_from_backend(instance)
-          .check(:info, "#{not_ready_message}: Not configured to send/capture in environment 'default'")
+        log_entries_checker_for(instance)
+          .check(:info,
+            "#{not_ready_message}: Not configured to send/capture in environment 'default'"
+          )
       end
     end
   end
@@ -254,7 +249,9 @@ describe Raven::Instance do
     it "sends the result of Event.capture" do
       with_instance do |instance|
         event = instance.capture("Test message")
-        instance.last_sent_event.try(&.id).should eq(event.as?(Raven::Event).try(&.id))
+
+        last_sent_event = instance.last_sent_event.should_not be_nil
+        last_sent_event.id.should eq(event.as(Raven::Event).id)
       end
     end
   end

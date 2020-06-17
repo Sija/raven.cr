@@ -1,6 +1,6 @@
 require "../spec_helper"
 
-def with_line(path = "#{__DIR__}/foo.cr", method = "foo_bar?")
+private def with_line(path = "#{__DIR__}/foo.cr", method = "foo_bar?")
   line = "#{path}:1:7 in '#{method}'"
   yield Raven::Backtrace::Line.parse(line)
 end

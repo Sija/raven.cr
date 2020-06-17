@@ -1,7 +1,7 @@
 require "../spec_helper"
 require "timecop"
 
-def with_client_state
+private def with_client_state
   yield Raven::Client::State.new
 end
 

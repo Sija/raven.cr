@@ -4,7 +4,7 @@ module Raven::Test
   class Exception < ::Exception; end
 end
 
-def with_event(clear = true, **opts)
+private def with_event(clear = true, **opts)
   if clear
     Raven::Context.clear!
     Raven::BreadcrumbBuffer.clear!
@@ -13,18 +13,24 @@ def with_event(clear = true, **opts)
   yield event
 end
 
-def with_event_hash(**opts)
+private def with_event_hash(**opts)
   with_event(**opts) do |event|
     yield event.to_hash
   end
 end
 
-def exception_value_from_event_hash(hash, index)
+private def exception_value_from_event_hash(hash, index)
   ex_values = hash.to_any_json[:exception, :values].as(Array)
   ex_values[index].as(Hash)
 end
 
 describe Raven::Event do
+  around_each do |example|
+    Raven::Context.clear!
+    example.run
+    Raven::Context.clear!
+  end
+
   context "with fully implemented event" do
     opts = {
       message: "test",
@@ -104,7 +110,6 @@ describe Raven::Event do
 
   context "with tags context specified" do
     it "merges tags data" do
-      Raven::Context.clear!
       Raven.tags_context({"key" => "value"})
 
       with_event_hash(tags: {"foo" => "bar"}, clear: false) do |hash|
@@ -191,8 +196,6 @@ describe Raven::Event do
   {% for key in %i(user extra tags) %}
     context "with {{key.id}} context specified" do
       it "prioritizes event context" do
-        Raven::Context.clear!
-
         Raven.{{key.id}}_context({
           "context_event_key" => "context_value",
           "context_key"       => "context_value",

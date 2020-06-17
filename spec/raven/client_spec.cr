@@ -1,6 +1,6 @@
 require "../spec_helper"
 
-class ClientTest < Raven::Client
+private class ClientTest < Raven::Client
   def generate_auth_header
     super
   end
@@ -10,12 +10,7 @@ class ClientTest < Raven::Client
   end
 end
 
-def build_configuration
-  Raven::Configuration.new
-    .tap(&.dsn = "dummy://12345:67890@sentry.localdomain:3000/sentry/42")
-end
-
-def with_client
+private def with_client
   yield ClientTest.new(build_configuration)
 end
 
