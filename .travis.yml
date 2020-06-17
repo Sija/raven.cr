@@ -17,4 +17,4 @@ script:
   - crystal spec --release
   - crystal spec --release --no-debug
   - crystal tool format --check
-  - bin/ameba src
+  - bin/ameba
