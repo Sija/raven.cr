@@ -7,7 +7,7 @@
 </h1>
 
 <p align="center">
-  <a href="https://travis-ci.org/Sija/raven.cr"><img src="https://travis-ci.org/Sija/raven.cr.svg?branch=master" alt="Build Status" /></a>
+  <a href="https://travis-ci.com/Sija/raven.cr"><img src="https://travis-ci.com/Sija/raven.cr.svg?branch=master" alt="Build Status" /></a>
   <a href="https://www.codacy.com/app/Sija/raven.cr"><img src="https://api.codacy.com/project/badge/Grade/32cb8814a14d4a6cbe39d6768142c59b" alt="Codacy Badge" /></a>
   <a href="https://github.com/Sija/raven.cr/releases"><img src="https://img.shields.io/github/release/Sija/raven.cr.svg" alt="Releases" /></a>
   <a href="https://github.com/Sija/raven.cr/blob/master/LICENSE"><img src="https://img.shields.io/github/license/Sija/raven.cr.svg" alt="License" /></a>
