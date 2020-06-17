@@ -50,11 +50,14 @@ module Raven
     delegate :context, :configuration, :configure, :capture,
       to: raven
 
-    property logger : ::Logger {
-      Logger.new({{ "STDOUT".id unless flag?(:release) }}).tap do |logger|
-        logger.level = {{ flag?(:debug) ? "Logger::DEBUG".id : "Logger::ERROR".id }}
-        logger.progname = "raven.crash_handler"
-      end
+    property logger : ::Log {
+      backend = Log::IOBackend.new(STDOUT)
+      level = case
+              when {{ flag?(:release) }} then Log::Severity::None
+              when {{ flag?(:debug) }}   then Log::Severity::Debug
+              else                            Log::Severity::Error
+              end
+      Log.new("raven.crash_handler", backend, level)
     }
 
     def initialize(@name, @args)
