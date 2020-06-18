@@ -1,5 +1,4 @@
 require "../spec_helper"
-require "log/spec"
 
 module Raven::Test
   class BaseException < ::Exception; end
@@ -19,11 +18,6 @@ end
 
 private def with_instance(context = nil)
   yield InstanceTest.new(context, build_configuration)
-end
-
-private def log_entries_checker_for(instance)
-  backend = instance.logger.backend.as(Log::MemoryBackend)
-  Log::EntriesChecker.new(backend.entries)
 end
 
 describe Raven::Instance do
@@ -203,10 +197,10 @@ describe Raven::Instance do
       with_instance do |instance|
         instance.configuration.silence_ready = false
 
-        instance.report_status
-
-        log_entries_checker_for(instance)
-          .check(:info, ready_message)
+        Log.capture do |logs|
+          instance.report_status
+          logs.check(:info, ready_message)
+        end
       end
     end
 
@@ -214,9 +208,10 @@ describe Raven::Instance do
       with_instance do |instance|
         instance.configuration.silence_ready = true
 
-        instance.report_status
-        log_entries_checker_for(instance)
-          .empty
+        Log.capture do |logs|
+          instance.report_status
+          logs.empty
+        end
       end
     end
 
@@ -225,9 +220,10 @@ describe Raven::Instance do
         instance.configuration.silence_ready = false
         instance.configuration.dsn = "dummy://foo"
 
-        instance.report_status
-        log_entries_checker_for(instance)
-          .check(:info, /#{not_ready_message}/)
+        Log.capture do |logs|
+          instance.report_status
+          logs.check(:info, /#{not_ready_message}/)
+        end
       end
     end
 
@@ -236,11 +232,12 @@ describe Raven::Instance do
         instance.configuration.silence_ready = false
         instance.configuration.environments = %w(production)
 
-        instance.report_status
-        log_entries_checker_for(instance)
-          .check(:info,
+        Log.capture do |logs|
+          instance.report_status
+          logs.check(:info,
             "#{not_ready_message}: Not configured to send/capture in environment 'default'"
           )
+        end
       end
     end
   end

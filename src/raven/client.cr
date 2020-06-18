@@ -9,7 +9,6 @@ module Raven
     USER_AGENT       = "raven.cr/#{Raven::VERSION}"
 
     property configuration : Configuration
-    delegate logger, to: configuration
 
     @state : State
     @processors : Array(Processor)
@@ -36,7 +35,7 @@ module Raven
 
     def send_feedback(event_id : String, data : Hash)
       unless configuration.valid?
-        logger.debug {
+        Log.debug {
           "Client#send_feedback with event id '#{event_id}' failed: #{configuration.error_messages}"
         }
         return false
@@ -46,7 +45,7 @@ module Raven
 
     def send_event(event : Event | Event::HashType, hint : Event::Hint? = nil)
       unless configuration.valid?
-        logger.debug {
+        Log.debug {
           "Client#send_event with event '#{event}' failed: #{configuration.error_messages}"
         }
         return false
@@ -55,7 +54,7 @@ module Raven
         configuration.before_send.try do |before_send|
           event = before_send.call(event, hint)
           unless event
-            logger.info { "Discarded event because before_send returned nil" }
+            Log.info { "Discarded event because before_send returned nil" }
             return
           end
         end
@@ -65,7 +64,7 @@ module Raven
         failed_send nil, event
         return
       end
-      logger.info { "Sending event #{event[:event_id]} to Sentry" }
+      Log.info { "Sending event #{event[:event_id]} to Sentry" }
 
       content_type, encoded_data = encode(event)
       begin
@@ -131,16 +130,13 @@ module Raven
     private def failed_send(ex, event)
       if ex
         @state.failure
-        logger.warn {
-          "Unable to record event with remote Sentry server \
-            (#{ex.class} - #{ex.message}): #{ex.backtrace[0..10].join('\n')}"
-        }
+        Log.warn(exception: ex) { "Unable to record event with remote Sentry server" }
       else
-        logger.warn { "Not sending event due to previous failure(s)" }
+        Log.warn { "Not sending event due to previous failure(s)" }
       end
 
       message = get_log_message(event)
-      logger.warn { "Failed to submit event: #{message}" }
+      Log.warn { "Failed to submit event: #{message}" }
 
       configuration.transport_failure_callback.try &.call(event)
     end

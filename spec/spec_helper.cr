@@ -1,4 +1,5 @@
 require "spec"
+require "log/spec"
 require "../src/raven"
 
 # Make sure we reset the env in case something leaks in
@@ -52,6 +53,5 @@ end
 def build_configuration
   Raven::Configuration.new.tap do |config|
     config.dsn = "dummy://12345:67890@sentry.localdomain:3000/sentry/42"
-    config.logger = Raven::Logger.new(Log::MemoryBackend.new, :info)
   end
 end

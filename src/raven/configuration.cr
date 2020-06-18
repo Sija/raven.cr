@@ -99,10 +99,6 @@ module Raven
     # NOTE: DSN component - set automatically if DSN provided.
     property host : String?
 
-    # Logger used by Raven. You can use any other `::Log`,
-    # defaults to `Raven::Logger`.
-    property logger : ::Log
-
     # Timeout waiting for the Sentry server connection to open in seconds.
     property connect_timeout : Time::Span = 1.second
 
@@ -260,9 +256,8 @@ module Raven
 
     def initialize
       @current_environment = current_environment_from_env
-      @exclude_loggers = [Logger::PROGNAME]
+      @exclude_loggers = [Log.source]
       @excluded_exceptions = IGNORE_DEFAULT.dup
-      @logger = Logger.new(Log::IOBackend.new(STDOUT))
       @processors = DEFAULT_PROCESSORS.dup
       @sanitize_data_for_request_methods = DEFAULT_REQUEST_METHODS_FOR_DATA_SANITIZATION.dup
       @release = detect_release
@@ -339,7 +334,7 @@ module Raven
       if commit = ENV["HEROKU_SLUG_COMMIT"]?
         return commit
       end
-      logger.warn { HEROKU_DYNO_METADATA_MESSAGE }
+      Log.warn { HEROKU_DYNO_METADATA_MESSAGE }
       nil
     end
 

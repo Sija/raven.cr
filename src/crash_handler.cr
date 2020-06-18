@@ -1,5 +1,14 @@
 require "./raven"
 
+Log.setup do |c|
+  level = case
+          when {{ flag?(:release) }} then Log::Severity::None
+          when {{ flag?(:debug) }}   then Log::Severity::Debug
+          else                            Log::Severity::Error
+          end
+  c.bind("raven.*", level, Log::IOBackend.new)
+end
+
 module Raven
   class CrashHandler
     # Example:
@@ -50,16 +59,6 @@ module Raven
     delegate :context, :configuration, :configure, :capture,
       to: raven
 
-    property logger : ::Log {
-      backend = Log::IOBackend.new(STDOUT)
-      level = case
-              when {{ flag?(:release) }} then Log::Severity::None
-              when {{ flag?(:debug) }}   then Log::Severity::Debug
-              else                            Log::Severity::Error
-              end
-      Log.new("raven.crash_handler", backend, level)
-    }
-
     def initialize(@name, @args)
       context.extra.merge!({
         process: {name: @name, args: @args},
@@ -68,7 +67,6 @@ module Raven
 
     private def configure!
       configure do |config|
-        config.logger = logger
         config.send_modules = false
         config.processors = [
           Processor::UTF8Conversion,
