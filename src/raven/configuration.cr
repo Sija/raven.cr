@@ -49,14 +49,6 @@ module Raven
     # ```
     property async : Proc(Event, Nil)?
 
-    # ditto
-    def async=(block : Event -> _)
-      @async = ->(event : Event) {
-        block.call(event)
-        nil
-      }
-    end
-
     # Sets `async` callback to either `Fiber`-based implementation (see below),
     # or `nil`, depending on the given *switch* value.
     #
@@ -238,14 +230,6 @@ module Raven
     # }
     # ```
     property transport_failure_callback : Proc(Event::HashType, Nil)?
-
-    # ditto
-    def transport_failure_callback=(block : Event::HashType -> _)
-      @transport_failure_callback = ->(event : Event::HashType) {
-        block.call(event)
-        nil
-      }
-    end
 
     # Optional `Proc`, called before sending an event to the server:
     #
