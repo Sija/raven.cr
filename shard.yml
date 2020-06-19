@@ -15,7 +15,7 @@ development_dependencies:
     version: ~> 0.4.0
   ameba:
     github: crystal-ameba/ameba
-    version: ~> 0.12.0
+    version: ~> 0.13.0
 
 targets:
   crash_handler:
