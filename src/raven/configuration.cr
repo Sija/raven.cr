@@ -82,9 +82,9 @@ module Raven
     # Whitelist of environments that will send notifications to Sentry.
     property environments = [] of String
 
-    # Logger "progname"s to exclude from breadcrumbs.
+    # `::Log#source` patterns excluded from breadcrumb recording.
     #
-    # Defaults to `[Raven::Logger::PROGNAME]`.
+    # Defaults to `raven.*`.
     #
     # NOTE: You should probably append to this rather than overwrite it.
     property exclude_loggers : Array(String)
@@ -256,7 +256,7 @@ module Raven
 
     def initialize
       @current_environment = current_environment_from_env
-      @exclude_loggers = [Log.source]
+      @exclude_loggers = ["#{Log.source}.*"]
       @excluded_exceptions = IGNORE_DEFAULT.dup
       @processors = DEFAULT_PROCESSORS.dup
       @sanitize_data_for_request_methods = DEFAULT_REQUEST_METHODS_FOR_DATA_SANITIZATION.dup
@@ -372,6 +372,12 @@ module Raven
 
     private def current_environment_from_env
       ENV["SENTRY_ENVIRONMENT"]? || "default"
+    end
+
+    def ignored_logger?(source)
+      exclude_loggers.any? do |pattern|
+        ::Log::Builder.matches(source, pattern)
+      end
     end
 
     def capture_allowed?
