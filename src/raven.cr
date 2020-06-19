@@ -7,7 +7,7 @@ require "./raven/*"
 module Raven
   # `Raven.instance` delegators.
   module Delegators
-    delegate :context, :logger, :configuration, :client,
+    delegate :context, :configuration, :client,
       :report_status, :configure, :send_feedback, :send_event,
       :capture, :last_event_id, :annotate_exception,
       :user_context, :tags_context, :extra_context, :breadcrumbs,
