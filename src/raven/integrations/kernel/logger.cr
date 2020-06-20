@@ -13,11 +13,13 @@ class Logger
   } of ::Logger::Severity => Raven::Breadcrumb::Severity
 
   private def write(severity, datetime, progname, message)
+    level = BREADCRUMB_LEVELS[severity]?
+
     record_breadcrumb(
-      BREADCRUMB_LEVELS[severity]?,
+      message,
+      level,
       datetime,
       progname,
-      message,
     )
     previous_def
   end

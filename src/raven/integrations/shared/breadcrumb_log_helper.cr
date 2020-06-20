@@ -9,13 +9,14 @@ module Raven
       end
     end
 
-    protected def record_breadcrumb(level, timestamp, category, message) : Breadcrumb?
-      return if Raven.configuration.ignored_logger?(category)
+    protected def record_breadcrumb(message, level, timestamp, source, data = nil)
+      return if Raven.configuration.ignored_logger?(source)
       Raven.breadcrumbs.record do |crumb|
-        crumb.level = level
-        crumb.timestamp = timestamp
-        crumb.category = category.presence || "logger"
         crumb.message = deansify(message).presence
+        crumb.level = level if level
+        crumb.timestamp = timestamp if timestamp
+        crumb.category = source.presence || "logger"
+        crumb.data = data if data
       end
     end
   end

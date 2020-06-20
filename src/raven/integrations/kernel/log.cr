@@ -1,4 +1,5 @@
 require "log"
+require "log/json"
 require "../shared/breadcrumb_log_helper"
 
 module Raven
@@ -33,11 +34,18 @@ module Raven
       if ex = entry.exception
         message += " -- (#{ex.class}): #{ex.message || "n/a"}"
       end
+
+      level = BREADCRUMB_LEVELS[entry.severity]?
+
+      data = entry.context.extend(entry.data.to_h)
+      data = data.empty? ? nil : JSON.parse(data.to_json).as_h
+
       record_breadcrumb(
-        BREADCRUMB_LEVELS[entry.severity]?,
+        message,
+        level,
         entry.timestamp,
         entry.source,
-        message,
+        data,
       )
     end
   end
