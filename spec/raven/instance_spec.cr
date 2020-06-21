@@ -16,24 +16,7 @@ private class InstanceTest < Raven::Instance
   end
 end
 
-private class LoggerTest < Raven::Logger
-  getter infos = [] of String
-
-  def info(message, *args)
-    super.tap do
-      @infos << message
-    end
-  end
-end
-
-def build_configuration
-  Raven::Configuration.new.tap do |config|
-    config.dsn = "dummy://12345:67890@sentry.localdomain:3000/sentry/42"
-    config.logger = LoggerTest.new(nil)
-  end
-end
-
-def with_instance(context = nil)
+private def with_instance(context = nil)
   yield InstanceTest.new(context, build_configuration)
 end
 
@@ -214,8 +197,10 @@ describe Raven::Instance do
       with_instance do |instance|
         instance.configuration.silence_ready = false
 
-        instance.report_status
-        instance.logger.as(LoggerTest).infos.should contain(ready_message)
+        Log.capture do |logs|
+          instance.report_status
+          logs.check(:info, ready_message)
+        end
       end
     end
 
@@ -223,8 +208,10 @@ describe Raven::Instance do
       with_instance do |instance|
         instance.configuration.silence_ready = true
 
-        instance.report_status
-        instance.logger.as(LoggerTest).infos.should_not contain(ready_message)
+        Log.capture do |logs|
+          instance.report_status
+          logs.empty
+        end
       end
     end
 
@@ -233,8 +220,10 @@ describe Raven::Instance do
         instance.configuration.silence_ready = false
         instance.configuration.dsn = "dummy://foo"
 
-        instance.report_status
-        instance.logger.as(LoggerTest).infos.first.should contain(not_ready_message)
+        Log.capture do |logs|
+          instance.report_status
+          logs.check(:info, /#{not_ready_message}/)
+        end
       end
     end
 
@@ -243,10 +232,12 @@ describe Raven::Instance do
         instance.configuration.silence_ready = false
         instance.configuration.environments = %w(production)
 
-        instance.report_status
-        instance.logger.as(LoggerTest).infos.should contain(
-          "#{not_ready_message}: Not configured to send/capture in environment 'default'"
-        )
+        Log.capture do |logs|
+          instance.report_status
+          logs.check(:info,
+            "#{not_ready_message}: Not configured to send/capture in environment 'default'"
+          )
+        end
       end
     end
   end
@@ -255,7 +246,9 @@ describe Raven::Instance do
     it "sends the result of Event.capture" do
       with_instance do |instance|
         event = instance.capture("Test message")
-        instance.last_sent_event.try(&.id).should eq(event.as?(Raven::Event).try(&.id))
+
+        last_sent_event = instance.last_sent_event.should_not be_nil
+        last_sent_event.id.should eq(event.as(Raven::Event).id)
       end
     end
   end

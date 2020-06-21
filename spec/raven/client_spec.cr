@@ -1,6 +1,6 @@
 require "../spec_helper"
 
-class ClientTest < Raven::Client
+private class ClientTest < Raven::Client
   def generate_auth_header
     super
   end
@@ -10,12 +10,7 @@ class ClientTest < Raven::Client
   end
 end
 
-def build_configuration
-  Raven::Configuration.new
-    .tap(&.dsn = "dummy://12345:67890@sentry.localdomain:3000/sentry/42")
-end
-
-def with_client
+private def with_client
   yield ClientTest.new(build_configuration)
 end
 
@@ -96,7 +91,7 @@ describe Raven::Client do
           last_event[:options].should eq({:content_type => "application/octet-stream"})
           last_event[:data].should be_a(String)
           io = IO::Memory.new(last_event[:data].as(String))
-          Gzip::Reader.open(io) do |gzip|
+          Compress::Gzip::Reader.open(io) do |gzip|
             data = JSON.parse(gzip.gets_to_end)
             data.as_h?.should_not be_nil
             data["event_id"].should eq(event.id)

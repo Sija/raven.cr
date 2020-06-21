@@ -49,14 +49,6 @@ module Raven
     # ```
     property async : Proc(Event, Nil)?
 
-    # ditto
-    def async=(block : Event -> _)
-      @async = ->(event : Event) {
-        block.call(event)
-        nil
-      }
-    end
-
     # Sets `async` callback to either `Fiber`-based implementation (see below),
     # or `nil`, depending on the given *switch* value.
     #
@@ -90,9 +82,9 @@ module Raven
     # Whitelist of environments that will send notifications to Sentry.
     property environments = [] of String
 
-    # Logger "progname"s to exclude from breadcrumbs.
+    # `::Log#source` patterns excluded from breadcrumb recording.
     #
-    # Defaults to `[Raven::Logger::PROGNAME]`.
+    # Defaults to `raven.*`.
     #
     # NOTE: You should probably append to this rather than overwrite it.
     property exclude_loggers : Array(String)
@@ -106,10 +98,6 @@ module Raven
 
     # NOTE: DSN component - set automatically if DSN provided.
     property host : String?
-
-    # Logger used by Raven. You can use any other `::Logger`,
-    # defaults to `Raven::Logger`.
-    property logger : ::Logger
 
     # Timeout waiting for the Sentry server connection to open in seconds.
     property connect_timeout : Time::Span = 1.second
@@ -239,14 +227,6 @@ module Raven
     # ```
     property transport_failure_callback : Proc(Event::HashType, Nil)?
 
-    # ditto
-    def transport_failure_callback=(block : Event::HashType -> _)
-      @transport_failure_callback = ->(event : Event::HashType) {
-        block.call(event)
-        nil
-      }
-    end
-
     # Optional `Proc`, called before sending an event to the server:
     #
     # ```
@@ -276,9 +256,8 @@ module Raven
 
     def initialize
       @current_environment = current_environment_from_env
-      @exclude_loggers = [Logger::PROGNAME]
+      @exclude_loggers = ["#{Log.source}.*"]
       @excluded_exceptions = IGNORE_DEFAULT.dup
-      @logger = Logger.new(STDOUT)
       @processors = DEFAULT_PROCESSORS.dup
       @sanitize_data_for_request_methods = DEFAULT_REQUEST_METHODS_FOR_DATA_SANITIZATION.dup
       @release = detect_release
@@ -355,16 +334,16 @@ module Raven
       if commit = ENV["HEROKU_SLUG_COMMIT"]?
         return commit
       end
-      logger.warn(HEROKU_DYNO_METADATA_MESSAGE)
+      Log.warn { HEROKU_DYNO_METADATA_MESSAGE }
       nil
     end
 
     private def detect_release_from_capistrano
-      version = File.read(File.join(project_root, "REVISION")).strip rescue nil
+      version = File.read(Path[project_root, "REVISION"]).strip rescue nil
       return version if version
 
       # Capistrano 3.0 - 3.1.x
-      File.read_lines(File.join(project_root, "..", "revisions.log"))
+      File.read_lines(Path[project_root, "..", "revisions.log"])
         .last.strip.sub(/.*as release ([0-9]+).*/, "\1") rescue nil
     end
 
@@ -393,6 +372,12 @@ module Raven
 
     private def current_environment_from_env
       ENV["SENTRY_ENVIRONMENT"]? || "default"
+    end
+
+    def ignored_logger?(source)
+      exclude_loggers.any? do |pattern|
+        ::Log::Builder.matches(source, pattern)
+      end
     end
 
     def capture_allowed?

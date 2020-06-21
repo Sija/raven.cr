@@ -4,7 +4,7 @@ crystal:
   - latest
   - nightly
 
-matrix:
+jobs:
   allow_failures:
     - crystal: nightly
 
@@ -16,5 +16,7 @@ script:
   - crystal spec --no-debug
   - crystal spec --release
   - crystal spec --release --no-debug
+  - shards build crash_handler
+  - shards build crash_handler --release
   - crystal tool format --check
-  - bin/ameba src
+  - bin/ameba

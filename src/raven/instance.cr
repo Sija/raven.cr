@@ -25,8 +25,6 @@ module Raven
     # See `Raven::Configuration`.
     property configuration : Configuration { Configuration.new }
 
-    delegate logger, to: configuration
-
     # The client object is responsible for delivering formatted data to the
     # Sentry server.
     property client : Client { Client.new(configuration) }
@@ -51,9 +49,11 @@ module Raven
     def report_status
       return if configuration.silence_ready?
       if configuration.capture_allowed?
-        logger.info "Raven #{VERSION} ready to catch errors"
+        Log.info { "Raven #{VERSION} ready to catch errors" }
       else
-        logger.info "Raven #{VERSION} configured not to capture errors: #{configuration.error_messages}"
+        Log.info {
+          "Raven #{VERSION} configured not to capture errors: #{configuration.error_messages}"
+        }
       end
     end
 
@@ -129,7 +129,9 @@ module Raven
     # ```
     def capture(obj : Exception | String, **options, &block)
       unless configuration.capture_allowed?(obj)
-        logger.debug "'#{obj}' excluded from capture: #{configuration.error_messages}"
+        Log.debug {
+          "'#{obj}' excluded from capture: #{configuration.error_messages}"
+        }
         return false
       end
       default_options = {
@@ -149,7 +151,7 @@ module Raven
           begin
             async.call(event)
           rescue ex
-            logger.error "Async event sending failed: #{ex.message}"
+            Log.error(exception: ex) { "Async event sending failed" }
             send_event(event, hint)
           end
         else

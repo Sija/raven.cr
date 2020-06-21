@@ -1,5 +1,14 @@
 require "./raven"
 
+Log.setup do |c|
+  level = case
+          when {{ flag?(:release) }} then Log::Severity::None
+          when {{ flag?(:debug) }}   then Log::Severity::Debug
+          else                            Log::Severity::Error
+          end
+  c.bind("raven.*", level, Log::IOBackend.new)
+end
+
 module Raven
   class CrashHandler
     # Example:
@@ -15,7 +24,8 @@ module Raven
     # [0x10578706c] __crystal_main +2940
     # [0x105798128] main +40
     # ```
-    CRYSTAL_CRASH_PATTERN = /(?<message>[^\n]+)\n(?<backtrace>\[#{Backtrace::Line::ADDR_FORMAT}\] .*)$/m
+    CRYSTAL_CRASH_PATTERN =
+      /(?<message>[^\n]+)\n(?<backtrace>\[#{Backtrace::Line::ADDR_FORMAT}\] .*)$/m
 
     # Example:
     #
@@ -27,7 +37,8 @@ module Raven
     #   from /usr/local/Cellar/crystal/0.26.0/src/crystal/main.cr:93:7 in 'main'
     #   from /usr/local/Cellar/crystal/0.26.0/src/crystal/main.cr:133:3 in 'main'
     # ```
-    CRYSTAL_EXCEPTION_PATTERN = /Unhandled exception(?<in_fiber> in spawn(?:\(name: (?<fiber_name>.*?)\))?)?: (?<message>[^\n]+) \((?<class>[A-Z]\w+)\)\n(?<backtrace>(?:\s+from\s+.*?){1,})$/m
+    CRYSTAL_EXCEPTION_PATTERN =
+      /Unhandled exception(?<in_fiber> in spawn(?:\(name: (?<fiber_name>.*?)\))?)?: (?<message>[^\n]+) \((?<class>[A-Z]\w+)\)\n(?<backtrace>(?:\s+from\s+.*?){1,})$/m
 
     # Default event options.
     DEFAULT_OPTS = {
@@ -50,13 +61,6 @@ module Raven
     delegate :context, :configuration, :configure, :capture,
       to: raven
 
-    property logger : ::Logger {
-      Logger.new({{ "STDOUT".id unless flag?(:release) }}).tap do |logger|
-        logger.level = {{ flag?(:debug) ? "Logger::DEBUG".id : "Logger::ERROR".id }}
-        logger.progname = "raven.crash_handler"
-      end
-    }
-
     def initialize(@name, @args)
       context.extra.merge!({
         process: {name: @name, args: @args},
@@ -65,7 +69,6 @@ module Raven
 
     private def configure!
       configure do |config|
-        config.logger = logger
         config.send_modules = false
         config.processors = [
           Processor::UTF8Conversion,
@@ -131,16 +134,14 @@ module Raven
     getter! started_at : Time
     getter! process_status : Process::Status
 
-    delegate :exit_code, :success?,
-      to: process_status
-
-    private def run_process(error : IO = IO::Memory.new)
+    private def run_process
+      error = IO::Memory.new
       @process_status = Process.run command: name, args: args,
         shell: true,
-        input: Process::Redirect::Inherit,
-        output: Process::Redirect::Inherit,
+        input: :inherit,
+        output: :inherit,
         error: IO::MultiWriter.new(STDERR, error)
-      error.to_s.chomp
+      error.to_s.chomp.presence
     end
 
     def run : Nil
@@ -152,6 +153,9 @@ module Raven
         error = run_process
         running_for = Time.monotonic - start
 
+        exit_code = process_status.exit_code
+        success = process_status.success?
+
         context.tags.merge!({
           exit_code: exit_code,
         })
@@ -161,7 +165,7 @@ module Raven
         })
 
         captured = false
-        error.scan CRYSTAL_EXCEPTION_PATTERN do |match|
+        error.try &.scan CRYSTAL_EXCEPTION_PATTERN do |match|
           msg = match["message"]
           klass = match["class"]
           backtrace = match["backtrace"]
@@ -174,7 +178,7 @@ module Raven
           })
           captured = true
         end
-        unless success?
+        unless success
           if error =~ CRYSTAL_CRASH_PATTERN
             msg = $~["message"]
             backtrace = $~["backtrace"]
@@ -193,11 +197,10 @@ module Raven
 end
 
 if ARGV.empty?
-  puts "Usage: #{PROGRAM_NAME} <CMD> [OPTION]..."
-  exit(1)
+  abort "Usage: #{PROGRAM_NAME} <CMD> [OPTION]..."
 end
 
-name, args = ARGV[0], ARGV.size > 1 ? ARGV[1..-1] : nil
+name, args = ARGV[0], ARGV.size > 1 ? ARGV[1..] : nil
 handler = Raven::CrashHandler.new(name, args)
 handler.raven.tap do |raven|
   raven.configuration.src_path = Dir.current

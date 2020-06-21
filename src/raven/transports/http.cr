@@ -42,7 +42,7 @@ module Raven
         str << "/api/embed/error-page/?"
         str << params
       end
-      logger.debug "HTTP Transport connecting to #{path}"
+      Log.debug { "HTTP Transport connecting to #{path}" }
 
       client = build_client
       client.post(path, form: data, headers: headers).tap do |response|
@@ -52,7 +52,7 @@ module Raven
 
     def send_event(auth_header, data, **options)
       unless configuration.capture_allowed?
-        logger.debug "Event not sent: #{configuration.error_messages}"
+        Log.debug { "Event not sent: #{configuration.error_messages}" }
         return
       end
 
@@ -66,7 +66,7 @@ module Raven
       if configuration.encoding.gzip?
         headers["Content-Encoding"] = "gzip"
       end
-      logger.debug "HTTP Transport connecting to #{configuration.dsn}"
+      Log.debug { "HTTP Transport connecting to #{configuration.dsn}" }
 
       client = build_client
       client.post("#{path}/api/#{project_id}/store/", headers, data).tap do |response|

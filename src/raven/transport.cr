@@ -1,7 +1,6 @@
 module Raven
   abstract class Transport
     property configuration : Configuration
-    delegate logger, to: configuration
 
     def initialize(@configuration)
     end

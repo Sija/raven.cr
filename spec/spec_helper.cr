@@ -1,4 +1,5 @@
 require "spec"
+require "log/spec"
 require "../src/raven"
 
 # Make sure we reset the env in case something leaks in
@@ -47,4 +48,10 @@ def build_exception_with_two_causes
   end
 rescue exception
   exception
+end
+
+def build_configuration
+  Raven::Configuration.new.tap do |config|
+    config.dsn = "dummy://12345:67890@sentry.localdomain:3000/sentry/42"
+  end
 end
