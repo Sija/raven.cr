@@ -22,11 +22,11 @@ module Raven
 
   macro sys_command_compiled(command)
     %result = {{ `(#{command.id} || true) 2>/dev/null`.stringify.strip }}
-    %result unless %result.empty?
+    %result.presence
   end
 
   def self.sys_command(command)
     result = `(#{command}) 2>/dev/null`.strip rescue nil
-    result if !result.nil? && !result.empty? && $?.success?
+    result.presence if $?.success?
   end
 end

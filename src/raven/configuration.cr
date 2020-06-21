@@ -323,19 +323,10 @@ module Raven
       File.directory?("/etc/heroku")
     end
 
-    private HEROKU_DYNO_METADATA_MESSAGE =
-      "You are running on Heroku but haven't enabled Dyno Metadata. " \
-      "For Sentry's release detection to work correctly, please run " \
-      "`heroku labs:enable runtime-dyno-metadata`"
-
     private def detect_release_from_heroku
       return unless running_on_heroku?
       return if ENV["CI"]?
-      if commit = ENV["HEROKU_SLUG_COMMIT"]?
-        return commit
-      end
-      Log.warn { HEROKU_DYNO_METADATA_MESSAGE }
-      nil
+      ENV["HEROKU_SLUG_COMMIT"]?
     end
 
     private def detect_release_from_capistrano
