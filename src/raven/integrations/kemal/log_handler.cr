@@ -41,7 +41,7 @@ module Raven
             elapsed = Time.monotonic - time
 
             Raven.breadcrumbs.record do |crumb|
-              unless (200...400).includes? context.response.status_code
+              unless context.response.status_code.in?(100...400)
                 crumb.level = :error
               end
               crumb.type = :http
@@ -54,16 +54,15 @@ module Raven
               }
             end
           end
-          context
         end
       end
 
       def write(message)
         if log_messages?
-          Raven.breadcrumbs.record do |crumb|
-            crumb.category = "kemal"
-            crumb.message = message.strip
-          end
+          Raven.breadcrumbs.record(
+            category: "kemal",
+            message: message.strip
+          )
         end
         @wrapped.try &.write(message)
       end

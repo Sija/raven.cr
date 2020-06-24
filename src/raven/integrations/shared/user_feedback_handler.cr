@@ -11,8 +11,9 @@ module Raven
           }
           next
         end
-        response.status_code = 500
+        response.status = :internal_server_error
         response.print render_view(ex)
+        response.close
       end
       context
     end
