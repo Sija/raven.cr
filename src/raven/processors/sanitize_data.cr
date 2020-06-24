@@ -13,7 +13,7 @@ module Raven
     property? sanitize_credit_cards : Bool
 
     private def use_boundary?(field)
-      !(field.is_a?(Regex) || DEFAULT_FIELDS.includes?(field))
+      !(field.is_a?(Regex) || field.in?(DEFAULT_FIELDS))
     end
 
     private getter fields_pattern : Regex {

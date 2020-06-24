@@ -5,7 +5,7 @@ module Raven
     property sanitize_http_headers : Array(String | Regex)
 
     private def use_boundary?(field)
-      !(field.is_a?(Regex) || DEFAULT_FIELDS.includes?(field))
+      !(field.is_a?(Regex) || field.in?(DEFAULT_FIELDS))
     end
 
     private getter fields_pattern : Regex {

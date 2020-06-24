@@ -57,7 +57,7 @@ module Raven
     end
 
     def empty?
-      !members.any?
+      members.empty?
     end
 
     def to_hash
