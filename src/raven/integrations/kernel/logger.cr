@@ -1,8 +1,8 @@
 require "logger"
-require "../shared/breadcrumb_log_helper"
+require "../shared/log_helper"
 
 class Logger
-  include Raven::BreadcrumbLogHelper
+  include Raven::LogHelper
 
   private BREADCRUMB_LEVELS = {
     :debug => :debug,

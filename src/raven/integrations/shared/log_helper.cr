@@ -1,5 +1,5 @@
 module Raven
-  module BreadcrumbLogHelper
+  module LogHelper
     protected def deansify(message) : String?
       case message
       when Nil       then nil
