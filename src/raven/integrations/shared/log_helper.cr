@@ -1,22 +1,43 @@
 module Raven
   module LogHelper
-    protected def deansify(message) : String?
-      case message
-      when Nil       then nil
-      when String    then message.gsub(/\x1b[^m]*m/, "")
-      when Exception then deansify(message.message)
-      else                deansify(message.to_s)
-      end
+    protected delegate :ignored_logger?,
+      to: Raven.configuration
+
+    protected def deansify(message : String?) : String?
+      message.try &.gsub(/\x1b[^m]*m/, "")
     end
 
     protected def record_breadcrumb(message, level, timestamp, source, data = nil)
-      return if Raven.configuration.ignored_logger?(source)
+      return if ignored_logger?(source)
+
+      message = deansify(message).presence
+      logger = source.presence || "logger"
+
       Raven.breadcrumbs.record do |crumb|
-        crumb.message = deansify(message).presence
+        crumb.message = message
         crumb.level = level if level
         crumb.timestamp = timestamp if timestamp
-        crumb.category = source.presence || "logger"
+        crumb.category = logger
         crumb.data = data if data
+      end
+    end
+
+    protected def capture_exception(exception, message, level, timestamp, source, data = nil)
+      return if ignored_logger?(source)
+
+      if exception.is_a?(String)
+        exception = deansify(exception)
+      end
+
+      message = deansify(message).presence
+      logger = source.presence || "logger"
+
+      Raven.capture(exception) do |event|
+        event.culprit = message if message
+        event.level = level if level
+        event.timestamp = timestamp if timestamp
+        event.logger = logger
+        event.tags = data if data
       end
     end
   end

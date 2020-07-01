@@ -16,10 +16,10 @@ class Logger
     level = BREADCRUMB_LEVELS[severity]?
 
     record_breadcrumb(
-      message,
+      message.to_s,
       level,
       datetime,
-      progname,
+      progname.to_s,
     )
     previous_def
   end
