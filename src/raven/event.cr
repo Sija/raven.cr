@@ -86,23 +86,23 @@ module Raven
 
     any_json_property :contexts, :user, :tags, :extra
 
-    def self.from(exc : Exception, **options)
+    def self.from(ex : Exception, **options)
       {% for key in %i(user tags extra) %}
-        exc_context = exc.@__raven_{{ key.id }}
+        ex_context = ex.@__raven_{{ key.id }}
         if options_context = options[{{ key }}]?
           options = options.merge({
-            {{ key.id }}: exc_context.try(&.merge(options_context)) || options_context
+            {{ key.id }}: ex_context.try(&.merge(options_context)) || options_context
           })
         else
           options = options.merge({
-            {{ key.id }}: exc_context
+            {{ key.id }}: ex_context
           })
         end
       {% end %}
 
       new(**options).tap do |event|
-        exc.callstack ||= Exception::CallStack.new
-        add_exception_interface(event, exc)
+        ex.callstack ||= Exception::CallStack.new
+        add_exception_interface(event, ex)
       end
     end
 
@@ -122,15 +122,15 @@ module Raven
       parts.reject(&.last.nil?).flatten.compact.join ' '
     end
 
-    protected def self.add_exception_interface(event, exc)
-      exceptions = [exc] of Exception
-      context = Set(UInt64){exc.object_id}
+    protected def self.add_exception_interface(event, ex)
+      exceptions = [ex] of Exception
+      context = Set(UInt64){ex.object_id}
       backtraces = Set(UInt64).new
 
-      while exc = exc.cause
-        break if context.includes?(exc.object_id)
-        exceptions << exc
-        context << exc.object_id
+      while ex = ex.cause
+        break if context.includes?(ex.object_id)
+        exceptions << ex
+        context << ex.object_id
       end
       exceptions.reverse!
 

@@ -242,13 +242,13 @@ module Raven
     #   raise ex
     # end
     # ```
-    def annotate_exception(exc, **options)
+    def annotate_exception(ex, **options)
       {% for key in %i(user tags extra) %}
         if v = options[{{ key }}]?
-          exc.__raven_{{ key.id }}.merge!(v)
+          ex.__raven_{{ key.id }}.merge!(v)
         end
       {% end %}
-      exc
+      ex
     end
 
     # Bind user context. Merges with existing context (if any).
