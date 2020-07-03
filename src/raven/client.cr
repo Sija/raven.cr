@@ -85,17 +85,15 @@ module Raven
       io.rewind
 
       case configuration.encoding
-      when .gzip?
+      in .gzip?
         io_gzipped = IO::Memory.new
         Compress::Gzip::Writer.open(io_gzipped) do |gzip|
           IO.copy(io, gzip)
         end
         io_gzipped.rewind
         {"application/octet-stream", io_gzipped}
-      when .json?
+      in .json?
         {"application/json", io}
-      else
-        raise "Invalid configuration encoding"
       end
     end
 
