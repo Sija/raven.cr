@@ -9,7 +9,7 @@ module Raven
   module Delegators
     delegate :context, :configuration, :client,
       :report_status, :configure, :send_feedback, :send_event,
-      :capture, :last_event_id, :annotate_exception,
+      :capture, :last_event_id, :annotate_exception, :captured_exception?,
       :user_context, :tags_context, :extra_context, :breadcrumbs,
       to: :instance
   end

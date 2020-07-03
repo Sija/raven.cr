@@ -160,6 +160,8 @@ module Raven
         @last_event_id_mutex.synchronize do
           @last_event_id = event.id
         end
+        obj.as?(Exception)
+          .try &.__raven_event_id = event.id
       end
     end
 
@@ -249,6 +251,20 @@ module Raven
         end
       {% end %}
       ex
+    end
+
+    # Returns `true` in case given *ex* was already captured,
+    # `false` otherwise.
+    #
+    # ```
+    # ex = Exception.new("boo!")
+    #
+    # Raven.captured_exception?(ex) # => false
+    # Raven.capture(ex)
+    # Raven.captured_exception?(ex) # => true
+    # ```
+    def captured_exception?(ex : Exception)
+      !!ex.__raven_event_id
     end
 
     # Bind user context. Merges with existing context (if any).
