@@ -242,7 +242,7 @@ module Raven
     #   raise ex
     # end
     # ```
-    def annotate_exception(ex, **options)
+    def annotate_exception(ex : Exception, **options)
       {% for key in %i(user tags extra) %}
         if v = options[{{ key }}]?
           ex.__raven_{{ key.id }}.merge!(v)
