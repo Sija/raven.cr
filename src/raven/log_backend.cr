@@ -1,13 +1,7 @@
 require "log"
 require "log/json"
-require "./shared/log_helper"
 
 module Raven
-  # ```
-  # require "raven"
-  # require "raven/integrations/log"
-  # ```
-  #
   # `::Log::Backend` recording logged messages.
   #
   # ```
@@ -17,8 +11,6 @@ module Raven
   # end
   # ```
   class LogBackend < ::Log::Backend
-    include LogHelper
-
     private BREADCRUMB_LEVELS = {
       :trace  => :debug,
       :debug  => :debug,
@@ -62,6 +54,47 @@ module Raven
     )
     end
 
+    protected delegate :ignored_logger?,
+      to: Raven.configuration
+
+    protected def deansify(message : String?) : String?
+      message.try &.gsub(/\x1b[^m]*m/, "")
+    end
+
+    protected def record_breadcrumb(message, severity, timestamp, source, data = nil)
+      level = BREADCRUMB_LEVELS[severity]?
+
+      message = deansify(message).presence
+      logger = source.presence || "logger"
+
+      Raven.breadcrumbs.record do |crumb|
+        crumb.message = message
+        crumb.level = level if level
+        crumb.timestamp = timestamp if timestamp
+        crumb.category = logger
+        crumb.data = data if data
+      end
+    end
+
+    protected def capture_exception(exception, message, severity, timestamp, source, data = nil)
+      level = EXCEPTION_LEVELS[severity]?
+
+      if exception.is_a?(String)
+        exception = deansify(exception)
+      end
+
+      message = deansify(message).presence
+      logger = source.presence || "logger"
+
+      Raven.capture(exception) do |event|
+        event.culprit = message if message
+        event.level = level if level
+        event.timestamp = timestamp if timestamp
+        event.logger = logger
+        event.tags = data if data
+      end
+    end
+
     def active?
       record_breadcrumbs? || capture?
     end
@@ -70,21 +103,22 @@ module Raven
       capture_exceptions? || capture_all?
     end
 
+    # ameba:disable Metrics/CyclomaticComplexity
     def write(entry : ::Log::Entry)
       return unless active?
+      return if ignored_logger?(entry.source)
 
       data = entry.context.extend(entry.data.to_h)
-      data = data.empty? ? nil : JSON.parse(data.to_json).as_h
+      data = data.empty? ? nil : JSON.parse(data.to_json).as_h # FIXME
 
       message = entry.message
       ex = entry.exception
 
       if capture?
-        level = EXCEPTION_LEVELS[entry.severity]?
         capture_exception(
           ex ? ex : message,
           ex ? message : nil,
-          level,
+          entry.severity,
           entry.timestamp,
           entry.source,
           data,
@@ -92,13 +126,12 @@ module Raven
       end
 
       if record_breadcrumbs?
-        level = BREADCRUMB_LEVELS[entry.severity]?
         if ex
-          message += " –- (#{ex.class}): #{ex.message || "n/a"}"
+          message += " -- (#{ex.class}): #{ex.message || "n/a"}"
         end
         record_breadcrumb(
           message,
-          level,
+          entry.severity,
           entry.timestamp,
           entry.source,
           data,
