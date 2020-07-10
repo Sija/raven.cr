@@ -79,11 +79,14 @@ module Raven
     end
 
     protected def capture_exception(exception, message, severity, timestamp, source, data = nil)
-      level = EXCEPTION_LEVELS[severity]?
-
-      if exception.is_a?(String)
+      case exception
+      when Exception
+        return if Raven.captured_exception?(exception)
+      when String
         exception = deansify(exception)
       end
+
+      level = EXCEPTION_LEVELS[severity]?
 
       message = deansify(message).presence
       logger = source.presence || "logger"
