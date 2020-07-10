@@ -66,17 +66,17 @@ module Raven
       to: Raven.configuration
 
     protected def deansify(message : String?) : String?
-      message.try &.gsub(/\x1b[^m]*m/, "")
+      message.try &.gsub(/\x1b[^m]*m/, "").presence
     end
 
     protected def record_breadcrumb(message, severity, timestamp, source, data = nil)
       level = BREADCRUMB_LEVELS[severity]?
 
-      message = deansify(message).presence
+      message = deansify(message)
       logger = source.presence || default_logger
 
       Raven.breadcrumbs.record do |crumb|
-        crumb.message = message
+        crumb.message = message if message
         crumb.level = level if level
         crumb.timestamp = timestamp if timestamp
         crumb.category = logger
@@ -85,17 +85,17 @@ module Raven
     end
 
     protected def capture_exception(exception, message, severity, timestamp, source, data = nil)
-      case exception
-      when Exception
-        return if Raven.captured_exception?(exception)
-      when String
-        exception = deansify(exception)
-      end
-
       level = EXCEPTION_LEVELS[severity]?
 
-      message = deansify(message).presence
+      message = deansify(message)
       logger = source.presence || default_logger
+
+      if exception
+        return if Raven.captured_exception?(exception)
+      else
+        exception, message = message, nil
+        exception ||= "<empty>"
+      end
 
       Raven.capture(exception) do |event|
         event.culprit = message if message
@@ -114,10 +114,8 @@ module Raven
       capture_exceptions? || capture_all?
     end
 
-    # ameba:disable Metrics/CyclomaticComplexity
     def write(entry : ::Log::Entry)
-      return unless active?
-      return if ignored_logger?(entry.source)
+      return if !active? || ignored_logger?(entry.source)
 
       data = entry.context.extend(entry.data.to_h)
       data = data.empty? ? nil : JSON.parse(data.to_json).as_h # FIXME
@@ -127,8 +125,8 @@ module Raven
 
       if capture?
         capture_exception(
-          ex ? ex : message,
-          ex ? message : nil,
+          ex,
+          message,
           entry.severity,
           entry.timestamp,
           entry.source,
