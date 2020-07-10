@@ -48,11 +48,17 @@ module Raven
     # See `Raven.capture`
     property? capture_all : Bool
 
+    # Default name of the root logger.
+    #
+    # See `Event#logger`, `Breadcrumb#category`
+    property default_logger : String
+
     def initialize(
       *,
       @record_breadcrumbs = false,
       @capture_exceptions = false,
-      @capture_all = false
+      @capture_all = false,
+      @default_logger = "logger"
     )
     end
 
@@ -67,7 +73,7 @@ module Raven
       level = BREADCRUMB_LEVELS[severity]?
 
       message = deansify(message).presence
-      logger = source.presence || "logger"
+      logger = source.presence || default_logger
 
       Raven.breadcrumbs.record do |crumb|
         crumb.message = message
@@ -89,7 +95,7 @@ module Raven
       level = EXCEPTION_LEVELS[severity]?
 
       message = deansify(message).presence
-      logger = source.presence || "logger"
+      logger = source.presence || default_logger
 
       Raven.capture(exception) do |event|
         event.culprit = message if message
