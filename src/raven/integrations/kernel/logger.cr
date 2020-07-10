@@ -7,7 +7,7 @@ struct Log::Entry
 end
 
 class Logger
-  property :__raven_log_backend { Raven::LogBackend.new }
+  property :__raven_log_backend { Raven::LogBackend.new(record_breadcrumbs: true) }
 
   private def write(severity, datetime, progname, message)
     level = Log::Severity.parse?(severity.to_s) || Log::Severity::Debug

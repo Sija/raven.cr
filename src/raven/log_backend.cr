@@ -7,7 +7,9 @@ module Raven
   # ```
   # Log.setup do |c|
   #   c.bind "*", :info, Log::IOBackend.new
-  #   c.bind "*", :info, Raven::LogBackend.new
+  #   c.bind "*", :info, Raven::LogBackend.new(record_breadcrumbs: true)
+  #   c.bind "*", :warn, Raven::LogBackend.new(capture_exceptions: true)
+  #   c.bind "*", :fatal, Raven::LogBackend.new(capture_all: true)
   # end
   # ```
   class LogBackend < ::Log::Backend
@@ -48,7 +50,7 @@ module Raven
 
     def initialize(
       *,
-      @record_breadcrumbs = true,
+      @record_breadcrumbs = false,
       @capture_exceptions = false,
       @capture_all = false
     )
