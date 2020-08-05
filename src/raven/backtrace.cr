@@ -12,11 +12,11 @@ module Raven
       filters = default_filters.dup
       options[:filters]?.try { |f| filters.concat(f) }
 
-      filtered_lines = backtrace.map do |line|
+      filtered_lines = backtrace.compact_map do |line|
         filters.reduce(line) do |nested_line, proc|
           proc.call(nested_line) || break
         end
-      end.compact
+      end
 
       lines = filtered_lines.map &->Line.parse(String)
       new(lines)

@@ -30,7 +30,7 @@ module Raven
     # - `:navigation` for navigation events.
     property type : Type?
 
-    # ditto
+    # :ditto:
     def type=(type : Symbol)
       @type = Type.parse(type.to_s)
     end
@@ -50,7 +50,7 @@ module Raven
     # to `info` which is the middle level.
     property level : Severity?
 
-    # ditto
+    # :ditto:
     def level=(severity : Symbol)
       @level = Severity.parse(severity.to_s)
     end

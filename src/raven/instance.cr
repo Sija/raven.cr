@@ -68,7 +68,7 @@ module Raven
       self.client = Client.new(configuration).tap { report_status }
     end
 
-    # ditto
+    # :ditto:
     def configure
       yield configuration
       configure
@@ -160,6 +160,8 @@ module Raven
         @last_event_id_mutex.synchronize do
           @last_event_id = event.id
         end
+        obj.as?(Exception)
+          .try &.__raven_event_id = event.id
       end
     end
 
@@ -242,13 +244,27 @@ module Raven
     #   raise ex
     # end
     # ```
-    def annotate_exception(exc, **options)
+    def annotate_exception(ex : Exception, **options)
       {% for key in %i(user tags extra) %}
         if v = options[{{ key }}]?
-          exc.__raven_{{ key.id }}.merge!(v)
+          ex.__raven_{{ key.id }}.merge!(v)
         end
       {% end %}
-      exc
+      ex
+    end
+
+    # Returns `true` in case given *ex* was already captured,
+    # `false` otherwise.
+    #
+    # ```
+    # ex = Exception.new("boo!")
+    #
+    # Raven.captured_exception?(ex) # => false
+    # Raven.capture(ex)
+    # Raven.captured_exception?(ex) # => true
+    # ```
+    def captured_exception?(ex : Exception)
+      !!ex.__raven_event_id
     end
 
     # Bind user context. Merges with existing context (if any).

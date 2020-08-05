@@ -243,12 +243,12 @@ module Raven
       }
     end
 
-    # ditto
+    # :ditto:
     def before_send(&block : Event, Event::Hint? -> _)
       self.before_send = block
     end
 
-    # ditto
+    # :ditto:
     property before_send : Proc(Event, Event::Hint?, Event?)?
 
     # Errors object - an `Array` containing error messages.
@@ -378,12 +378,12 @@ module Raven
         sample_allowed?
     end
 
-    def capture_allowed?(message_or_exc)
+    def capture_allowed?(message_or_ex)
       @errors = [] of String
       capture_allowed? &&
-        !raven_error?(message_or_exc) &&
-        !excluded_exception?(message_or_exc) &&
-        capture_allowed_by_callback?(message_or_exc)
+        !raven_error?(message_or_ex) &&
+        !excluded_exception?(message_or_ex) &&
+        capture_allowed_by_callback?(message_or_ex)
     end
 
     private def capture_in_current_environment?
@@ -392,8 +392,8 @@ module Raven
       false
     end
 
-    private def capture_allowed_by_callback?(message_or_exc)
-      return true if !should_capture || should_capture.try &.call(message_or_exc)
+    private def capture_allowed_by_callback?(message_or_ex)
+      return true if !should_capture || should_capture.try &.call(message_or_ex)
       @errors << "#should_capture returned false"
       false
     end
@@ -405,9 +405,9 @@ module Raven
       false
     end
 
-    def raven_error?(message_or_exc)
-      return false unless message_or_exc.is_a?(Raven::Error)
-      @errors << "Refusing to capture Raven error: #{message_or_exc.inspect}"
+    def raven_error?(message_or_ex)
+      return false unless message_or_ex.is_a?(Raven::Error)
+      @errors << "Refusing to capture Raven error: #{message_or_ex.inspect}"
       true
     end
 

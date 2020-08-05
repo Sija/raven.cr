@@ -72,7 +72,7 @@ module Raven
       new(file, number, column, method)
     end
 
-    # ditto
+    # :ditto:
     def self.parse(unparsed_line : String) : Line
       parse?(unparsed_line) || \
          raise ArgumentError.new("Error parsing line: #{unparsed_line.inspect}")

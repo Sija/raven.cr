@@ -28,11 +28,13 @@ from folks at [@getsentry](https://github.com/getsentry).
 
 - [x] Processors (data scrubbers)
 - [x] Interfaces (Message, Exception, Stacktrace, User, HTTP, ...)
-- [x] Contexts (tags, extra, `os`, `runtime`)
+- [x] Contexts (user, tags, extra, os, runtime)
 - [x] Breadcrumbs
 - [x] Integrations ([Kemal](https://github.com/kemalcr/kemal), [Amber](https://github.com/amberframework/amber), [Lucky](https://github.com/luckyframework/lucky), [Sidekiq.cr](https://github.com/mperham/sidekiq.cr))
 - [x] Async support
 - [x] User Feedback
+- [x] Source code context for stack traces
+- [x] Dedicated [`Log`](https://crystal-lang.org/api/Log.html) backend
 - [x] Crash Handler
 
 ## Installation
@@ -200,6 +202,43 @@ Raven.extra_context happiness: "very"
 ```
 
 For more information, see [Context](https://docs.sentry.io/clients/ruby/context/).
+
+## `Log` backend
+
+`Raven::LogBackend` allows for intercepting log entries, and takes following options:
+
+- `record_breadcrumbs` - records every log entry as Breadcrumbs
+- `capture_exceptions` - captures exceptions attached to the log entry
+- `capture_all` - captures every log entry
+
+Every captured `Exception` or a `Breadcrumb` will have corresponding fields mapped
+directly from the original `Log::Entry`.
+
+Metadata will be passed as `Event#tags` and `Breadcrumb#data`, respectively.
+
+### Usage
+
+```crystal
+# append it to the existing bindings
+Log.builder.bind "*", :info, Raven::LogBackend.new(
+  record_breadcrumbs: true,
+  capture_exceptions: false,
+  capture_all: false,
+)
+
+# or bind it within the `Log.setup` block
+Log.setup do |c|
+  # bind the regular io-based backend
+  c.bind "*", :info, Log::IOBackend.new
+
+  # bind raven's backend
+  c.bind "*", :info, Raven::LogBackend.new(record_breadcrumbs: true)
+  c.bind "*", :warn, Raven::LogBackend.new(capture_exceptions: true)
+  c.bind "*", :fatal, Raven::LogBackend.new(capture_all: true)
+end
+```
+
+See more in Crystal's `Log` [documentation](https://crystal-lang.org/api/Log.html#configure-logging-explicitly-in-the-code).
 
 ## Crash Handler
 
