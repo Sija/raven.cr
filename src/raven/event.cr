@@ -114,12 +114,12 @@ module Raven
 
     protected def self.format_culprit_name(frame)
       return unless frame
-      parts = {
+      parts = [
         [nil, frame.filename || frame.abs_path],
         ["in", frame.function],
         ["at line", frame.lineno],
-      }
-      parts.reject(&.last.nil?).flatten.compact.join ' '
+      ]
+      parts.reject!(&.last.nil?).flatten.compact!.join ' '
     end
 
     protected def self.add_exception_interface(event, ex)
