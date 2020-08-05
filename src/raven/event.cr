@@ -43,7 +43,7 @@ module Raven
     # The record severity. Defaults to `:error`.
     property level : Severity?
 
-    # ditto
+    # :ditto:
     def level=(severity : Symbol)
       @level = Severity.parse(severity.to_s)
     end

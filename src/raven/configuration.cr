@@ -243,12 +243,12 @@ module Raven
       }
     end
 
-    # ditto
+    # :ditto:
     def before_send(&block : Event, Event::Hint? -> _)
       self.before_send = block
     end
 
-    # ditto
+    # :ditto:
     property before_send : Proc(Event, Event::Hint?, Event?)?
 
     # Errors object - an `Array` containing error messages.

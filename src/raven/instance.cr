@@ -68,7 +68,7 @@ module Raven
       self.client = Client.new(configuration).tap { report_status }
     end
 
-    # ditto
+    # :ditto:
     def configure
       yield configuration
       configure
