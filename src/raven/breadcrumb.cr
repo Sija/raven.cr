@@ -22,7 +22,7 @@ module Raven
     end
 
     # A timestamp representing when the breadcrumb occurred.
-    property timestamp : Time
+    property timestamp : Time = Time.utc
 
     # The type of breadcrumb. The default type is `:default` which indicates
     # no specific handling. Other types are currently:
@@ -61,7 +61,6 @@ module Raven
     any_json_property :data
 
     def initialize(**options)
-      @timestamp = Time.utc
       initialize_with **options
     end
 

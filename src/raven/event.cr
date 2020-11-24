@@ -38,10 +38,10 @@ module Raven
     property id : String
 
     # Indicates when the logging record was created (in the Sentry SDK).
-    property timestamp : Time
+    property timestamp : Time = Time.utc
 
     # The record severity. Defaults to `:error`.
-    property level : Severity?
+    property level : Severity? = :error
 
     # :ditto:
     def level=(severity : Symbol)
@@ -158,8 +158,6 @@ module Raven
       @breadcrumbs = options[:breadcrumbs]? || Raven.breadcrumbs
       @context = options[:context]? || Raven.context
       @id = UUID.random.hexstring
-      @timestamp = Time.utc
-      @level = Severity::ERROR
       @server_name = @configuration.server_name
       @release = @configuration.release
       @environment = @configuration.current_environment
