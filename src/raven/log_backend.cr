@@ -53,14 +53,27 @@ module Raven
     # See `Event#logger`, `Breadcrumb#category`
     property default_logger : String
 
-    def initialize(
-      *,
-      @record_breadcrumbs = false,
-      @capture_exceptions = false,
-      @capture_all = false,
-      @default_logger = "logger"
-    )
-    end
+    {% if compare_versions(Crystal::VERSION, "1.0.0-dev") >= 0 %}
+      def initialize(
+        dispatch_mode : ::Log::DispatchMode = :sync,
+        *,
+        @record_breadcrumbs = false,
+        @capture_exceptions = false,
+        @capture_all = false,
+        @default_logger = "logger"
+      )
+        super(dispatch_mode)
+      end
+    {% else %}
+      def initialize(
+        *,
+        @record_breadcrumbs = false,
+        @capture_exceptions = false,
+        @capture_all = false,
+        @default_logger = "logger"
+      )
+      end
+    {% end %}
 
     protected delegate :ignored_logger?,
       to: Raven.configuration

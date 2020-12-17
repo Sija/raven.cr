@@ -38,10 +38,10 @@ module Raven
     property id : String
 
     # Indicates when the logging record was created (in the Sentry SDK).
-    property timestamp : Time
+    property timestamp : Time = Time.utc
 
     # The record severity. Defaults to `:error`.
-    property level : Severity?
+    property level : Severity? = :error
 
     # :ditto:
     def level=(severity : Symbol)
@@ -135,7 +135,7 @@ module Raven
       exceptions.reverse!
 
       values = exceptions.map do |e|
-        Interface::SingleException.new do |iface|
+        Interface::SingleException.new.tap do |iface|
           iface.type = e.class.to_s
           iface.value = e.to_s
           iface.module = e.class.to_s.split("::")[0...-1].join("::")
@@ -143,7 +143,7 @@ module Raven
           iface.stacktrace =
             if e.backtrace? && !backtraces.includes?(e.backtrace.object_id)
               backtraces << e.backtrace.object_id
-              Interface::Stacktrace.new(backtrace: e.backtrace) do |stacktrace|
+              Interface::Stacktrace.new(backtrace: e.backtrace).tap do |stacktrace|
                 event.culprit = stacktrace.culprit
               end
             end
@@ -158,8 +158,6 @@ module Raven
       @breadcrumbs = options[:breadcrumbs]? || Raven.breadcrumbs
       @context = options[:context]? || Raven.context
       @id = UUID.random.hexstring
-      @timestamp = Time.utc
-      @level = Severity::ERROR
       @server_name = @configuration.server_name
       @release = @configuration.release
       @environment = @configuration.current_environment
@@ -185,17 +183,6 @@ module Raven
 
     def interface(name : Symbol, options : NamedTuple)
       interface(name, **options)
-    end
-
-    def interface(name : Symbol, **options, &block)
-      interface = Interface[name]
-      @interfaces[interface.sentry_alias] = interface.new(**options) do |iface|
-        yield iface
-      end
-    end
-
-    def interface(name : Symbol, options : NamedTuple, &block)
-      interface(name, **options) { |iface| yield iface }
     end
 
     def message

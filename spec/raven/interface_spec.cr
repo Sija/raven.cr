@@ -14,11 +14,6 @@ describe Raven::Interface do
     interface.some_attr.should eq("test")
   end
 
-  it "can initialize with a block" do
-    interface = Raven::Interface::Test.new { |iface| iface.some_attr = "test" }
-    interface.some_attr.should eq("test")
-  end
-
   it "serializes to a Hash" do
     interface = Raven::Interface::Test.new(some_attr: "test")
     interface.to_hash.should eq({:some_attr => "test"})

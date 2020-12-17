@@ -36,11 +36,6 @@ module Raven
       def initialize(**attributes)
         initialize_with(**attributes)
       end
-
-      def initialize(**attributes, &block)
-        initialize_with(**attributes)
-        yield self
-      end
     end
 
     def to_hash

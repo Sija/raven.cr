@@ -193,13 +193,13 @@ module Raven
     def capture(klass : String, message : String, backtrace = nil, **options, &block)
       formatted_message = "#{klass}: #{message}"
       capture(formatted_message, **options) do |event|
-        ex = Interface::SingleException.new do |iface|
+        ex = Interface::SingleException.new.tap do |iface|
           iface.module = klass.split("::")[0...-1].join("::")
           iface.type = klass
           iface.value = message
 
           if backtrace
-            iface.stacktrace = Interface::Stacktrace.new(backtrace: backtrace) do |stacktrace|
+            iface.stacktrace = Interface::Stacktrace.new(backtrace: backtrace).tap do |stacktrace|
               event.culprit = stacktrace.culprit
             end
           end
