@@ -62,10 +62,8 @@ module Raven
     def self.parse?(unparsed_line : String) : Line?
       return unless CALLSTACK_PATTERNS.values.any? &.match(unparsed_line)
 
-      file = $~["file"]?
-      file = nil if file.try(&.blank?)
-      method = $~["method"]?
-      method = nil if method.try(&.blank?)
+      file = $~["file"]?.presence
+      method = $~["method"]?.presence
       number = $~["line"]?.try(&.to_i?)
       column = $~["col"]?.try(&.to_i?)
 

@@ -24,7 +24,7 @@ module Raven
       data = data.to_any_json
 
       if headers = data[:request, :headers]?.as?(Hash)
-        headers.keys.select(&.to_s.match(fields_pattern)).each do |key|
+        headers.keys.select!(&.to_s.matches?(fields_pattern)).each do |key|
           headers[key] = STRING_MASK
         end
       end
