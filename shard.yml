@@ -5,6 +5,9 @@ authors:
   - Sijawusz Pur Rahnama <sija@sija.pl>
 
 dependencies:
+  backtracer:
+    github: Sija/backtracer.cr
+    version: ~> 1.0.0
   any_hash:
     github: Sija/any_hash.cr
     version: ~> 0.2.3

@@ -26,21 +26,6 @@ module Raven
     # Array of default request methods for which data should be removed.
     DEFAULT_REQUEST_METHODS_FOR_DATA_SANITIZATION = %w(POST PUT PATCH)
 
-    # Used in `#in_app_pattern`.
-    property src_path : String? = {{ Process::INITIAL_PWD }}
-
-    # Directories to be recognized as part of your app. e.g. if you
-    # have an `engines` dir at the root of your project, you may want
-    # to set this to something like `/(src|engines)/`
-    property app_dirs_pattern = /src/
-
-    # `Regex` pattern matched against `Backtrace::Line#file`.
-    property in_app_pattern : Regex { /^(#{src_path}\/)?(#{app_dirs_pattern})/ }
-
-    # Path pattern matching directories to be recognized as your app modules.
-    # Defaults to standard Shards setup (`lib/shard-name/...`).
-    property modules_path_pattern = %r{^lib/(?<name>[^/]+)}
-
     # Provide a `Proc` object that responds to `call` to send
     # events asynchronously, or pass `true` to to use standard `spawn`.
     #
@@ -63,8 +48,15 @@ module Raven
       }
     end
 
-    # Number of lines of code context to capture, or `nil` for none.
-    property context_lines : Int32? = 5
+    property backtracer = Backtracer::Configuration.new
+
+    delegate \
+      :src_path, :src_path=,
+      :app_dirs_pattern, :app_dirs_pattern=,
+      :in_app_pattern, :in_app_pattern=,
+      :modules_path_pattern, :modules_path_pattern=,
+      :context_lines, :context_lines=,
+      to: backtracer
 
     # Defaults to `SENTRY_ENVIRONMENT` variable if set,
     # `"default"` otherwise.

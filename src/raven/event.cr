@@ -143,7 +143,11 @@ module Raven
           iface.stacktrace =
             if e.backtrace? && !backtraces.includes?(e.backtrace.object_id)
               backtraces << e.backtrace.object_id
-              Interface::Stacktrace.new(backtrace: e.backtrace).tap do |stacktrace|
+
+              backtrace = Backtracer.parse e.backtrace,
+                configuration: event.configuration.backtracer
+
+              Interface::Stacktrace.new(backtrace: backtrace).tap do |stacktrace|
                 event.culprit = stacktrace.culprit
               end
             end
@@ -211,6 +215,9 @@ module Raven
     end
 
     def backtrace=(backtrace)
+      backtrace = Backtracer.parse backtrace,
+        configuration: configuration.backtracer
+
       interface(:stacktrace, backtrace: backtrace).tap do |stacktrace|
         self.culprit ||= stacktrace.as(Interface::Stacktrace).culprit
       end
