@@ -53,7 +53,6 @@ module Raven
     delegate \
       :src_path, :src_path=,
       :app_dirs_pattern, :app_dirs_pattern=,
-      :in_app_pattern, :in_app_pattern=,
       :modules_path_pattern, :modules_path_pattern=,
       :context_lines, :context_lines=,
       to: backtracer
