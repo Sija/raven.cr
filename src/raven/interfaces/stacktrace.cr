@@ -42,7 +42,8 @@ module Raven
           frame.in_app = line.in_app?
 
           if context = line.context
-            frame.pre_context, frame.context_line, frame.post_context = context
+            frame.pre_context, frame.context_line, frame.post_context =
+              context.pre, context.line, context.post
           end
         end
       end
