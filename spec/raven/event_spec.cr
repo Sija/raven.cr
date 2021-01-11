@@ -280,8 +280,8 @@ describe Raven::Event do
         frames[0][:lineno].should eq(1412)
         frames[0][:colno].should eq(1)
         frames[0][:function].should eq("other_function")
-        frames[0][:abs_path].should eq("some/relative/path")
-        frames[0][:filename].should eq(frames[0][:abs_path])
+        frames[0][:abs_path].should eq("#{Dir.current}/some/relative/path")
+        frames[0][:filename].should eq("some/relative/path")
         frames[0][:package].should be_nil
         frames[0][:in_app].should be_false
 

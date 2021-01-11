@@ -33,7 +33,7 @@ module Raven
 
       def self.from_backtrace_frame(line)
         new.tap do |frame|
-          frame.abs_path = line.path
+          frame.abs_path = line.absolute_path || line.path
           frame.filename = line.relative_path
           frame.function = line.method
           frame.package = line.shard_name
