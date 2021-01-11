@@ -25,7 +25,7 @@ module Raven
     # [0x105798128] main +40
     # ```
     CRYSTAL_CRASH_PATTERN =
-      /(?<message>[^\n]+)\n(?<backtrace>\[#{Backtrace::Line::ADDR_FORMAT}\] .*)$/m
+      /(?<message>[^\n]+)\n(?<backtrace>\[(?<addr>0x[a-f0-9]+)\] .*)$/im
 
     # Example:
     #
@@ -51,12 +51,7 @@ module Raven
     # An `Array` of arguments passed to process.
     property args : Array(String)?
 
-    # FIXME: doesn't work yet due to usage of global Raven within `Backtrace::Line`.
-    #
-    # ```
-    # getter raven : Instance { Instance.new }
-    # ```
-    getter raven : Instance { Raven.instance }
+    getter raven : Instance { Instance.new }
 
     delegate :context, :configuration, :configure, :capture,
       to: raven

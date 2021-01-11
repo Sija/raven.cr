@@ -1,3 +1,4 @@
+require "backtracer"
 require "any_hash"
 
 require "./raven/ext/*"

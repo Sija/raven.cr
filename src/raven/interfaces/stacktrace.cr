@@ -6,11 +6,11 @@ module Raven
       :stacktrace
     end
 
-    def backtrace=(backtrace)
+    def backtrace=(backtrace : Backtracer::Backtrace)
       @frames.clear
-      backtrace = Backtrace.parse(backtrace)
-      backtrace.lines.reverse_each do |line|
-        @frames << Frame.from_backtrace_line(line)
+
+      backtrace.frames.reverse_each do |frame|
+        @frames << Frame.from_backtrace_frame(frame)
       end
     end
 
@@ -31,18 +31,19 @@ module Raven
       property colno : Int32?
       property? in_app : Bool?
 
-      def self.from_backtrace_line(line)
+      def self.from_backtrace_frame(line)
         new.tap do |frame|
-          frame.abs_path = line.file
+          frame.abs_path = line.absolute_path || line.path
           frame.filename = line.relative_path
           frame.function = line.method
           frame.package = line.shard_name
-          frame.lineno = line.number
+          frame.lineno = line.lineno
           frame.colno = line.column
           frame.in_app = line.in_app?
 
           if context = line.context
-            frame.pre_context, frame.context_line, frame.post_context = context
+            frame.pre_context, frame.context_line, frame.post_context =
+              context.pre, context.line, context.post
           end
         end
       end
