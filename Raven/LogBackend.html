@@ -18,7 +18,7 @@
 </svg>
 
   <meta id="repository-name" content="raven">
-  <title>Raven::Transport - raven ci-docs-deploy-dev</title>
+  <title>Raven::LogBackend - raven ci-docs-deploy-dev</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -216,7 +216,7 @@
       
     </li>
   
-  <li class=" " data-id="raven/Raven/LogBackend" data-name="raven::logbackend">
+  <li class=" current" data-id="raven/Raven/LogBackend" data-name="raven::logbackend">
       <a href="../Raven/LogBackend.html">LogBackend</a>
       
     </li>
@@ -286,7 +286,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="raven/Raven/Transport" data-name="raven::transport">
+  <li class="parent " data-id="raven/Raven/Transport" data-name="raven::transport">
       <a href="../Raven/Transport.html">Transport</a>
       
         <ul>
@@ -330,39 +330,41 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">abstract class</span> Raven::Transport
+  <span class="kind">class</span> Raven::LogBackend
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Raven/Transport.html">Raven::Transport</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
-
-
-
-
-
-
-
-
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Raven/LogBackend.html">Raven::LogBackend</a></li><li class="superclass">Log::Backend</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
 
   <h2>
-    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
+    <a id="overview" class="anchor" href="#overview">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Direct Known Subclasses
+    Overview
   </h2>
-  <ul class="other-types-list">
-    
-      <li class="other-type"><a href="../Raven/Transport/Dummy.html">Raven::Transport::Dummy</a></li>
-    
-      <li class="other-type"><a href="../Raven/Transport/HTTP.html">Raven::Transport::HTTP</a></li>
-    
-  </ul>
+
+  <p><code>::Log::Backend</code> recording logged messages.</p>
+
+<pre><code><span class="t">Log</span>.setup <span class="k">do</span> <span class="o">|</span>c<span class="o">|</span>
+  c.bind <span class="s">&quot;*&quot;</span>, <span class="n">:info</span>, <span class="t">Log</span><span class="t">::</span><span class="t">IOBackend</span>.<span class="k">new</span>
+  c.bind <span class="s">&quot;*&quot;</span>, <span class="n">:info</span>, <span class="t">Raven</span><span class="t">::</span><span class="t">LogBackend</span>.<span class="k">new</span>(record_breadcrumbs: <span class="n">true</span>)
+  c.bind <span class="s">&quot;*&quot;</span>, <span class="n">:warn</span>, <span class="t">Raven</span><span class="t">::</span><span class="t">LogBackend</span>.<span class="k">new</span>(capture_exceptions: <span class="n">true</span>)
+  c.bind <span class="s">&quot;*&quot;</span>, <span class="n">:fatal</span>, <span class="t">Raven</span><span class="t">::</span><span class="t">LogBackend</span>.<span class="k">new</span>(capture_all: <span class="n">true</span>)
+<span class="k">end</span></code></pre>
+
+
+
+
+
+
+
+
 
 
 
@@ -394,7 +396,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(configuration)-class-method" class="signature"><strong>.new</strong>(configuration)</a>
+        <a href="#new(*,record_breadcrumbs=false,capture_exceptions=false,capture_all=false,default_logger=&quot;logger&quot;)-class-method" class="signature"><strong>.new</strong>(*, record_breadcrumbs = <span class="n">false</span>, capture_exceptions = <span class="n">false</span>, capture_all = <span class="n">false</span>, default_logger = <span class="s">&quot;logger&quot;</span>)</a>
         
       </li>
     
@@ -415,22 +417,75 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#configuration:Configuration-instance-method" class="signature"><strong>#configuration</strong> : Configuration</a>
+        <a href="#active?-instance-method" class="signature"><strong>#active?</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#configuration=(configuration:Configuration)-instance-method" class="signature"><strong>#configuration=</strong>(configuration : Configuration)</a>
+        <a href="#capture?-instance-method" class="signature"><strong>#capture?</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#send_event(auth_header,data,**options)-instance-method" class="signature"><strong>#send_event</strong>(auth_header, data, **options)</a>
+        <a href="#capture_all=(capture_all:Bool)-instance-method" class="signature"><strong>#capture_all=</strong>(capture_all : Bool)</a>
+        
+          <div class="summary"><p>Captures each logged entry.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#send_feedback(event_id,data)-instance-method" class="signature"><strong>#send_feedback</strong>(event_id, data)</a>
+        <a href="#capture_all?:Bool-instance-method" class="signature"><strong>#capture_all?</strong> : Bool</a>
+        
+          <div class="summary"><p>Captures each logged entry.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#capture_exceptions=(capture_exceptions:Bool)-instance-method" class="signature"><strong>#capture_exceptions=</strong>(capture_exceptions : Bool)</a>
+        
+          <div class="summary"><p>Captures <code><a href="../Exception.html">Exception</a></code> attached to the logged entry, if present.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#capture_exceptions?:Bool-instance-method" class="signature"><strong>#capture_exceptions?</strong> : Bool</a>
+        
+          <div class="summary"><p>Captures <code><a href="../Exception.html">Exception</a></code> attached to the logged entry, if present.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#default_logger:String-instance-method" class="signature"><strong>#default_logger</strong> : String</a>
+        
+          <div class="summary"><p>Default name of the root logger.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#default_logger=(default_logger:String)-instance-method" class="signature"><strong>#default_logger=</strong>(default_logger : String)</a>
+        
+          <div class="summary"><p>Default name of the root logger.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#record_breadcrumbs=(record_breadcrumbs:Bool)-instance-method" class="signature"><strong>#record_breadcrumbs=</strong>(record_breadcrumbs : Bool)</a>
+        
+          <div class="summary"><p>Records each logged entry as a breadcrumb.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#record_breadcrumbs?:Bool-instance-method" class="signature"><strong>#record_breadcrumbs?</strong> : Bool</a>
+        
+          <div class="summary"><p>Records each logged entry as a breadcrumb.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#write(entry:::Log::Entry)-instance-method" class="signature"><strong>#write</strong>(entry : ::Log::Entry)</a>
+        
+          <div class="summary"><p>Writes the <em>entry</em> to this backend.</p></div>
         
       </li>
     
@@ -441,6 +496,16 @@
 
 
 <div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
   
     
 
@@ -474,12 +539,12 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(configuration)-class-method">
+    <div class="entry-detail" id="new(*,record_breadcrumbs=false,capture_exceptions=false,capture_all=false,default_logger=&quot;logger&quot;)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(configuration)
+        def self.<strong>new</strong>(*, record_breadcrumbs = <span class="n">false</span>, capture_exceptions = <span class="n">false</span>, capture_all = <span class="n">false</span>, default_logger = <span class="s">&quot;logger&quot;</span>)
 
-        <a class="method-permalink" href="#new(configuration)-class-method">#</a>
+        <a class="method-permalink" href="#new(*,record_breadcrumbs=false,capture_exceptions=false,capture_all=false,default_logger=&quot;logger&quot;)-class-method">#</a>
       </div>
       
       <br/>
@@ -502,12 +567,12 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="configuration:Configuration-instance-method">
+    <div class="entry-detail" id="active?-instance-method">
       <div class="signature">
         
-        def <strong>configuration</strong> : <a href="../Raven/Configuration.html">Configuration</a>
+        def <strong>active?</strong>
 
-        <a class="method-permalink" href="#configuration:Configuration-instance-method">#</a>
+        <a class="method-permalink" href="#active?-instance-method">#</a>
       </div>
       
       <br/>
@@ -516,12 +581,12 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="configuration=(configuration:Configuration)-instance-method">
+    <div class="entry-detail" id="capture?-instance-method">
       <div class="signature">
         
-        def <strong>configuration=</strong>(configuration : <a href="../Raven/Configuration.html">Configuration</a>)
+        def <strong>capture?</strong>
 
-        <a class="method-permalink" href="#configuration=(configuration:Configuration)-instance-method">#</a>
+        <a class="method-permalink" href="#capture?-instance-method">#</a>
       </div>
       
       <br/>
@@ -530,13 +595,20 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="send_event(auth_header,data,**options)-instance-method">
+    <div class="entry-detail" id="capture_all=(capture_all:Bool)-instance-method">
       <div class="signature">
-        abstract 
-        def <strong>send_event</strong>(auth_header, data, **options)
+        
+        def <strong>capture_all=</strong>(capture_all : Bool)
 
-        <a class="method-permalink" href="#send_event(auth_header,data,**options)-instance-method">#</a>
+        <a class="method-permalink" href="#capture_all=(capture_all:Bool)-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Captures each logged entry.</p>
+
+<p>See <code>Raven.capture</code></p>
+        </div>
       
       <br/>
       <div>
@@ -544,13 +616,169 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="send_feedback(event_id,data)-instance-method">
+    <div class="entry-detail" id="capture_all?:Bool-instance-method">
       <div class="signature">
-        abstract 
-        def <strong>send_feedback</strong>(event_id, data)
+        
+        def <strong>capture_all?</strong> : Bool
 
-        <a class="method-permalink" href="#send_feedback(event_id,data)-instance-method">#</a>
+        <a class="method-permalink" href="#capture_all?:Bool-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Captures each logged entry.</p>
+
+<p>See <code>Raven.capture</code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="capture_exceptions=(capture_exceptions:Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>capture_exceptions=</strong>(capture_exceptions : Bool)
+
+        <a class="method-permalink" href="#capture_exceptions=(capture_exceptions:Bool)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Captures <code><a href="../Exception.html">Exception</a></code> attached to the logged entry, if present.</p>
+
+<p>See <code>Raven.capture</code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="capture_exceptions?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>capture_exceptions?</strong> : Bool
+
+        <a class="method-permalink" href="#capture_exceptions?:Bool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Captures <code><a href="../Exception.html">Exception</a></code> attached to the logged entry, if present.</p>
+
+<p>See <code>Raven.capture</code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="default_logger:String-instance-method">
+      <div class="signature">
+        
+        def <strong>default_logger</strong> : String
+
+        <a class="method-permalink" href="#default_logger:String-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Default name of the root logger.</p>
+
+<p>See <code><a href="../Raven/Event.html#logger:String?-instance-method">Event#logger</a></code>, <code><a href="../Raven/Breadcrumb.html#category:String?-instance-method">Breadcrumb#category</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="default_logger=(default_logger:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>default_logger=</strong>(default_logger : String)
+
+        <a class="method-permalink" href="#default_logger=(default_logger:String)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Default name of the root logger.</p>
+
+<p>See <code><a href="../Raven/Event.html#logger:String?-instance-method">Event#logger</a></code>, <code><a href="../Raven/Breadcrumb.html#category:String?-instance-method">Breadcrumb#category</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="record_breadcrumbs=(record_breadcrumbs:Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>record_breadcrumbs=</strong>(record_breadcrumbs : Bool)
+
+        <a class="method-permalink" href="#record_breadcrumbs=(record_breadcrumbs:Bool)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Records each logged entry as a breadcrumb.</p>
+
+<p>See <code>Raven.breadcrumbs</code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="record_breadcrumbs?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>record_breadcrumbs?</strong> : Bool
+
+        <a class="method-permalink" href="#record_breadcrumbs?:Bool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Records each logged entry as a breadcrumb.</p>
+
+<p>See <code>Raven.breadcrumbs</code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="write(entry:::Log::Entry)-instance-method">
+      <div class="signature">
+        
+        def <strong>write</strong>(entry : ::Log::Entry)
+
+        <a class="method-permalink" href="#write(entry:::Log::Entry)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class Log::Backend
+            </div>
+          
+          <p>Writes the <em>entry</em> to this backend.</p>
+        </div>
       
       <br/>
       <div>
