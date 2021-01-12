@@ -7,6 +7,9 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v3.x
+
       - name: Install Crystal
         uses: oprypin/install-crystal@v1
 
@@ -23,7 +26,7 @@ jobs:
       - name: Build docs
         run: |
           sed -i -e 's:<.*>::g' README.md
-          crystal docs src/raven.cr
+          crystal docs src/raven.cr --source-refname="${{ env.GITHUB_SHA_SHORT }}"
 
       - name: Deploy docs 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
