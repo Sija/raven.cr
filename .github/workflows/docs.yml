@@ -1,7 +1,8 @@
-name: Build and Deploy docs
+name: Deploy docs
 
 on:
   push:
+    branches: [master]
 
 jobs:
   build:
