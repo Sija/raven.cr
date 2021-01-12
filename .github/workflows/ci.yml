@@ -13,7 +13,7 @@ on:
     - cron: "0 3 * * 1" # Every monday at 3 AM
 
 jobs:
-  build:
+  test:
     strategy:
       fail-fast: false
       matrix:
@@ -39,13 +39,17 @@ jobs:
         run: |
           crystal spec
           crystal spec --no-debug
+
+      - name: Run specs (release)
+        run: |
           crystal spec --release
           crystal spec --release --no-debug
 
       - name: Build crash handler
-        run: |
-          shards build crash_handler
-          shards build crash_handler --release
+        run: shards build crash_handler
+
+      - name: Build crash handler (release)
+        run: shards build crash_handler --release
 
       - name: Check formatting
         run: crystal tool format --check
