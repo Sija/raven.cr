@@ -26,7 +26,7 @@ jobs:
       - name: Build docs
         run: |
           sed -i -e 's:<.*>::g' README.md
-          crystal docs src/raven.cr --source-refname="${{ env.GITHUB_SHA_SHORT }}"
+          crystal docs src/raven.cr --project-version="${{ env.GITHUB_REF_SLUG }}" --source-refname="${{ env.GITHUB_SHA_SHORT }}"
 
       - name: Deploy docs 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
