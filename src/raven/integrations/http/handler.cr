@@ -30,7 +30,7 @@ module Raven
     end
 
     protected def cookies_to_string(cookies : HTTP::Cookies)
-      cookies.to_h.map(&.last.to_cookie_header).join "; "
+      cookies.to_h.join("; ") { |_, cookie| cookie.to_cookie_header }
     end
 
     abstract def build_raven_culprit_context(context : HTTP::Server::Context)
