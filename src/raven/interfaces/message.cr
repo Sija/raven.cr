@@ -9,7 +9,7 @@ module Raven
 
     def unformatted_message
       if (params = @params) && !params.empty?
-        message?.try(&.%(params))
+        message?.try(&.% params)
       else
         message?
       end
