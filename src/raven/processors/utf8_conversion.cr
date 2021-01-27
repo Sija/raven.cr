@@ -12,9 +12,9 @@ module Raven
       when Exception
         return data unless message = data.message
         return data if message.valid_encoding?
-        data.class.new(clean_invalid_utf8_bytes(message), data.cause).tap do |ex|
-          ex.callstack = data.callstack
-        end
+        data.class
+          .new(clean_invalid_utf8_bytes(message), data.cause)
+          .tap(&.callstack=(data.callstack))
       when String
         return data if data.valid_encoding?
         clean_invalid_utf8_bytes(data)

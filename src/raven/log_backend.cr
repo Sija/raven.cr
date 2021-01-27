@@ -53,7 +53,7 @@ module Raven
     # See `Event#logger`, `Breadcrumb#category`
     property default_logger : String
 
-    {% if compare_versions(Crystal::VERSION, "1.0.0-dev") >= 0 %}
+    {% if compare_versions(Crystal::VERSION, "0.35.1") > 0 %}
       def initialize(
         dispatch_mode : ::Log::DispatchMode = :sync,
         *,

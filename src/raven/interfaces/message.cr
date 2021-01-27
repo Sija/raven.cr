@@ -8,8 +8,8 @@ module Raven
     end
 
     def unformatted_message
-      if params = @params
-        params.empty? ? message? : message?.try { |m| m % params }
+      if (params = @params) && !params.empty?
+        message?.try(&.% params)
       else
         message?
       end
