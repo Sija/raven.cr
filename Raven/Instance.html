@@ -3,21 +3,16 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.34.0">
+<meta name="generator" content="Crystal Docs 0.35.1">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="raven">
+
 
 
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../js/doc.js"></script>
 
-<svg class="hidden">
-  <symbol id="octicon-link" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-  </symbol>
-</svg>
-
-  <meta id="repository-name" content="raven">
+  <meta name="repository-name" content="raven">
   <title>Raven::Instance - raven master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
@@ -25,6 +20,11 @@
 </head>
 <body>
 
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
 <div class="sidebar">
   <div class="sidebar-header">
     <div class="search-box">
@@ -44,7 +44,7 @@
     </div>
   </div>
 
-  <div class="search-results" class="hidden">
+  <div class="search-results hidden">
     <ul class="search-list"></ul>
   </div>
 
@@ -353,7 +353,7 @@
 and global hooks since it's meant to be used explicitly. Useful for
 sending errors to multiple sentry projects in a large application.</p>
 
-<pre><code><span class="k">class</span> <span class="t">Foo</span>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Foo</span>
   <span class="k">def</span> <span class="m">initialize</span>
     @other_raven <span class="o">=</span> <span class="t">Raven</span><span class="t">::</span><span class="t">Instance</span>.<span class="k">new</span>
     @other_raven.configure <span class="k">do</span> <span class="o">|</span>config<span class="o">|</span>
@@ -393,7 +393,7 @@ sending errors to multiple sentry projects in a large application.</p>
   </h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L24" target="_blank">
+      <a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L24" target="_blank">
         raven/instance.cr
       </a>
     
@@ -648,7 +648,7 @@ sending errors to multiple sentry projects in a large application.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L35" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -688,7 +688,7 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
 <p>These will be merged with the <em>options</em> parameter to
 <code><a href="../Raven/Event.html#from(ex:Exception,**options)-class-method">Event.from</a></code> at the top of execution.</p>
 
-<pre><code><span class="k">begin</span>
+<pre><code class="language-crystal"><span class="k">begin</span>
   raise <span class="s">&quot;Hello&quot;</span>
 <span class="k">rescue</span> ex
   <span class="t">Raven</span>.annotate_exception(ex, user: {id: <span class="n">1</span>, email: <span class="s">&quot;foo@example.com&quot;</span>})
@@ -699,7 +699,7 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L250" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L250" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -715,7 +715,7 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L326" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L326" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -732,7 +732,7 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
           
           <p>Capture and process any exceptions from the given block.</p>
 
-<pre><code><span class="t">Raven</span>.capture <span class="k">do</span>
+<pre><code class="language-crystal"><span class="t">Raven</span>.capture <span class="k">do</span>
   <span class="t">MyApp</span>.run
 <span class="k">end</span></code></pre>
         </div>
@@ -740,7 +740,7 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L222" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L222" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -757,7 +757,7 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
           
           <p>Captures given <code><a href="../Exception.html">Exception</a></code> or <code>String</code> object.</p>
 
-<pre><code><span class="k">begin</span>
+<pre><code class="language-crystal"><span class="k">begin</span>
   <span class="c"># ...</span>
 <span class="k">rescue</span> ex
   <span class="t">Raven</span>.capture ex
@@ -769,7 +769,7 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L179" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L179" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -787,7 +787,7 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
           <p>Captures given <code><a href="../Exception.html">Exception</a></code> or <code>String</code> object and yields
 created <code><a href="../Raven/Event.html">Raven::Event</a></code> before sending to Sentry.</p>
 
-<pre><code><span class="t">Raven</span>.capture(<span class="s">&quot;boo!&quot;</span>) <span class="k">do</span> <span class="o">|</span>event<span class="o">|</span>
+<pre><code class="language-crystal"><span class="t">Raven</span>.capture(<span class="s">&quot;boo!&quot;</span>) <span class="k">do</span> <span class="o">|</span>event<span class="o">|</span>
   event.extra.merge! foo: <span class="s">&quot;bar&quot;</span>
 <span class="k">end</span></code></pre>
         </div>
@@ -795,7 +795,7 @@ created <code><a href="../Raven/Event.html">Raven::Event</a></code> before sendi
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L130" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L130" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -813,7 +813,7 @@ created <code><a href="../Raven/Event.html">Raven::Event</a></code> before sendi
           <p>Captures an exception with given <em>klass</em>, <em>message</em>
 and optional <em>backtrace</em>.</p>
 
-<pre><code><span class="t">Raven</span>.capture <span class="s">&quot;FooBarError&quot;</span>, <span class="s">&quot;Foo got bar!&quot;</span></code></pre>
+<pre><code class="language-crystal"><span class="t">Raven</span>.capture <span class="s">&quot;FooBarError&quot;</span>, <span class="s">&quot;Foo got bar!&quot;</span></code></pre>
 
 <p><span class="flag purple">NOTE</span>  Useful in scenarios where you need to reconstruct the error
 (usually along with a backtrace from external source), while
@@ -823,7 +823,7 @@ having no access to the actual Exception object.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L193" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L193" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -841,7 +841,7 @@ having no access to the actual Exception object.</p>
           <p>Returns <code>true</code> in case given <em>ex</em> was already captured,
 <code>false</code> otherwise.</p>
 
-<pre><code>ex <span class="o">=</span> <span class="t">Exception</span>.<span class="k">new</span>(<span class="s">&quot;boo!&quot;</span>)
+<pre><code class="language-crystal">ex <span class="o">=</span> <span class="t">Exception</span>.<span class="k">new</span>(<span class="s">&quot;boo!&quot;</span>)
 
 <span class="t">Raven</span>.captured_exception?(ex) <span class="c"># =&gt; false</span>
 <span class="t">Raven</span>.capture(ex)
@@ -851,7 +851,7 @@ having no access to the actual Exception object.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L269" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L269" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -873,7 +873,7 @@ Sentry server.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -895,7 +895,7 @@ Sentry server.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -916,7 +916,7 @@ Sentry server.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -937,7 +937,7 @@ Sentry server.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -954,7 +954,7 @@ Sentry server.</p>
           
           <p>Call this method to modify defaults in your initializers.</p>
 
-<pre><code><span class="t">Raven</span>.configure <span class="k">do</span> <span class="o">|</span>config<span class="o">|</span>
+<pre><code class="language-crystal"><span class="t">Raven</span>.configure <span class="k">do</span> <span class="o">|</span>config<span class="o">|</span>
   config.dsn <span class="o">=</span> <span class="s">&quot;http://...&quot;</span>
 <span class="k">end</span></code></pre>
         </div>
@@ -962,7 +962,7 @@ Sentry server.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L72" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L72" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -979,7 +979,7 @@ Sentry server.</p>
           
           <p>Call this method to modify defaults in your initializers.</p>
 
-<pre><code><span class="t">Raven</span>.configure <span class="k">do</span> <span class="o">|</span>config<span class="o">|</span>
+<pre><code class="language-crystal"><span class="t">Raven</span>.configure <span class="k">do</span> <span class="o">|</span>config<span class="o">|</span>
   config.dsn <span class="o">=</span> <span class="s">&quot;http://...&quot;</span>
 <span class="k">end</span></code></pre>
         </div>
@@ -987,7 +987,7 @@ Sentry server.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L67" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L67" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1003,7 +1003,7 @@ Sentry server.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L40" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1023,13 +1023,13 @@ Sentry server.</p>
 <p>Extra context shows up as <em>Additional Data</em> within Sentry,
 and is completely arbitrary.</p>
 
-<pre><code><span class="t">Raven</span>.extra_context(my_custom_data: <span class="s">&quot;value&quot;</span>)</code></pre>
+<pre><code class="language-crystal"><span class="t">Raven</span>.extra_context(my_custom_data: <span class="s">&quot;value&quot;</span>)</code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L305" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L305" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1053,7 +1053,7 @@ Merges with existing context (if any).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L309" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L309" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1069,7 +1069,7 @@ Merges with existing context (if any).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L116" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L116" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1090,7 +1090,7 @@ Merges with existing context (if any).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1107,14 +1107,14 @@ Merges with existing context (if any).</p>
           
           <p>Send an event to the configured Sentry server.</p>
 
-<pre><code>event <span class="o">=</span> <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>.<span class="k">new</span>(message: <span class="s">&quot;An error&quot;</span>)
+<pre><code class="language-crystal">event <span class="o">=</span> <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>.<span class="k">new</span>(message: <span class="s">&quot;An error&quot;</span>)
 <span class="t">Raven</span>.send_event(event)</code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L109" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L109" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1135,7 +1135,7 @@ Merges with existing context (if any).</p>
 
 <ul><li><em>name</em> (populated from <code>context.user[:username]</code> if left empty)</li><li><em>email</em> (populated from <code>context.user[:email]</code> if left empty)</li><li><em>comments</em></li></ul>
 
-<pre><code><span class="t">Raven</span>.send_feedback(<span class="t">Raven</span>.last_event_id, {
+<pre><code class="language-crystal"><span class="t">Raven</span>.send_feedback(<span class="t">Raven</span>.last_event_id, {
   <span class="s">&quot;name&quot;</span>     => <span class="s">&quot;...&quot;</span>,
   <span class="s">&quot;email&quot;</span>    => <span class="s">&quot;...&quot;</span>,
   <span class="s">&quot;comments&quot;</span> => <span class="s">&quot;...&quot;</span>,
@@ -1147,7 +1147,7 @@ Merges with existing context (if any).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L93" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L93" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1167,13 +1167,13 @@ Merges with existing context (if any).</p>
 <p>Tags are key / value pairs which generally represent things like
 application version, environment, role, and server names.</p>
 
-<pre><code><span class="t">Raven</span>.tags_context(my_custom_tag: <span class="s">&quot;tag_value&quot;</span>)</code></pre>
+<pre><code class="language-crystal"><span class="t">Raven</span>.tags_context(my_custom_tag: <span class="s">&quot;tag_value&quot;</span>)</code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L293" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L293" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1197,7 +1197,7 @@ Merges with existing context (if any).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L309" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L309" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1217,13 +1217,13 @@ Merges with existing context (if any).</p>
 <p>It is recommending that you send at least the <code>:id</code> and <code>:email</code>
 values. All other values are arbitrary.</p>
 
-<pre><code><span class="t">Raven</span>.user_context(id: <span class="n">1</span>, email: <span class="s">&quot;foo@example.com&quot;</span>)</code></pre>
+<pre><code class="language-crystal"><span class="t">Raven</span>.user_context(id: <span class="n">1</span>, email: <span class="s">&quot;foo@example.com&quot;</span>)</code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L281" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L281" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1247,7 +1247,7 @@ Merges with existing context (if any).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/457e53ac/src/raven/instance.cr#L309" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/00e1f577/src/raven/instance.cr#L309" target="_blank">View source</a>]
         
       </div>
     </div>

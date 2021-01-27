@@ -3,21 +3,16 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.34.0">
+<meta name="generator" content="Crystal Docs 0.35.1">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="raven">
+
 
 
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/doc.js"></script>
 
-<svg class="hidden">
-  <symbol id="octicon-link" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-  </symbol>
-</svg>
-
-  <meta id="repository-name" content="raven">
+  <meta name="repository-name" content="raven">
   <title>raven master</title>
   <script type="text/javascript">
   CrystalDocs.base_path = "";
@@ -25,6 +20,11 @@
 </head>
 <body>
 
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
 <div class="sidebar">
   <div class="sidebar-header">
     <div class="search-box">
@@ -44,7 +44,7 @@
     </div>
   </div>
 
-  <div class="search-results" class="hidden">
+  <div class="search-results hidden">
     <ul class="search-list"></ul>
   </div>
 
@@ -330,10 +330,10 @@
 <div class="main-content">
 <p>raven.cr • the Crystal client for Sentry</p>
 
-<p>An unofficial Crystal-language client and integration layer for the <a href="https://github.com/getsentry/sentry" target="_blank">Sentry</a> error reporting API.</p>
+<p>An unofficial Crystal-language client and integration layer for the <a href="https://github.com/getsentry/sentry">Sentry</a> error reporting API.</p>
 
-<p>Based on fine <a href="https://github.com/getsentry/raven-ruby" target="_blank">raven-ruby</a> gem
-from folks at <a href="https://github.com/getsentry" target="_blank">@getsentry</a>.</p>
+<p>Based on fine <a href="https://github.com/getsentry/raven-ruby">raven-ruby</a> gem
+from folks at <a href="https://github.com/getsentry">@getsentry</a>.</p>
 
 <h3><a id="blog-posts" class="anchor" href="#blog-posts">
   <svg class="octicon-link" aria-hidden="true">
@@ -341,7 +341,7 @@ from folks at <a href="https://github.com/getsentry" target="_blank">@getsentry<
   </svg>
 </a>Blog posts</h3>
 
-<ul><li><a href="https://sija.pl/en/notes/crystal-error-tracking-with-sentry" target="_blank">Crystal error tracking with Sentry</a></li><li><a href="https://sija.pl/en/notes/sentry-error-tracking-for-kemal" target="_blank">Sentry error tracking for Kemal</a></li></ul>
+<ul><li><a href="https://sija.pl/en/notes/crystal-error-tracking-with-sentry">Crystal error tracking with Sentry</a></li><li><a href="https://sija.pl/en/notes/sentry-error-tracking-for-kemal">Sentry error tracking for Kemal</a></li></ul>
 
 <h2><a id="features" class="anchor" href="#features">
   <svg class="octicon-link" aria-hidden="true">
@@ -349,7 +349,7 @@ from folks at <a href="https://github.com/getsentry" target="_blank">@getsentry<
   </svg>
 </a>Features</h2>
 
-<ul><li>[x] Processors (data scrubbers)</li><li>[x] Interfaces (Message, Exception, Stacktrace, User, HTTP, ...)</li><li>[x] Contexts (user, tags, extra, os, runtime)</li><li>[x] Breadcrumbs</li><li>[x] Integrations (<a href="https://github.com/kemalcr/kemal" target="_blank">Kemal</a>, <a href="https://github.com/amberframework/amber" target="_blank">Amber</a>, <a href="https://github.com/luckyframework/lucky" target="_blank">Lucky</a>, <a href="https://github.com/mperham/sidekiq.cr" target="_blank">Sidekiq.cr</a>, <a href="https://github.com/spider-gazelle/action-controller" target="_blank">action-controller</a>)</li><li>[x] Async support</li><li>[x] User Feedback</li><li>[x] Source code context for stack traces</li><li>[x] Dedicated <a href="https://crystal-lang.org/api/Log.html" target="_blank"><code>Log</code></a> backend</li><li>[x] Crash Handler</li></ul>
+<ul><li>[x] Processors (data scrubbers)</li><li>[x] Interfaces (Message, Exception, Stacktrace, User, HTTP, ...)</li><li>[x] Contexts (user, tags, extra, os, runtime)</li><li>[x] Breadcrumbs</li><li>[x] Integrations (<a href="https://github.com/kemalcr/kemal">Kemal</a>, <a href="https://github.com/amberframework/amber">Amber</a>, <a href="https://github.com/luckyframework/lucky">Lucky</a>, <a href="https://github.com/mperham/sidekiq.cr">Sidekiq.cr</a>, <a href="https://github.com/spider-gazelle/action-controller">action-controller</a>)</li><li>[x] Async support</li><li>[x] User Feedback</li><li>[x] Source code context for stack traces</li><li>[x] Dedicated <a href="https://crystal-lang.org/api/Log.html"><code>Log</code></a> backend</li><li>[x] Crash Handler</li></ul>
 
 <h2><a id="installation" class="anchor" href="#installation">
   <svg class="octicon-link" aria-hidden="true">
@@ -401,7 +401,7 @@ these are related to 404s or controller actions not being found.</p>
 <p>Raven doesn't report <code>POST</code>, <code>PUT</code>, <code>PATCH</code> data or cookies by default.
 In addition, it will attempt to remove any obviously sensitive data,
 such as credit card or Social Security numbers.
-For more information about how Sentry processes your data, <a href="https://docs.sentry.io/clients/ruby/config/" target="_blank">check out the documentation on the <code>processors</code> config setting.</a></p>
+For more information about how Sentry processes your data, <a href="https://docs.sentry.io/clients/ruby/config/">check out the documentation on the <code>processors</code> config setting.</a></p>
 
 <h3><a id="call" class="anchor" href="#call">
   <svg class="octicon-link" aria-hidden="true">
@@ -533,7 +533,7 @@ is then submitted automatically with all events.</p>
 <span class="c"># provide a bit of additional context</span>
 <span class="t">Raven</span>.extra_context happiness: <span class="s">&quot;very&quot;</span></code></pre>
 
-<p>For more information, see <a href="https://docs.sentry.io/clients/ruby/context/" target="_blank">Context</a>.</p>
+<p>For more information, see <a href="https://docs.sentry.io/clients/ruby/context/">Context</a>.</p>
 
 <h2><a id="log-backend" class="anchor" href="#log-backend">
   <svg class="octicon-link" aria-hidden="true">
@@ -574,7 +574,7 @@ directly from the original <code>Log::Entry</code>.</p>
   c.bind <span class="s">&quot;*&quot;</span>, <span class="n">:fatal</span>, <span class="t">Raven</span><span class="t">::</span><span class="t">LogBackend</span>.<span class="k">new</span>(capture_all: <span class="n">true</span>)
 <span class="k">end</span></code></pre>
 
-<p>See more in Crystal's <code>Log</code> <a href="https://crystal-lang.org/api/Log.html#configure-logging-explicitly-in-the-code" target="_blank">documentation</a>.</p>
+<p>See more in Crystal's <code>Log</code> <a href="https://crystal-lang.org/api/Log.html#configure-logging-explicitly-in-the-code">documentation</a>.</p>
 
 <h2><a id="crash-handler" class="anchor" href="#crash-handler">
   <svg class="octicon-link" aria-hidden="true">
@@ -633,7 +633,7 @@ in case you didn't do it while building the wrapper.</p>
   </svg>
 </a>More Information</h2>
 
-<ul><li><a href="https://docs.sentry.io/clients/ruby" target="_blank">Documentation</a></li><li><a href="https://github.com/Sija/raven.cr/issues" target="_blank">Bug Tracker</a></li><li><a href="https://github.com/Sija/raven.cr" target="_blank">Code Repository</a></li></ul>
+<ul><li><a href="https://docs.sentry.io/clients/ruby">Documentation</a></li><li><a href="https://github.com/Sija/raven.cr/issues">Bug Tracker</a></li><li><a href="https://github.com/Sija/raven.cr">Code Repository</a></li></ul>
 
 <h2><a id="contributing" class="anchor" href="#contributing">
   <svg class="octicon-link" aria-hidden="true">
@@ -641,7 +641,7 @@ in case you didn't do it while building the wrapper.</p>
   </svg>
 </a>Contributing</h2>
 
-<ol><li><a href="https://github.com/Sija/raven.cr/fork" target="_blank">Fork it</a></li><li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li><li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li><li>Push to the branch (<code>git push origin my-new-feature</code>)</li><li>Create a new <a href="https://github.com/Sija/raven.cr/pulls" target="_blank">Pull Request</a></li></ol>
+<ol><li><a href="https://github.com/Sija/raven.cr/fork">Fork it</a></li><li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li><li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li><li>Push to the branch (<code>git push origin my-new-feature</code>)</li><li>Create a new <a href="https://github.com/Sija/raven.cr/pulls">Pull Request</a></li></ol>
 
 <h2><a id="contributors" class="anchor" href="#contributors">
   <svg class="octicon-link" aria-hidden="true">
@@ -649,7 +649,7 @@ in case you didn't do it while building the wrapper.</p>
   </svg>
 </a>Contributors</h2>
 
-<ul><li><a href="https://github.com/Sija" target="_blank">@Sija</a> Sijawusz Pur Rahnama - creator, maintainer</li></ul>
+<ul><li><a href="https://github.com/Sija">@Sija</a> Sijawusz Pur Rahnama - creator, maintainer</li></ul>
 </div>
 </body>
 </html>
