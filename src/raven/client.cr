@@ -99,14 +99,14 @@ module Raven
 
     private def generate_auth_header
       fields = {
-        sentry_version: PROTOCOL_VERSION,
-        sentry_client:  USER_AGENT,
-        sentry_key:     configuration.public_key,
+        :sentry_version => PROTOCOL_VERSION,
+        :sentry_client  => USER_AGENT,
+        :sentry_key     => configuration.public_key,
       }
       if secret_key = configuration.secret_key
-        fields = fields.merge(sentry_secret: secret_key)
+        fields[:sentry_secret] = secret_key
       end
-      "Sentry " + fields.map { |key, value| "#{key}=#{value}" }.join(", ")
+      "Sentry " + fields.join(", ") { |key, value| "#{key}=#{value}" }
     end
 
     private def get_message_from_exception(event)
