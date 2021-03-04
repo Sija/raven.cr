@@ -1,3 +1,6 @@
+require "json"
+require "yaml"
+
 class Exception
   @[JSON::Field(ignore: true)]
   @[YAML::Field(ignore: true)]
