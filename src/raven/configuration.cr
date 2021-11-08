@@ -243,9 +243,17 @@ module Raven
     property before_send : Proc(Event, Event::Hint?, Event?)?
 
     # Errors object - an `Array` containing error messages.
-    getter errors = [] of String
+    # getter errors = [] of String
+    @errors = [] of String
+
+    def errors : Array(String)
+      with_mutex do
+        @errors.clone
+      end
+    end
 
     def initialize
+      @errors_mutex = Mutex.new
       @current_environment = current_environment_from_env
       @exclude_loggers = ["#{Log.source}.*"]
       @excluded_exceptions = IGNORE_DEFAULT.dup
@@ -363,14 +371,14 @@ module Raven
     end
 
     def capture_allowed?
-      @errors = [] of String
+      sync_init_errors
       valid? &&
         capture_in_current_environment? &&
         sample_allowed?
     end
 
     def capture_allowed?(message_or_ex)
-      @errors = [] of String
+      sync_init_errors
       capture_allowed? &&
         !raven_error?(message_or_ex) &&
         !excluded_exception?(message_or_ex) &&
@@ -379,26 +387,26 @@ module Raven
 
     private def capture_in_current_environment?
       return true if environments.empty? || environments.includes?(@current_environment)
-      @errors << "Not configured to send/capture in environment '#{@current_environment}'"
+      sync_add_error "Not configured to send/capture in environment '#{@current_environment}'"
       false
     end
 
     private def capture_allowed_by_callback?(message_or_ex)
       return true if !should_capture || should_capture.try &.call(message_or_ex)
-      @errors << "#should_capture returned false"
+      sync_add_error "#should_capture returned false"
       false
     end
 
     private def sample_allowed?
       return true if sample_rate == 1.0
       return true unless random.rand >= sample_rate
-      @errors << "Excluded by random sample"
+      sync_add_error "Excluded by random sample"
       false
     end
 
     def raven_error?(message_or_ex)
       return false unless message_or_ex.is_a?(Raven::Error)
-      @errors << "Refusing to capture Raven error: #{message_or_ex.inspect}"
+      sync_add_error "Refusing to capture Raven error: #{message_or_ex.inspect}"
       true
     end
 
@@ -410,7 +418,7 @@ module Raven
                             when String          then klass == ex.class.name
                             end
                           end
-      @errors << "User excluded error: #{ex.inspect}"
+      sync_add_error "User excluded error: #{ex.inspect}"
       true
     end
 
@@ -420,21 +428,39 @@ module Raven
         {% for key in REQUIRED_OPTIONS %}
           unless self.{{ key.id }}
             valid = false
-            @errors << "No {{ key }} specified"
+            sync_add_error "No {{ key }} specified"
           end
         {% end %}
       else
         valid = false
-        @errors << "DSN not set"
+        sync_add_error "DSN not set"
       end
       valid
     end
 
     def error_messages : String
-      errors = @errors.map_with_index do |e, i|
+      _errors = errors.map_with_index do |e, i|
         i > 0 ? e.downcase : e
       end
-      errors.join(", ")
+      _errors.join(", ")
+    end
+
+    def sync_add_error(error : String)
+      with_mutex do
+        @errors << error
+      end
+    end
+
+    def sync_init_errors : Array(String)
+      with_mutex do
+        @errors = [] of String
+      end
+    end
+
+    private def with_mutex
+      @errors_mutex.synchronize do
+        yield
+      end
     end
   end
 end
