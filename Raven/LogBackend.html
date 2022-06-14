@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.35.1">
+<meta name="generator" content="Crystal Docs 1.3.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="raven">
 
@@ -350,7 +350,6 @@
   </h2>
 
   <p><code>::Log::Backend</code> recording logged messages.</p>
-
 <pre><code class="language-crystal"><span class="t">Log</span>.setup <span class="k">do</span> <span class="o">|</span>c<span class="o">|</span>
   c.bind <span class="s">&quot;*&quot;</span>, <span class="n">:info</span>, <span class="t">Log</span><span class="t">::</span><span class="t">IOBackend</span>.<span class="k">new</span>
   c.bind <span class="s">&quot;*&quot;</span>, <span class="n">:info</span>, <span class="t">Raven</span><span class="t">::</span><span class="t">LogBackend</span>.<span class="k">new</span>(record_breadcrumbs: <span class="n">true</span>)
@@ -381,7 +380,7 @@
   </h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/log_backend.cr#L15" target="_blank">
+      <a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/log_backend.cr#L15" target="_blank">
         raven/log_backend.cr
       </a>
     
@@ -403,7 +402,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(dispatch_mode:::Log::DispatchMode=:sync,*,record_breadcrumbs=false,capture_exceptions=false,capture_all=false,default_logger=&quot;logger&quot;)-class-method" class="signature"><strong>.new</strong>(dispatch_mode : ::Log::DispatchMode = <span class="n">:sync</span>, *, record_breadcrumbs = <span class="n">false</span>, capture_exceptions = <span class="n">false</span>, capture_all = <span class="n">false</span>, default_logger = <span class="s">&quot;logger&quot;</span>)</a>
+        <a href="#new%28dispatch_mode%3A%3A%3ALog%3A%3ADispatchMode%3D%3Async%2C%2A%2Crecord_breadcrumbs%3Dfalse%2Ccapture_exceptions%3Dfalse%2Ccapture_all%3Dfalse%2Cdefault_logger%3D%22logger%22%29-class-method" class="signature"><strong>.new</strong>(dispatch_mode : ::Log::DispatchMode = <span class="n">:sync</span>, *, record_breadcrumbs = <span class="n">false</span>, capture_exceptions = <span class="n">false</span>, capture_all = <span class="n">false</span>, default_logger = <span class="s">&quot;logger&quot;</span>)</a>
         
       </li>
     
@@ -424,73 +423,73 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#active?-instance-method" class="signature"><strong>#active?</strong></a>
+        <a href="#active%3F-instance-method" class="signature"><strong>#active?</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#capture?-instance-method" class="signature"><strong>#capture?</strong></a>
+        <a href="#capture%3F-instance-method" class="signature"><strong>#capture?</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#capture_all=(capture_all:Bool)-instance-method" class="signature"><strong>#capture_all=</strong>(capture_all : Bool)</a>
+        <a href="#capture_all%3D%28capture_all%3ABool%29-instance-method" class="signature"><strong>#capture_all=</strong>(capture_all : Bool)</a>
         
           <div class="summary"><p>Captures each logged entry.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#capture_all?:Bool-instance-method" class="signature"><strong>#capture_all?</strong> : Bool</a>
+        <a href="#capture_all%3F%3ABool-instance-method" class="signature"><strong>#capture_all?</strong> : Bool</a>
         
           <div class="summary"><p>Captures each logged entry.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#capture_exceptions=(capture_exceptions:Bool)-instance-method" class="signature"><strong>#capture_exceptions=</strong>(capture_exceptions : Bool)</a>
+        <a href="#capture_exceptions%3D%28capture_exceptions%3ABool%29-instance-method" class="signature"><strong>#capture_exceptions=</strong>(capture_exceptions : Bool)</a>
         
           <div class="summary"><p>Captures <code><a href="../Exception.html">Exception</a></code> attached to the logged entry, if present.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#capture_exceptions?:Bool-instance-method" class="signature"><strong>#capture_exceptions?</strong> : Bool</a>
+        <a href="#capture_exceptions%3F%3ABool-instance-method" class="signature"><strong>#capture_exceptions?</strong> : Bool</a>
         
           <div class="summary"><p>Captures <code><a href="../Exception.html">Exception</a></code> attached to the logged entry, if present.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#default_logger:String-instance-method" class="signature"><strong>#default_logger</strong> : String</a>
+        <a href="#default_logger%3AString-instance-method" class="signature"><strong>#default_logger</strong> : String</a>
         
           <div class="summary"><p>Default name of the root logger.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#default_logger=(default_logger:String)-instance-method" class="signature"><strong>#default_logger=</strong>(default_logger : String)</a>
+        <a href="#default_logger%3D%28default_logger%3AString%29-instance-method" class="signature"><strong>#default_logger=</strong>(default_logger : String)</a>
         
           <div class="summary"><p>Default name of the root logger.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#record_breadcrumbs=(record_breadcrumbs:Bool)-instance-method" class="signature"><strong>#record_breadcrumbs=</strong>(record_breadcrumbs : Bool)</a>
+        <a href="#record_breadcrumbs%3D%28record_breadcrumbs%3ABool%29-instance-method" class="signature"><strong>#record_breadcrumbs=</strong>(record_breadcrumbs : Bool)</a>
         
           <div class="summary"><p>Records each logged entry as a breadcrumb.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#record_breadcrumbs?:Bool-instance-method" class="signature"><strong>#record_breadcrumbs?</strong> : Bool</a>
+        <a href="#record_breadcrumbs%3F%3ABool-instance-method" class="signature"><strong>#record_breadcrumbs?</strong> : Bool</a>
         
           <div class="summary"><p>Records each logged entry as a breadcrumb.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#write(entry:::Log::Entry)-instance-method" class="signature"><strong>#write</strong>(entry : ::Log::Entry)</a>
+        <a href="#write%28entry%3A%3A%3ALog%3A%3AEntry%29-instance-method" class="signature"><strong>#write</strong>(entry : ::Log::Entry)</a>
         
           <div class="summary"><p>Writes the <em>entry</em> to this backend.</p></div>
         
@@ -551,13 +550,13 @@
         
         def self.<strong>new</strong>(dispatch_mode : ::Log::DispatchMode = <span class="n">:sync</span>, *, record_breadcrumbs = <span class="n">false</span>, capture_exceptions = <span class="n">false</span>, capture_all = <span class="n">false</span>, default_logger = <span class="s">&quot;logger&quot;</span>)
 
-        <a class="method-permalink" href="#new(dispatch_mode:::Log::DispatchMode=:sync,*,record_breadcrumbs=false,capture_exceptions=false,capture_all=false,default_logger=&quot;logger&quot;)-class-method">#</a>
+        <a class="method-permalink" href="#new%28dispatch_mode%3A%3A%3ALog%3A%3ADispatchMode%3D%3Async%2C%2A%2Crecord_breadcrumbs%3Dfalse%2Ccapture_exceptions%3Dfalse%2Ccapture_all%3Dfalse%2Cdefault_logger%3D%22logger%22%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/log_backend.cr#L56" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/log_backend.cr#L56" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -581,13 +580,13 @@
         
         def <strong>active?</strong>
 
-        <a class="method-permalink" href="#active?-instance-method">#</a>
+        <a class="method-permalink" href="#active%3F-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/log_backend.cr#L122" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/log_backend.cr#L122" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -597,13 +596,13 @@
         
         def <strong>capture?</strong>
 
-        <a class="method-permalink" href="#capture?-instance-method">#</a>
+        <a class="method-permalink" href="#capture%3F-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/log_backend.cr#L126" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/log_backend.cr#L126" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -613,20 +612,19 @@
         
         def <strong>capture_all=</strong>(capture_all : Bool)
 
-        <a class="method-permalink" href="#capture_all=(capture_all:Bool)-instance-method">#</a>
+        <a class="method-permalink" href="#capture_all%3D%28capture_all%3ABool%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Captures each logged entry.</p>
-
 <p>See <code>Raven.capture</code></p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/log_backend.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/log_backend.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -636,20 +634,19 @@
         
         def <strong>capture_all?</strong> : Bool
 
-        <a class="method-permalink" href="#capture_all?:Bool-instance-method">#</a>
+        <a class="method-permalink" href="#capture_all%3F%3ABool-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Captures each logged entry.</p>
-
 <p>See <code>Raven.capture</code></p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/log_backend.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/log_backend.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -659,20 +656,19 @@
         
         def <strong>capture_exceptions=</strong>(capture_exceptions : Bool)
 
-        <a class="method-permalink" href="#capture_exceptions=(capture_exceptions:Bool)-instance-method">#</a>
+        <a class="method-permalink" href="#capture_exceptions%3D%28capture_exceptions%3ABool%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Captures <code><a href="../Exception.html">Exception</a></code> attached to the logged entry, if present.</p>
-
 <p>See <code>Raven.capture</code></p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/log_backend.cr#L44" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/log_backend.cr#L44" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -682,20 +678,19 @@
         
         def <strong>capture_exceptions?</strong> : Bool
 
-        <a class="method-permalink" href="#capture_exceptions?:Bool-instance-method">#</a>
+        <a class="method-permalink" href="#capture_exceptions%3F%3ABool-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Captures <code><a href="../Exception.html">Exception</a></code> attached to the logged entry, if present.</p>
-
 <p>See <code>Raven.capture</code></p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/log_backend.cr#L44" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/log_backend.cr#L44" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -705,20 +700,19 @@
         
         def <strong>default_logger</strong> : String
 
-        <a class="method-permalink" href="#default_logger:String-instance-method">#</a>
+        <a class="method-permalink" href="#default_logger%3AString-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Default name of the root logger.</p>
-
-<p>See <code><a href="../Raven/Event.html#logger:String?-instance-method">Event#logger</a></code>, <code><a href="../Raven/Breadcrumb.html#category:String?-instance-method">Breadcrumb#category</a></code></p>
+<p>See <code><a href="../Raven/Event.html#logger%3AString%3F-instance-method">Event#logger</a></code>, <code><a href="../Raven/Breadcrumb.html#category%3AString%3F-instance-method">Breadcrumb#category</a></code></p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/log_backend.cr#L54" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/log_backend.cr#L54" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -728,20 +722,19 @@
         
         def <strong>default_logger=</strong>(default_logger : String)
 
-        <a class="method-permalink" href="#default_logger=(default_logger:String)-instance-method">#</a>
+        <a class="method-permalink" href="#default_logger%3D%28default_logger%3AString%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Default name of the root logger.</p>
-
-<p>See <code><a href="../Raven/Event.html#logger:String?-instance-method">Event#logger</a></code>, <code><a href="../Raven/Breadcrumb.html#category:String?-instance-method">Breadcrumb#category</a></code></p>
+<p>See <code><a href="../Raven/Event.html#logger%3AString%3F-instance-method">Event#logger</a></code>, <code><a href="../Raven/Breadcrumb.html#category%3AString%3F-instance-method">Breadcrumb#category</a></code></p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/log_backend.cr#L54" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/log_backend.cr#L54" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -751,20 +744,19 @@
         
         def <strong>record_breadcrumbs=</strong>(record_breadcrumbs : Bool)
 
-        <a class="method-permalink" href="#record_breadcrumbs=(record_breadcrumbs:Bool)-instance-method">#</a>
+        <a class="method-permalink" href="#record_breadcrumbs%3D%28record_breadcrumbs%3ABool%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Records each logged entry as a breadcrumb.</p>
-
 <p>See <code>Raven.breadcrumbs</code></p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/log_backend.cr#L39" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/log_backend.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -774,20 +766,19 @@
         
         def <strong>record_breadcrumbs?</strong> : Bool
 
-        <a class="method-permalink" href="#record_breadcrumbs?:Bool-instance-method">#</a>
+        <a class="method-permalink" href="#record_breadcrumbs%3F%3ABool-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Records each logged entry as a breadcrumb.</p>
-
 <p>See <code>Raven.breadcrumbs</code></p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/log_backend.cr#L39" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/log_backend.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -797,7 +788,7 @@
         
         def <strong>write</strong>(entry : ::Log::Entry)
 
-        <a class="method-permalink" href="#write(entry:::Log::Entry)-instance-method">#</a>
+        <a class="method-permalink" href="#write%28entry%3A%3A%3ALog%3A%3AEntry%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -812,7 +803,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/log_backend.cr#L130" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/log_backend.cr#L130" target="_blank">View source</a>]
         
       </div>
     </div>

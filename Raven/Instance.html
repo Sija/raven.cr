@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.35.1">
+<meta name="generator" content="Crystal Docs 1.3.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="raven">
 
@@ -352,7 +352,6 @@
   <p>A copy of Raven's base module class methods, minus some of the integration
 and global hooks since it's meant to be used explicitly. Useful for
 sending errors to multiple sentry projects in a large application.</p>
-
 <pre><code class="language-crystal"><span class="k">class</span> <span class="t">Foo</span>
   <span class="k">def</span> <span class="m">initialize</span>
     @other_raven <span class="o">=</span> <span class="t">Raven</span><span class="t">::</span><span class="t">Instance</span>.<span class="k">new</span>
@@ -393,7 +392,7 @@ sending errors to multiple sentry projects in a large application.</p>
   </h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L24" target="_blank">
+      <a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L24" target="_blank">
         raven/instance.cr
       </a>
     
@@ -415,7 +414,7 @@ sending errors to multiple sentry projects in a large application.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(context=nil,config=nil)-class-method" class="signature"><strong>.new</strong>(context = <span class="n">nil</span>, config = <span class="n">nil</span>)</a>
+        <a href="#new%28context%3Dnil%2Cconfig%3Dnil%29-class-method" class="signature"><strong>.new</strong>(context = <span class="n">nil</span>, config = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -436,7 +435,7 @@ sending errors to multiple sentry projects in a large application.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#annotate_exception(ex:Exception,**options)-instance-method" class="signature"><strong>#annotate_exception</strong>(ex : Exception, **options)</a>
+        <a href="#annotate_exception%28ex%3AException%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#annotate_exception</strong>(ex : Exception, **options)</a>
         
           <div class="summary"><p>Provides extra context to the exception prior to it being handled by Raven.</p></div>
         
@@ -448,72 +447,65 @@ sending errors to multiple sentry projects in a large application.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#capture(**options,&)-instance-method" class="signature"><strong>#capture</strong>(**options, &)</a>
-        
-          <div class="summary"><p>Capture and process any exceptions from the given block.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#capture(obj:Exception%7CString,**options)-instance-method" class="signature"><strong>#capture</strong>(obj : Exception | String, **options)</a>
-        
-          <div class="summary"><p>Captures given <code><a href="../Exception.html">Exception</a></code> or <code>String</code> object.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#capture(obj:Exception%7CString,**options,&)-instance-method" class="signature"><strong>#capture</strong>(obj : Exception | String, **options, &)</a>
-        
-          <div class="summary"><p>Captures given <code><a href="../Exception.html">Exception</a></code> or <code>String</code> object and yields created <code><a href="../Raven/Event.html">Raven::Event</a></code> before sending to Sentry.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#capture(klass:String,message:String,backtrace:String?=nil,**options,&)-instance-method" class="signature"><strong>#capture</strong>(klass : String, message : String, backtrace : String? = <span class="n">nil</span>, **options, &)</a>
+        <a href="#capture%28klass%3AString%2Cmessage%3AString%2Cbacktrace%3AString%3F%3Dnil%2C%2A%2Aoptions%2C%26%29-instance-method" class="signature"><strong>#capture</strong>(klass : String, message : String, backtrace : String? = <span class="n">nil</span>, **options, &)</a>
         
           <div class="summary"><p>Captures an exception with given <em>klass</em>, <em>message</em> and optional <em>backtrace</em>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#captured_exception?(ex:Exception)-instance-method" class="signature"><strong>#captured_exception?</strong>(ex : Exception)</a>
+        <a href="#capture%28obj%3AException%7CString%2C%2A%2Aoptions%2C%26%29-instance-method" class="signature"><strong>#capture</strong>(obj : Exception | String, **options, &)</a>
+        
+          <div class="summary"><p>Captures given <code><a href="../Exception.html">Exception</a></code> or <code>String</code> object and yields created <code><a href="../Raven/Event.html">Raven::Event</a></code> before sending to Sentry.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#capture%28obj%3AException%7CString%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#capture</strong>(obj : Exception | String, **options)</a>
+        
+          <div class="summary"><p>Captures given <code><a href="../Exception.html">Exception</a></code> or <code>String</code> object.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#capture%28%2A%2Aoptions%2C%26%29-instance-method" class="signature"><strong>#capture</strong>(**options, &)</a>
+        
+          <div class="summary"><p>Capture and process any exceptions from the given block.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#captured_exception%3F%28ex%3AException%29-instance-method" class="signature"><strong>#captured_exception?</strong>(ex : Exception)</a>
         
           <div class="summary"><p>Returns <code>true</code> in case given <em>ex</em> was already captured, <code>false</code> otherwise.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#client:Client?-instance-method" class="signature"><strong>#client</strong> : Client?</a>
+        <a href="#client%3AClient-instance-method" class="signature"><strong>#client</strong> : Client</a>
         
           <div class="summary"><p>The client object is responsible for delivering formatted data to the Sentry server.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#client=(client:Client)-instance-method" class="signature"><strong>#client=</strong>(client : Client)</a>
+        <a href="#client%3D%28client%3AClient%29-instance-method" class="signature"><strong>#client=</strong>(client : Client)</a>
         
           <div class="summary"><p>The client object is responsible for delivering formatted data to the Sentry server.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#configuration:Configuration?-instance-method" class="signature"><strong>#configuration</strong> : Configuration?</a>
+        <a href="#configuration%3AConfiguration-instance-method" class="signature"><strong>#configuration</strong> : Configuration</a>
         
           <div class="summary"><p>See <code><a href="../Raven/Configuration.html">Raven::Configuration</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#configuration=(configuration:Configuration)-instance-method" class="signature"><strong>#configuration=</strong>(configuration : Configuration)</a>
+        <a href="#configuration%3D%28configuration%3AConfiguration%29-instance-method" class="signature"><strong>#configuration=</strong>(configuration : Configuration)</a>
         
           <div class="summary"><p>See <code><a href="../Raven/Configuration.html">Raven::Configuration</a></code>.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#configure(&)-instance-method" class="signature"><strong>#configure</strong>(&)</a>
-        
-          <div class="summary"><p>Call this method to modify defaults in your initializers.</p></div>
         
       </li>
     
@@ -525,19 +517,26 @@ sending errors to multiple sentry projects in a large application.</p>
       </li>
     
       <li class="entry-summary">
+        <a href="#configure%28%26%29-instance-method" class="signature"><strong>#configure</strong>(&)</a>
+        
+          <div class="summary"><p>Call this method to modify defaults in your initializers.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#context-instance-method" class="signature"><strong>#context</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#extra_context(hash=nil,**options)-instance-method" class="signature"><strong>#extra_context</strong>(hash = <span class="n">nil</span>, **options)</a>
+        <a href="#extra_context%28hash%3Dnil%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#extra_context</strong>(hash = <span class="n">nil</span>, **options)</a>
         
           <div class="summary"><p>Bind extra context.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#extra_context(hash=nil,**options,&)-instance-method" class="signature"><strong>#extra_context</strong>(hash = <span class="n">nil</span>, **options, &)</a>
+        <a href="#extra_context%28hash%3Dnil%2C%2A%2Aoptions%2C%26%29-instance-method" class="signature"><strong>#extra_context</strong>(hash = <span class="n">nil</span>, **options, &)</a>
         
           <div class="summary"><p>Bind extra context.</p></div>
         
@@ -556,42 +555,42 @@ sending errors to multiple sentry projects in a large application.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#send_event(event,hint=nil)-instance-method" class="signature"><strong>#send_event</strong>(event, hint = <span class="n">nil</span>)</a>
+        <a href="#send_event%28event%2Chint%3Dnil%29-instance-method" class="signature"><strong>#send_event</strong>(event, hint = <span class="n">nil</span>)</a>
         
           <div class="summary"><p>Send an event to the configured Sentry server.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#send_feedback(event_id:String,data:Hash)-instance-method" class="signature"><strong>#send_feedback</strong>(event_id : String, data : Hash)</a>
+        <a href="#send_feedback%28event_id%3AString%2Cdata%3AHash%29-instance-method" class="signature"><strong>#send_feedback</strong>(event_id : String, data : Hash)</a>
         
           <div class="summary"><p>Sends User Feedback to Sentry server.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#tags_context(hash=nil,**options)-instance-method" class="signature"><strong>#tags_context</strong>(hash = <span class="n">nil</span>, **options)</a>
+        <a href="#tags_context%28hash%3Dnil%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#tags_context</strong>(hash = <span class="n">nil</span>, **options)</a>
         
           <div class="summary"><p>Bind tags context.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#tags_context(hash=nil,**options,&)-instance-method" class="signature"><strong>#tags_context</strong>(hash = <span class="n">nil</span>, **options, &)</a>
+        <a href="#tags_context%28hash%3Dnil%2C%2A%2Aoptions%2C%26%29-instance-method" class="signature"><strong>#tags_context</strong>(hash = <span class="n">nil</span>, **options, &)</a>
         
           <div class="summary"><p>Bind tags context.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#user_context(hash=nil,**options)-instance-method" class="signature"><strong>#user_context</strong>(hash = <span class="n">nil</span>, **options)</a>
+        <a href="#user_context%28hash%3Dnil%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#user_context</strong>(hash = <span class="n">nil</span>, **options)</a>
         
           <div class="summary"><p>Bind user context.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#user_context(hash=nil,**options,&)-instance-method" class="signature"><strong>#user_context</strong>(hash = <span class="n">nil</span>, **options, &)</a>
+        <a href="#user_context%28hash%3Dnil%2C%2A%2Aoptions%2C%26%29-instance-method" class="signature"><strong>#user_context</strong>(hash = <span class="n">nil</span>, **options, &)</a>
         
           <div class="summary"><p>Bind user context.</p></div>
         
@@ -642,13 +641,13 @@ sending errors to multiple sentry projects in a large application.</p>
         
         def self.<strong>new</strong>(context = <span class="n">nil</span>, config = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new(context=nil,config=nil)-class-method">#</a>
+        <a class="method-permalink" href="#new%28context%3Dnil%2Cconfig%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L35" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -672,7 +671,7 @@ sending errors to multiple sentry projects in a large application.</p>
         
         def <strong>annotate_exception</strong>(ex : <a href="../Exception.html">Exception</a>, **options)
 
-        <a class="method-permalink" href="#annotate_exception(ex:Exception,**options)-instance-method">#</a>
+        <a class="method-permalink" href="#annotate_exception%28ex%3AException%2C%2A%2Aoptions%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -680,14 +679,11 @@ sending errors to multiple sentry projects in a large application.</p>
           <p>Provides extra context to the exception prior to it being handled by
 Raven. An exception can have multiple annotations, which are merged
 together.</p>
-
 <p>The options (annotation) is treated the same as the <em>options</em>
-parameter to <code><a href="../Raven/Instance.html#capture(**options,&)-instance-method">#capture</a></code> or <code><a href="../Raven/Event.html#from(ex:Exception,**options)-class-method">Event.from</a></code>, and
+parameter to <code><a href="../Raven/Instance.html#capture%28%2A%2Aoptions%2C%26%29-instance-method">#capture</a></code> or <code><a href="../Raven/Event.html#from%28ex%3AException%2C%2A%2Aoptions%29-class-method">Event.from</a></code>, and
 can contain the same <code>:user</code>, <code>:tags</code>, etc. options as these methods.</p>
-
 <p>These will be merged with the <em>options</em> parameter to
-<code><a href="../Raven/Event.html#from(ex:Exception,**options)-class-method">Event.from</a></code> at the top of execution.</p>
-
+<code><a href="../Raven/Event.html#from%28ex%3AException%2C%2A%2Aoptions%29-class-method">Event.from</a></code> at the top of execution.</p>
 <pre><code class="language-crystal"><span class="k">begin</span>
   raise <span class="s">&quot;Hello&quot;</span>
 <span class="k">rescue</span> ex
@@ -699,7 +695,7 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L250" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L250" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -715,32 +711,58 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L326" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L326" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="capture(**options,&)-instance-method">
+    <div class="entry-detail" id="capture(klass:String,message:String,backtrace:String?=nil,**options,&amp;)-instance-method">
       <div class="signature">
         
-        def <strong>capture</strong>(**options, &)
+        def <strong>capture</strong>(klass : String, message : String, backtrace : String? = <span class="n">nil</span>, **options, &)
 
-        <a class="method-permalink" href="#capture(**options,&)-instance-method">#</a>
+        <a class="method-permalink" href="#capture%28klass%3AString%2Cmessage%3AString%2Cbacktrace%3AString%3F%3Dnil%2C%2A%2Aoptions%2C%26%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Capture and process any exceptions from the given block.</p>
+          <p>Captures an exception with given <em>klass</em>, <em>message</em>
+and optional <em>backtrace</em>.</p>
+<pre><code class="language-crystal"><span class="t">Raven</span>.capture <span class="s">&quot;FooBarError&quot;</span>, <span class="s">&quot;Foo got bar!&quot;</span></code></pre>
+<p><span class="flag purple">NOTE</span>  Useful in scenarios where you need to reconstruct the error
+(usually along with a backtrace from external source), while
+having no access to the actual Exception object.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L193" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="capture(obj:Exception|String,**options,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>capture</strong>(obj : <a href="../Exception.html">Exception</a> | String, **options, &)
 
-<pre><code class="language-crystal"><span class="t">Raven</span>.capture <span class="k">do</span>
-  <span class="t">MyApp</span>.run
+        <a class="method-permalink" href="#capture%28obj%3AException%7CString%2C%2A%2Aoptions%2C%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Captures given <code><a href="../Exception.html">Exception</a></code> or <code>String</code> object and yields
+created <code><a href="../Raven/Event.html">Raven::Event</a></code> before sending to Sentry.</p>
+<pre><code class="language-crystal"><span class="t">Raven</span>.capture(<span class="s">&quot;boo!&quot;</span>) <span class="k">do</span> <span class="o">|</span>event<span class="o">|</span>
+  event.extra.merge! foo: <span class="s">&quot;bar&quot;</span>
 <span class="k">end</span></code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L222" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L130" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -750,13 +772,12 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
         
         def <strong>capture</strong>(obj : <a href="../Exception.html">Exception</a> | String, **options)
 
-        <a class="method-permalink" href="#capture(obj:Exception%7CString,**options)-instance-method">#</a>
+        <a class="method-permalink" href="#capture%28obj%3AException%7CString%2C%2A%2Aoptions%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Captures given <code><a href="../Exception.html">Exception</a></code> or <code>String</code> object.</p>
-
 <pre><code class="language-crystal"><span class="k">begin</span>
   <span class="c"># ...</span>
 <span class="k">rescue</span> ex
@@ -769,61 +790,31 @@ can contain the same <code>:user</code>, <code>:tags</code>, etc. options as the
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L179" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L179" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="capture(obj:Exception|String,**options,&)-instance-method">
+    <div class="entry-detail" id="capture(**options,&amp;)-instance-method">
       <div class="signature">
         
-        def <strong>capture</strong>(obj : <a href="../Exception.html">Exception</a> | String, **options, &)
+        def <strong>capture</strong>(**options, &)
 
-        <a class="method-permalink" href="#capture(obj:Exception%7CString,**options,&)-instance-method">#</a>
+        <a class="method-permalink" href="#capture%28%2A%2Aoptions%2C%26%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Captures given <code><a href="../Exception.html">Exception</a></code> or <code>String</code> object and yields
-created <code><a href="../Raven/Event.html">Raven::Event</a></code> before sending to Sentry.</p>
-
-<pre><code class="language-crystal"><span class="t">Raven</span>.capture(<span class="s">&quot;boo!&quot;</span>) <span class="k">do</span> <span class="o">|</span>event<span class="o">|</span>
-  event.extra.merge! foo: <span class="s">&quot;bar&quot;</span>
+          <p>Capture and process any exceptions from the given block.</p>
+<pre><code class="language-crystal"><span class="t">Raven</span>.capture <span class="k">do</span>
+  <span class="t">MyApp</span>.run
 <span class="k">end</span></code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L130" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="capture(klass:String,message:String,backtrace:String?=nil,**options,&)-instance-method">
-      <div class="signature">
-        
-        def <strong>capture</strong>(klass : String, message : String, backtrace : String? = <span class="n">nil</span>, **options, &)
-
-        <a class="method-permalink" href="#capture(klass:String,message:String,backtrace:String?=nil,**options,&)-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Captures an exception with given <em>klass</em>, <em>message</em>
-and optional <em>backtrace</em>.</p>
-
-<pre><code class="language-crystal"><span class="t">Raven</span>.capture <span class="s">&quot;FooBarError&quot;</span>, <span class="s">&quot;Foo got bar!&quot;</span></code></pre>
-
-<p><span class="flag purple">NOTE</span>  Useful in scenarios where you need to reconstruct the error
-(usually along with a backtrace from external source), while
-having no access to the actual Exception object.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L193" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L222" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -833,14 +824,13 @@ having no access to the actual Exception object.</p>
         
         def <strong>captured_exception?</strong>(ex : <a href="../Exception.html">Exception</a>)
 
-        <a class="method-permalink" href="#captured_exception?(ex:Exception)-instance-method">#</a>
+        <a class="method-permalink" href="#captured_exception%3F%28ex%3AException%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Returns <code>true</code> in case given <em>ex</em> was already captured,
 <code>false</code> otherwise.</p>
-
 <pre><code class="language-crystal">ex <span class="o">=</span> <span class="t">Exception</span>.<span class="k">new</span>(<span class="s">&quot;boo!&quot;</span>)
 
 <span class="t">Raven</span>.captured_exception?(ex) <span class="c"># =&gt; false</span>
@@ -851,17 +841,17 @@ having no access to the actual Exception object.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L269" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L269" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="client:Client?-instance-method">
+    <div class="entry-detail" id="client:Client-instance-method">
       <div class="signature">
         
-        def <strong>client</strong> : <a href="../Raven/Client.html">Client</a>?
+        def <strong>client</strong> : <a href="../Raven/Client.html">Client</a>
 
-        <a class="method-permalink" href="#client:Client?-instance-method">#</a>
+        <a class="method-permalink" href="#client%3AClient-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -873,7 +863,7 @@ Sentry server.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -883,7 +873,7 @@ Sentry server.</p>
         
         def <strong>client=</strong>(client : <a href="../Raven/Client.html">Client</a>)
 
-        <a class="method-permalink" href="#client=(client:Client)-instance-method">#</a>
+        <a class="method-permalink" href="#client%3D%28client%3AClient%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -895,17 +885,17 @@ Sentry server.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="configuration:Configuration?-instance-method">
+    <div class="entry-detail" id="configuration:Configuration-instance-method">
       <div class="signature">
         
-        def <strong>configuration</strong> : <a href="../Raven/Configuration.html">Configuration</a>?
+        def <strong>configuration</strong> : <a href="../Raven/Configuration.html">Configuration</a>
 
-        <a class="method-permalink" href="#configuration:Configuration?-instance-method">#</a>
+        <a class="method-permalink" href="#configuration%3AConfiguration-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -916,7 +906,7 @@ Sentry server.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -926,7 +916,7 @@ Sentry server.</p>
         
         def <strong>configuration=</strong>(configuration : <a href="../Raven/Configuration.html">Configuration</a>)
 
-        <a class="method-permalink" href="#configuration=(configuration:Configuration)-instance-method">#</a>
+        <a class="method-permalink" href="#configuration%3D%28configuration%3AConfiguration%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -937,32 +927,7 @@ Sentry server.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L26" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="configure(&)-instance-method">
-      <div class="signature">
-        
-        def <strong>configure</strong>(&)
-
-        <a class="method-permalink" href="#configure(&)-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Call this method to modify defaults in your initializers.</p>
-
-<pre><code class="language-crystal"><span class="t">Raven</span>.configure <span class="k">do</span> <span class="o">|</span>config<span class="o">|</span>
-  config.dsn <span class="o">=</span> <span class="s">&quot;http://...&quot;</span>
-<span class="k">end</span></code></pre>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L72" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -978,7 +943,6 @@ Sentry server.</p>
         <div class="doc">
           
           <p>Call this method to modify defaults in your initializers.</p>
-
 <pre><code class="language-crystal"><span class="t">Raven</span>.configure <span class="k">do</span> <span class="o">|</span>config<span class="o">|</span>
   config.dsn <span class="o">=</span> <span class="s">&quot;http://...&quot;</span>
 <span class="k">end</span></code></pre>
@@ -987,7 +951,31 @@ Sentry server.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L67" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L67" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="configure(&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>configure</strong>(&)
+
+        <a class="method-permalink" href="#configure%28%26%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Call this method to modify defaults in your initializers.</p>
+<pre><code class="language-crystal"><span class="t">Raven</span>.configure <span class="k">do</span> <span class="o">|</span>config<span class="o">|</span>
+  config.dsn <span class="o">=</span> <span class="s">&quot;http://...&quot;</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L72" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1003,7 +991,7 @@ Sentry server.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L40" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1013,47 +1001,44 @@ Sentry server.</p>
         
         def <strong>extra_context</strong>(hash = <span class="n">nil</span>, **options)
 
-        <a class="method-permalink" href="#extra_context(hash=nil,**options)-instance-method">#</a>
+        <a class="method-permalink" href="#extra_context%28hash%3Dnil%2C%2A%2Aoptions%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Bind extra context. Merges with existing context (if any).</p>
-
 <p>Extra context shows up as <em>Additional Data</em> within Sentry,
 and is completely arbitrary.</p>
-
 <pre><code class="language-crystal"><span class="t">Raven</span>.extra_context(my_custom_data: <span class="s">&quot;value&quot;</span>)</code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L305" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L305" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="extra_context(hash=nil,**options,&)-instance-method">
+    <div class="entry-detail" id="extra_context(hash=nil,**options,&amp;)-instance-method">
       <div class="signature">
         
         def <strong>extra_context</strong>(hash = <span class="n">nil</span>, **options, &)
 
-        <a class="method-permalink" href="#extra_context(hash=nil,**options,&)-instance-method">#</a>
+        <a class="method-permalink" href="#extra_context%28hash%3Dnil%2C%2A%2Aoptions%2C%26%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Bind extra context.
 Merges with existing context (if any).</p>
-
-<p>See <code><a href="../Raven/Instance.html#extra_context(hash=nil,**options)-instance-method">#extra_context</a></code></p>
+<p>See <code><a href="../Raven/Instance.html#extra_context%28hash%3Dnil%2C%2A%2Aoptions%29-instance-method">#extra_context</a></code></p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L309" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L309" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1069,7 +1054,7 @@ Merges with existing context (if any).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L116" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L116" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1090,7 +1075,7 @@ Merges with existing context (if any).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1100,13 +1085,12 @@ Merges with existing context (if any).</p>
         
         def <strong>send_event</strong>(event, hint = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#send_event(event,hint=nil)-instance-method">#</a>
+        <a class="method-permalink" href="#send_event%28event%2Chint%3Dnil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Send an event to the configured Sentry server.</p>
-
 <pre><code class="language-crystal">event <span class="o">=</span> <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>.<span class="k">new</span>(message: <span class="s">&quot;An error&quot;</span>)
 <span class="t">Raven</span>.send_event(event)</code></pre>
         </div>
@@ -1114,7 +1098,7 @@ Merges with existing context (if any).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L109" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L109" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1124,30 +1108,30 @@ Merges with existing context (if any).</p>
         
         def <strong>send_feedback</strong>(event_id : String, data : Hash)
 
-        <a class="method-permalink" href="#send_feedback(event_id:String,data:Hash)-instance-method">#</a>
+        <a class="method-permalink" href="#send_feedback%28event_id%3AString%2Cdata%3AHash%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Sends User Feedback to Sentry server.</p>
-
 <p><em>data</em> should be a <code>Hash(String, String)</code> with following keys:</p>
-
-<ul><li><em>name</em> (populated from <code>context.user[:username]</code> if left empty)</li><li><em>email</em> (populated from <code>context.user[:email]</code> if left empty)</li><li><em>comments</em></li></ul>
-
+<ul>
+<li><em>name</em> (populated from <code>context.user[:username]</code> if left empty)</li>
+<li><em>email</em> (populated from <code>context.user[:email]</code> if left empty)</li>
+<li><em>comments</em></li>
+</ul>
 <pre><code class="language-crystal"><span class="t">Raven</span>.send_feedback(<span class="t">Raven</span>.last_event_id, {
-  <span class="s">&quot;name&quot;</span>     => <span class="s">&quot;...&quot;</span>,
-  <span class="s">&quot;email&quot;</span>    => <span class="s">&quot;...&quot;</span>,
-  <span class="s">&quot;comments&quot;</span> => <span class="s">&quot;...&quot;</span>,
+  <span class="s">&quot;name&quot;</span>     =&gt; <span class="s">&quot;...&quot;</span>,
+  <span class="s">&quot;email&quot;</span>    =&gt; <span class="s">&quot;...&quot;</span>,
+  <span class="s">&quot;comments&quot;</span> =&gt; <span class="s">&quot;...&quot;</span>,
 })</code></pre>
-
 <p><span class="flag purple">NOTE</span>  Sentry server records single (last) feedback for a given <em>event_id</em>.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L93" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L93" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1157,47 +1141,44 @@ Merges with existing context (if any).</p>
         
         def <strong>tags_context</strong>(hash = <span class="n">nil</span>, **options)
 
-        <a class="method-permalink" href="#tags_context(hash=nil,**options)-instance-method">#</a>
+        <a class="method-permalink" href="#tags_context%28hash%3Dnil%2C%2A%2Aoptions%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Bind tags context. Merges with existing context (if any).</p>
-
 <p>Tags are key / value pairs which generally represent things like
 application version, environment, role, and server names.</p>
-
 <pre><code class="language-crystal"><span class="t">Raven</span>.tags_context(my_custom_tag: <span class="s">&quot;tag_value&quot;</span>)</code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L293" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L293" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="tags_context(hash=nil,**options,&)-instance-method">
+    <div class="entry-detail" id="tags_context(hash=nil,**options,&amp;)-instance-method">
       <div class="signature">
         
         def <strong>tags_context</strong>(hash = <span class="n">nil</span>, **options, &)
 
-        <a class="method-permalink" href="#tags_context(hash=nil,**options,&)-instance-method">#</a>
+        <a class="method-permalink" href="#tags_context%28hash%3Dnil%2C%2A%2Aoptions%2C%26%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Bind tags context.
 Merges with existing context (if any).</p>
-
-<p>See <code><a href="../Raven/Instance.html#tags_context(hash=nil,**options)-instance-method">#tags_context</a></code></p>
+<p>See <code><a href="../Raven/Instance.html#tags_context%28hash%3Dnil%2C%2A%2Aoptions%29-instance-method">#tags_context</a></code></p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L309" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L309" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1207,47 +1188,44 @@ Merges with existing context (if any).</p>
         
         def <strong>user_context</strong>(hash = <span class="n">nil</span>, **options)
 
-        <a class="method-permalink" href="#user_context(hash=nil,**options)-instance-method">#</a>
+        <a class="method-permalink" href="#user_context%28hash%3Dnil%2C%2A%2Aoptions%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Bind user context. Merges with existing context (if any).</p>
-
 <p>It is recommending that you send at least the <code>:id</code> and <code>:email</code>
 values. All other values are arbitrary.</p>
-
 <pre><code class="language-crystal"><span class="t">Raven</span>.user_context(id: <span class="n">1</span>, email: <span class="s">&quot;foo@example.com&quot;</span>)</code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L281" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L281" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="user_context(hash=nil,**options,&)-instance-method">
+    <div class="entry-detail" id="user_context(hash=nil,**options,&amp;)-instance-method">
       <div class="signature">
         
         def <strong>user_context</strong>(hash = <span class="n">nil</span>, **options, &)
 
-        <a class="method-permalink" href="#user_context(hash=nil,**options,&)-instance-method">#</a>
+        <a class="method-permalink" href="#user_context%28hash%3Dnil%2C%2A%2Aoptions%2C%26%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Bind user context.
 Merges with existing context (if any).</p>
-
-<p>See <code><a href="../Raven/Instance.html#user_context(hash=nil,**options)-instance-method">#user_context</a></code></p>
+<p>See <code><a href="../Raven/Instance.html#user_context%28hash%3Dnil%2C%2A%2Aoptions%29-instance-method">#user_context</a></code></p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/d53319dc/src/raven/instance.cr#L309" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/instance.cr#L309" target="_blank">View source</a>]
         
       </div>
     </div>
