@@ -24,7 +24,7 @@ describe Raven::BreadcrumbBuffer do
 
   it "records breadcrumbs w/o block" do
     with_breadcrumb_buffer do |breadcrumbs|
-      crumb = Raven::Breadcrumb.new.tap { |b| b.message = "test" }
+      crumb = Raven::Breadcrumb.new.tap(&.message=("test"))
       breadcrumbs.record(crumb)
 
       breadcrumbs.members.first.should eq(crumb)
@@ -49,7 +49,7 @@ describe Raven::BreadcrumbBuffer do
     with_breadcrumb_buffer do |breadcrumbs|
       breadcrumbs.peek.should be_nil
 
-      crumb = Raven::Breadcrumb.new.tap { |b| b.message = "test" }
+      crumb = Raven::Breadcrumb.new.tap(&.message=("test"))
       breadcrumbs.record(crumb)
 
       breadcrumbs.peek.should eq(crumb)
@@ -65,7 +65,8 @@ describe Raven::BreadcrumbBuffer do
   it "evicts when buffer exceeded" do
     with_breadcrumb_buffer do |breadcrumbs|
       (0..30).each do |i|
-        breadcrumbs.record(Raven::Breadcrumb.new.tap { |b| b.message = i.to_s })
+        crumb = Raven::Breadcrumb.new.tap(&.message=(i.to_s))
+        breadcrumbs.record(crumb)
       end
 
       breadcrumbs.members.first.message.should eq("21")
@@ -77,7 +78,7 @@ describe Raven::BreadcrumbBuffer do
     with_breadcrumb_buffer do |breadcrumbs|
       breadcrumbs.peek.should be_nil
 
-      crumb = Raven::Breadcrumb.new.tap { |b| b.message = "test" }
+      crumb = Raven::Breadcrumb.new.tap(&.message=("test"))
       breadcrumbs.record(crumb)
 
       breadcrumbs.to_hash["values"].should eq([crumb.to_hash])
@@ -85,7 +86,7 @@ describe Raven::BreadcrumbBuffer do
   end
 
   it "clears in a threaded context" do
-    crumb = Raven::Breadcrumb.new.tap { |b| b.message = "test" }
+    crumb = Raven::Breadcrumb.new.tap(&.message=("test"))
     Raven::BreadcrumbBuffer.current.record(crumb)
 
     Raven::BreadcrumbBuffer.clear!
