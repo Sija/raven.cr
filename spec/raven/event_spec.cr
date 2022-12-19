@@ -4,7 +4,7 @@ module Raven::Test
   class Exception < ::Exception; end
 end
 
-private def with_event(clear = true, **opts)
+private def with_event(clear = true, **opts, &)
   if clear
     Raven::Context.clear!
     Raven::BreadcrumbBuffer.clear!
@@ -13,7 +13,7 @@ private def with_event(clear = true, **opts)
   yield event
 end
 
-private def with_event_hash(**opts)
+private def with_event_hash(**opts, &)
   with_event(**opts) do |event|
     yield event.to_hash
   end

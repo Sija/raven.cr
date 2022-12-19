@@ -28,7 +28,7 @@ module Raven
       @buffer << crumb
     end
 
-    def record(**opts) : Nil
+    def record(**opts, &) : Nil
       crumb = Breadcrumb.new(**opts)
       yield crumb
       record crumb
@@ -50,7 +50,7 @@ module Raven
       members.last?
     end
 
-    def each
+    def each(&)
       members.each do |breadcrumb|
         yield breadcrumb
       end

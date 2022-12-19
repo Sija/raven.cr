@@ -10,7 +10,7 @@ private class ClientTest < Raven::Client
   end
 end
 
-private def with_client
+private def with_client(&)
   yield ClientTest.new(build_configuration)
 end
 

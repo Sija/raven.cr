@@ -15,7 +15,7 @@ private def build_logger(source = nil, **opts)
     .for(source.to_s)
 end
 
-private def with_clean_configuration
+private def with_clean_configuration(&)
   prev_configuration = Raven.instance.configuration.dup
   begin
     Raven.instance.configuration = build_configuration
