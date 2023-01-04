@@ -28,14 +28,16 @@ jobs:
         run: shards install
 
       - name: Run specs
-        run: |
-          crystal spec
-          crystal spec --no-debug
+        run: crystal spec
+
+      - name: Run specs (no-debug)
+        run: crystal spec --no-debug
 
       - name: Run specs (release)
-        run: |
-          crystal spec --release
-          crystal spec --release --no-debug
+        run: crystal spec --release
+
+      - name: Run specs (release, no-debug)
+        run: crystal spec --release --no-debug
 
       - name: Build crash handler
         run: shards build crash_handler
