@@ -26,8 +26,6 @@ jobs:
 
       - name: Install dependencies
         run: shards install
-        env:
-          SHARDS_OPTS: --ignore-crystal-version
 
       - name: Run specs
         run: |
