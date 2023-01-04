@@ -23,9 +23,7 @@ jobs:
         run: shards install
 
       - name: Build docs
-        run: |
-          sed -i -e 's:<.*>::g' README.md
-          crystal docs src/raven.cr --project-version="${{ env.GITHUB_REF_SLUG }}" --source-refname="${{ env.GITHUB_SHA_SHORT }}"
+        run: crystal docs src/raven.cr --project-version="${{ env.GITHUB_REF_SLUG }}" --source-refname="${{ env.GITHUB_SHA_SHORT }}"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
