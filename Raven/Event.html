@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.3.2">
+<meta name="generator" content="Crystal Docs 1.6.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="raven">
 
@@ -377,7 +377,7 @@
   </h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L4" target="_blank">
+      <a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L4" target="_blank">
         raven/event.cr
       </a>
     
@@ -531,33 +531,33 @@ various components in the interface.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#contexts%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#contexts=</strong>(hash : Hash | NamedTuple?)</a>
+        <a href="#contexts%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method" class="signature"><strong>#contexts=</strong>(hash : Hash | NamedTuple | Nil)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#culprit%3AString%3F-instance-method" class="signature"><strong>#culprit</strong> : String?</a>
+        <a href="#culprit%3AString%7CNil-instance-method" class="signature"><strong>#culprit</strong> : String | Nil</a>
         
           <div class="summary"><p>The name of the transaction (or culprit) which caused this exception.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#culprit%3D%28culprit%3AString%3F%29-instance-method" class="signature"><strong>#culprit=</strong>(culprit : String?)</a>
+        <a href="#culprit%3D%28culprit%3AString%7CNil%29-instance-method" class="signature"><strong>#culprit=</strong>(culprit : String | Nil)</a>
         
           <div class="summary"><p>The name of the transaction (or culprit) which caused this exception.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#environment%3AString%3F-instance-method" class="signature"><strong>#environment</strong> : String?</a>
+        <a href="#environment%3AString%7CNil-instance-method" class="signature"><strong>#environment</strong> : String | Nil</a>
         
           <div class="summary"><p>The environment name, such as <code>production</code> or <code>staging</code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#environment%3D%28environment%3AString%3F%29-instance-method" class="signature"><strong>#environment=</strong>(environment : String?)</a>
+        <a href="#environment%3D%28environment%3AString%7CNil%29-instance-method" class="signature"><strong>#environment=</strong>(environment : String | Nil)</a>
         
           <div class="summary"><p>The environment name, such as <code>production</code> or <code>staging</code>.</p></div>
         
@@ -574,7 +574,7 @@ various components in the interface.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#extra%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#extra=</strong>(hash : Hash | NamedTuple?)</a>
+        <a href="#extra%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method" class="signature"><strong>#extra=</strong>(hash : Hash | NamedTuple | Nil)</a>
         
       </li>
     
@@ -622,14 +622,14 @@ various components in the interface.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#level%3ASeverity%3F-instance-method" class="signature"><strong>#level</strong> : Severity?</a>
+        <a href="#level%3ASeverity%7CNil-instance-method" class="signature"><strong>#level</strong> : Severity | Nil</a>
         
           <div class="summary"><p>The record severity.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#level%3D%28level%3ASeverity%3F%29-instance-method" class="signature"><strong>#level=</strong>(level : Severity?)</a>
+        <a href="#level%3D%28level%3ASeverity%7CNil%29-instance-method" class="signature"><strong>#level=</strong>(level : Severity | Nil)</a>
         
           <div class="summary"><p>The record severity.</p></div>
         
@@ -648,14 +648,14 @@ various components in the interface.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#logger%3AString%3F-instance-method" class="signature"><strong>#logger</strong> : String?</a>
+        <a href="#logger%3AString%7CNil-instance-method" class="signature"><strong>#logger</strong> : String | Nil</a>
         
           <div class="summary"><p>The name of the logger which created the record.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#logger%3D%28logger%3AString%3F%29-instance-method" class="signature"><strong>#logger=</strong>(logger : String?)</a>
+        <a href="#logger%3D%28logger%3AString%7CNil%29-instance-method" class="signature"><strong>#logger=</strong>(logger : String | Nil)</a>
         
           <div class="summary"><p>The name of the logger which created the record.</p></div>
         
@@ -677,42 +677,42 @@ various components in the interface.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#modules%3AHash%28String%2CString%29%3F-instance-method" class="signature"><strong>#modules</strong> : Hash(String, String)?</a>
+        <a href="#modules%3AHash%28String%2CString%29%7CNil-instance-method" class="signature"><strong>#modules</strong> : Hash(String, String) | Nil</a>
         
           <div class="summary"><p>A list of relevant modules and their versions.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#modules%3D%28modules%3AHash%28String%2CString%29%3F%29-instance-method" class="signature"><strong>#modules=</strong>(modules : Hash(String, String)?)</a>
+        <a href="#modules%3D%28modules%3AHash%28String%2CString%29%7CNil%29-instance-method" class="signature"><strong>#modules=</strong>(modules : Hash(String, String) | Nil)</a>
         
           <div class="summary"><p>A list of relevant modules and their versions.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#release%3AString%3F-instance-method" class="signature"><strong>#release</strong> : String?</a>
+        <a href="#release%3AString%7CNil-instance-method" class="signature"><strong>#release</strong> : String | Nil</a>
         
           <div class="summary"><p>The release version of the application.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#release%3D%28release%3AString%3F%29-instance-method" class="signature"><strong>#release=</strong>(release : String?)</a>
+        <a href="#release%3D%28release%3AString%7CNil%29-instance-method" class="signature"><strong>#release=</strong>(release : String | Nil)</a>
         
           <div class="summary"><p>The release version of the application.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#server_name%3AString%3F-instance-method" class="signature"><strong>#server_name</strong> : String?</a>
+        <a href="#server_name%3AString%7CNil-instance-method" class="signature"><strong>#server_name</strong> : String | Nil</a>
         
           <div class="summary"><p>Identifies the host SDK from which the event was recorded.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#server_name%3D%28server_name%3AString%3F%29-instance-method" class="signature"><strong>#server_name=</strong>(server_name : String?)</a>
+        <a href="#server_name%3D%28server_name%3AString%7CNil%29-instance-method" class="signature"><strong>#server_name=</strong>(server_name : String | Nil)</a>
         
           <div class="summary"><p>Identifies the host SDK from which the event was recorded.</p></div>
         
@@ -729,7 +729,7 @@ various components in the interface.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#tags%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#tags=</strong>(hash : Hash | NamedTuple?)</a>
+        <a href="#tags%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method" class="signature"><strong>#tags=</strong>(hash : Hash | NamedTuple | Nil)</a>
         
       </li>
     
@@ -773,7 +773,7 @@ various components in the interface.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#user%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#user=</strong>(hash : Hash | NamedTuple?)</a>
+        <a href="#user%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method" class="signature"><strong>#user=</strong>(hash : Hash | NamedTuple | Nil)</a>
         
       </li>
     
@@ -847,7 +847,7 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L159" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L159" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -875,7 +875,7 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L89" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L89" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -891,7 +891,7 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L109" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L109" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -919,7 +919,7 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L217" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L217" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -935,7 +935,7 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L85" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L85" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -951,7 +951,7 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L85" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L85" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -967,7 +967,7 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L84" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L84" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -983,7 +983,7 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L84" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L84" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -999,7 +999,7 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L83" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L83" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1015,7 +1015,7 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L83" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L83" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1048,28 +1048,28 @@ various components in the interface.</p>
       </div>
     </div>
   
-    <div class="entry-detail" id="contexts=(hash:Hash|NamedTuple?)-instance-method">
+    <div class="entry-detail" id="contexts=(hash:Hash|NamedTuple|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>contexts=</strong>(hash : Hash | NamedTuple?)
+        def <strong>contexts=</strong>(hash : Hash | NamedTuple | Nil)
 
-        <a class="method-permalink" href="#contexts%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#contexts%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L87" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L87" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="culprit:String?-instance-method">
+    <div class="entry-detail" id="culprit:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>culprit</strong> : String?
+        def <strong>culprit</strong> : String | Nil
 
-        <a class="method-permalink" href="#culprit%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#culprit%3AString%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1080,17 +1080,17 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L55" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L55" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="culprit=(culprit:String?)-instance-method">
+    <div class="entry-detail" id="culprit=(culprit:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>culprit=</strong>(culprit : String?)
+        def <strong>culprit=</strong>(culprit : String | Nil)
 
-        <a class="method-permalink" href="#culprit%3D%28culprit%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#culprit%3D%28culprit%3AString%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1101,17 +1101,17 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L55" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L55" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="environment:String?-instance-method">
+    <div class="entry-detail" id="environment:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>environment</strong> : String?
+        def <strong>environment</strong> : String | Nil
 
-        <a class="method-permalink" href="#environment%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#environment%3AString%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1122,17 +1122,17 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L78" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L78" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="environment=(environment:String?)-instance-method">
+    <div class="entry-detail" id="environment=(environment:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>environment=</strong>(environment : String?)
+        def <strong>environment=</strong>(environment : String | Nil)
 
-        <a class="method-permalink" href="#environment%3D%28environment%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#environment%3D%28environment%3AString%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1143,7 +1143,7 @@ various components in the interface.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L78" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L78" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1176,18 +1176,18 @@ various components in the interface.</p>
       </div>
     </div>
   
-    <div class="entry-detail" id="extra=(hash:Hash|NamedTuple?)-instance-method">
+    <div class="entry-detail" id="extra=(hash:Hash|NamedTuple|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>extra=</strong>(hash : Hash | NamedTuple?)
+        def <strong>extra=</strong>(hash : Hash | NamedTuple | Nil)
 
-        <a class="method-permalink" href="#extra%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#extra%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L87" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L87" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1210,7 +1210,7 @@ thus allowing you to extend it, or completely replace it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L75" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L75" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1233,7 +1233,7 @@ thus allowing you to extend it, or completely replace it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L75" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L75" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1255,7 +1255,7 @@ thus allowing you to extend it, or completely replace it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L38" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1277,7 +1277,7 @@ thus allowing you to extend it, or completely replace it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L38" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1293,7 +1293,7 @@ thus allowing you to extend it, or completely replace it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L188" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L188" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1309,7 +1309,7 @@ thus allowing you to extend it, or completely replace it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L178" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L178" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1325,17 +1325,17 @@ thus allowing you to extend it, or completely replace it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L183" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L183" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="level:Severity?-instance-method">
+    <div class="entry-detail" id="level:Severity|Nil-instance-method">
       <div class="signature">
         
-        def <strong>level</strong> : <a href="../Raven/Event/Severity.html">Severity</a>?
+        def <strong>level</strong> : <a href="../Raven/Event/Severity.html">Severity</a> | Nil
 
-        <a class="method-permalink" href="#level%3ASeverity%3F-instance-method">#</a>
+        <a class="method-permalink" href="#level%3ASeverity%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1346,17 +1346,17 @@ thus allowing you to extend it, or completely replace it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L44" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L44" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="level=(level:Severity?)-instance-method">
+    <div class="entry-detail" id="level=(level:Severity|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>level=</strong>(level : <a href="../Raven/Event/Severity.html">Severity</a>?)
+        def <strong>level=</strong>(level : <a href="../Raven/Event/Severity.html">Severity</a> | Nil)
 
-        <a class="method-permalink" href="#level%3D%28level%3ASeverity%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#level%3D%28level%3ASeverity%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1367,7 +1367,7 @@ thus allowing you to extend it, or completely replace it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L44" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L44" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1388,7 +1388,7 @@ thus allowing you to extend it, or completely replace it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1404,17 +1404,17 @@ thus allowing you to extend it, or completely replace it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L226" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L226" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="logger:String?-instance-method">
+    <div class="entry-detail" id="logger:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>logger</strong> : String?
+        def <strong>logger</strong> : String | Nil
 
-        <a class="method-permalink" href="#logger%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#logger%3AString%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1425,17 +1425,17 @@ thus allowing you to extend it, or completely replace it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L52" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L52" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="logger=(logger:String?)-instance-method">
+    <div class="entry-detail" id="logger=(logger:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>logger=</strong>(logger : String?)
+        def <strong>logger=</strong>(logger : String | Nil)
 
-        <a class="method-permalink" href="#logger%3D%28logger%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#logger%3D%28logger%3AString%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1446,7 +1446,7 @@ thus allowing you to extend it, or completely replace it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L52" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L52" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1462,7 +1462,7 @@ thus allowing you to extend it, or completely replace it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L192" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L192" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1478,7 +1478,7 @@ thus allowing you to extend it, or completely replace it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L196" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L196" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1494,17 +1494,17 @@ thus allowing you to extend it, or completely replace it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L200" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L200" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="modules:Hash(String,String)?-instance-method">
+    <div class="entry-detail" id="modules:Hash(String,String)|Nil-instance-method">
       <div class="signature">
         
-        def <strong>modules</strong> : Hash(String, String)?
+        def <strong>modules</strong> : Hash(String, String) | Nil
 
-        <a class="method-permalink" href="#modules%3AHash%28String%2CString%29%3F-instance-method">#</a>
+        <a class="method-permalink" href="#modules%3AHash%28String%2CString%29%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1515,17 +1515,17 @@ thus allowing you to extend it, or completely replace it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L81" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L81" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="modules=(modules:Hash(String,String)?)-instance-method">
+    <div class="entry-detail" id="modules=(modules:Hash(String,String)|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>modules=</strong>(modules : Hash(String, String)?)
+        def <strong>modules=</strong>(modules : Hash(String, String) | Nil)
 
-        <a class="method-permalink" href="#modules%3D%28modules%3AHash%28String%2CString%29%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#modules%3D%28modules%3AHash%28String%2CString%29%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1536,17 +1536,17 @@ thus allowing you to extend it, or completely replace it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L81" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L81" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="release:String?-instance-method">
+    <div class="entry-detail" id="release:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>release</strong> : String?
+        def <strong>release</strong> : String | Nil
 
-        <a class="method-permalink" href="#release%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#release%3AString%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1559,17 +1559,17 @@ the git SHA for the given project.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L69" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L69" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="release=(release:String?)-instance-method">
+    <div class="entry-detail" id="release=(release:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>release=</strong>(release : String?)
+        def <strong>release=</strong>(release : String | Nil)
 
-        <a class="method-permalink" href="#release%3D%28release%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#release%3D%28release%3AString%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1582,17 +1582,17 @@ the git SHA for the given project.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L69" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L69" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="server_name:String?-instance-method">
+    <div class="entry-detail" id="server_name:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>server_name</strong> : String?
+        def <strong>server_name</strong> : String | Nil
 
-        <a class="method-permalink" href="#server_name%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#server_name%3AString%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1603,17 +1603,17 @@ the git SHA for the given project.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L63" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L63" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="server_name=(server_name:String?)-instance-method">
+    <div class="entry-detail" id="server_name=(server_name:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>server_name=</strong>(server_name : String?)
+        def <strong>server_name=</strong>(server_name : String | Nil)
 
-        <a class="method-permalink" href="#server_name%3D%28server_name%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#server_name%3D%28server_name%3AString%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1624,7 +1624,7 @@ the git SHA for the given project.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L63" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L63" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1657,18 +1657,18 @@ the git SHA for the given project.</p>
       </div>
     </div>
   
-    <div class="entry-detail" id="tags=(hash:Hash|NamedTuple?)-instance-method">
+    <div class="entry-detail" id="tags=(hash:Hash|NamedTuple|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>tags=</strong>(hash : Hash | NamedTuple?)
+        def <strong>tags=</strong>(hash : Hash | NamedTuple | Nil)
 
-        <a class="method-permalink" href="#tags%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#tags%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L87" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L87" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1689,7 +1689,7 @@ the git SHA for the given project.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1710,7 +1710,7 @@ the git SHA for the given project.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1726,7 +1726,7 @@ the git SHA for the given project.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L235" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L235" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1742,7 +1742,7 @@ the git SHA for the given project.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L264" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L264" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1758,7 +1758,7 @@ the git SHA for the given project.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L264" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L264" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1791,18 +1791,18 @@ the git SHA for the given project.</p>
       </div>
     </div>
   
-    <div class="entry-detail" id="user=(hash:Hash|NamedTuple?)-instance-method">
+    <div class="entry-detail" id="user=(hash:Hash|NamedTuple|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>user=</strong>(hash : Hash | NamedTuple?)
+        def <strong>user=</strong>(hash : Hash | NamedTuple | Nil)
 
-        <a class="method-permalink" href="#user%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#user%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L87" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L87" target="_blank">View source</a>]
         
       </div>
     </div>

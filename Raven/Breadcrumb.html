@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.3.2">
+<meta name="generator" content="Crystal Docs 1.6.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="raven">
 
@@ -377,7 +377,7 @@
   </h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/breadcrumb.cr#L2" target="_blank">
+      <a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/breadcrumb.cr#L2" target="_blank">
         raven/breadcrumb.cr
       </a>
     
@@ -420,14 +420,14 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#category%3AString%3F-instance-method" class="signature"><strong>#category</strong> : String?</a>
+        <a href="#category%3AString%7CNil-instance-method" class="signature"><strong>#category</strong> : String | Nil</a>
         
           <div class="summary"><p>Categories are dotted strings that indicate what the crumb is or where it comes from.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#category%3D%28category%3AString%3F%29-instance-method" class="signature"><strong>#category=</strong>(category : String?)</a>
+        <a href="#category%3D%28category%3AString%7CNil%29-instance-method" class="signature"><strong>#category=</strong>(category : String | Nil)</a>
         
           <div class="summary"><p>Categories are dotted strings that indicate what the crumb is or where it comes from.</p></div>
         
@@ -448,21 +448,21 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#data%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#data=</strong>(hash : Hash | NamedTuple?)</a>
+        <a href="#data%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method" class="signature"><strong>#data=</strong>(hash : Hash | NamedTuple | Nil)</a>
         
           <div class="summary"><p>Data associated with this breadcrumb.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#level%3ASeverity%3F-instance-method" class="signature"><strong>#level</strong> : Severity?</a>
+        <a href="#level%3ASeverity%7CNil-instance-method" class="signature"><strong>#level</strong> : Severity | Nil</a>
         
           <div class="summary"><p>This defines the level of the event.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#level%3D%28level%3ASeverity%3F%29-instance-method" class="signature"><strong>#level=</strong>(level : Severity?)</a>
+        <a href="#level%3D%28level%3ASeverity%7CNil%29-instance-method" class="signature"><strong>#level=</strong>(level : Severity | Nil)</a>
         
           <div class="summary"><p>This defines the level of the event.</p></div>
         
@@ -476,14 +476,14 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#message%3AString%3F-instance-method" class="signature"><strong>#message</strong> : String?</a>
+        <a href="#message%3AString%7CNil-instance-method" class="signature"><strong>#message</strong> : String | Nil</a>
         
           <div class="summary"><p>If a message is provided it’s rendered as text and the whitespace is preserved.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#message%3D%28message%3AString%3F%29-instance-method" class="signature"><strong>#message=</strong>(message : String?)</a>
+        <a href="#message%3D%28message%3AString%7CNil%29-instance-method" class="signature"><strong>#message=</strong>(message : String | Nil)</a>
         
           <div class="summary"><p>If a message is provided it’s rendered as text and the whitespace is preserved.</p></div>
         
@@ -509,14 +509,14 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#type%3AType%3F-instance-method" class="signature"><strong>#type</strong> : Type?</a>
+        <a href="#type%3AType%7CNil-instance-method" class="signature"><strong>#type</strong> : Type | Nil</a>
         
           <div class="summary"><p>The type of breadcrumb.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#type%3D%28type%3AType%3F%29-instance-method" class="signature"><strong>#type=</strong>(type : Type?)</a>
+        <a href="#type%3D%28type%3AType%7CNil%29-instance-method" class="signature"><strong>#type=</strong>(type : Type | Nil)</a>
         
           <div class="summary"><p>The type of breadcrumb.</p></div>
         
@@ -599,7 +599,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/breadcrumb.cr#L63" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/breadcrumb.cr#L63" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -618,12 +618,12 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="category:String?-instance-method">
+    <div class="entry-detail" id="category:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>category</strong> : String?
+        def <strong>category</strong> : String | Nil
 
-        <a class="method-permalink" href="#category%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#category%3AString%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -638,17 +638,17 @@ in the Flask framework.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/breadcrumb.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/breadcrumb.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="category=(category:String?)-instance-method">
+    <div class="entry-detail" id="category=(category:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>category=</strong>(category : String?)
+        def <strong>category=</strong>(category : String | Nil)
 
-        <a class="method-permalink" href="#category%3D%28category%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#category%3D%28category%3AString%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -663,7 +663,7 @@ in the Flask framework.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/breadcrumb.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/breadcrumb.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -679,7 +679,7 @@ in the Flask framework.</p>
         <div class="doc">
           
           <p>Data associated with this breadcrumb. Contains a sub-object whose
-contents depend on the breadcrumb <code><a href="../Raven/Breadcrumb.html#type%3AType%3F-instance-method">#type</a></code>. Additional parameters that
+contents depend on the breadcrumb <code><a href="../Raven/Breadcrumb.html#type%3AType%7CNil-instance-method">#type</a></code>. Additional parameters that
 are unsupported by the type are rendered as a key/value table.</p>
         </div>
       
@@ -700,7 +700,7 @@ are unsupported by the type are rendered as a key/value table.</p>
         <div class="doc">
           
           <p>Data associated with this breadcrumb. Contains a sub-object whose
-contents depend on the breadcrumb <code><a href="../Raven/Breadcrumb.html#type%3AType%3F-instance-method">#type</a></code>. Additional parameters that
+contents depend on the breadcrumb <code><a href="../Raven/Breadcrumb.html#type%3AType%7CNil-instance-method">#type</a></code>. Additional parameters that
 are unsupported by the type are rendered as a key/value table.</p>
         </div>
       
@@ -710,35 +710,35 @@ are unsupported by the type are rendered as a key/value table.</p>
       </div>
     </div>
   
-    <div class="entry-detail" id="data=(hash:Hash|NamedTuple?)-instance-method">
+    <div class="entry-detail" id="data=(hash:Hash|NamedTuple|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>data=</strong>(hash : Hash | NamedTuple?)
+        def <strong>data=</strong>(hash : Hash | NamedTuple | Nil)
 
-        <a class="method-permalink" href="#data%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#data%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Data associated with this breadcrumb. Contains a sub-object whose
-contents depend on the breadcrumb <code><a href="../Raven/Breadcrumb.html#type%3AType%3F-instance-method">#type</a></code>. Additional parameters that
+contents depend on the breadcrumb <code><a href="../Raven/Breadcrumb.html#type%3AType%7CNil-instance-method">#type</a></code>. Additional parameters that
 are unsupported by the type are rendered as a key/value table.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/breadcrumb.cr#L61" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/breadcrumb.cr#L61" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="level:Severity?-instance-method">
+    <div class="entry-detail" id="level:Severity|Nil-instance-method">
       <div class="signature">
         
-        def <strong>level</strong> : <a href="../Raven/Breadcrumb/Severity.html">Severity</a>?
+        def <strong>level</strong> : <a href="../Raven/Breadcrumb/Severity.html">Severity</a> | Nil
 
-        <a class="method-permalink" href="#level%3ASeverity%3F-instance-method">#</a>
+        <a class="method-permalink" href="#level%3ASeverity%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -750,17 +750,17 @@ to <code>info</code> which is the middle level.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/breadcrumb.cr#L51" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/breadcrumb.cr#L51" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="level=(level:Severity?)-instance-method">
+    <div class="entry-detail" id="level=(level:Severity|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>level=</strong>(level : <a href="../Raven/Breadcrumb/Severity.html">Severity</a>?)
+        def <strong>level=</strong>(level : <a href="../Raven/Breadcrumb/Severity.html">Severity</a> | Nil)
 
-        <a class="method-permalink" href="#level%3D%28level%3ASeverity%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#level%3D%28level%3ASeverity%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -772,7 +772,7 @@ to <code>info</code> which is the middle level.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/breadcrumb.cr#L51" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/breadcrumb.cr#L51" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -794,17 +794,17 @@ to <code>info</code> which is the middle level.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/breadcrumb.cr#L54" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/breadcrumb.cr#L54" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="message:String?-instance-method">
+    <div class="entry-detail" id="message:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>message</strong> : String?
+        def <strong>message</strong> : String | Nil
 
-        <a class="method-permalink" href="#message%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#message%3AString%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -816,17 +816,17 @@ Very long text might be abbreviated in the UI.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/breadcrumb.cr#L40" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/breadcrumb.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="message=(message:String?)-instance-method">
+    <div class="entry-detail" id="message=(message:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>message=</strong>(message : String?)
+        def <strong>message=</strong>(message : String | Nil)
 
-        <a class="method-permalink" href="#message%3D%28message%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#message%3D%28message%3AString%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -838,7 +838,7 @@ Very long text might be abbreviated in the UI.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/breadcrumb.cr#L40" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/breadcrumb.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -859,7 +859,7 @@ Very long text might be abbreviated in the UI.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/breadcrumb.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/breadcrumb.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -880,7 +880,7 @@ Very long text might be abbreviated in the UI.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/breadcrumb.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/breadcrumb.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -896,17 +896,17 @@ Very long text might be abbreviated in the UI.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/breadcrumb.cr#L67" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/breadcrumb.cr#L67" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="type:Type?-instance-method">
+    <div class="entry-detail" id="type:Type|Nil-instance-method">
       <div class="signature">
         
-        def <strong>type</strong> : <a href="../Raven/Breadcrumb/Type.html">Type</a>?
+        def <strong>type</strong> : <a href="../Raven/Breadcrumb/Type.html">Type</a> | Nil
 
-        <a class="method-permalink" href="#type%3AType%3F-instance-method">#</a>
+        <a class="method-permalink" href="#type%3AType%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -922,17 +922,17 @@ no specific handling. Other types are currently:</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/breadcrumb.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/breadcrumb.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="type=(type:Type?)-instance-method">
+    <div class="entry-detail" id="type=(type:Type|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>type=</strong>(type : <a href="../Raven/Breadcrumb/Type.html">Type</a>?)
+        def <strong>type=</strong>(type : <a href="../Raven/Breadcrumb/Type.html">Type</a> | Nil)
 
-        <a class="method-permalink" href="#type%3D%28type%3AType%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#type%3D%28type%3AType%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -948,7 +948,7 @@ no specific handling. Other types are currently:</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/breadcrumb.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/breadcrumb.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -974,7 +974,7 @@ no specific handling. Other types are currently:</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/breadcrumb.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/breadcrumb.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.3.2">
+<meta name="generator" content="Crystal Docs 1.6.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="raven">
 
@@ -363,7 +363,7 @@
   </h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/interfaces/http.cr#L2" target="_blank">
+      <a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/interfaces/http.cr#L2" target="_blank">
         raven/interfaces/http.cr
       </a>
     
@@ -423,12 +423,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#cookies%3AString%3F-instance-method" class="signature"><strong>#cookies</strong> : String?</a>
+        <a href="#cookies%3AString%7CNil-instance-method" class="signature"><strong>#cookies</strong> : String | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#cookies%3D%28cookies%3AString%3F%29-instance-method" class="signature"><strong>#cookies=</strong>(cookies : String?)</a>
+        <a href="#cookies%3D%28cookies%3AString%7CNil%29-instance-method" class="signature"><strong>#cookies=</strong>(cookies : String | Nil)</a>
         
       </li>
     
@@ -443,7 +443,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#data%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#data=</strong>(hash : Hash | NamedTuple?)</a>
+        <a href="#data%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method" class="signature"><strong>#data=</strong>(hash : Hash | NamedTuple | Nil)</a>
         
       </li>
     
@@ -458,7 +458,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#env%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#env=</strong>(hash : Hash | NamedTuple?)</a>
+        <a href="#env%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method" class="signature"><strong>#env=</strong>(hash : Hash | NamedTuple | Nil)</a>
         
       </li>
     
@@ -473,7 +473,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#headers%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#headers=</strong>(hash : Hash | NamedTuple?)</a>
+        <a href="#headers%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method" class="signature"><strong>#headers=</strong>(hash : Hash | NamedTuple | Nil)</a>
         
       </li>
     
@@ -488,17 +488,17 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#method%3F%3AString%3F-instance-method" class="signature"><strong>#method?</strong> : String?</a>
+        <a href="#method%3F%3AString%7CNil-instance-method" class="signature"><strong>#method?</strong> : String | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#query_string%3AString%3F-instance-method" class="signature"><strong>#query_string</strong> : String?</a>
+        <a href="#query_string%3AString%7CNil-instance-method" class="signature"><strong>#query_string</strong> : String | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#query_string%3D%28query_string%3AString%3F%29-instance-method" class="signature"><strong>#query_string=</strong>(query_string : String?)</a>
+        <a href="#query_string%3D%28query_string%3AString%7CNil%29-instance-method" class="signature"><strong>#query_string=</strong>(query_string : String | Nil)</a>
         
       </li>
     
@@ -513,7 +513,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#url%3F%3AString%3F-instance-method" class="signature"><strong>#url?</strong> : String?</a>
+        <a href="#url%3F%3AString%7CNil-instance-method" class="signature"><strong>#url?</strong> : String | Nil</a>
         
       </li>
     
@@ -560,8 +560,8 @@
     []=</a>, 
     
   
-    <a href="../../Raven/Interface.html#%5B%5D%3F%28name%3ASymbol%29%3AInterface.class%3F-class-method" class="tooltip">
-      <span>[]?(name : Symbol) : <span class="t">Interface</span>.<span class="k">class</span>?</span>
+    <a href="../../Raven/Interface.html#%5B%5D%3F%28name%3ASymbol%29%3AInterface.class%7CNil-class-method" class="tooltip">
+      <span>[]?(name : Symbol) : <span class="t">Interface</span>.<span class="k">class</span> | Nil</span>
     []?</a>, 
     
   
@@ -640,7 +640,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/interfaces/http.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/interfaces/http.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -668,7 +668,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/interfaces/http.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/interfaces/http.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -685,34 +685,34 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="cookies:String?-instance-method">
+    <div class="entry-detail" id="cookies:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>cookies</strong> : String?
+        def <strong>cookies</strong> : String | Nil
 
-        <a class="method-permalink" href="#cookies%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#cookies%3AString%7CNil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/interfaces/http.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/interfaces/http.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="cookies=(cookies:String?)-instance-method">
+    <div class="entry-detail" id="cookies=(cookies:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>cookies=</strong>(cookies : String?)
+        def <strong>cookies=</strong>(cookies : String | Nil)
 
-        <a class="method-permalink" href="#cookies%3D%28cookies%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#cookies%3D%28cookies%3AString%7CNil%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/interfaces/http.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/interfaces/http.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -745,18 +745,18 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="data=(hash:Hash|NamedTuple?)-instance-method">
+    <div class="entry-detail" id="data=(hash:Hash|NamedTuple|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>data=</strong>(hash : Hash | NamedTuple?)
+        def <strong>data=</strong>(hash : Hash | NamedTuple | Nil)
 
-        <a class="method-permalink" href="#data%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#data%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/interfaces/http.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/interfaces/http.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -789,18 +789,18 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="env=(hash:Hash|NamedTuple?)-instance-method">
+    <div class="entry-detail" id="env=(hash:Hash|NamedTuple|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>env=</strong>(hash : Hash | NamedTuple?)
+        def <strong>env=</strong>(hash : Hash | NamedTuple | Nil)
 
-        <a class="method-permalink" href="#env%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#env%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/interfaces/http.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/interfaces/http.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -833,18 +833,18 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="headers=(hash:Hash|NamedTuple?)-instance-method">
+    <div class="entry-detail" id="headers=(hash:Hash|NamedTuple|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>headers=</strong>(hash : Hash | NamedTuple?)
+        def <strong>headers=</strong>(hash : Hash | NamedTuple | Nil)
 
-        <a class="method-permalink" href="#headers%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#headers%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/interfaces/http.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/interfaces/http.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -874,17 +874,17 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/interfaces/http.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/interfaces/http.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="method?:String?-instance-method">
+    <div class="entry-detail" id="method?:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>method?</strong> : String?
+        def <strong>method?</strong> : String | Nil
 
-        <a class="method-permalink" href="#method%3F%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#method%3F%3AString%7CNil-instance-method">#</a>
       </div>
       
       <br/>
@@ -893,34 +893,34 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="query_string:String?-instance-method">
+    <div class="entry-detail" id="query_string:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>query_string</strong> : String?
+        def <strong>query_string</strong> : String | Nil
 
-        <a class="method-permalink" href="#query_string%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#query_string%3AString%7CNil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/interfaces/http.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/interfaces/http.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="query_string=(query_string:String?)-instance-method">
+    <div class="entry-detail" id="query_string=(query_string:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>query_string=</strong>(query_string : String?)
+        def <strong>query_string=</strong>(query_string : String | Nil)
 
-        <a class="method-permalink" href="#query_string%3D%28query_string%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#query_string%3D%28query_string%3AString%7CNil%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/interfaces/http.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/interfaces/http.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -950,17 +950,17 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/interfaces/http.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/interfaces/http.cr#L3" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="url?:String?-instance-method">
+    <div class="entry-detail" id="url?:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>url?</strong> : String?
+        def <strong>url?</strong> : String | Nil
 
-        <a class="method-permalink" href="#url%3F%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#url%3F%3AString%7CNil-instance-method">#</a>
       </div>
       
       <br/>

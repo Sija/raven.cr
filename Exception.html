@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.3.2">
+<meta name="generator" content="Crystal Docs 1.6.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="raven">
 
@@ -394,7 +394,7 @@ Exception subclasses may add additional information.</p>
   </h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/ext/exception.cr#L4" target="_blank">
+      <a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/ext/exception.cr#L4" target="_blank">
         raven/ext/exception.cr
       </a>
     
@@ -420,12 +420,12 @@ Exception subclasses may add additional information.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#__raven_event_id%3AString%3F-instance-method" class="signature"><strong>#__raven_event_id</strong> : String?</a>
+        <a href="#__raven_event_id%3AString%7CNil-instance-method" class="signature"><strong>#__raven_event_id</strong> : String | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#__raven_event_id%3D%28__raven_event_id%3AString%3F%29-instance-method" class="signature"><strong>#__raven_event_id=</strong>(__raven_event_id : String?)</a>
+        <a href="#__raven_event_id%3D%28__raven_event_id%3AString%7CNil%29-instance-method" class="signature"><strong>#__raven_event_id=</strong>(__raven_event_id : String | Nil)</a>
         
       </li>
     
@@ -440,7 +440,7 @@ Exception subclasses may add additional information.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#__raven_extra%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#__raven_extra=</strong>(hash : Hash | NamedTuple?)</a>
+        <a href="#__raven_extra%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method" class="signature"><strong>#__raven_extra=</strong>(hash : Hash | NamedTuple | Nil)</a>
         
       </li>
     
@@ -455,7 +455,7 @@ Exception subclasses may add additional information.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#__raven_tags%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#__raven_tags=</strong>(hash : Hash | NamedTuple?)</a>
+        <a href="#__raven_tags%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method" class="signature"><strong>#__raven_tags=</strong>(hash : Hash | NamedTuple | Nil)</a>
         
       </li>
     
@@ -470,7 +470,7 @@ Exception subclasses may add additional information.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#__raven_user%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#__raven_user=</strong>(hash : Hash | NamedTuple?)</a>
+        <a href="#__raven_user%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method" class="signature"><strong>#__raven_user=</strong>(hash : Hash | NamedTuple | Nil)</a>
         
       </li>
     
@@ -518,34 +518,34 @@ Exception subclasses may add additional information.</p>
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="__raven_event_id:String?-instance-method">
+    <div class="entry-detail" id="__raven_event_id:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>__raven_event_id</strong> : String?
+        def <strong>__raven_event_id</strong> : String | Nil
 
-        <a class="method-permalink" href="#__raven_event_id%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#__raven_event_id%3AString%7CNil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/ext/exception.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/ext/exception.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="__raven_event_id=(__raven_event_id:String?)-instance-method">
+    <div class="entry-detail" id="__raven_event_id=(__raven_event_id:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>__raven_event_id=</strong>(__raven_event_id : String?)
+        def <strong>__raven_event_id=</strong>(__raven_event_id : String | Nil)
 
-        <a class="method-permalink" href="#__raven_event_id%3D%28__raven_event_id%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#__raven_event_id%3D%28__raven_event_id%3AString%7CNil%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/ext/exception.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/ext/exception.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -578,12 +578,12 @@ Exception subclasses may add additional information.</p>
       </div>
     </div>
   
-    <div class="entry-detail" id="__raven_extra=(hash:Hash|NamedTuple?)-instance-method">
+    <div class="entry-detail" id="__raven_extra=(hash:Hash|NamedTuple|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>__raven_extra=</strong>(hash : Hash | NamedTuple?)
+        def <strong>__raven_extra=</strong>(hash : Hash | NamedTuple | Nil)
 
-        <a class="method-permalink" href="#__raven_extra%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#__raven_extra%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method">#</a>
       </div>
       
       <br/>
@@ -620,12 +620,12 @@ Exception subclasses may add additional information.</p>
       </div>
     </div>
   
-    <div class="entry-detail" id="__raven_tags=(hash:Hash|NamedTuple?)-instance-method">
+    <div class="entry-detail" id="__raven_tags=(hash:Hash|NamedTuple|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>__raven_tags=</strong>(hash : Hash | NamedTuple?)
+        def <strong>__raven_tags=</strong>(hash : Hash | NamedTuple | Nil)
 
-        <a class="method-permalink" href="#__raven_tags%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#__raven_tags%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method">#</a>
       </div>
       
       <br/>
@@ -662,12 +662,12 @@ Exception subclasses may add additional information.</p>
       </div>
     </div>
   
-    <div class="entry-detail" id="__raven_user=(hash:Hash|NamedTuple?)-instance-method">
+    <div class="entry-detail" id="__raven_user=(hash:Hash|NamedTuple|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>__raven_user=</strong>(hash : Hash | NamedTuple?)
+        def <strong>__raven_user=</strong>(hash : Hash | NamedTuple | Nil)
 
-        <a class="method-permalink" href="#__raven_user%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#__raven_user%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method">#</a>
       </div>
       
       <br/>

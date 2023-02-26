@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.3.2">
+<meta name="generator" content="Crystal Docs 1.6.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="raven">
 
@@ -349,7 +349,7 @@
     Overview
   </h2>
 
-  <p>Structure passed to <code><a href="../../Raven/Configuration.html#before_send%28%26block%3AEvent%2CEvent%3A%3AHint%3F-%3E_%29-instance-method">Configuration#before_send</a></code> callback.</p>
+  <p>Structure passed to <code><a href="../../Raven/Configuration.html#before_send%28%26block%3AEvent%2CEvent%3A%3AHint%7CNil-%3E_%29-instance-method">Configuration#before_send</a></code> callback.</p>
 
 
 
@@ -374,7 +374,7 @@
   </h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L17" target="_blank">
+      <a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L17" target="_blank">
         raven/event.cr
       </a>
     
@@ -396,7 +396,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28exception%3AException%3F%2Cmessage%3AString%3F%29-class-method" class="signature"><strong>.new</strong>(exception : Exception?, message : String?)</a>
+        <a href="#new%28exception%3AException%7CNil%2Cmessage%3AString%7CNil%29-class-method" class="signature"><strong>.new</strong>(exception : Exception | Nil, message : String | Nil)</a>
         
       </li>
     
@@ -427,12 +427,12 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#exception%3AException%3F-instance-method" class="signature"><strong>#exception</strong> : Exception?</a>
+        <a href="#exception%3AException%7CNil-instance-method" class="signature"><strong>#exception</strong> : Exception | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#message%3AString%3F-instance-method" class="signature"><strong>#message</strong> : String?</a>
+        <a href="#message%3AString%7CNil-instance-method" class="signature"><strong>#message</strong> : String | Nil</a>
         
       </li>
     
@@ -486,18 +486,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(exception:Exception?,message:String?)-class-method">
+    <div class="entry-detail" id="new(exception:Exception|Nil,message:String|Nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(exception : <a href="../../Exception.html">Exception</a>?, message : String?)
+        def self.<strong>new</strong>(exception : <a href="../../Exception.html">Exception</a> | Nil, message : String | Nil)
 
-        <a class="method-permalink" href="#new%28exception%3AException%3F%2Cmessage%3AString%3F%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28exception%3AException%7CNil%2Cmessage%3AString%7CNil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -527,7 +527,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -543,17 +543,17 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/event.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/event.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="exception:Exception?-instance-method">
+    <div class="entry-detail" id="exception:Exception|Nil-instance-method">
       <div class="signature">
         
-        def <strong>exception</strong> : <a href="../../Exception.html">Exception</a>?
+        def <strong>exception</strong> : <a href="../../Exception.html">Exception</a> | Nil
 
-        <a class="method-permalink" href="#exception%3AException%3F-instance-method">#</a>
+        <a class="method-permalink" href="#exception%3AException%7CNil-instance-method">#</a>
       </div>
       
       <br/>
@@ -562,12 +562,12 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="message:String?-instance-method">
+    <div class="entry-detail" id="message:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>message</strong> : String?
+        def <strong>message</strong> : String | Nil
 
-        <a class="method-permalink" href="#message%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#message%3AString%7CNil-instance-method">#</a>
       </div>
       
       <br/>

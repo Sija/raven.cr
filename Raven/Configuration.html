@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.3.2">
+<meta name="generator" content="Crystal Docs 1.6.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="raven">
 
@@ -363,7 +363,7 @@
   </h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L5" target="_blank">
+      <a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L5" target="_blank">
         raven/configuration.cr
       </a>
     
@@ -473,14 +473,14 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#async%3AProc%28Event%2CNil%29%3F-instance-method" class="signature"><strong>#async</strong> : Proc(Event, Nil)?</a>
+        <a href="#async%3AProc%28Event%2CNil%29%7CNil-instance-method" class="signature"><strong>#async</strong> : Proc(Event, Nil) | Nil</a>
         
           <div class="summary"><p>Provide a <code>Proc</code> object that responds to <code>call</code> to send events asynchronously, or pass <code>true</code> to to use standard <code>spawn</code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#async%3D%28async%3AProc%28Event%2CNil%29%3F%29-instance-method" class="signature"><strong>#async=</strong>(async : Proc(Event, Nil)?)</a>
+        <a href="#async%3D%28async%3AProc%28Event%2CNil%29%7CNil%29-instance-method" class="signature"><strong>#async=</strong>(async : Proc(Event, Nil) | Nil)</a>
         
           <div class="summary"><p>Provide a <code>Proc</code> object that responds to <code>call</code> to send events asynchronously, or pass <code>true</code> to to use standard <code>spawn</code>.</p></div>
         
@@ -489,7 +489,7 @@ before passing to other processors.</p>
       <li class="entry-summary">
         <a href="#async%3D%28switch%3ABool%29-instance-method" class="signature"><strong>#async=</strong>(switch : Bool)</a>
         
-          <div class="summary"><p>Sets <code><a href="../Raven/Configuration.html#async%3AProc%28Event%2CNil%29%3F-instance-method">#async</a></code> callback to either <code>Fiber</code>-based implementation (see below), or <code>nil</code>, depending on the given <em>switch</em> value.</p></div>
+          <div class="summary"><p>Sets <code><a href="../Raven/Configuration.html#async%3AProc%28Event%2CNil%29%7CNil-instance-method">#async</a></code> callback to either <code>Fiber</code>-based implementation (see below), or <code>nil</code>, depending on the given <em>switch</em> value.</p></div>
         
       </li>
     
@@ -499,33 +499,33 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#backtracer%3D%28backtracer%29-instance-method" class="signature"><strong>#backtracer=</strong>(backtracer)</a>
+        <a href="#backtracer%3D%28backtracer%3ABacktracer%3A%3AConfiguration%29-instance-method" class="signature"><strong>#backtracer=</strong>(backtracer : Backtracer::Configuration)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#before_send%28%26block%3AEvent%2CEvent%3A%3AHint%3F-%3E_%29-instance-method" class="signature"><strong>#before_send</strong>(&block : Event, Event::Hint? -> _)</a>
+        <a href="#before_send%28%26block%3AEvent%2CEvent%3A%3AHint%7CNil-%3E_%29-instance-method" class="signature"><strong>#before_send</strong>(&block : Event, Event::Hint | Nil -> _)</a>
         
           <div class="summary"><p>Optional <code>Proc</code>, called before sending an event to the server:</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#before_send%3AProc%28Event%2CEvent%3A%3AHint%3F%2CEvent%3F%29%3F-instance-method" class="signature"><strong>#before_send</strong> : Proc(Event, Event::Hint?, Event?)?</a>
+        <a href="#before_send%3AProc%28Event%2CEvent%3A%3AHint%7CNil%2CEvent%7CNil%29%7CNil-instance-method" class="signature"><strong>#before_send</strong> : Proc(Event, Event::Hint | Nil, Event | Nil) | Nil</a>
         
           <div class="summary"><p>Optional <code>Proc</code>, called before sending an event to the server:</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#before_send%3D%28block%3AEvent%2CEvent%3A%3AHint%3F-%3E_%29-instance-method" class="signature"><strong>#before_send=</strong>(block : Event, Event::Hint? -> _)</a>
+        <a href="#before_send%3D%28block%3AEvent%2CEvent%3A%3AHint%7CNil-%3E_%29-instance-method" class="signature"><strong>#before_send=</strong>(block : Event, Event::Hint | Nil -> _)</a>
         
           <div class="summary"><p>Optional <code>Proc</code>, called before sending an event to the server:</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#before_send%3D%28before_send%3AProc%28Event%2CEvent%3A%3AHint%3F%2CEvent%3F%29%3F%29-instance-method" class="signature"><strong>#before_send=</strong>(before_send : Proc(Event, Event::Hint?, Event?)?)</a>
+        <a href="#before_send%3D%28before_send%3AProc%28Event%2CEvent%3A%3AHint%7CNil%2CEvent%7CNil%29%7CNil%29-instance-method" class="signature"><strong>#before_send=</strong>(before_send : Proc(Event, Event::Hint | Nil, Event | Nil) | Nil)</a>
         
           <div class="summary"><p>Optional <code>Proc</code>, called before sending an event to the server:</p></div>
         
@@ -571,26 +571,26 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#current_environment%3AString%3F-instance-method" class="signature"><strong>#current_environment</strong> : String?</a>
+        <a href="#current_environment%3AString%7CNil-instance-method" class="signature"><strong>#current_environment</strong> : String | Nil</a>
         
           <div class="summary"><p>Defaults to <code>SENTRY_ENVIRONMENT</code> variable if set, <code>&quot;default&quot;</code> otherwise.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#current_environment%3D%28current_environment%3AString%3F%29-instance-method" class="signature"><strong>#current_environment=</strong>(current_environment : String?)</a>
+        <a href="#current_environment%3D%28current_environment%3AString%7CNil%29-instance-method" class="signature"><strong>#current_environment=</strong>(current_environment : String | Nil)</a>
         
           <div class="summary"><p>Defaults to <code>SENTRY_ENVIRONMENT</code> variable if set, <code>&quot;default&quot;</code> otherwise.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#detect_release%3AString%3F-instance-method" class="signature"><strong>#detect_release</strong> : String?</a>
+        <a href="#detect_release%3AString%7CNil-instance-method" class="signature"><strong>#detect_release</strong> : String | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#dsn%3AString%3F-instance-method" class="signature"><strong>#dsn</strong> : String?</a>
+        <a href="#dsn%3AString%7CNil-instance-method" class="signature"><strong>#dsn</strong> : String | Nil</a>
         
           <div class="summary"><p>Simple server string - set this to the DSN found on your Sentry settings.</p></div>
         
@@ -628,7 +628,7 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#environments%3D%28environments%29-instance-method" class="signature"><strong>#environments=</strong>(environments)</a>
+        <a href="#environments%3D%28environments%3AArray%28String%29%29-instance-method" class="signature"><strong>#environments=</strong>(environments : Array(String))</a>
         
           <div class="summary"><p>Whitelist of environments that will send notifications to Sentry.</p></div>
         
@@ -680,14 +680,14 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#host%3AString%3F-instance-method" class="signature"><strong>#host</strong> : String?</a>
+        <a href="#host%3AString%7CNil-instance-method" class="signature"><strong>#host</strong> : String | Nil</a>
         
           <div class="summary"><p><span class="flag purple">NOTE</span>  DSN component - set automatically if DSN provided.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#host%3D%28host%3AString%3F%29-instance-method" class="signature"><strong>#host=</strong>(host : String?)</a>
+        <a href="#host%3D%28host%3AString%7CNil%29-instance-method" class="signature"><strong>#host=</strong>(host : String | Nil)</a>
         
           <div class="summary"><p><span class="flag purple">NOTE</span>  DSN component - set automatically if DSN provided.</p></div>
         
@@ -714,28 +714,28 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#path%3AString%3F-instance-method" class="signature"><strong>#path</strong> : String?</a>
+        <a href="#path%3AString%7CNil-instance-method" class="signature"><strong>#path</strong> : String | Nil</a>
         
           <div class="summary"><p><span class="flag purple">NOTE</span>  DSN component - set automatically if DSN provided.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#path%3D%28path%3AString%3F%29-instance-method" class="signature"><strong>#path=</strong>(path : String?)</a>
+        <a href="#path%3D%28path%3AString%7CNil%29-instance-method" class="signature"><strong>#path=</strong>(path : String | Nil)</a>
         
           <div class="summary"><p><span class="flag purple">NOTE</span>  DSN component - set automatically if DSN provided.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#port%3AInt32%3F-instance-method" class="signature"><strong>#port</strong> : Int32?</a>
+        <a href="#port%3AInt32%7CNil-instance-method" class="signature"><strong>#port</strong> : Int32 | Nil</a>
         
           <div class="summary"><p><span class="flag purple">NOTE</span>  DSN component - set automatically if DSN provided.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#port%3D%28port%3AInt32%3F%29-instance-method" class="signature"><strong>#port=</strong>(port : Int32?)</a>
+        <a href="#port%3D%28port%3AInt32%7CNil%29-instance-method" class="signature"><strong>#port=</strong>(port : Int32 | Nil)</a>
         
           <div class="summary"><p><span class="flag purple">NOTE</span>  DSN component - set automatically if DSN provided.</p></div>
         
@@ -756,14 +756,14 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#project_id%3AUInt64%3F-instance-method" class="signature"><strong>#project_id</strong> : UInt64?</a>
+        <a href="#project_id%3AUInt64%7CNil-instance-method" class="signature"><strong>#project_id</strong> : UInt64 | Nil</a>
         
           <div class="summary"><p>Project ID number to send to the Sentry server</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#project_id%3D%28project_id%3AUInt64%3F%29-instance-method" class="signature"><strong>#project_id=</strong>(project_id : UInt64?)</a>
+        <a href="#project_id%3D%28project_id%3AUInt64%7CNil%29-instance-method" class="signature"><strong>#project_id=</strong>(project_id : UInt64 | Nil)</a>
         
           <div class="summary"><p>Project ID number to send to the Sentry server</p></div>
         
@@ -784,14 +784,14 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#public_key%3AString%3F-instance-method" class="signature"><strong>#public_key</strong> : String?</a>
+        <a href="#public_key%3AString%7CNil-instance-method" class="signature"><strong>#public_key</strong> : String | Nil</a>
         
           <div class="summary"><p>Public key for authentication with the Sentry server.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#public_key%3D%28public_key%3AString%3F%29-instance-method" class="signature"><strong>#public_key=</strong>(public_key : String?)</a>
+        <a href="#public_key%3D%28public_key%3AString%7CNil%29-instance-method" class="signature"><strong>#public_key=</strong>(public_key : String | Nil)</a>
         
           <div class="summary"><p>Public key for authentication with the Sentry server.</p></div>
         
@@ -831,14 +831,14 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#release%3AString%3F-instance-method" class="signature"><strong>#release</strong> : String?</a>
+        <a href="#release%3AString%7CNil-instance-method" class="signature"><strong>#release</strong> : String | Nil</a>
         
           <div class="summary"><p>Release tag to be passed with every event sent to Sentry.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#release%3D%28release%3AString%3F%29-instance-method" class="signature"><strong>#release=</strong>(release : String?)</a>
+        <a href="#release%3D%28release%3AString%7CNil%29-instance-method" class="signature"><strong>#release=</strong>(release : String | Nil)</a>
         
           <div class="summary"><p>Release tag to be passed with every event sent to Sentry.</p></div>
         
@@ -859,7 +859,7 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#sanitize_credit_cards%3D%28sanitize_credit_cards%29-instance-method" class="signature"><strong>#sanitize_credit_cards=</strong>(sanitize_credit_cards)</a>
+        <a href="#sanitize_credit_cards%3D%28sanitize_credit_cards%3ABool%29-instance-method" class="signature"><strong>#sanitize_credit_cards=</strong>(sanitize_credit_cards : Bool)</a>
         
           <div class="summary"><p>Should sanitize values that look like credit card numbers?</p></div>
         
@@ -894,7 +894,7 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#sanitize_fields%3D%28sanitize_fields%29-instance-method" class="signature"><strong>#sanitize_fields=</strong>(sanitize_fields)</a>
+        <a href="#sanitize_fields%3D%28sanitize_fields%3AArray%28Regex%7CString%29%29-instance-method" class="signature"><strong>#sanitize_fields=</strong>(sanitize_fields : Array(Regex | String))</a>
         
           <div class="summary"><p>By default, Sentry censors <code>Hash</code> values when their keys match things like <code>&quot;secret&quot;</code>, <code>&quot;password&quot;</code>, etc.</p></div>
         
@@ -908,7 +908,7 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#sanitize_fields_excluded%3D%28sanitize_fields_excluded%29-instance-method" class="signature"><strong>#sanitize_fields_excluded=</strong>(sanitize_fields_excluded)</a>
+        <a href="#sanitize_fields_excluded%3D%28sanitize_fields_excluded%3AArray%28Regex%7CString%29%29-instance-method" class="signature"><strong>#sanitize_fields_excluded=</strong>(sanitize_fields_excluded : Array(Regex | String))</a>
         
           <div class="summary"><p>If you're sure you want to override the default sanitization values, you can add to them to an array of <code>String</code>s here, e.g.</p></div>
         
@@ -922,42 +922,42 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#sanitize_http_headers%3D%28sanitize_http_headers%29-instance-method" class="signature"><strong>#sanitize_http_headers=</strong>(sanitize_http_headers)</a>
+        <a href="#sanitize_http_headers%3D%28sanitize_http_headers%3AArray%28Regex%7CString%29%29-instance-method" class="signature"><strong>#sanitize_http_headers=</strong>(sanitize_http_headers : Array(Regex | String))</a>
         
           <div class="summary"><p>Sanitize additional HTTP headers - only <code>Authorization</code> is removed by default.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#scheme%3AString%3F-instance-method" class="signature"><strong>#scheme</strong> : String?</a>
+        <a href="#scheme%3AString%7CNil-instance-method" class="signature"><strong>#scheme</strong> : String | Nil</a>
         
           <div class="summary"><p>Can be one of <code>&quot;http&quot;</code>, <code>&quot;https&quot;</code>, or <code>&quot;dummy&quot;</code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#scheme%3D%28scheme%3AString%3F%29-instance-method" class="signature"><strong>#scheme=</strong>(scheme : String?)</a>
+        <a href="#scheme%3D%28scheme%3AString%7CNil%29-instance-method" class="signature"><strong>#scheme=</strong>(scheme : String | Nil)</a>
         
           <div class="summary"><p>Can be one of <code>&quot;http&quot;</code>, <code>&quot;https&quot;</code>, or <code>&quot;dummy&quot;</code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#secret_key%3AString%3F-instance-method" class="signature"><strong>#secret_key</strong> : String?</a>
+        <a href="#secret_key%3AString%7CNil-instance-method" class="signature"><strong>#secret_key</strong> : String | Nil</a>
         
           <div class="summary"><p>Secret key for authentication with the Sentry server.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#secret_key%3D%28secret_key%3AString%3F%29-instance-method" class="signature"><strong>#secret_key=</strong>(secret_key : String?)</a>
+        <a href="#secret_key%3D%28secret_key%3AString%7CNil%29-instance-method" class="signature"><strong>#secret_key=</strong>(secret_key : String | Nil)</a>
         
           <div class="summary"><p>Secret key for authentication with the Sentry server.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#send_modules%3D%28send_modules%29-instance-method" class="signature"><strong>#send_modules=</strong>(send_modules)</a>
+        <a href="#send_modules%3D%28send_modules%3ABool%29-instance-method" class="signature"><strong>#send_modules=</strong>(send_modules : Bool)</a>
         
           <div class="summary"><p>Include module versions in reports.</p></div>
         
@@ -971,35 +971,35 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#server_name%3AString%3F-instance-method" class="signature"><strong>#server_name</strong> : String?</a>
+        <a href="#server_name%3AString%7CNil-instance-method" class="signature"><strong>#server_name</strong> : String | Nil</a>
         
           <div class="summary"><p>Hostname as an FQDN.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#server_name%3D%28server_name%3AString%3F%29-instance-method" class="signature"><strong>#server_name=</strong>(server_name : String?)</a>
+        <a href="#server_name%3D%28server_name%3AString%7CNil%29-instance-method" class="signature"><strong>#server_name=</strong>(server_name : String | Nil)</a>
         
           <div class="summary"><p>Hostname as an FQDN.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#should_capture%3AProc%28Exception%7CString%2CBool%29%3F-instance-method" class="signature"><strong>#should_capture</strong> : Proc(Exception | String, Bool)?</a>
+        <a href="#should_capture%3AProc%28Exception%7CString%2CBool%29%7CNil-instance-method" class="signature"><strong>#should_capture</strong> : Proc(Exception | String, Bool) | Nil</a>
         
           <div class="summary"><p>Provide a configurable <code>Proc</code> callback to determine event capture.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#should_capture%3D%28should_capture%3AProc%28Exception%7CString%2CBool%29%3F%29-instance-method" class="signature"><strong>#should_capture=</strong>(should_capture : Proc(Exception | String, Bool)?)</a>
+        <a href="#should_capture%3D%28should_capture%3AProc%28Exception%7CString%2CBool%29%7CNil%29-instance-method" class="signature"><strong>#should_capture=</strong>(should_capture : Proc(Exception | String, Bool) | Nil)</a>
         
           <div class="summary"><p>Provide a configurable <code>Proc</code> callback to determine event capture.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#silence_ready%3D%28silence_ready%29-instance-method" class="signature"><strong>#silence_ready=</strong>(silence_ready)</a>
+        <a href="#silence_ready%3D%28silence_ready%3ABool%29-instance-method" class="signature"><strong>#silence_ready=</strong>(silence_ready : Bool)</a>
         
           <div class="summary"><p>Silences ready message when <code>true</code>.</p></div>
         
@@ -1028,14 +1028,14 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#ssl%3AOpenSSL%3A%3ASSL%3A%3AContext%3A%3AClient%3F-instance-method" class="signature"><strong>#ssl</strong> : OpenSSL::SSL::Context::Client?</a>
+        <a href="#ssl%3AOpenSSL%3A%3ASSL%3A%3AContext%3A%3AClient%7CNil-instance-method" class="signature"><strong>#ssl</strong> : OpenSSL::SSL::Context::Client | Nil</a>
         
           <div class="summary"><p>SSL context passed to <code><a href="../Raven/Client.html">Raven::Client</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#ssl%3D%28ssl%3AOpenSSL%3A%3ASSL%3A%3AContext%3A%3AClient%3F%29-instance-method" class="signature"><strong>#ssl=</strong>(ssl : OpenSSL::SSL::Context::Client?)</a>
+        <a href="#ssl%3D%28ssl%3AOpenSSL%3A%3ASSL%3A%3AContext%3A%3AClient%7CNil%29-instance-method" class="signature"><strong>#ssl=</strong>(ssl : OpenSSL::SSL::Context::Client | Nil)</a>
         
           <div class="summary"><p>SSL context passed to <code><a href="../Raven/Client.html">Raven::Client</a></code>.</p></div>
         
@@ -1056,21 +1056,21 @@ before passing to other processors.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#tags%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method" class="signature"><strong>#tags=</strong>(hash : Hash | NamedTuple?)</a>
+        <a href="#tags%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method" class="signature"><strong>#tags=</strong>(hash : Hash | NamedTuple | Nil)</a>
         
           <div class="summary"><p>Default tags for events.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#transport_failure_callback%3AProc%28Event%3A%3AHashType%2CNil%29%3F-instance-method" class="signature"><strong>#transport_failure_callback</strong> : Proc(Event::HashType, Nil)?</a>
+        <a href="#transport_failure_callback%3AProc%28Event%3A%3AHashType%2CNil%29%7CNil-instance-method" class="signature"><strong>#transport_failure_callback</strong> : Proc(Event::HashType, Nil) | Nil</a>
         
           <div class="summary"><p>Optional <code>Proc</code>, called when the Sentry server cannot be contacted for any reason.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#transport_failure_callback%3D%28transport_failure_callback%3AProc%28Event%3A%3AHashType%2CNil%29%3F%29-instance-method" class="signature"><strong>#transport_failure_callback=</strong>(transport_failure_callback : Proc(Event::HashType, Nil)?)</a>
+        <a href="#transport_failure_callback%3D%28transport_failure_callback%3AProc%28Event%3A%3AHashType%2CNil%29%7CNil%29-instance-method" class="signature"><strong>#transport_failure_callback=</strong>(transport_failure_callback : Proc(Event::HashType, Nil) | Nil)</a>
         
           <div class="summary"><p>Optional <code>Proc</code>, called when the Sentry server cannot be contacted for any reason.</p></div>
         
@@ -1132,7 +1132,7 @@ before passing to other processors.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L248" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L248" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1162,7 +1162,7 @@ before passing to other processors.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1178,7 +1178,7 @@ before passing to other processors.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1194,53 +1194,53 @@ before passing to other processors.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="async:Proc(Event,Nil)?-instance-method">
+    <div class="entry-detail" id="async:Proc(Event,Nil)|Nil-instance-method">
       <div class="signature">
         
-        def <strong>async</strong> : Proc(<a href="../Raven/Event.html">Event</a>, Nil)?
+        def <strong>async</strong> : Proc(<a href="../Raven/Event.html">Event</a>, Nil) | Nil
 
-        <a class="method-permalink" href="#async%3AProc%28Event%2CNil%29%3F-instance-method">#</a>
+        <a class="method-permalink" href="#async%3AProc%28Event%2CNil%29%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Provide a <code>Proc</code> object that responds to <code>call</code> to send
 events asynchronously, or pass <code>true</code> to to use standard <code>spawn</code>.</p>
-<pre><code class="language-crystal">-&gt;(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>) { spawn { <span class="t">Raven</span>.send_event(event) } }</code></pre>
+<pre><code class="language-crystal"><span class="o">-&gt;</span>(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>) { spawn { <span class="t">Raven</span>.send_event(event) } }</code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L35" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="async=(async:Proc(Event,Nil)?)-instance-method">
+    <div class="entry-detail" id="async=(async:Proc(Event,Nil)|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>async=</strong>(async : Proc(<a href="../Raven/Event.html">Event</a>, Nil)?)
+        def <strong>async=</strong>(async : Proc(<a href="../Raven/Event.html">Event</a>, Nil) | Nil)
 
-        <a class="method-permalink" href="#async%3D%28async%3AProc%28Event%2CNil%29%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#async%3D%28async%3AProc%28Event%2CNil%29%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Provide a <code>Proc</code> object that responds to <code>call</code> to send
 events asynchronously, or pass <code>true</code> to to use standard <code>spawn</code>.</p>
-<pre><code class="language-crystal">-&gt;(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>) { spawn { <span class="t">Raven</span>.send_event(event) } }</code></pre>
+<pre><code class="language-crystal"><span class="o">-&gt;</span>(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>) { spawn { <span class="t">Raven</span>.send_event(event) } }</code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L35" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1255,15 +1255,15 @@ events asynchronously, or pass <code>true</code> to to use standard <code>spawn<
       
         <div class="doc">
           
-          <p>Sets <code><a href="../Raven/Configuration.html#async%3AProc%28Event%2CNil%29%3F-instance-method">#async</a></code> callback to either <code>Fiber</code>-based implementation (see below),
+          <p>Sets <code><a href="../Raven/Configuration.html#async%3AProc%28Event%2CNil%29%7CNil-instance-method">#async</a></code> callback to either <code>Fiber</code>-based implementation (see below),
 or <code>nil</code>, depending on the given <em>switch</em> value.</p>
-<pre><code class="language-crystal">-&gt;(event : <span class="t">Event</span>) { spawn { <span class="t">Raven</span>.send_event(event) } }</code></pre>
+<pre><code class="language-crystal"><span class="o">-&gt;</span>(event : <span class="t">Event</span>) { spawn { <span class="t">Raven</span>.send_event(event) } }</code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L43" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L43" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1279,39 +1279,39 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L51" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L51" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="backtracer=(backtracer)-instance-method">
+    <div class="entry-detail" id="backtracer=(backtracer:Backtracer::Configuration)-instance-method">
       <div class="signature">
         
-        def <strong>backtracer=</strong>(backtracer)
+        def <strong>backtracer=</strong>(backtracer : Backtracer::Configuration)
 
-        <a class="method-permalink" href="#backtracer%3D%28backtracer%29-instance-method">#</a>
+        <a class="method-permalink" href="#backtracer%3D%28backtracer%3ABacktracer%3A%3AConfiguration%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L51" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L51" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="before_send(&amp;block:Event,Event::Hint?-&gt;_)-instance-method">
+    <div class="entry-detail" id="before_send(&amp;block:Event,Event::Hint|Nil-&gt;_)-instance-method">
       <div class="signature">
         
-        def <strong>before_send</strong>(&block : <a href="../Raven/Event.html">Event</a>, <a href="../Raven/Event/Hint.html">Event::Hint</a>? -> _)
+        def <strong>before_send</strong>(&block : <a href="../Raven/Event.html">Event</a>, <a href="../Raven/Event/Hint.html">Event::Hint</a> | Nil -> _)
 
-        <a class="method-permalink" href="#before_send%28%26block%3AEvent%2CEvent%3A%3AHint%3F-%3E_%29-instance-method">#</a>
+        <a class="method-permalink" href="#before_send%28%26block%3AEvent%2CEvent%3A%3AHint%7CNil-%3E_%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Optional <code>Proc</code>, called before sending an event to the server:</p>
-<pre><code class="language-crystal">-&gt;(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>, hint : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span><span class="t">::</span><span class="t">Hint</span>?) {
+<pre><code class="language-crystal"><span class="o">-&gt;</span>(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>, hint : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span><span class="t">::</span><span class="t">Hint</span>?) {
   <span class="k">if</span> hint.try(<span class="o">&amp;</span>.exception).try(<span class="o">&amp;</span>.message) <span class="o">=~</span> <span class="s">/database unavailable/</span>i
     event.fingerprint <span class="o">&lt;&lt;</span> <span class="s">&quot;database-unavailable&quot;</span>
   <span class="k">end</span>
@@ -1322,23 +1322,23 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L238" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L238" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="before_send:Proc(Event,Event::Hint?,Event?)?-instance-method">
+    <div class="entry-detail" id="before_send:Proc(Event,Event::Hint|Nil,Event|Nil)|Nil-instance-method">
       <div class="signature">
         
-        def <strong>before_send</strong> : Proc(<a href="../Raven/Event.html">Event</a>, <a href="../Raven/Event/Hint.html">Event::Hint</a>?, <a href="../Raven/Event.html">Event</a>?)?
+        def <strong>before_send</strong> : Proc(<a href="../Raven/Event.html">Event</a>, <a href="../Raven/Event/Hint.html">Event::Hint</a> | Nil, <a href="../Raven/Event.html">Event</a> | Nil) | Nil
 
-        <a class="method-permalink" href="#before_send%3AProc%28Event%2CEvent%3A%3AHint%3F%2CEvent%3F%29%3F-instance-method">#</a>
+        <a class="method-permalink" href="#before_send%3AProc%28Event%2CEvent%3A%3AHint%7CNil%2CEvent%7CNil%29%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Optional <code>Proc</code>, called before sending an event to the server:</p>
-<pre><code class="language-crystal">-&gt;(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>, hint : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span><span class="t">::</span><span class="t">Hint</span>?) {
+<pre><code class="language-crystal"><span class="o">-&gt;</span>(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>, hint : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span><span class="t">::</span><span class="t">Hint</span>?) {
   <span class="k">if</span> hint.try(<span class="o">&amp;</span>.exception).try(<span class="o">&amp;</span>.message) <span class="o">=~</span> <span class="s">/database unavailable/</span>i
     event.fingerprint <span class="o">&lt;&lt;</span> <span class="s">&quot;database-unavailable&quot;</span>
   <span class="k">end</span>
@@ -1349,23 +1349,23 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L243" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L243" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="before_send=(block:Event,Event::Hint?-&gt;_)-instance-method">
+    <div class="entry-detail" id="before_send=(block:Event,Event::Hint|Nil-&gt;_)-instance-method">
       <div class="signature">
         
-        def <strong>before_send=</strong>(block : <a href="../Raven/Event.html">Event</a>, <a href="../Raven/Event/Hint.html">Event::Hint</a>? -> _)
+        def <strong>before_send=</strong>(block : <a href="../Raven/Event.html">Event</a>, <a href="../Raven/Event/Hint.html">Event::Hint</a> | Nil -> _)
 
-        <a class="method-permalink" href="#before_send%3D%28block%3AEvent%2CEvent%3A%3AHint%3F-%3E_%29-instance-method">#</a>
+        <a class="method-permalink" href="#before_send%3D%28block%3AEvent%2CEvent%3A%3AHint%7CNil-%3E_%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Optional <code>Proc</code>, called before sending an event to the server:</p>
-<pre><code class="language-crystal">-&gt;(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>, hint : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span><span class="t">::</span><span class="t">Hint</span>?) {
+<pre><code class="language-crystal"><span class="o">-&gt;</span>(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>, hint : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span><span class="t">::</span><span class="t">Hint</span>?) {
   <span class="k">if</span> hint.try(<span class="o">&amp;</span>.exception).try(<span class="o">&amp;</span>.message) <span class="o">=~</span> <span class="s">/database unavailable/</span>i
     event.fingerprint <span class="o">&lt;&lt;</span> <span class="s">&quot;database-unavailable&quot;</span>
   <span class="k">end</span>
@@ -1376,23 +1376,23 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L231" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L231" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="before_send=(before_send:Proc(Event,Event::Hint?,Event?)?)-instance-method">
+    <div class="entry-detail" id="before_send=(before_send:Proc(Event,Event::Hint|Nil,Event|Nil)|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>before_send=</strong>(before_send : Proc(<a href="../Raven/Event.html">Event</a>, <a href="../Raven/Event/Hint.html">Event::Hint</a>?, <a href="../Raven/Event.html">Event</a>?)?)
+        def <strong>before_send=</strong>(before_send : Proc(<a href="../Raven/Event.html">Event</a>, <a href="../Raven/Event/Hint.html">Event::Hint</a> | Nil, <a href="../Raven/Event.html">Event</a> | Nil) | Nil)
 
-        <a class="method-permalink" href="#before_send%3D%28before_send%3AProc%28Event%2CEvent%3A%3AHint%3F%2CEvent%3F%29%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#before_send%3D%28before_send%3AProc%28Event%2CEvent%3A%3AHint%7CNil%2CEvent%7CNil%29%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Optional <code>Proc</code>, called before sending an event to the server:</p>
-<pre><code class="language-crystal">-&gt;(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>, hint : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span><span class="t">::</span><span class="t">Hint</span>?) {
+<pre><code class="language-crystal"><span class="o">-&gt;</span>(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>, hint : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span><span class="t">::</span><span class="t">Hint</span>?) {
   <span class="k">if</span> hint.try(<span class="o">&amp;</span>.exception).try(<span class="o">&amp;</span>.message) <span class="o">=~</span> <span class="s">/database unavailable/</span>i
     event.fingerprint <span class="o">&lt;&lt;</span> <span class="s">&quot;database-unavailable&quot;</span>
   <span class="k">end</span>
@@ -1403,7 +1403,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L243" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L243" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1419,7 +1419,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L372" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L372" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1435,7 +1435,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L365" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L365" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1456,7 +1456,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L94" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L94" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1477,7 +1477,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L94" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L94" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1493,7 +1493,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1509,7 +1509,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1525,17 +1525,17 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="current_environment:String?-instance-method">
+    <div class="entry-detail" id="current_environment:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>current_environment</strong> : String?
+        def <strong>current_environment</strong> : String | Nil
 
-        <a class="method-permalink" href="#current_environment%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#current_environment%3AString%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1547,17 +1547,17 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L62" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L62" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="current_environment=(current_environment:String?)-instance-method">
+    <div class="entry-detail" id="current_environment=(current_environment:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>current_environment=</strong>(current_environment : String?)
+        def <strong>current_environment=</strong>(current_environment : String | Nil)
 
-        <a class="method-permalink" href="#current_environment%3D%28current_environment%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#current_environment%3D%28current_environment%3AString%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1569,33 +1569,33 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L62" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L62" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="detect_release:String?-instance-method">
+    <div class="entry-detail" id="detect_release:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>detect_release</strong> : String?
+        def <strong>detect_release</strong> : String | Nil
 
-        <a class="method-permalink" href="#detect_release%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#detect_release%3AString%7CNil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L306" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L306" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="dsn:String?-instance-method">
+    <div class="entry-detail" id="dsn:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>dsn</strong> : String?
+        def <strong>dsn</strong> : String | Nil
 
-        <a class="method-permalink" href="#dsn%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#dsn%3AString%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1606,7 +1606,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L187" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L187" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1622,7 +1622,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L268" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L268" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1638,7 +1638,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L302" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L302" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1659,7 +1659,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L71" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L71" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1680,7 +1680,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L71" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L71" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1701,17 +1701,17 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L74" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L74" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="environments=(environments)-instance-method">
+    <div class="entry-detail" id="environments=(environments:Array(String))-instance-method">
       <div class="signature">
         
-        def <strong>environments=</strong>(environments)
+        def <strong>environments=</strong>(environments : Array(String))
 
-        <a class="method-permalink" href="#environments%3D%28environments%29-instance-method">#</a>
+        <a class="method-permalink" href="#environments%3D%28environments%3AArray%28String%29%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1722,7 +1722,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L74" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L74" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1738,7 +1738,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L433" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L433" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1759,7 +1759,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L246" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L246" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1782,7 +1782,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L81" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L81" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1805,7 +1805,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L81" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L81" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1821,7 +1821,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L405" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L405" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1844,7 +1844,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L88" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L88" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1867,17 +1867,17 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L88" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L88" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="host:String?-instance-method">
+    <div class="entry-detail" id="host:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>host</strong> : String?
+        def <strong>host</strong> : String | Nil
 
-        <a class="method-permalink" href="#host%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#host%3AString%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1888,17 +1888,17 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L91" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L91" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="host=(host:String?)-instance-method">
+    <div class="entry-detail" id="host=(host:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>host=</strong>(host : String?)
+        def <strong>host=</strong>(host : String | Nil)
 
-        <a class="method-permalink" href="#host%3D%28host%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#host%3D%28host%3AString%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1909,7 +1909,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L91" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L91" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1925,7 +1925,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L359" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L359" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1941,7 +1941,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1957,7 +1957,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1973,17 +1973,17 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="path:String?-instance-method">
+    <div class="entry-detail" id="path:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>path</strong> : String?
+        def <strong>path</strong> : String | Nil
 
-        <a class="method-permalink" href="#path%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#path%3AString%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1994,17 +1994,17 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L97" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L97" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="path=(path:String?)-instance-method">
+    <div class="entry-detail" id="path=(path:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>path=</strong>(path : String?)
+        def <strong>path=</strong>(path : String | Nil)
 
-        <a class="method-permalink" href="#path%3D%28path%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#path%3D%28path%3AString%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2015,17 +2015,17 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L97" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L97" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="port:Int32?-instance-method">
+    <div class="entry-detail" id="port:Int32|Nil-instance-method">
       <div class="signature">
         
-        def <strong>port</strong> : Int32?
+        def <strong>port</strong> : Int32 | Nil
 
-        <a class="method-permalink" href="#port%3AInt32%3F-instance-method">#</a>
+        <a class="method-permalink" href="#port%3AInt32%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2036,17 +2036,17 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L100" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L100" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="port=(port:Int32?)-instance-method">
+    <div class="entry-detail" id="port=(port:Int32|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>port=</strong>(port : Int32?)
+        def <strong>port=</strong>(port : Int32 | Nil)
 
-        <a class="method-permalink" href="#port%3D%28port%3AInt32%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#port%3D%28port%3AInt32%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2057,7 +2057,7 @@ or <code>nil</code>, depending on the given <em>switch</em> value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L100" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L100" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2079,7 +2079,7 @@ You should probably append to this rather than overwrite it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L104" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L104" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2101,17 +2101,17 @@ You should probably append to this rather than overwrite it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L104" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L104" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="project_id:UInt64?-instance-method">
+    <div class="entry-detail" id="project_id:UInt64|Nil-instance-method">
       <div class="signature">
         
-        def <strong>project_id</strong> : UInt64?
+        def <strong>project_id</strong> : UInt64 | Nil
 
-        <a class="method-permalink" href="#project_id%3AUInt64%3F-instance-method">#</a>
+        <a class="method-permalink" href="#project_id%3AUInt64%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2123,17 +2123,17 @@ You should probably append to this rather than overwrite it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L109" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L109" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="project_id=(project_id:UInt64?)-instance-method">
+    <div class="entry-detail" id="project_id=(project_id:UInt64|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>project_id=</strong>(project_id : UInt64?)
+        def <strong>project_id=</strong>(project_id : UInt64 | Nil)
 
-        <a class="method-permalink" href="#project_id%3D%28project_id%3AUInt64%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#project_id%3D%28project_id%3AUInt64%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2145,7 +2145,7 @@ You should probably append to this rather than overwrite it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L109" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L109" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2166,7 +2166,7 @@ You should probably append to this rather than overwrite it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L112" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L112" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2187,17 +2187,17 @@ You should probably append to this rather than overwrite it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L112" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L112" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="public_key:String?-instance-method">
+    <div class="entry-detail" id="public_key:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>public_key</strong> : String?
+        def <strong>public_key</strong> : String | Nil
 
-        <a class="method-permalink" href="#public_key%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#public_key%3AString%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2209,17 +2209,17 @@ You should probably append to this rather than overwrite it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L123" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L123" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="public_key=(public_key:String?)-instance-method">
+    <div class="entry-detail" id="public_key=(public_key:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>public_key=</strong>(public_key : String?)
+        def <strong>public_key=</strong>(public_key : String | Nil)
 
-        <a class="method-permalink" href="#public_key%3D%28public_key%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#public_key%3D%28public_key%3AString%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2231,7 +2231,7 @@ You should probably append to this rather than overwrite it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L123" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L123" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2252,7 +2252,7 @@ You should probably append to this rather than overwrite it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L134" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L134" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2273,7 +2273,7 @@ You should probably append to this rather than overwrite it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L134" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L134" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2289,7 +2289,7 @@ You should probably append to this rather than overwrite it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L399" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L399" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2310,7 +2310,7 @@ You should probably append to this rather than overwrite it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L209" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L209" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2331,17 +2331,17 @@ You should probably append to this rather than overwrite it.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L209" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L209" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="release:String?-instance-method">
+    <div class="entry-detail" id="release:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>release</strong> : String?
+        def <strong>release</strong> : String | Nil
 
-        <a class="method-permalink" href="#release%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#release%3AString%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2353,17 +2353,17 @@ We automatically try to set this to a git SHA or Capistrano release.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L127" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L127" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="release=(release:String?)-instance-method">
+    <div class="entry-detail" id="release=(release:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>release=</strong>(release : String?)
+        def <strong>release=</strong>(release : String | Nil)
 
-        <a class="method-permalink" href="#release%3D%28release%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#release%3D%28release%3AString%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2375,7 +2375,7 @@ We automatically try to set this to a git SHA or Capistrano release.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L127" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L127" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2397,7 +2397,7 @@ any events, and a value of <code>1.0</code> will send 100% of events.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L131" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L131" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2419,17 +2419,17 @@ any events, and a value of <code>1.0</code> will send 100% of events.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L131" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L131" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="sanitize_credit_cards=(sanitize_credit_cards)-instance-method">
+    <div class="entry-detail" id="sanitize_credit_cards=(sanitize_credit_cards:Bool)-instance-method">
       <div class="signature">
         
-        def <strong>sanitize_credit_cards=</strong>(sanitize_credit_cards)
+        def <strong>sanitize_credit_cards=</strong>(sanitize_credit_cards : Bool)
 
-        <a class="method-permalink" href="#sanitize_credit_cards%3D%28sanitize_credit_cards%29-instance-method">#</a>
+        <a class="method-permalink" href="#sanitize_credit_cards%3D%28sanitize_credit_cards%3ABool%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2441,7 +2441,7 @@ any events, and a value of <code>1.0</code> will send 100% of events.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L139" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L139" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2463,7 +2463,7 @@ any events, and a value of <code>1.0</code> will send 100% of events.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L139" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L139" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2485,7 +2485,7 @@ any events, and a value of <code>1.0</code> will send 100% of events.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L160" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L160" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2507,7 +2507,7 @@ any events, and a value of <code>1.0</code> will send 100% of events.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L160" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L160" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2531,17 +2531,17 @@ when matched in a hash key, will be censored and not sent to Sentry.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L146" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L146" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="sanitize_fields=(sanitize_fields)-instance-method">
+    <div class="entry-detail" id="sanitize_fields=(sanitize_fields:Array(Regex|String))-instance-method">
       <div class="signature">
         
-        def <strong>sanitize_fields=</strong>(sanitize_fields)
+        def <strong>sanitize_fields=</strong>(sanitize_fields : Array(Regex | String))
 
-        <a class="method-permalink" href="#sanitize_fields%3D%28sanitize_fields%29-instance-method">#</a>
+        <a class="method-permalink" href="#sanitize_fields%3D%28sanitize_fields%3AArray%28Regex%7CString%29%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2555,7 +2555,7 @@ when matched in a hash key, will be censored and not sent to Sentry.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L146" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L146" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2577,17 +2577,17 @@ add to them to an array of <code>String</code>s here, e.g. <code>%w(authorizatio
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L150" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L150" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="sanitize_fields_excluded=(sanitize_fields_excluded)-instance-method">
+    <div class="entry-detail" id="sanitize_fields_excluded=(sanitize_fields_excluded:Array(Regex|String))-instance-method">
       <div class="signature">
         
-        def <strong>sanitize_fields_excluded=</strong>(sanitize_fields_excluded)
+        def <strong>sanitize_fields_excluded=</strong>(sanitize_fields_excluded : Array(Regex | String))
 
-        <a class="method-permalink" href="#sanitize_fields_excluded%3D%28sanitize_fields_excluded%29-instance-method">#</a>
+        <a class="method-permalink" href="#sanitize_fields_excluded%3D%28sanitize_fields_excluded%3AArray%28Regex%7CString%29%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2599,7 +2599,7 @@ add to them to an array of <code>String</code>s here, e.g. <code>%w(authorizatio
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L150" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L150" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2621,17 +2621,17 @@ add to them to an array of <code>String</code>s here, e.g. <code>%w(authorizatio
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L155" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L155" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="sanitize_http_headers=(sanitize_http_headers)-instance-method">
+    <div class="entry-detail" id="sanitize_http_headers=(sanitize_http_headers:Array(Regex|String))-instance-method">
       <div class="signature">
         
-        def <strong>sanitize_http_headers=</strong>(sanitize_http_headers)
+        def <strong>sanitize_http_headers=</strong>(sanitize_http_headers : Array(Regex | String))
 
-        <a class="method-permalink" href="#sanitize_http_headers%3D%28sanitize_http_headers%29-instance-method">#</a>
+        <a class="method-permalink" href="#sanitize_http_headers%3D%28sanitize_http_headers%3AArray%28Regex%7CString%29%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2643,17 +2643,17 @@ add to them to an array of <code>String</code>s here, e.g. <code>%w(authorizatio
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L155" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L155" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="scheme:String?-instance-method">
+    <div class="entry-detail" id="scheme:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>scheme</strong> : String?
+        def <strong>scheme</strong> : String | Nil
 
-        <a class="method-permalink" href="#scheme%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#scheme%3AString%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2665,17 +2665,17 @@ add to them to an array of <code>String</code>s here, e.g. <code>%w(authorizatio
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L165" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L165" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="scheme=(scheme:String?)-instance-method">
+    <div class="entry-detail" id="scheme=(scheme:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>scheme=</strong>(scheme : String?)
+        def <strong>scheme=</strong>(scheme : String | Nil)
 
-        <a class="method-permalink" href="#scheme%3D%28scheme%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#scheme%3D%28scheme%3AString%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2687,17 +2687,17 @@ add to them to an array of <code>String</code>s here, e.g. <code>%w(authorizatio
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L165" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L165" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="secret_key:String?-instance-method">
+    <div class="entry-detail" id="secret_key:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>secret_key</strong> : String?
+        def <strong>secret_key</strong> : String | Nil
 
-        <a class="method-permalink" href="#secret_key%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#secret_key%3AString%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2711,17 +2711,17 @@ installations any more.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L181" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L181" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="secret_key=(secret_key:String?)-instance-method">
+    <div class="entry-detail" id="secret_key=(secret_key:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>secret_key=</strong>(secret_key : String?)
+        def <strong>secret_key=</strong>(secret_key : String | Nil)
 
-        <a class="method-permalink" href="#secret_key%3D%28secret_key%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#secret_key%3D%28secret_key%3AString%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2735,17 +2735,17 @@ installations any more.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L181" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L181" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="send_modules=(send_modules)-instance-method">
+    <div class="entry-detail" id="send_modules=(send_modules:Bool)-instance-method">
       <div class="signature">
         
-        def <strong>send_modules=</strong>(send_modules)
+        def <strong>send_modules=</strong>(send_modules : Bool)
 
-        <a class="method-permalink" href="#send_modules%3D%28send_modules%29-instance-method">#</a>
+        <a class="method-permalink" href="#send_modules%3D%28send_modules%3ABool%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2756,7 +2756,7 @@ installations any more.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L184" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L184" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2777,17 +2777,17 @@ installations any more.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L184" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L184" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="server_name:String?-instance-method">
+    <div class="entry-detail" id="server_name:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>server_name</strong> : String?
+        def <strong>server_name</strong> : String | Nil
 
-        <a class="method-permalink" href="#server_name%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#server_name%3AString%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2798,17 +2798,17 @@ installations any more.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L190" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L190" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="server_name=(server_name:String?)-instance-method">
+    <div class="entry-detail" id="server_name=(server_name:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>server_name=</strong>(server_name : String?)
+        def <strong>server_name=</strong>(server_name : String | Nil)
 
-        <a class="method-permalink" href="#server_name%3D%28server_name%3AString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#server_name%3D%28server_name%3AString%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2819,17 +2819,17 @@ installations any more.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L190" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L190" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="should_capture:Proc(Exception|String,Bool)?-instance-method">
+    <div class="entry-detail" id="should_capture:Proc(Exception|String,Bool)|Nil-instance-method">
       <div class="signature">
         
-        def <strong>should_capture</strong> : Proc(<a href="../Exception.html">Exception</a> | String, Bool)?
+        def <strong>should_capture</strong> : Proc(<a href="../Exception.html">Exception</a> | String, Bool) | Nil
 
-        <a class="method-permalink" href="#should_capture%3AProc%28Exception%7CString%2CBool%29%3F-instance-method">#</a>
+        <a class="method-permalink" href="#should_capture%3AProc%28Exception%7CString%2CBool%29%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2837,23 +2837,23 @@ installations any more.</p>
           <p>Provide a configurable <code>Proc</code> callback to determine event capture.</p>
 <p><span class="flag purple">NOTE</span>  Object passed into the block will be a <code>String</code> (messages)
 or an <code><a href="../Exception.html">Exception</a></code>.</p>
-<pre><code class="language-crystal">-&gt;(obj : <span class="t">Exception</span> <span class="o">|</span> <span class="t">String</span>) { obj.some_attr <span class="o">==</span> <span class="n">false</span> }</code></pre>
+<pre><code class="language-crystal"><span class="o">-&gt;</span>(obj : <span class="t">Exception</span> <span class="o">|</span> <span class="t">String</span>) { obj.some_attr <span class="o">==</span> <span class="n">false</span> }</code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L200" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L200" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="should_capture=(should_capture:Proc(Exception|String,Bool)?)-instance-method">
+    <div class="entry-detail" id="should_capture=(should_capture:Proc(Exception|String,Bool)|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>should_capture=</strong>(should_capture : Proc(<a href="../Exception.html">Exception</a> | String, Bool)?)
+        def <strong>should_capture=</strong>(should_capture : Proc(<a href="../Exception.html">Exception</a> | String, Bool) | Nil)
 
-        <a class="method-permalink" href="#should_capture%3D%28should_capture%3AProc%28Exception%7CString%2CBool%29%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#should_capture%3D%28should_capture%3AProc%28Exception%7CString%2CBool%29%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2861,23 +2861,23 @@ or an <code><a href="../Exception.html">Exception</a></code>.</p>
           <p>Provide a configurable <code>Proc</code> callback to determine event capture.</p>
 <p><span class="flag purple">NOTE</span>  Object passed into the block will be a <code>String</code> (messages)
 or an <code><a href="../Exception.html">Exception</a></code>.</p>
-<pre><code class="language-crystal">-&gt;(obj : <span class="t">Exception</span> <span class="o">|</span> <span class="t">String</span>) { obj.some_attr <span class="o">==</span> <span class="n">false</span> }</code></pre>
+<pre><code class="language-crystal"><span class="o">-&gt;</span>(obj : <span class="t">Exception</span> <span class="o">|</span> <span class="t">String</span>) { obj.some_attr <span class="o">==</span> <span class="n">false</span> }</code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L200" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L200" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="silence_ready=(silence_ready)-instance-method">
+    <div class="entry-detail" id="silence_ready=(silence_ready:Bool)-instance-method">
       <div class="signature">
         
-        def <strong>silence_ready=</strong>(silence_ready)
+        def <strong>silence_ready=</strong>(silence_ready : Bool)
 
-        <a class="method-permalink" href="#silence_ready%3D%28silence_ready%29-instance-method">#</a>
+        <a class="method-permalink" href="#silence_ready%3D%28silence_ready%3ABool%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2888,7 +2888,7 @@ or an <code><a href="../Exception.html">Exception</a></code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L203" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L203" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2909,7 +2909,7 @@ or an <code><a href="../Exception.html">Exception</a></code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L203" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L203" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2925,7 +2925,7 @@ or an <code><a href="../Exception.html">Exception</a></code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2941,7 +2941,7 @@ or an <code><a href="../Exception.html">Exception</a></code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2957,17 +2957,17 @@ or an <code><a href="../Exception.html">Exception</a></code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="ssl:OpenSSL::SSL::Context::Client?-instance-method">
+    <div class="entry-detail" id="ssl:OpenSSL::SSL::Context::Client|Nil-instance-method">
       <div class="signature">
         
-        def <strong>ssl</strong> : OpenSSL::SSL::Context::Client?
+        def <strong>ssl</strong> : OpenSSL::SSL::Context::Client | Nil
 
-        <a class="method-permalink" href="#ssl%3AOpenSSL%3A%3ASSL%3A%3AContext%3A%3AClient%3F-instance-method">#</a>
+        <a class="method-permalink" href="#ssl%3AOpenSSL%3A%3ASSL%3A%3AContext%3A%3AClient%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -2981,12 +2981,12 @@ or an <code><a href="../Exception.html">Exception</a></code>.</p>
       </div>
     </div>
   
-    <div class="entry-detail" id="ssl=(ssl:OpenSSL::SSL::Context::Client?)-instance-method">
+    <div class="entry-detail" id="ssl=(ssl:OpenSSL::SSL::Context::Client|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>ssl=</strong>(ssl : OpenSSL::SSL::Context::Client?)
+        def <strong>ssl=</strong>(ssl : OpenSSL::SSL::Context::Client | Nil)
 
-        <a class="method-permalink" href="#ssl%3D%28ssl%3AOpenSSL%3A%3ASSL%3A%3AContext%3A%3AClient%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#ssl%3D%28ssl%3AOpenSSL%3A%3ASSL%3A%3AContext%3A%3AClient%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -3038,12 +3038,12 @@ or an <code><a href="../Exception.html">Exception</a></code>.</p>
       </div>
     </div>
   
-    <div class="entry-detail" id="tags=(hash:Hash|NamedTuple?)-instance-method">
+    <div class="entry-detail" id="tags=(hash:Hash|NamedTuple|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>tags=</strong>(hash : Hash | NamedTuple?)
+        def <strong>tags=</strong>(hash : Hash | NamedTuple | Nil)
 
-        <a class="method-permalink" href="#tags%3D%28hash%3AHash%7CNamedTuple%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#tags%3D%28hash%3AHash%7CNamedTuple%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -3054,24 +3054,24 @@ or an <code><a href="../Exception.html">Exception</a></code>.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L206" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L206" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="transport_failure_callback:Proc(Event::HashType,Nil)?-instance-method">
+    <div class="entry-detail" id="transport_failure_callback:Proc(Event::HashType,Nil)|Nil-instance-method">
       <div class="signature">
         
-        def <strong>transport_failure_callback</strong> : Proc(<a href="../Raven/Event/HashType.html">Event::HashType</a>, Nil)?
+        def <strong>transport_failure_callback</strong> : Proc(<a href="../Raven/Event/HashType.html">Event::HashType</a>, Nil) | Nil
 
-        <a class="method-permalink" href="#transport_failure_callback%3AProc%28Event%3A%3AHashType%2CNil%29%3F-instance-method">#</a>
+        <a class="method-permalink" href="#transport_failure_callback%3AProc%28Event%3A%3AHashType%2CNil%29%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Optional <code>Proc</code>, called when the Sentry server cannot be contacted
 for any reason.</p>
-<pre><code class="language-crystal">-&gt;(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span><span class="t">::</span><span class="t">HashType</span>) {
+<pre><code class="language-crystal"><span class="o">-&gt;</span>(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span><span class="t">::</span><span class="t">HashType</span>) {
   spawn { <span class="t">MyJobProcessor</span>.send_email(event) }
 }</code></pre>
         </div>
@@ -3079,24 +3079,24 @@ for any reason.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L219" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L219" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="transport_failure_callback=(transport_failure_callback:Proc(Event::HashType,Nil)?)-instance-method">
+    <div class="entry-detail" id="transport_failure_callback=(transport_failure_callback:Proc(Event::HashType,Nil)|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>transport_failure_callback=</strong>(transport_failure_callback : Proc(<a href="../Raven/Event/HashType.html">Event::HashType</a>, Nil)?)
+        def <strong>transport_failure_callback=</strong>(transport_failure_callback : Proc(<a href="../Raven/Event/HashType.html">Event::HashType</a>, Nil) | Nil)
 
-        <a class="method-permalink" href="#transport_failure_callback%3D%28transport_failure_callback%3AProc%28Event%3A%3AHashType%2CNil%29%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#transport_failure_callback%3D%28transport_failure_callback%3AProc%28Event%3A%3AHashType%2CNil%29%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Optional <code>Proc</code>, called when the Sentry server cannot be contacted
 for any reason.</p>
-<pre><code class="language-crystal">-&gt;(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span><span class="t">::</span><span class="t">HashType</span>) {
+<pre><code class="language-crystal"><span class="o">-&gt;</span>(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span><span class="t">::</span><span class="t">HashType</span>) {
   spawn { <span class="t">MyJobProcessor</span>.send_email(event) }
 }</code></pre>
         </div>
@@ -3104,7 +3104,7 @@ for any reason.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L219" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L219" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -3120,7 +3120,7 @@ for any reason.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/de91bb38/src/raven/configuration.cr#L417" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/f328bfd/src/raven/configuration.cr#L417" target="_blank">View source</a>]
         
       </div>
     </div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.3.2">
+<meta name="generator" content="Crystal Docs 1.6.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="raven">
 
@@ -328,7 +328,19 @@
 
 
 <div class="main-content">
-<p>raven.cr • the Crystal client for Sentry</p>
+<p align="center">
+  <img src="https://sija.github.io/raven.cr/img/bug-fixing.svg" height="300" alt="Bug fixing illustration" />
+</p>
+<h1 align="center">
+  raven.cr • the Crystal client for Sentry
+</h1>
+<p align="center">
+  <a href="https://github.com/Sija/raven.cr/actions?query=workflow%3ACI"><img src="https://github.com/Sija/raven.cr/workflows/CI/badge.svg" alt="Build Status" /></a>
+  <a href="https://www.codacy.com/app/Sija/raven.cr"><img src="https://api.codacy.com/project/badge/Grade/32cb8814a14d4a6cbe39d6768142c59b" alt="Codacy Badge" /></a>
+  <a href="https://github.com/Sija/raven.cr/releases"><img src="https://img.shields.io/github/release/Sija/raven.cr.svg" alt="Releases" /></a>
+  <a href="https://github.com/Sija/raven.cr/blob/master/LICENSE"><img src="https://img.shields.io/github/license/Sija/raven.cr.svg" alt="License" /></a>
+  <a href="https://gitter.im/raven-cr/Lobby"><img src="https://img.shields.io/gitter/room/raven-cr/Lobby.svg" alt="Gitter Chat" /></a>
+</p>
 <p>An unofficial Crystal-language client and integration layer for the <a href="https://github.com/getsentry/sentry">Sentry</a> error reporting API.</p>
 <p>Based on fine <a href="https://github.com/getsentry/raven-ruby">raven-ruby</a> gem
 from folks at <a href="https://github.com/getsentry">@getsentry</a>.</p>
@@ -446,7 +458,7 @@ variable, there are two other configuration settings for controlling Raven:</p>
 <p>When an error or message occurs, the notification is immediately sent to Sentry.
 Raven can be configured to send asynchronously:</p>
 <pre><code class="language-crystal"><span class="c"># define your own handler</span>
-config.async <span class="o">=</span> -&gt;(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>) {
+config.async <span class="o">=</span> <span class="o">-&gt;</span>(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>) {
   spawn { <span class="t">Raven</span>.send_event(event) }
 }
 <span class="c"># or use default implementation based on fibers (i.e. the one above)</span>
@@ -457,7 +469,7 @@ that will send Sentry notifications in the background.
 Rather than enqueuing an entire <code><a href="Raven/Event.html">Raven::Event</a></code> object, we recommend providing
 the <code>Hash</code> representation of an event as a job argument.</p>
 <p>Here’s an example for <em>Sidekiq.cr</em>:</p>
-<pre><code class="language-crystal">config.async <span class="o">=</span> -&gt;(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>) {
+<pre><code class="language-crystal">config.async <span class="o">=</span> <span class="o">-&gt;</span>(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span>) {
   <span class="c"># enqueue the job with a hash...</span>
   <span class="t">SentryJob</span>.async.perform(event.to_hash)
   <span class="c"># or with JSON string</span>
@@ -484,7 +496,7 @@ the <code>Hash</code> representation of an event as a job argument.</p>
 <p>If Raven fails to send an event to Sentry for any reason
 (either the Sentry server has returned a 4XX or 5XX response),
 this <code>Proc</code> will be called.</p>
-<pre><code class="language-crystal">config.transport_failure_callback <span class="o">=</span> -&gt;(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span><span class="t">::</span><span class="t">HashType</span>) {
+<pre><code class="language-crystal">config.transport_failure_callback <span class="o">=</span> <span class="o">-&gt;</span>(event : <span class="t">Raven</span><span class="t">::</span><span class="t">Event</span><span class="t">::</span><span class="t">HashType</span>) {
   <span class="t">AdminMailer</span>.async.perform(<span class="s">&quot;Oh god, it&#39;s on fire!&quot;</span>, event)
 }</code></pre>
 <h4><a id="context" class="anchor" href="#context">
@@ -525,7 +537,7 @@ directly from the original <code>Log::Entry</code>.</p>
   </svg>
 </a>Usage</h3>
 <pre><code class="language-crystal"><span class="c"># append it to the existing bindings</span>
-<span class="t">Log</span>.builder.bind <span class="s">&quot;*&quot;</span>, <span class="n">:info</span>, <span class="t">Raven</span><span class="t">::</span><span class="t">LogBackend</span>.<span class="k">new</span>(
+<span class="t">Log</span>.builder.bind <span class="s">&quot;*&quot;</span>, <span class="n">:info</span>, <span class="t">Raven</span><span class="t">::</span><span class="t">LogBackend</span>.new(
   record_breadcrumbs: <span class="n">true</span>,
   capture_exceptions: <span class="n">false</span>,
   capture_all: <span class="n">false</span>,
@@ -534,12 +546,12 @@ directly from the original <code>Log::Entry</code>.</p>
 <span class="c"># or bind it within the `Log.setup` block</span>
 <span class="t">Log</span>.setup <span class="k">do</span> <span class="o">|</span>c<span class="o">|</span>
   <span class="c"># bind the regular io-based backend</span>
-  c.bind <span class="s">&quot;*&quot;</span>, <span class="n">:info</span>, <span class="t">Log</span><span class="t">::</span><span class="t">IOBackend</span>.<span class="k">new</span>
+  c.bind <span class="s">&quot;*&quot;</span>, <span class="n">:info</span>, <span class="t">Log</span><span class="t">::</span><span class="t">IOBackend</span>.new
 
   <span class="c"># bind raven&#39;s backend</span>
-  c.bind <span class="s">&quot;*&quot;</span>, <span class="n">:info</span>, <span class="t">Raven</span><span class="t">::</span><span class="t">LogBackend</span>.<span class="k">new</span>(record_breadcrumbs: <span class="n">true</span>)
-  c.bind <span class="s">&quot;*&quot;</span>, <span class="n">:warn</span>, <span class="t">Raven</span><span class="t">::</span><span class="t">LogBackend</span>.<span class="k">new</span>(capture_exceptions: <span class="n">true</span>)
-  c.bind <span class="s">&quot;*&quot;</span>, <span class="n">:fatal</span>, <span class="t">Raven</span><span class="t">::</span><span class="t">LogBackend</span>.<span class="k">new</span>(capture_all: <span class="n">true</span>)
+  c.bind <span class="s">&quot;*&quot;</span>, <span class="n">:info</span>, <span class="t">Raven</span><span class="t">::</span><span class="t">LogBackend</span>.new(record_breadcrumbs: <span class="n">true</span>)
+  c.bind <span class="s">&quot;*&quot;</span>, <span class="n">:warn</span>, <span class="t">Raven</span><span class="t">::</span><span class="t">LogBackend</span>.new(capture_exceptions: <span class="n">true</span>)
+  c.bind <span class="s">&quot;*&quot;</span>, <span class="n">:fatal</span>, <span class="t">Raven</span><span class="t">::</span><span class="t">LogBackend</span>.new(capture_all: <span class="n">true</span>)
 <span class="k">end</span></code></pre>
 <p>See more in Crystal's <code>Log</code> <a href="https://crystal-lang.org/api/Log.html#configure-logging-explicitly-in-the-code">documentation</a>.</p>
 <h2><a id="crash-handler" class="anchor" href="#crash-handler">
@@ -565,7 +577,7 @@ external binary.</p>
 binary built in <code>bin/sentry.crash_handler</code>.</p>
 <p><strong>NOTE</strong>: While building you might specify <code>SENTRY_DSN</code> env variable, which will be
 compiled into the binary (as plain-text) and used by the handler.</p>
-<pre><code class="language-sh">SENTRY_DSN= shards build sentry.crash_handler</code></pre>
+<pre><code class="language-sh">SENTRY_DSN=&lt;your_dsn&gt; shards build sentry.crash_handler</code></pre>
 <p>Pass <code>--release</code> flag to disable debug messages.</p>
 <h3><a id="usage-2" class="anchor" href="#usage-2">
   <svg class="octicon-link" aria-hidden="true">
