@@ -16,7 +16,7 @@ private class InstanceTest < Raven::Instance
   end
 end
 
-private def with_instance(context = nil)
+private def with_instance(context = nil, &)
   yield InstanceTest.new(context, build_configuration)
 end
 

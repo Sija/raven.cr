@@ -69,7 +69,7 @@ module Raven
     end
 
     # :ditto:
-    def configure
+    def configure(&)
       yield configuration
       configure
     end
@@ -127,7 +127,7 @@ module Raven
     #   event.extra.merge! foo: "bar"
     # end
     # ```
-    def capture(obj : Exception | String, **options, &block)
+    def capture(obj : Exception | String, **options, &)
       unless configuration.capture_allowed?(obj)
         Log.debug {
           "'#{obj}' excluded from capture: #{configuration.error_messages}"
@@ -190,7 +190,7 @@ module Raven
     # NOTE: Useful in scenarios where you need to reconstruct the error
     # (usually along with a backtrace from external source), while
     # having no access to the actual Exception object.
-    def capture(klass : String, message : String, backtrace : String? = nil, **options, &block)
+    def capture(klass : String, message : String, backtrace : String? = nil, **options, &)
       formatted_message = "#{klass}: #{message}"
       capture(formatted_message, **options) do |event|
         ex = Interface::SingleException.new.tap do |iface|
@@ -219,7 +219,7 @@ module Raven
     #   MyApp.run
     # end
     # ```
-    def capture(**options, &block)
+    def capture(**options, &)
       yield
     rescue ex : Raven::Error
       raise ex # Don't capture Raven errors

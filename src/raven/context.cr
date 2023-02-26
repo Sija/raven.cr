@@ -25,8 +25,13 @@ module Raven
     end
 
     class_getter runtime_context : AnyHash::JSON do
-      v = Crystal::DESCRIPTION.match /^(.+?) (\d+[^\n]+)\n+LLVM: (\d+[^\n]+)\nDefault target: (.+?)$/m
-      _, name, version = v.not_nil!
+      version_pattern = /^(.+?) (\d+[^\n]+)\n+LLVM: (\d+[^\n]+)\nDefault target: (.+?)$/m
+
+      unless match = Crystal::DESCRIPTION.match(version_pattern)
+        raise Raven::Error.new("Couldn't parse runtime version")
+      end
+
+      _, name, version, _llvm_version, _target = match
       {
         name:    name,
         version: version,

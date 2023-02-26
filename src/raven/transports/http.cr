@@ -14,6 +14,7 @@ module Raven
     private def build_client
       ssl = configuration.ssl
       ssl = configuration.scheme == "https" if ssl.nil?
+      # ameba:disable Lint/NotNil
       ::HTTP::Client.new(configuration.host.not_nil!, configuration.port, ssl).tap do |client|
         client.before_request do |request|
           request.headers["User-Agent"] = Client::USER_AGENT

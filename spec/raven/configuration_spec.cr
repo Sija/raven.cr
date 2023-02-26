@@ -12,13 +12,13 @@ private class RandomSampleFail < Random::PCG32
   end
 end
 
-private def with_configuration
+private def with_configuration(&)
   with_clean_env do
     yield Raven::Configuration.new
   end
 end
 
-private def with_configuration_with_dsn
+private def with_configuration_with_dsn(&)
   with_configuration do |configuration|
     configuration.dsn = "http://12345:67890@sentry.localdomain:3000/sentry/42"
     yield configuration

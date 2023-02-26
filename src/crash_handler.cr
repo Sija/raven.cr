@@ -73,7 +73,7 @@ module Raven
       end
     end
 
-    private def capture_with_options(*args, **options)
+    private def capture_with_options(*args, **options, &)
       options = DEFAULT_OPTS.merge(options)
       capture(*args, **options) do |event|
         yield event
@@ -84,7 +84,7 @@ module Raven
       capture_with_options(*args, **options) { }
     end
 
-    private def capture_with_options(**options)
+    private def capture_with_options(**options, &)
       yield
     rescue ex : Raven::Error
       raise ex # Don't capture Raven errors

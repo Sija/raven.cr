@@ -1,6 +1,6 @@
 require "../spec_helper"
 
-private def with_breadcrumb_buffer
+private def with_breadcrumb_buffer(&)
   breadcrumbs = Raven::BreadcrumbBuffer.new(10)
   yield breadcrumbs
 end
