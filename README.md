@@ -285,6 +285,41 @@ As one would expect, `STDIN` is passed to the original process, while
 __NOTE__: You can always pass `SENTRY_DSN` env variable during execution
 in case you didn't do it while building the wrapper.
 
+## Integrations
+
+### Marten
+
+Raven.cr provides an integration that allows you to get automatic error reporting for the [Marten web framework](https://github.com/martenframework/marten) by using a dedicated [middleware](https://martenframework.com/docs/handlers-and-http/middlewares).
+
+To get started, make sure that Raven.cr is [properly required and configured](#usage). You should also ensure that `raven/integrations/marten` is required by your project. In a Marten project, you'll likely create a `config/initializers/raven.cr` initializer where you require and configure the Raven client for your project. For example:
+
+```crystal
+# config/initializers/raven.cr
+
+require "raven"
+require "raven/integrations/marten"
+
+Raven.configure do |config|
+  config.dsn = "your_dsn"
+end
+```
+
+To get automatic error reporting for your project, you need to add the `Raven::Marten::Middleware` middleware class to the [`middleware`](https://martenframework.com/docs/development/reference/settings#middleware) Marten setting. Ideally, this middleware should be placed near the beginning of the `middleware` array to ensure that it can catch any errors raised by the following middlewares in the stack. For example:
+
+```crystal
+# config/settings/base.cr
+
+Marten.configure do |config|
+  config.middleware = [
+    Raven::Marten::Middleware,
+    # Other middlewares...
+    Marten::Middleware::GZip,
+    Marten::Middleware::XFrameOptions,
+    Marten::Middleware::StrictTransportSecurity,
+  ]
+end
+```
+
 ## More Information
 
 - [Documentation](https://docs.sentry.io/clients/ruby)

@@ -19,6 +19,9 @@ development_dependencies:
   ameba:
     github: crystal-ameba/ameba
     version: ~> 1.4.0
+  marten:
+    github: martenframework/marten
+    version: ~> 0.2.0
 
 targets:
   crash_handler:
