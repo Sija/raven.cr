@@ -1,11 +1,5 @@
 require "logger"
 
-# TODO: remove after/if https://github.com/crystal-lang/crystal/pull/9570 is merged
-struct Log::Entry
-  def initialize(@source : String, @severity : Severity, @message : String, @data : Log::Metadata, @exception : Exception?, @timestamp : Time)
-  end
-end
-
 class Logger
   property :__raven_log_backend { Raven::LogBackend.new(record_breadcrumbs: true) }
 
