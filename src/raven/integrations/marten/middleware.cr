@@ -34,7 +34,7 @@ module Raven
           url << request.scheme
           url << "://"
           url << request.host
-          url << ":#{request.port}" if !["80", "443"].includes?(request.port)
+          url << ":#{request.port}" unless request.port.in?("80", "443")
           url << request.full_path
         end
       end
