@@ -41,11 +41,9 @@ module Raven
 
       private def capture(request, error)
         Raven.capture(error) do |event|
-          data = if CAPTURE_DATA_FOR_METHODS.includes?(request.method)
-                   prepare_data(request.data)
-                 else
-                   nil
-                 end
+          if CAPTURE_DATA_FOR_METHODS.includes?(request.method)
+            data = prepare_data(request.data)
+          end
 
           event.culprit = "#{request.method} #{request.path}"
           event.logger ||= "marten"
