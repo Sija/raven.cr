@@ -19,11 +19,12 @@ module Raven
       def call(request : ::Marten::HTTP::Request, get_response : Proc(::Marten::HTTP::Response)) : ::Marten::HTTP::Response
         get_response.call
       rescue error
-        unless error.is_a?(::Marten::HTTP::Errors::NotFound | ::Marten::Routing::Errors::NoResolveMatch)
+        case error
+        when ::Marten::HTTP::Errors::NotFound, ::Marten::Routing::Errors::NoResolveMatch
           capture(request, error)
+        else
+          raise error
         end
-
-        raise error
       end
 
       private CAPTURE_DATA_FOR_METHODS = %w(POST PUT PATCH)
