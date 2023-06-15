@@ -63,13 +63,11 @@ module Raven
       end
 
       private def prepare_data(data)
-        prepared_data = {} of String => Array(String)
-
-        data.each do |k, v|
-          prepared_data[k] = v.map(&.to_s)
+        ({} of String => Array(String)).tap do |prepared_data|
+          data.each do |k, v|
+            prepared_data[k] = v.map(&.to_s)
+          end
         end
-
-        prepared_data
       end
     end
   end
