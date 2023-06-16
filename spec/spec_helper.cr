@@ -1,6 +1,7 @@
 require "spec"
 require "log/spec"
 require "../src/raven"
+require "./ext/**"
 
 # Make sure we reset the env in case something leaks in
 def with_clean_env(&)
