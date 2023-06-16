@@ -21,8 +21,9 @@ module Raven
       rescue error
         case error
         when ::Marten::HTTP::Errors::NotFound, ::Marten::Routing::Errors::NoResolveMatch
-          capture(request, error)
+          raise error
         else
+          capture(request, error)
           raise error
         end
       end
