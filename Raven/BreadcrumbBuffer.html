@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Crystal Docs 1.9.2">
+<meta name="generator" content="Crystal Docs 1.10.1">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="raven">
 
@@ -383,7 +383,7 @@
   </h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/30d884f/src/raven/breadcrumb_buffer.cr#L2" target="_blank">
+      <a href="https://github.com/Sija/raven.cr/blob/990a765/src/raven/breadcrumb_buffer.cr#L2" target="_blank">
         raven/breadcrumb_buffer.cr
       </a>
     
@@ -437,6 +437,8 @@
 
 
 
+
+
   <h2>
     <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
   <svg class="octicon-link" aria-hidden="true">
@@ -462,7 +464,7 @@
       <li class="entry-summary">
         <a href="#empty%3F-instance-method" class="signature"><strong>#empty?</strong></a>
         
-          <div class="summary"><p>Returns <code>true</code> if <code>self</code> is empty, <code>false</code> otherwise.</p></div>
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code> does not contain any element.</p></div>
         
       </li>
     
@@ -505,8 +507,6 @@
 
 
 
-
-
 <div class="methods-inherited">
   
     
@@ -518,17 +518,26 @@
     
 
 
-  
-    
-
-
-    
-
-
     
 
 
   
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
     
 
 
@@ -562,7 +571,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/30d884f/src/raven/breadcrumb_buffer.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/990a765/src/raven/breadcrumb_buffer.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -590,7 +599,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/30d884f/src/raven/breadcrumb_buffer.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/990a765/src/raven/breadcrumb_buffer.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -606,11 +615,13 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/30d884f/src/raven/breadcrumb_buffer.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/990a765/src/raven/breadcrumb_buffer.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
   
+
+
 
 
 
@@ -634,7 +645,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/30d884f/src/raven/breadcrumb_buffer.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/990a765/src/raven/breadcrumb_buffer.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -659,7 +670,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/30d884f/src/raven/breadcrumb_buffer.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/990a765/src/raven/breadcrumb_buffer.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -678,15 +689,19 @@
               Description copied from module Enumerable(<a href="../Raven/Breadcrumb.html">Raven::Breadcrumb</a>)
             </div>
           
-          <p>Returns <code>true</code> if <code>self</code> is empty, <code>false</code> otherwise.</p>
+          <p>Returns <code>true</code> if <code>self</code> does not contain any element.</p>
 <pre><code class="language-crystal">(<span class="o">[]</span> <span class="k">of</span> <span class="t">Int32</span>).empty? <span class="c"># =&gt; true</span>
-([<span class="n">1</span>]).empty?         <span class="c"># =&gt; false</span></code></pre>
+([<span class="n">1</span>]).empty?         <span class="c"># =&gt; false</span>
+[<span class="n">nil</span>, <span class="n">false</span>].empty?  <span class="c"># =&gt; false</span></code></pre>
+<ul>
+<li><code>#present?</code> returns the inverse.</li>
+</ul>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/30d884f/src/raven/breadcrumb_buffer.cr#L59" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/990a765/src/raven/breadcrumb_buffer.cr#L59" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -702,7 +717,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/30d884f/src/raven/breadcrumb_buffer.cr#L45" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/990a765/src/raven/breadcrumb_buffer.cr#L45" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -718,7 +733,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/30d884f/src/raven/breadcrumb_buffer.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/990a765/src/raven/breadcrumb_buffer.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -734,7 +749,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/30d884f/src/raven/breadcrumb_buffer.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/990a765/src/raven/breadcrumb_buffer.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -750,7 +765,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/30d884f/src/raven/breadcrumb_buffer.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/990a765/src/raven/breadcrumb_buffer.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -766,7 +781,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/30d884f/src/raven/breadcrumb_buffer.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/990a765/src/raven/breadcrumb_buffer.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -782,7 +797,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/30d884f/src/raven/breadcrumb_buffer.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/990a765/src/raven/breadcrumb_buffer.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -798,13 +813,11 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/30d884f/src/raven/breadcrumb_buffer.cr#L63" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/990a765/src/raven/breadcrumb_buffer.cr#L63" target="_blank">View source</a>]
         
       </div>
     </div>
   
-
-
 
 
 </div>
