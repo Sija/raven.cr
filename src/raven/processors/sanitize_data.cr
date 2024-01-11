@@ -98,7 +98,7 @@ module Raven
       query_hash = process(query_hash)
       # TODO: need to make a PR with some API improvements to `HTTP::Params`
       sanitized = String.build do |io|
-        builder = HTTP::Params::Builder.new(io)
+        builder = URI::Params::Builder.new(io)
         query_hash.each do |name, values|
           values.as(Array).each do |value|
             builder.add(name.to_s, value.to_s)
