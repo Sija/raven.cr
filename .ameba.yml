@@ -1,0 +1,6 @@
+Documentation/DocumentationAdmonition:
+  Timezone: UTC
+  Excluded:
+  - src/raven/integrations/lucky.cr
+  - src/raven/processors/sanitize_data.cr
+  - src/raven/log_backend.cr

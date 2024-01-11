@@ -28,7 +28,7 @@ module Raven
         {% begin %}
           {%
             properties = @type.methods
-              .select { |m| m.name.ends_with?('=') && m.args.size == 1 }
+              .select { |method| method.name.ends_with?('=') && method.args.size == 1 }
               .map(&.name[0...-1].symbolize)
               .uniq
           %}

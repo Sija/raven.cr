@@ -78,7 +78,9 @@ module Raven
     end
 
     private def encode(data)
-      data = @processors.reduce(data) { |v, p| p.process(v) }
+      data = @processors.reduce(data) do |v, processor|
+        processor.process(v)
+      end
 
       io = IO::Memory.new
       data.to_json(io)

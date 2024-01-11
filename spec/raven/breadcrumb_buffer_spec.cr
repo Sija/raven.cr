@@ -11,9 +11,9 @@ describe Raven::BreadcrumbBuffer do
       breadcrumbs.empty?.should be_true
 
       crumb = nil
-      breadcrumbs.record do |b|
-        b.message = "test"
-        crumb = b
+      breadcrumbs.record do |breadcrumb|
+        breadcrumb.message = "test"
+        crumb = breadcrumb
       end
 
       breadcrumbs.empty?.should be_false

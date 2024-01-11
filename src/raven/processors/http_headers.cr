@@ -10,7 +10,7 @@ module Raven
 
     private getter fields_pattern : Regex {
       fields = DEFAULT_FIELDS | sanitize_http_headers
-      fields.map! { |f| use_boundary?(f) ? /\b#{f}\b/ : f }
+      fields.map! { |field| use_boundary?(field) ? /\b#{field}\b/ : field }
       Regex.union(fields)
     }
 

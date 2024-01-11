@@ -1,5 +1,6 @@
 require "./raven"
 
+# ameba:disable Naming/BlockParameterName
 Log.setup do |c|
   level = case
           when {{ flag?(:release) }} then Log::Severity::None
