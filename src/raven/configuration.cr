@@ -315,7 +315,7 @@ module Raven
       self.dsn = URI.parse(value)
     end
 
-    def detect_release : String?
+    private def detect_release : String?
       detect_release_from_env ||
         detect_release_from_git ||
         detect_release_from_capistrano ||
@@ -457,11 +457,11 @@ module Raven
       false
     end
 
-    def raven_error?(message_or_ex)
+    private def raven_error?(message_or_ex)
       message_or_ex.is_a?(Raven::Error)
     end
 
-    def excluded_exception?(ex)
+    private def excluded_exception?(ex)
       return false unless ex.is_a?(Exception)
       return false unless excluded_exceptions.any? do |klass|
                             case klass
