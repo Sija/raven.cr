@@ -61,7 +61,7 @@ module Raven
         value.map { |i| process(key, i).as(AnyHash::JSONTypes::Value) }
       when String
         case
-        when value =~ fields_pattern && (json = parse_json_or_nil(value))
+        when value.matches?(fields_pattern) && (json = parse_json_or_nil(value))
           process(json).to_json
         when matches_regexes?(key, value)
           STRING_MASK
@@ -109,8 +109,8 @@ module Raven
     end
 
     private def matches_regexes?(key, value)
-      return true if sanitize_credit_cards? && value.to_s =~ CREDIT_CARD_PATTERN
-      return true if key.to_s =~ fields_pattern
+      return true if sanitize_credit_cards? && value.to_s.matches?(CREDIT_CARD_PATTERN)
+      return true if key.to_s.matches?(fields_pattern)
     end
   end
 end
