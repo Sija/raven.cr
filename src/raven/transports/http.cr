@@ -52,9 +52,9 @@ module Raven
     end
 
     def send_event(auth_header, data, **options)
-      unless configuration.capture_allowed?
-        Log.debug { "Event not sent: #{configuration.error_messages}" }
-        return
+      if ex = configuration.capture_allowed!
+        Log.debug { "Event not sent: #{ex.error_messages}" }
+        return false
       end
 
       project_id = configuration.project_id

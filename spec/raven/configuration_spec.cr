@@ -81,6 +81,7 @@ describe Raven::Configuration do
 
         configuration.environments = %w(test)
         configuration.capture_allowed?.should be_true
+        configuration.capture_allowed!.should be_nil
       end
     end
 
@@ -90,7 +91,8 @@ describe Raven::Configuration do
 
         configuration.environments = %w(not_test)
         configuration.capture_allowed?.should be_false
-        configuration.errors.should eq(["Not configured to send/capture in environment 'test'"])
+        ex = configuration.capture_allowed!.should_not be_nil
+        ex.errors.should eq(["Not configured to send/capture in environment 'test'"])
       end
     end
   end
@@ -135,8 +137,11 @@ describe Raven::Configuration do
         configuration.should_capture = ->(obj : Exception | String) { obj != "don't send me" }
 
         configuration.capture_allowed?("don't send me").should be_false
-        configuration.errors.should eq(["#should_capture returned false"])
+        ex = configuration.capture_allowed!("don't send me").should_not be_nil
+        ex.errors.should eq(["#should_capture returned false"])
+
         configuration.capture_allowed?("send me").should be_true
+        configuration.capture_allowed!("send me").should be_nil
       end
     end
   end
@@ -147,7 +152,8 @@ describe Raven::Configuration do
         configuration.dsn = "dummy://trololo"
 
         configuration.capture_allowed?.should be_false
-        configuration.errors.should eq([
+        ex = configuration.capture_allowed!.should_not be_nil
+        ex.errors.should eq([
           "No :public_key specified",
           "No :project_id specified",
         ])
@@ -162,7 +168,8 @@ describe Raven::Configuration do
         configuration.random = RandomSampleFail.new
 
         configuration.capture_allowed?.should be_false
-        configuration.errors.should eq(["Excluded by random sample"])
+        ex = configuration.capture_allowed!.should_not be_nil
+        ex.errors.should eq(["Excluded by random sample"])
       end
     end
 
