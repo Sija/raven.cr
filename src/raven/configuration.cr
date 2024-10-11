@@ -3,6 +3,21 @@ require "json"
 
 module Raven
   class Configuration
+    class ValidationError < Exception
+      getter errors : Array(String)
+
+      def initialize(@errors)
+      end
+
+      def error_messages : String
+        errors
+          .map_with_index do |e, i|
+            i > 0 ? e.downcase : e
+          end
+          .join(", ")
+      end
+    end
+
     # Array of required properties needed to be set, before
     # `Configuration` is considered valid.
     REQUIRED_OPTIONS = %i(host public_key project_id)
@@ -242,9 +257,6 @@ module Raven
     # :ditto:
     property before_send : Proc(Event, Event::Hint?, Event?)?
 
-    # Errors object - an `Array` containing error messages.
-    getter errors = [] of String
-
     def initialize
       @current_environment = current_environment_from_env
       @exclude_loggers = ["#{Log.source}.*"]
@@ -338,8 +350,7 @@ module Raven
     end
 
     private def heroku_dyno_name
-      return unless running_on_heroku?
-      ENV["DYNO"]?
+      ENV["DYNO"]? if running_on_heroku?
     end
 
     # Try to resolve the hostname to an FQDN, but fall back to whatever
@@ -362,44 +373,92 @@ module Raven
       end
     end
 
-    def capture_allowed?
-      @errors = [] of String
-      valid? &&
-        capture_in_current_environment? &&
-        sample_allowed?
+    protected def validate
+      %w[].tap do |errors|
+        if dsn
+          {% for key in REQUIRED_OPTIONS %}
+            unless self.{{ key.id }}
+              errors << "No {{ key }} specified"
+            end
+          {% end %}
+        else
+          errors << "DSN not set"
+        end
+      end
     end
 
-    def capture_allowed?(message_or_ex)
-      @errors = [] of String
-      capture_allowed? &&
-        !raven_error?(message_or_ex) &&
-        !excluded_exception?(message_or_ex) &&
-        capture_allowed_by_callback?(message_or_ex)
+    def validate! : ValidationError?
+      errors = validate
+      ValidationError.new(errors) unless errors.empty?
+    end
+
+    def valid? : Bool
+      validate.empty?
+    end
+
+    protected def capture_allowed
+      validate.tap do |errors|
+        next unless errors.empty?
+
+        unless capture_in_current_environment?
+          errors << "Not configured to send/capture in environment '#{@current_environment}'"
+        end
+        unless sample_allowed?
+          errors << "Excluded by random sample"
+        end
+      end
+    end
+
+    def capture_allowed! : ValidationError?
+      errors = capture_allowed
+      ValidationError.new(errors) unless errors.empty?
+    end
+
+    def capture_allowed? : Bool
+      capture_allowed.empty?
+    end
+
+    protected def capture_allowed(message_or_ex)
+      capture_allowed.tap do |errors|
+        next unless errors.empty?
+
+        if raven_error?(message_or_ex)
+          errors << "Refusing to capture Raven error: #{message_or_ex.inspect}"
+        end
+        if excluded_exception?(message_or_ex)
+          errors << "User excluded error: #{message_or_ex.inspect}"
+        end
+        unless capture_allowed_by_callback?(message_or_ex)
+          errors << "#should_capture returned false"
+        end
+      end
+    end
+
+    def capture_allowed!(message_or_ex) : ValidationError?
+      errors = capture_allowed(message_or_ex)
+      ValidationError.new(errors) unless errors.empty?
+    end
+
+    def capture_allowed?(message_or_ex) : Bool
+      capture_allowed(message_or_ex).empty?
     end
 
     private def capture_in_current_environment?
-      return true if environments.empty? || environments.includes?(@current_environment)
-      @errors << "Not configured to send/capture in environment '#{@current_environment}'"
-      false
+      environments.empty? || environments.includes?(@current_environment)
     end
 
     private def capture_allowed_by_callback?(message_or_ex)
-      return true if !should_capture || should_capture.try &.call(message_or_ex)
-      @errors << "#should_capture returned false"
-      false
+      !should_capture || should_capture.try &.call(message_or_ex)
     end
 
     private def sample_allowed?
       return true if sample_rate == 1.0
-      return true unless random.rand >= sample_rate
-      @errors << "Excluded by random sample"
+      return true if random.rand < sample_rate
       false
     end
 
     def raven_error?(message_or_ex)
-      return false unless message_or_ex.is_a?(Raven::Error)
-      @errors << "Refusing to capture Raven error: #{message_or_ex.inspect}"
-      true
+      message_or_ex.is_a?(Raven::Error)
     end
 
     def excluded_exception?(ex)
@@ -410,31 +469,7 @@ module Raven
                             when String          then klass == ex.class.name
                             end
                           end
-      @errors << "User excluded error: #{ex.inspect}"
       true
-    end
-
-    def valid?
-      valid = true
-      if dsn
-        {% for key in REQUIRED_OPTIONS %}
-          unless self.{{ key.id }}
-            valid = false
-            @errors << "No {{ key }} specified"
-          end
-        {% end %}
-      else
-        valid = false
-        @errors << "DSN not set"
-      end
-      valid
-    end
-
-    def error_messages : String
-      errors = @errors.map_with_index do |e, i|
-        i > 0 ? e.downcase : e
-      end
-      errors.join(", ")
     end
   end
 end
