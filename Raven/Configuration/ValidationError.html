@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../js/doc.js"></script>
 
   <meta name="repository-name" content="raven">
-  <title>Raven::Interface::Stacktrace - raven master</title>
+  <title>Raven::Configuration::ValidationError - raven master</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -117,7 +117,7 @@
       
     </li>
   
-  <li class="parent " data-id="raven/Raven/Configuration" data-name="raven::configuration">
+  <li class="parent open current" data-id="raven/Raven/Configuration" data-name="raven::configuration">
       <a href="../../Raven/Configuration.html">Configuration</a>
       
         <ul>
@@ -127,7 +127,7 @@
       
     </li>
   
-  <li class=" " data-id="raven/Raven/Configuration/ValidationError" data-name="raven::configuration::validationerror">
+  <li class=" current" data-id="raven/Raven/Configuration/ValidationError" data-name="raven::configuration::validationerror">
       <a href="../../Raven/Configuration/ValidationError.html">ValidationError</a>
       
     </li>
@@ -182,7 +182,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="raven/Raven/Interface" data-name="raven::interface">
+  <li class="parent " data-id="raven/Raven/Interface" data-name="raven::interface">
       <a href="../../Raven/Interface.html">Interface</a>
       
         <ul>
@@ -207,7 +207,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="raven/Raven/Interface/Stacktrace" data-name="raven::interface::stacktrace">
+  <li class="parent " data-id="raven/Raven/Interface/Stacktrace" data-name="raven::interface::stacktrace">
       <a href="../../Raven/Interface/Stacktrace.html">Stacktrace</a>
       
         <ul>
@@ -341,12 +341,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Raven::<wbr>Interface::<wbr>Stacktrace
+  <span class="kind">class</span> Raven::<wbr>Configuration::<wbr>ValidationError
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Raven/Interface/Stacktrace.html">Raven::Interface::Stacktrace</a></li><li class="superclass"><a href="../../Raven/Interface.html">Raven::Interface</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Raven/Configuration/ValidationError.html">Raven::Configuration::ValidationError</a></li><li class="superclass"><a href="../../Exception.html">Exception</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -374,8 +374,8 @@
   </h2>
   
     
-      <a href="https://github.com/Sija/raven.cr/blob/aee9ed4/src/raven/interfaces/stacktrace.cr#L2" target="_blank">
-        raven/interfaces/stacktrace.cr
+      <a href="https://github.com/Sija/raven.cr/blob/aee9ed4/src/raven/configuration.cr#L6" target="_blank">
+        raven/configuration.cr
       </a>
     
     <br/>
@@ -396,30 +396,13 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28%2A%2Aattributes%29-class-method" class="signature"><strong>.new</strong>(**attributes)</a>
+        <a href="#new%28errors%3AArray%28String%29%29-class-method" class="signature"><strong>.new</strong>(errors : Array(String))</a>
         
       </li>
     
   </ul>
 
 
-
-  <h2>
-    <a id="class-method-summary" class="anchor" href="#class-method-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Class Method Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#sentry_alias-class-method" class="signature"><strong>.sentry_alias</strong></a>
-        
-      </li>
-    
-  </ul>
 
 
 
@@ -436,22 +419,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#backtrace%3D%28backtrace%3ABacktracer%3A%3ABacktrace%29-instance-method" class="signature"><strong>#backtrace=</strong>(backtrace : Backtracer::Backtrace)</a>
+        <a href="#error_messages%3AString-instance-method" class="signature"><strong>#error_messages</strong> : String</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#culprit%3AFrame%7CNil-instance-method" class="signature"><strong>#culprit</strong> : Frame | Nil</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#frames%3AArray%28Frame%29-instance-method" class="signature"><strong>#frames</strong> : Array(Frame)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#frames%3D%28frames%3AArray%28Frame%29%29-instance-method" class="signature"><strong>#frames=</strong>(frames : Array(Frame))</a>
+        <a href="#errors%3AArray%28String%29-instance-method" class="signature"><strong>#errors</strong> : Array(String)</a>
         
       </li>
     
@@ -463,68 +436,47 @@
   
     
 
-  <h3>Instance methods inherited from class <code><a href="../../Raven/Interface.html">Raven::Interface</a></code></h3>
+  <h3>Instance methods inherited from class <code><a href="../../Exception.html">Exception</a></code></h3>
   
   
-    <a href="../../Raven/Interface.html#to_hash-instance-method" class="tooltip">
-      <span>to_hash</span>
-    to_hash</a>, 
+    <a href="../../Exception.html#__raven_event_id%3AString%7CNil-instance-method" class="tooltip">
+      <span>__raven_event_id : String | Nil</span>
+    __raven_event_id</a>, 
     
   
-    <a href="../../Raven/Interface.html#to_json%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="tooltip">
-      <span>to_json(*args, **options)<br/>to_json(*args, **options, &)</span>
-    to_json</a>
+    <a href="../../Exception.html#__raven_event_id%3D%28__raven_event_id%3AString%7CNil%29-instance-method" class="tooltip">
+      <span>__raven_event_id=(__raven_event_id : String | Nil)</span>
+    __raven_event_id=</a>, 
     
   
-
-
-    
-
-
-    
-
-  <h3>Class methods inherited from class <code><a href="../../Raven/Interface.html">Raven::Interface</a></code></h3>
-  
-  
-    <a href="../../Raven/Interface.html#%5B%5D%28name%3ASymbol%29%3AInterface.class-class-method" class="tooltip">
-      <span>[](name : Symbol) : <span class="t">Interface</span>.<span class="k">class</span></span>
-    []</a>, 
+    <a href="../../Exception.html#__raven_extra%3AAnyHash%3A%3AJSON-instance-method" class="tooltip">
+      <span>__raven_extra : AnyHash::JSON</span>
+    __raven_extra</a>, 
     
   
-    <a href="../../Raven/Interface.html#%5B%5D%3D%28name%3ASymbol%2Cklass%3AInterface.class%29-class-method" class="tooltip">
-      <span>[]=(name : Symbol, klass : <span class="t">Interface</span>.<span class="k">class</span>)</span>
-    []=</a>, 
+    <a href="../../Exception.html#__raven_extra%3D%28__raven_extra%3AAnyHash%3A%3AJSON%29-instance-method" class="tooltip">
+      <span>__raven_extra=(__raven_extra : AnyHash::JSON)<br/>__raven_extra=(hash : Hash | NamedTuple | Nil)</span>
+    __raven_extra=</a>, 
     
   
-    <a href="../../Raven/Interface.html#%5B%5D%3F%28name%3ASymbol%29%3AInterface.class%7CNil-class-method" class="tooltip">
-      <span>[]?(name : Symbol) : <span class="t">Interface</span>.<span class="k">class</span> | Nil</span>
-    []?</a>, 
+    <a href="../../Exception.html#__raven_tags%3AAnyHash%3A%3AJSON-instance-method" class="tooltip">
+      <span>__raven_tags : AnyHash::JSON</span>
+    __raven_tags</a>, 
     
   
-    <a href="../../Raven/Interface.html#registered-class-method" class="tooltip">
-      <span>registered</span>
-    registered</a>, 
+    <a href="../../Exception.html#__raven_tags%3D%28__raven_tags%3AAnyHash%3A%3AJSON%29-instance-method" class="tooltip">
+      <span>__raven_tags=(__raven_tags : AnyHash::JSON)<br/>__raven_tags=(hash : Hash | NamedTuple | Nil)</span>
+    __raven_tags=</a>, 
     
   
-    <a href="../../Raven/Interface.html#sentry_alias%3ASymbol-class-method" class="tooltip">
-      <span>sentry_alias : Symbol</span>
-    sentry_alias</a>
+    <a href="../../Exception.html#__raven_user%3AAnyHash%3A%3AJSON-instance-method" class="tooltip">
+      <span>__raven_user : AnyHash::JSON</span>
+    __raven_user</a>, 
     
   
-
-
-    
-
-
-  
-    
-
-  <h3>Instance methods inherited from module <code><a href="../../Raven/Mixin/InitializeWith.html">Raven::Mixin::InitializeWith</a></code></h3>
-  
-  
-    <a href="../../Raven/Mixin/InitializeWith.html#initialize_with%28attributes%29-instance-method" class="tooltip">
-      <span>initialize_with(attributes)<br/>initialize_with(**attributes)</span>
-    initialize_with</a>
+    <a href="../../Exception.html#__raven_user%3D%28__raven_user%3AAnyHash%3A%3AJSON%29-instance-method" class="tooltip">
+      <span>__raven_user=(__raven_user : AnyHash::JSON)<br/>__raven_user=(hash : Hash | NamedTuple | Nil)</span>
+    __raven_user=</a>
     
   
 
@@ -577,50 +529,24 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(**attributes)-class-method">
+    <div class="entry-detail" id="new(errors:Array(String))-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(**attributes)
+        def self.<strong>new</strong>(errors : Array(String))
 
-        <a class="method-permalink" href="#new%28%2A%2Aattributes%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28errors%3AArray%28String%29%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/aee9ed4/src/raven/interfaces/stacktrace.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/aee9ed4/src/raven/configuration.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
   
 
 
-
-  <h2>
-    <a id="class-method-detail" class="anchor" href="#class-method-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Class Method Detail
-  </h2>
-  
-    <div class="entry-detail" id="sentry_alias-class-method">
-      <div class="signature">
-        
-        def self.<strong>sentry_alias</strong>
-
-        <a class="method-permalink" href="#sentry_alias-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/aee9ed4/src/raven/interfaces/stacktrace.cr#L5" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 
@@ -635,66 +561,34 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="backtrace=(backtrace:Backtracer::Backtrace)-instance-method">
+    <div class="entry-detail" id="error_messages:String-instance-method">
       <div class="signature">
         
-        def <strong>backtrace=</strong>(backtrace : Backtracer::Backtrace)
+        def <strong>error_messages</strong> : String
 
-        <a class="method-permalink" href="#backtrace%3D%28backtrace%3ABacktracer%3A%3ABacktrace%29-instance-method">#</a>
+        <a class="method-permalink" href="#error_messages%3AString-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/aee9ed4/src/raven/interfaces/stacktrace.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/aee9ed4/src/raven/configuration.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="culprit:Frame|Nil-instance-method">
+    <div class="entry-detail" id="errors:Array(String)-instance-method">
       <div class="signature">
         
-        def <strong>culprit</strong> : <a href="../../Raven/Interface/Stacktrace/Frame.html">Frame</a> | Nil
+        def <strong>errors</strong> : Array(String)
 
-        <a class="method-permalink" href="#culprit%3AFrame%7CNil-instance-method">#</a>
+        <a class="method-permalink" href="#errors%3AArray%28String%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/Sija/raven.cr/blob/aee9ed4/src/raven/interfaces/stacktrace.cr#L17" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="frames:Array(Frame)-instance-method">
-      <div class="signature">
-        
-        def <strong>frames</strong> : Array(<a href="../../Raven/Interface/Stacktrace/Frame.html">Frame</a>)
-
-        <a class="method-permalink" href="#frames%3AArray%28Frame%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/aee9ed4/src/raven/interfaces/stacktrace.cr#L3" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="frames=(frames:Array(Frame))-instance-method">
-      <div class="signature">
-        
-        def <strong>frames=</strong>(frames : Array(<a href="../../Raven/Interface/Stacktrace/Frame.html">Frame</a>))
-
-        <a class="method-permalink" href="#frames%3D%28frames%3AArray%28Frame%29%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/Sija/raven.cr/blob/aee9ed4/src/raven/interfaces/stacktrace.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/Sija/raven.cr/blob/aee9ed4/src/raven/configuration.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
