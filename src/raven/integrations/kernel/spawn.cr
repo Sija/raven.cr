@@ -1,5 +1,5 @@
 def spawn(*, name : String? = nil, &block)
-  wrapped_block = ->{
+  wrapped_block = -> {
     begin
       block.call
     rescue ex

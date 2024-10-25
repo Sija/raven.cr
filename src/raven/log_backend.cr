@@ -59,7 +59,7 @@ module Raven
       @record_breadcrumbs = false,
       @capture_exceptions = false,
       @capture_all = false,
-      @default_logger = "logger"
+      @default_logger = "logger",
     )
       super(dispatch_mode)
     end

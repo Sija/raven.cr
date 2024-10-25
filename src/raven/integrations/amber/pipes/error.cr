@@ -28,7 +28,7 @@ module Raven
         def initialize(
           @culprit_pattern = "%{verb} %{controller}#%{action} (%{valve})",
           @capture_data_for_methods = %w(POST PUT PATCH),
-          @default_logger = "amber"
+          @default_logger = "amber",
         )
         end
 
