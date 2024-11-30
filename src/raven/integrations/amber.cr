@@ -19,7 +19,7 @@ module Raven
     # Returns full URL string for `HTTP::Request`.
     def self.build_request_url(req : HTTP::Request)
       String.build do |url|
-        url << ::Amber::Server.instance.scheme << "://" << req.host_with_port << req.resource
+        url << ::Amber::Server.instance.scheme << "://" << req.headers["Host"]? << req.resource
       end
     end
   end

@@ -16,7 +16,7 @@ module Raven
   # ```
   module ActionController
     def self.build_request_url(req : HTTP::Request)
-      "#{::ActionController::Support.request_protocol(req)}://#{req.host_with_port}#{req.resource}"
+      "#{::ActionController::Support.request_protocol(req)}://#{req.headers["Host"]?}#{req.resource}"
     end
   end
 end

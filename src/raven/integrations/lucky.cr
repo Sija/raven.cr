@@ -22,7 +22,7 @@ module Raven
       base_uri = URI.parse(::Lucky::RouteHelper.settings.base_uri)
       String.build do |url|
         # TODO: Use just `::Lucky::RouteHelper.settings.base_uri` if possible
-        url << base_uri.scheme << "://" << req.host_with_port << req.resource
+        url << base_uri.scheme << "://" << req.headers["Host"]? << req.resource
       end
     end
   end
