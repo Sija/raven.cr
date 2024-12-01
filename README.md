@@ -29,7 +29,7 @@ from folks at [@getsentry](https://github.com/getsentry).
 - [x] Interfaces (Message, Exception, Stacktrace, User, HTTP, ...)
 - [x] Contexts (user, tags, extra, os, runtime)
 - [x] Breadcrumbs
-- [x] Integrations ([Kemal](https://github.com/kemalcr/kemal), [Amber](https://github.com/amberframework/amber), [Lucky](https://github.com/luckyframework/lucky), [Sidekiq.cr](https://github.com/mperham/sidekiq.cr), [action-controller](https://github.com/spider-gazelle/action-controller))
+- [x] Integrations ([Kemal](https://github.com/kemalcr/kemal), [Amber](https://github.com/amberframework/amber), [Lucky](https://github.com/luckyframework/lucky), [Sidekiq.cr](https://github.com/mperham/sidekiq.cr), [action-controller](https://github.com/spider-gazelle/action-controller), [Grip](https://github.com/grip-framework/grip))
 - [x] Async support
 - [x] User Feedback
 - [x] Source code context for stack traces
