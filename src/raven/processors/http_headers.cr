@@ -8,11 +8,11 @@ module Raven
       !(field.is_a?(Regex) || field.in?(DEFAULT_FIELDS))
     end
 
-    private getter fields_pattern : Regex {
+    private getter fields_pattern : Regex do
       fields = DEFAULT_FIELDS | sanitize_http_headers
       fields.map! { |field| use_boundary?(field) ? /\b#{field}\b/ : field }
       Regex.union(fields)
-    }
+    end
 
     def initialize(client)
       super

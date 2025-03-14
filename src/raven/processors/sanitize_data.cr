@@ -16,12 +16,12 @@ module Raven
       !(field.is_a?(Regex) || field.in?(DEFAULT_FIELDS))
     end
 
-    private getter fields_pattern : Regex {
+    private getter fields_pattern : Regex do
       fields = DEFAULT_FIELDS | sanitize_fields
       fields -= sanitize_fields_excluded
       fields.map! { |field| use_boundary?(field) ? /\b#{field}\b/ : field }
       Regex.union(fields)
-    }
+    end
 
     def initialize(client)
       super
@@ -82,9 +82,9 @@ module Raven
       JSON.parse(string).raw rescue nil
     end
 
-    private getter utf8_processor : Processor::UTF8Conversion {
+    private getter utf8_processor : Processor::UTF8Conversion do
       Processor::UTF8Conversion.new(@client)
-    }
+    end
 
     private def sanitize_query_string(query_string)
       # TODO: figure out some cleaner solution - other than, equally bad:

@@ -49,9 +49,9 @@ module Raven
     def report_status
       return if configuration.silence_ready?
       if ex = configuration.capture_allowed!
-        Log.info {
+        Log.info do
           "Raven #{VERSION} configured not to capture errors: #{ex.error_messages}"
-        }
+        end
       else
         Log.info { "Raven #{VERSION} ready to catch errors" }
       end
@@ -129,9 +129,9 @@ module Raven
     # ```
     def capture(obj : Exception | String, **options, &)
       if ex = configuration.capture_allowed!(obj)
-        Log.debug {
+        Log.debug do
           "'#{obj}' excluded from capture: #{ex.error_messages}"
-        }
+        end
         return false
       end
       default_options = {

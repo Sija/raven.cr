@@ -124,13 +124,13 @@ module Raven
     property project_id : UInt64?
 
     # Project directory root for revision detection. Could be Kemal root, etc.
-    property project_root : String {
+    property project_root : String do
       if path = Process.executable_path
         File.dirname path
       else
         Dir.current
       end
-    }
+    end
 
     # Public key for authentication with the Sentry server.
     #
