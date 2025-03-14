@@ -193,7 +193,7 @@ describe Raven::Event do
     end
   end
 
-  {% for key in %i(user extra tags) %}
+  {% for key in %i[user extra tags] %}
     context "with {{key.id}} context specified" do
       it "prioritizes event context" do
         Raven.{{key.id}}_context({

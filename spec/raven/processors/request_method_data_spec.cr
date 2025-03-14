@@ -1,15 +1,15 @@
 require "./spec_helper"
 
-TESTED_METHODS        = %w(GET POST PUT PATCH)
+TESTED_METHODS        = %w[GET POST PUT PATCH]
 TESTED_CONFIGURATIONS = {
-  %w(POST PUT PATCH),
-  %w(POST),
-  %w(PUT),
-  %w(PATCH),
-  %w(POST PUT),
-  %w(PUT PATCH),
-  %w(POST PATCH),
-  %w(),
+  %w[POST PUT PATCH],
+  %w[POST],
+  %w[PUT],
+  %w[PATCH],
+  %w[POST PUT],
+  %w[PUT PATCH],
+  %w[POST PATCH],
+  %w[],
 }
 
 def test_data_with_method(method)

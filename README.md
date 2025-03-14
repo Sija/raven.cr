@@ -120,7 +120,7 @@ And, while not necessary if using `SENTRY_DSN`, you can also provide an
 
 ```crystal
 Raven.configure do |config|
-  config.environments = %w(staging production)
+  config.environments = %w[staging production]
 end
 ```
 

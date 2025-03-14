@@ -87,7 +87,7 @@ module Raven
     any_json_property :contexts, :user, :tags, :extra
 
     def self.from(ex : Exception, **options)
-      {% for key in %i(user tags extra) %}
+      {% for key in %i[user tags extra] %}
         ex_context = ex.@__raven_{{ key.id }}
         if options_context = options[{{ key }}]?
           options = options.merge({

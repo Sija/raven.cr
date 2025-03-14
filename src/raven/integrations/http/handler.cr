@@ -4,7 +4,7 @@ module Raven
 
     # See `CULPRIT_PATTERN_KEYS`
     property culprit_pattern : String?
-    property capture_data_for_methods = %w(POST PUT PATCH)
+    property capture_data_for_methods = %w[POST PUT PATCH]
     property default_logger : String?
 
     protected def culprit_from(context)

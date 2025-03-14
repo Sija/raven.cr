@@ -16,11 +16,11 @@ module Raven
       include Raven::HTTPHandler
 
       # See `::Kemal::Route`
-      CULPRIT_PATTERN_KEYS = %i(method path)
+      CULPRIT_PATTERN_KEYS = %i[method path]
 
       def initialize(
         @culprit_pattern = "%{method} %{path}",
-        @capture_data_for_methods = %w(POST PUT PATCH),
+        @capture_data_for_methods = %w[POST PUT PATCH],
         @default_logger = "kemal",
       )
       end

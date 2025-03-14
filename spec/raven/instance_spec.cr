@@ -56,7 +56,7 @@ describe Raven::Instance do
       end
     end
 
-    {% for key in %i(user extra tags) %}
+    {% for key in %i[user extra tags] %}
       context "with {{key.id}} context specified" do
         it "merges context hierarchy" do
           with_instance do |instance|
@@ -230,7 +230,7 @@ describe Raven::Instance do
     it "logs not ready message if the config does not send in current environment" do
       with_instance do |instance|
         instance.configuration.silence_ready = false
-        instance.configuration.environments = %w(production)
+        instance.configuration.environments = %w[production]
 
         Log.capture do |logs|
           instance.report_status

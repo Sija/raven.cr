@@ -23,11 +23,11 @@ module Raven
         include Raven::HTTPHandler
 
         # See `::Amber::Route`
-        CULPRIT_PATTERN_KEYS = %i(verb resource controller action valve scope trail)
+        CULPRIT_PATTERN_KEYS = %i[verb resource controller action valve scope trail]
 
         def initialize(
           @culprit_pattern = "%{verb} %{controller}#%{action} (%{valve})",
-          @capture_data_for_methods = %w(POST PUT PATCH),
+          @capture_data_for_methods = %w[POST PUT PATCH],
           @default_logger = "amber",
         )
         end

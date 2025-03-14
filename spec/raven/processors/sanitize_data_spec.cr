@@ -17,7 +17,7 @@ describe Raven::Processor::SanitizeData do
   context "configuration for sanitize fields" do
     it "should union default sanitize fields with user-defined sanitize fields" do
       with_processor(SanitizeDataTest) do |processor|
-        processor.sanitize_fields = Raven::Processor::SanitizeData::DEFAULT_FIELDS | %w(test monkeybutt)
+        processor.sanitize_fields = Raven::Processor::SanitizeData::DEFAULT_FIELDS | %w[test monkeybutt]
 
         expected_fields_pattern = /authorization|password|password_repeat|passwd|secret|ssn|(?i-msx:social(.*)?sec)|(?-imsx:\btest\b)|(?-imsx:\bmonkeybutt\b)/
 
@@ -129,7 +129,7 @@ describe Raven::Processor::SanitizeData do
   it "should filter json embedded inside of a Hash" do
     data_with_embedded_json = {
       "data" => {
-        "json"      => %w(foo bar).to_json,
+        "json"      => %w[foo bar].to_json,
         "json_hash" => {"foo" => "bar"}.to_json,
         "sensitive" => {"password" => "secret"}.to_json,
       },
@@ -138,7 +138,7 @@ describe Raven::Processor::SanitizeData do
     result = test_processor.process(data_with_embedded_json)
     result = result.to_any_json
 
-    JSON.parse(result["data", "json"].as(String)).should eq(%w(foo bar))
+    JSON.parse(result["data", "json"].as(String)).should eq(%w[foo bar])
     JSON.parse(result["data", "json_hash"].as(String)).should eq({"foo" => "bar"})
     JSON.parse(result["data", "sensitive"].as(String)).should eq({"password" => STRING_MASK})
   end

@@ -79,7 +79,7 @@ describe Raven::Configuration do
       with_configuration_with_dsn do |configuration|
         configuration.current_environment = "test"
 
-        configuration.environments = %w(test)
+        configuration.environments = %w[test]
         configuration.capture_allowed?.should be_true
         configuration.capture_allowed!.should be_nil
       end
@@ -89,7 +89,7 @@ describe Raven::Configuration do
       with_configuration_with_dsn do |configuration|
         configuration.current_environment = "test"
 
-        configuration.environments = %w(not_test)
+        configuration.environments = %w[not_test]
         configuration.capture_allowed?.should be_false
         ex = configuration.capture_allowed!.should_not be_nil
         ex.errors.should eq(["Not configured to send/capture in environment 'test'"])

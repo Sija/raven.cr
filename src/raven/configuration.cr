@@ -20,7 +20,7 @@ module Raven
 
     # Array of required properties needed to be set, before
     # `Configuration` is considered valid.
-    REQUIRED_OPTIONS = %i(host public_key project_id)
+    REQUIRED_OPTIONS = %i[host public_key project_id]
 
     # Array of exception classes that should never be sent.
     IGNORE_DEFAULT = [] of Exception.class | String
@@ -39,7 +39,7 @@ module Raven
     ] of Processor.class
 
     # Array of default request methods for which data should be removed.
-    DEFAULT_REQUEST_METHODS_FOR_DATA_SANITIZATION = %w(POST PUT PATCH)
+    DEFAULT_REQUEST_METHODS_FOR_DATA_SANITIZATION = %w[POST PUT PATCH]
 
     # Provide a `Proc` object that responds to `call` to send
     # events asynchronously, or pass `true` to to use standard `spawn`.

@@ -49,7 +49,7 @@ module Raven
     end
 
     protected def initialize_from_env
-      {% for key in %i(user extra tags) %}
+      {% for key in %i[user extra tags] %}
         {% env_key = "SENTRY_CONTEXT_#{key.upcase.id}" %}
 
         if %context = ENV[{{ env_key }}]?.presence

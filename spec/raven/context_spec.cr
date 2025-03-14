@@ -1,7 +1,7 @@
 require "../spec_helper"
 
 describe Raven::Context do
-  {% for key in %i(user extra tags) %}
+  {% for key in %i[user extra tags] %}
     {% env_key = "SENTRY_CONTEXT_#{key.upcase.id}" %}
 
     context %(with ENV["{{ env_key.id }}"]?) do
