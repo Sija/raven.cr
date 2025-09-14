@@ -389,7 +389,7 @@ module Raven
 
     def validate! : ValidationError?
       errors = validate
-      ValidationError.new(errors) unless errors.empty?
+      ValidationError.new(errors) if errors.present?
     end
 
     def valid? : Bool
@@ -398,7 +398,7 @@ module Raven
 
     protected def capture_allowed
       validate.tap do |errors|
-        next unless errors.empty?
+        next if errors.present?
 
         unless capture_in_current_environment?
           errors << "Not configured to send/capture in environment '#{@current_environment}'"
@@ -411,7 +411,7 @@ module Raven
 
     def capture_allowed! : ValidationError?
       errors = capture_allowed
-      ValidationError.new(errors) unless errors.empty?
+      ValidationError.new(errors) if errors.present?
     end
 
     def capture_allowed? : Bool
@@ -420,7 +420,7 @@ module Raven
 
     protected def capture_allowed(message_or_ex)
       capture_allowed.tap do |errors|
-        next unless errors.empty?
+        next if errors.present?
 
         if raven_error?(message_or_ex)
           errors << "Refusing to capture Raven error: #{message_or_ex.inspect}"
@@ -436,7 +436,7 @@ module Raven
 
     def capture_allowed!(message_or_ex) : ValidationError?
       errors = capture_allowed(message_or_ex)
-      ValidationError.new(errors) unless errors.empty?
+      ValidationError.new(errors) if errors.present?
     end
 
     def capture_allowed?(message_or_ex) : Bool
@@ -452,9 +452,7 @@ module Raven
     end
 
     private def sample_allowed?
-      return true if sample_rate == 1.0
-      return true if random.rand < sample_rate
-      false
+      sample_rate == 1.0 || random.rand < sample_rate
     end
 
     private def raven_error?(message_or_ex)
@@ -462,14 +460,12 @@ module Raven
     end
 
     private def excluded_exception?(ex)
-      return false unless ex.is_a?(Exception)
-      return false unless excluded_exceptions.any? do |klass|
-                            case klass
-                            when Exception.class then klass >= ex.class
-                            when String          then klass == ex.class.name
-                            end
-                          end
-      true
+      ex.is_a?(Exception) && excluded_exceptions.any? do |klass|
+        case klass
+        when Exception.class then klass >= ex.class
+        when String          then klass == ex.class.name
+        end
+      end
     end
   end
 end
