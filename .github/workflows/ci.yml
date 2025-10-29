@@ -1,10 +1,11 @@
 name: CI
 
 on:
+  workflow_dispatch:
   push:
+    branches: [master]
   pull_request:
-  schedule:
-    - cron: "0 3 * * 1" # Every monday at 3 AM
+    types: [opened, synchronize, reopened]
 
 jobs:
   test:
@@ -47,6 +48,8 @@ jobs:
 
       - name: Check formatting
         run: crystal tool format --check
+        if: success() || failure()
 
       - name: Run ameba linter
         run: bin/ameba
+        if: success() || failure()
