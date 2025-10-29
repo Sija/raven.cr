@@ -48,6 +48,16 @@ describe Raven::Event do
     }
 
     with_event_hash(**opts) do |hash|
+      it "has event id" do
+        event_id = hash[:event_id].should be_a(String)
+        event_id.should match(/\A\w{32}\z/)
+      end
+
+      it "has timestamp" do
+        timestamp = hash[:timestamp].should be_a(String)
+        timestamp.should match(/\A\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\z/)
+      end
+
       it "has message" do
         hash[:message].should eq("test")
       end
