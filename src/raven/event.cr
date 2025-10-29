@@ -235,7 +235,7 @@ module Raven
     def to_hash : HashType
       data = {
         event_id:    @id,
-        timestamp:   @timestamp.to_utc.to_s("%FT%X"),
+        timestamp:   Time::Format::RFC_3339.format(@timestamp.to_utc),
         level:       @level.try(&.to_s.downcase),
         platform:    PLATFORM,
         sdk:         SDK,
