@@ -15,7 +15,7 @@ module Raven
         {% else %}
           keys = {
             {% for key in keys %}
-              "{{key.id}}": context.{{key.id}},
+              "{{ key.id }}": context.{{ key.id }},
             {% end %}
           }
           culprit_pattern.try &.%(keys)

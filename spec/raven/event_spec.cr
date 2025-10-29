@@ -204,9 +204,9 @@ describe Raven::Event do
   end
 
   {% for key in %i[user extra tags] %}
-    context "with {{key.id}} context specified" do
+    context "with {{ key.id }} context specified" do
       it "prioritizes event context" do
-        Raven.{{key.id}}_context({
+        Raven.{{ key.id }}_context({
           "context_event_key" => "context_value",
           "context_key"       => "context_value",
         })
@@ -216,8 +216,8 @@ describe Raven::Event do
           "event_key"         => "event_value",
         }
 
-        with_event_hash({{key.id}}: event_context, clear: false) do |hash|
-          hash[{{key}}].should eq({
+        with_event_hash({{ key.id }}: event_context, clear: false) do |hash|
+          hash[{{ key }}].should eq({
             "context_event_key" => "event_value",
             "context_key"       => "context_value",
             "event_key"         => "event_value",

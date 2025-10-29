@@ -268,7 +268,7 @@ module Raven
 
       # try compile-time ENV variable
       {% if dsn = env("SENTRY_DSN") %}
-        self.dsn = {{dsn}}
+        self.dsn = {{ dsn }}
       {% else %}
         # try runtime ENV variable
         if dsn = ENV["SENTRY_DSN"]?

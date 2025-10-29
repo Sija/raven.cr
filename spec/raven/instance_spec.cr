@@ -57,14 +57,14 @@ describe Raven::Instance do
     end
 
     {% for key in %i[user extra tags] %}
-      context "with {{key.id}} context specified" do
+      context "with {{ key.id }} context specified" do
         it "merges context hierarchy" do
           with_instance do |instance|
             Raven::Context.clear!
-            Raven.{{key.id}}_context(foo: :foo, bar: :bar)
+            Raven.{{ key.id }}_context(foo: :foo, bar: :bar)
 
-            instance.capture("Test message", {{key.id}}: {bar: "baz"}) do |event|
-              event.{{key.id}}.should eq({:foo => :foo, :bar => "baz"})
+            instance.capture("Test message", {{ key.id }}: {bar: "baz"}) do |event|
+              event.{{ key.id }}.should eq({:foo => :foo, :bar => "baz"})
             end
           end
         end
@@ -72,10 +72,10 @@ describe Raven::Instance do
         it "use passed values only within the block" do
           with_instance do |instance|
             Raven::Context.clear!
-            Raven.{{key.id}}_context(will: :stay_there)
-            ctx = Raven.{{key.id}}_context(foo: :foo, bar: :bar) do
-              instance.capture("Test message", {{key.id}}: {bar: "baz"}) do |event|
-                event.{{key.id}}.should eq({
+            Raven.{{ key.id }}_context(will: :stay_there)
+            ctx = Raven.{{ key.id }}_context(foo: :foo, bar: :bar) do
+              instance.capture("Test message", {{ key.id }}: {bar: "baz"}) do |event|
+                event.{{ key.id }}.should eq({
                   :will => :stay_there,
                   :foo => :foo,
                   :bar => "baz"
@@ -83,7 +83,7 @@ describe Raven::Instance do
               end
             end
             ctx.should eq({:will => :stay_there})
-            Raven.{{key.id}}_context.should be(ctx)
+            Raven.{{ key.id }}_context.should be(ctx)
           end
         end
       end
