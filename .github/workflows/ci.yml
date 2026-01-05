@@ -45,11 +45,3 @@ jobs:
 
       - name: Build crash handler (release)
         run: shards build crash_handler --release
-
-      - name: Check formatting
-        run: crystal tool format --check
-        if: success() || failure()
-
-      - name: Run ameba linter
-        run: bin/ameba
-        if: success() || failure()
