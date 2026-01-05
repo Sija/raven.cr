@@ -50,7 +50,6 @@ module Raven
       end
     end
 
-    # ameba:disable Metrics/CyclomaticComplexity
     def process(key, value)
       case value
       when Hash
