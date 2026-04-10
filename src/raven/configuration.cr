@@ -146,7 +146,7 @@ module Raven
     property sample_rate : Float64 = 1.0
 
     # `Random` instance used when `sample_rate` is set.
-    property random : Random { Random::DEFAULT }
+    property random : Random { Random.new }
 
     # Should sanitize values that look like credit card numbers?
     #
