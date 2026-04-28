@@ -274,11 +274,11 @@ describe Raven::Event do
         lib_path = File.expand_path("../../lib/bar", __DIR__)
 
         backtrace = [
-          "#{src_path}/foo.cr:1:7 in 'foo_function'",
-          "#{lib_path}/src/bar.cr:3:10 in 'bar_function'",
-          "#{__DIR__}/some/relative/path:123:4 in 'naughty_function'",
-          "/absolute/path/to/some/file:22:3 in 'function_name'",
-          "some/relative/path:1412:1 in 'other_function'",
+          "#{Path[src_path, "foo.cr"]}:1:7 in 'foo_function'",
+          "#{Path[lib_path, "src", "bar.cr"]}:3:10 in 'bar_function'",
+          "#{Path[__DIR__, "some", "relative", "path"]}:123:4 in 'naughty_function'",
+          "#{Path[Path[Dir.current].anchor.to_s, "absolute", "path", "to", "some", "file"]}:22:3 in 'function_name'",
+          "#{Path["some", "relative", "path"]}:1412:1 in 'other_function'",
         ]
 
         event = Raven::Event.from(message, backtrace: backtrace)
@@ -290,15 +290,15 @@ describe Raven::Event do
         frames[0][:lineno].should eq(1412)
         frames[0][:colno].should eq(1)
         frames[0][:function].should eq("other_function")
-        frames[0][:abs_path].should eq("#{Dir.current}/some/relative/path")
-        frames[0][:filename].should eq("some/relative/path")
+        frames[0][:abs_path].should eq(Path[Dir.current, "some", "relative", "path"].to_s)
+        frames[0][:filename].should eq(Path["some", "relative", "path"].to_s)
         frames[0][:package].should be_nil
         frames[0][:in_app].should be_false
 
         frames[1][:lineno].should eq(22)
         frames[1][:colno].should eq(3)
         frames[1][:function].should eq("function_name")
-        frames[1][:abs_path].should eq("/absolute/path/to/some/file")
+        frames[1][:abs_path].should eq(Path[Path[Dir.current].anchor.to_s, "absolute", "path", "to", "some", "file"].to_s)
         frames[1][:filename].should be_nil
         frames[1][:package].should be_nil
         frames[1][:in_app].should be_false
@@ -306,24 +306,24 @@ describe Raven::Event do
         frames[2][:lineno].should eq(123)
         frames[2][:colno].should eq(4)
         frames[2][:function].should eq("naughty_function")
-        frames[2][:abs_path].should eq("#{__DIR__}/some/relative/path")
-        frames[2][:filename].should eq("spec/raven/some/relative/path")
+        frames[2][:abs_path].should eq(Path[__DIR__, "some", "relative", "path"].to_s)
+        frames[2][:filename].should eq(Path[__DIR__].relative_to(Path[Dir.current]).join("some", "relative", "path").to_s)
         frames[2][:package].should be_nil
         frames[2][:in_app].should be_false
 
         frames[3][:lineno].should eq(3)
         frames[3][:colno].should eq(10)
         frames[3][:function].should eq("bar_function")
-        frames[3][:abs_path].should eq("#{lib_path}/src/bar.cr")
-        frames[3][:filename].should eq("lib/bar/src/bar.cr")
+        frames[3][:abs_path].should eq(Path[lib_path, "src", "bar.cr"].to_s)
+        frames[3][:filename].should eq(Path["lib", "bar", "src", "bar.cr"].to_s)
         frames[3][:package].should eq("bar")
         frames[3][:in_app].should be_false
 
         frames[4][:lineno].should eq(1)
         frames[4][:colno].should eq(7)
         frames[4][:function].should eq("foo_function")
-        frames[4][:abs_path].should eq("#{src_path}/foo.cr")
-        frames[4][:filename].should eq("src/foo.cr")
+        frames[4][:abs_path].should eq(Path[src_path, "foo.cr"].to_s)
+        frames[4][:filename].should eq(Path["src", "foo.cr"].to_s)
         frames[4][:package].should be_nil
         frames[4][:in_app].should be_true
       end
