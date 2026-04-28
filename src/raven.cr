@@ -22,12 +22,22 @@ module Raven
   class_getter instance : Raven::Instance { Raven::Instance.new }
 
   macro sys_command_compiled(command)
-    %result = {{ `(#{command.id} || true) 2>/dev/null`.stringify.strip }}
+    %result =
+      {% if flag?(:windows) %}
+        {{ `#{command.id}`.stringify.strip }}
+      {% else %}
+        {{ `(#{command.id} || true) 2>/dev/null`.stringify.strip }}
+      {% end %}
     %result.presence
   end
 
   def self.sys_command(command)
-    result = `(#{command}) 2>/dev/null`.strip rescue nil
+    result =
+      {% if flag?(:windows) %}
+        `#{command}`.strip rescue nil
+      {% else %}
+        `(#{command}) 2>/dev/null`.strip rescue nil
+      {% end %}
     result.presence if $?.success?
   end
 end
