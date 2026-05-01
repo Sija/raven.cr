@@ -1,13 +1,12 @@
 require "./raven"
 
-# ameba:disable Naming/BlockParameterName
-Log.setup do |c|
+Log.setup do |config|
   level = case
           when {{ flag?(:release) }} then Log::Severity::None
           when {{ flag?(:debug) }}   then Log::Severity::Debug
           else                            Log::Severity::Error
           end
-  c.bind("raven.*", level, Log::IOBackend.new)
+  config.bind("raven.*", level, Log::IOBackend.new)
 end
 
 module Raven
@@ -26,7 +25,7 @@ module Raven
     # [0x105798128] main +40
     # ```
     CRYSTAL_CRASH_PATTERN =
-      /(?<message>[^\n]+)\n(?<backtrace>\[(?<addr>0x[a-f0-9]+)\] .*)$/im
+      /(?<message>[^\n]+)\n(?<backtrace>\[(?:0x[a-f0-9]+)\] .*)$/im
 
     # Example:
     #
@@ -49,9 +48,11 @@ module Raven
 
     # Process executable path.
     property name : String
+
     # An `Array` of arguments passed to process.
     property args : Array(String)?
 
+    # A private `Raven::Instance` object.
     getter raven : Instance { Instance.new }
 
     delegate :context, :configuration, :configure, :capture,
@@ -102,6 +103,7 @@ module Raven
       capture_with_options msg do |event|
         event.level = :fatal
         event.backtrace = backtrace
+
         # we need to overwrite the fingerprint due to varied
         # pointer addresses in crash messages, otherwise resulting
         # in new event per crash
@@ -162,21 +164,22 @@ module Raven
 
         captured = false
         error.try &.scan CRYSTAL_EXCEPTION_PATTERN do |match|
-          msg = match["message"]
-          klass = match["class"]
-          backtrace = match["backtrace"]
-          in_fiber = match["in_fiber"]?
-          fiber_name = match["fiber_name"]?
+          msg, klass, backtrace =
+            match["message"], match["class"], match["backtrace"]
+
+          in_fiber, fiber_name =
+            !!match["in_fiber"]?, match["fiber_name"]?
+
           capture_crystal_exception(klass, msg, backtrace, tags: {
-            in_fiber:   !!in_fiber,
+            in_fiber:   in_fiber,
             fiber_name: fiber_name,
           })
           captured = true
         end
         unless success
           if error =~ CRYSTAL_CRASH_PATTERN
-            msg = $~["message"]
-            backtrace = $~["backtrace"]
+            msg, backtrace = $~["message"], $~["backtrace"]
+
             capture_crystal_crash(msg, backtrace)
             captured = true
           end
