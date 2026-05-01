@@ -167,7 +167,6 @@ module Raven
           backtrace = match["backtrace"]
           in_fiber = match["in_fiber"]?
           fiber_name = match["fiber_name"]?
-          backtrace = backtrace.gsub /^\s*from\s*/m, ""
           capture_crystal_exception(klass, msg, backtrace, tags: {
             in_fiber:   !!in_fiber,
             fiber_name: fiber_name,
