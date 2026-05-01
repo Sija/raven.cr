@@ -199,7 +199,7 @@ end
 name, args = ARGV[0], ARGV.size > 1 ? ARGV[1..] : nil
 handler = Raven::CrashHandler.new(name, args)
 handler.raven.tap do |raven|
-  raven.configuration.src_path = Dir.current
+  raven.configuration.src_path = Path[Dir.current]
   raven.user_context({
     username: `whoami`.chomp,
   })

@@ -42,7 +42,7 @@ describe Raven::Configuration do
 
   it "should set #src_path to current dir from default" do
     with_configuration do |configuration|
-      configuration.src_path.should eq(Dir.current)
+      configuration.src_path.should eq(Path[Dir.current])
     end
   end
 
