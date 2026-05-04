@@ -12,15 +12,15 @@ module Raven
     property sanitize_fields_excluded : Array(String | Regex)
     property? sanitize_credit_cards : Bool
 
-    private def use_boundary?(field)
-      !(field.is_a?(Regex) || field.in?(DEFAULT_FIELDS))
-    end
-
     private getter fields_pattern : Regex do
       fields = DEFAULT_FIELDS | sanitize_fields
       fields -= sanitize_fields_excluded
       fields.map! { |field| use_boundary?(field) ? /\b#{field}\b/ : field }
       Regex.union(fields)
+    end
+
+    private getter utf8_processor : Processor::UTF8Conversion do
+      Processor::UTF8Conversion.new(@client)
     end
 
     def initialize(client)
@@ -76,13 +76,13 @@ module Raven
       end
     end
 
+    private def use_boundary?(field)
+      !(field.is_a?(Regex) || field.in?(DEFAULT_FIELDS))
+    end
+
     private def parse_json_or_nil(string)
       return unless string.starts_with?('[') || string.starts_with?('{')
       JSON.parse(string).raw rescue nil
-    end
-
-    private getter utf8_processor : Processor::UTF8Conversion do
-      Processor::UTF8Conversion.new(@client)
     end
 
     private def sanitize_query_string(query_string)
@@ -93,8 +93,10 @@ module Raven
         query_hash[key] ||= [] of String
         query_hash[key] << value
       end
+
       query_hash = utf8_processor.process(query_hash)
       query_hash = process(query_hash)
+
       # TODO: need to make a PR with some API improvements to `HTTP::Params`
       sanitized = String.build do |io|
         builder = URI::Params::Builder.new(io)
@@ -108,8 +110,8 @@ module Raven
     end
 
     private def matches_regexes?(key, value)
-      return true if sanitize_credit_cards? && value.to_s.matches?(CREDIT_CARD_PATTERN)
-      return true if key.to_s.matches?(fields_pattern)
+      (sanitize_credit_cards? && value.to_s.matches?(CREDIT_CARD_PATTERN)) ||
+        key.to_s.matches?(fields_pattern)
     end
   end
 end
