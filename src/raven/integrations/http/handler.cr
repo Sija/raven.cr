@@ -44,31 +44,36 @@ module Raven
       call_next(context)
     rescue ex
       Raven.capture(ex) do |event|
-        request = context.request
-        method = request.method
-
-        build_raven_culprit_context(context).try do |obj|
-          culprit_from(obj).try do |culprit|
-            event.culprit = culprit
-          end
-        end
-        default_logger.try do |logger|
-          event.logger ||= logger
-        end
-        if capture_data_for_methods.includes?(method)
-          data = build_raven_http_data(context)
-        end
-        event.interface :http, {
-          headers:      headers_to_hash(request.headers),
-          cookies:      cookies_to_string(request.cookies),
-          method:       method,
-          url:          build_raven_http_url(context),
-          query_string: request.query,
-          data:         data,
-        }
+        setup_event_from_context event, context
         on_raven_event event, context
       end
       raise ex
+    end
+
+    protected def setup_event_from_context(event, context)
+      request = context.request
+      method = request.method
+
+      build_raven_culprit_context(context).try do |obj|
+        culprit_from(obj).try do |culprit|
+          event.culprit = culprit
+        end
+      end
+      default_logger.try do |logger|
+        event.logger ||= logger
+      end
+      if method.in?(capture_data_for_methods)
+        data = build_raven_http_data(context)
+      end
+      event.interface :http, {
+        headers:      headers_to_hash(request.headers),
+        cookies:      cookies_to_string(request.cookies),
+        method:       method,
+        url:          build_raven_http_url(context),
+        query_string: request.query,
+        data:         data,
+      }
+      event
     end
   end
 end
