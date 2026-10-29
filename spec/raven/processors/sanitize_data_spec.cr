@@ -143,6 +143,47 @@ describe Raven::Processor::SanitizeData do
     JSON.parse(result["data", "sensitive"].as(String)).should eq({"password" => STRING_MASK})
   end
 
+  it "should filter json arrays and nested json values" do
+    data_with_embedded_json = {
+      "data" => {
+        "array"  => [{"password" => "secret"}].to_json,
+        "nested" => {
+          "password" => "secret",
+          "items"    => [1, {"secret" => "secret"}],
+          "hash"     => {"foo" => "bar", "passwd" => "secret"},
+        }.to_json,
+      },
+    }
+
+    result = test_processor.process(data_with_embedded_json)
+    result = result.to_any_json
+
+    JSON.parse(result["data", "array"].as(String))
+      .should eq([{"password" => STRING_MASK}])
+    JSON.parse(result["data", "nested"].as(String)).should eq({
+      "password" => STRING_MASK,
+      "items"    => [1, {"secret" => STRING_MASK}],
+      "hash"     => {"foo" => "bar", "passwd" => STRING_MASK},
+    })
+  end
+
+  it "should filter JSON::Any values" do
+    # e.g. `Log` metadata, as passed by `Raven::LogBackend`
+    extra = JSON.parse({
+      password: "secret",
+      nested:   {passwd: "secret", foo: "bar"},
+      items:    [{secret: "secret"}],
+    }.to_json).as_h
+    event = Raven::Event.new(configuration: build_configuration, extra: extra)
+
+    result = test_processor.process(event.to_hash)
+    result = result.to_any_json
+
+    result[:extra, "password"].should eq(STRING_MASK)
+    result[:extra, "nested"].should eq({"passwd" => STRING_MASK, "foo" => "bar"})
+    result[:extra, "items"].should eq([{"secret" => STRING_MASK}])
+  end
+
   it "should not fail when json is invalid" do
     data_with_invalid_json = {
       "data" => {

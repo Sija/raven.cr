@@ -34,10 +34,7 @@ module Raven
       case data
       when Hash(String, JSON::Any)
         data = data.each_with_object(AnyHash::JSON.new) do |(k, v), memo|
-          case v = v.raw
-          when AnyHash::JSONTypes::Value
-            memo[k] = process(k, v)
-          end
+          memo[k] = process(k, v)
         end
         data.to_h
       when Hash
@@ -52,6 +49,8 @@ module Raven
 
     def process(key, value)
       case value
+      when JSON::Any
+        process(key, value.raw)
       when Hash
         process(value)
       when Array
@@ -61,7 +60,7 @@ module Raven
       when String
         case
         when value.matches?(fields_pattern) && (json = parse_json_or_nil(value))
-          process(json).to_json
+          process(key, json).to_json
         when matches_regexes?(key, value)
           STRING_MASK
         when key == :query_string || key == "query_string"
@@ -82,7 +81,7 @@ module Raven
 
     private def parse_json_or_nil(string)
       return unless string.starts_with?('[') || string.starts_with?('{')
-      JSON.parse(string).raw rescue nil
+      JSON.parse(string) rescue nil
     end
 
     private def sanitize_query_string(query_string)
