@@ -269,6 +269,15 @@ describe Raven::Event do
         Raven::Event.from(message, logger: "logger").logger.should eq("logger")
       end
 
+      it "trims messages exceeding the size limit in bytes" do
+        long_message = "😀" * Raven::Event::MAX_MESSAGE_SIZE_IN_BYTES
+        trimmed = Raven::Event.from(long_message).message.should_not be_nil
+
+        trimmed.bytesize.should be <= Raven::Event::MAX_MESSAGE_SIZE_IN_BYTES
+        trimmed.valid_encoding?.should be_true
+        trimmed.should end_with(" [...]")
+      end
+
       it "accepts a stacktrace" do
         src_path = File.expand_path("../../src", __DIR__)
         lib_path = File.expand_path("../../lib/bar", __DIR__)
