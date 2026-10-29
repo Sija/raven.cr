@@ -28,6 +28,15 @@ module Raven
       end
     end
 
+    private def with_client(&)
+      client = build_client
+      begin
+        yield client
+      ensure
+        client.close
+      end
+    end
+
     def send_feedback(event_id, data)
       headers = ::HTTP::Headers.new
       # https://github.com/getsentry/sentry-swift/blob/7e0ae98ad49c16331a43c9a58b03be3e56c7a5a3/Sources/SentryEndpoint.swift#L154
@@ -45,9 +54,10 @@ module Raven
       end
       Log.debug { "HTTP Transport connecting to #{path}" }
 
-      client = build_client
-      client.post(path, form: data, headers: headers).tap do |response|
-        raise Error.new response unless response.success?
+      with_client do |client|
+        client.post(path, form: data, headers: headers).tap do |response|
+          raise Error.new response unless response.success?
+        end
       end
     end
 
@@ -69,9 +79,10 @@ module Raven
       end
       Log.debug { "HTTP Transport connecting to #{configuration.dsn}" }
 
-      client = build_client
-      client.post("#{path}/api/#{project_id}/store/", headers, data).tap do |response|
-        raise Error.new response unless response.success?
+      with_client do |client|
+        client.post("#{path}/api/#{project_id}/store/", headers, data).tap do |response|
+          raise Error.new response unless response.success?
+        end
       end
     end
   end
