@@ -38,7 +38,7 @@ module Raven
     #   from /usr/local/Cellar/crystal/0.26.0/src/crystal/main.cr:133:3 in 'main'
     # ```
     CRYSTAL_EXCEPTION_PATTERN =
-      /Unhandled exception(?<in_fiber> in spawn(?:\(name: (?<fiber_name>.*?)\))?)?: (?<message>[^\n]+) \((?<class>[A-Z]\w+)\)\n(?<backtrace>(?:\s+from\s+.*?){1,})$/m
+      /Unhandled exception(?<in_fiber> in spawn(?:\(name: (?<fiber_name>.*?)\))?)?: (?<message>[^\n]+) \((?<class>[A-Z][\w:]*)\)\n(?<backtrace>(?:\s+from\s+.*?){1,})$/m
 
     # Default event options.
     DEFAULT_OPTS = {
