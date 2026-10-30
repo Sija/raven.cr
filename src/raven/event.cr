@@ -207,8 +207,10 @@ module Raven
     end
 
     private def trim_message(message, ellipsis = " [...]")
-      if message.size > MAX_MESSAGE_SIZE_IN_BYTES
+      if message.bytesize > MAX_MESSAGE_SIZE_IN_BYTES
         message = message.byte_slice(0, MAX_MESSAGE_SIZE_IN_BYTES - ellipsis.bytesize)
+        # drop a multi-byte character possibly cut in half by `byte_slice`
+        message = message.scrub("")
         message += ellipsis
       end
       message
