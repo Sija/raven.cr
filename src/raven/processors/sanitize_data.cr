@@ -32,14 +32,6 @@ module Raven
 
     def process(data)
       case data
-      when Hash(String, JSON::Any)
-        data = data.each_with_object(AnyHash::JSON.new) do |(k, v), memo|
-          case v = v.raw
-          when AnyHash::JSONTypes::Value
-            memo[k] = process(k, v)
-          end
-        end
-        data.to_h
       when Hash
         data = data.each_with_object(data.to_any_json) do |(k, v), memo|
           memo[k] = process(k, v)
@@ -50,20 +42,24 @@ module Raven
       end
     end
 
+    # ameba:disable Metrics/CyclomaticComplexity
     def process(key, value)
       case value
+      when JSON::Any
+        process(key, value.raw)
       when Hash
-        process(value)
-      when Array
+        # mask the container as a whole, since its own keys may not be sensitive
+        sensitive_key?(key) ? STRING_MASK : process(value)
+      when Array, Set
         # TODO: Simplify this clusterfuck once linked issue is closed
         # https://github.com/crystal-lang/crystal/issues/7441
         value.map { |i| process(key, i).as(AnyHash::JSONTypes::Value) }
       when String
         case
-        when value.matches?(fields_pattern) && (json = parse_json_or_nil(value))
-          process(json).to_json
         when matches_regexes?(key, value)
           STRING_MASK
+        when value.matches?(fields_pattern) && (json = parse_json_or_nil(value))
+          process(key, json).to_json
         when key == :query_string || key == "query_string"
           sanitize_query_string(value)
         else
@@ -82,7 +78,7 @@ module Raven
 
     private def parse_json_or_nil(string)
       return unless string.starts_with?('[') || string.starts_with?('{')
-      JSON.parse(string).raw rescue nil
+      JSON.parse(string) rescue nil
     end
 
     private def sanitize_query_string(query_string)
@@ -109,9 +105,13 @@ module Raven
       sanitized.to_s
     end
 
+    private def sensitive_key?(key)
+      key.to_s.matches?(fields_pattern)
+    end
+
     private def matches_regexes?(key, value)
       (sanitize_credit_cards? && value.to_s.matches?(CREDIT_CARD_PATTERN)) ||
-        key.to_s.matches?(fields_pattern)
+        sensitive_key?(key)
     end
   end
 end
