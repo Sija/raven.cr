@@ -184,6 +184,70 @@ describe Raven::Processor::SanitizeData do
     result[:extra, "items"].should eq([{"secret" => STRING_MASK}])
   end
 
+  context "with containers under sensitive keys" do
+    it "should mask JSON::Any containers as a whole" do
+      extra = JSON.parse({
+        password: {value: "secret"},
+        secret:   [{value: "secret"}, "secret"],
+      }.to_json).as_h
+      event = Raven::Event.new(configuration: build_configuration, extra: extra)
+
+      result = test_processor.process(event.to_hash)
+      result = result.to_any_json
+
+      result[:extra, "password"].should eq(STRING_MASK)
+      result[:extra, "secret"].should eq([STRING_MASK, STRING_MASK])
+    end
+
+    it "should mask hashes as a whole" do
+      data = {
+        "password" => {"value" => "secret"},
+        "nested"   => {"passwd" => {"value" => "secret"}, "foo" => "bar"},
+      }
+
+      result = test_processor.process(data)
+      result = result.to_any_json
+
+      result["password"].should eq(STRING_MASK)
+      result["nested"].should eq({"passwd" => STRING_MASK, "foo" => "bar"})
+    end
+
+    it "should mask hashes nested within arrays" do
+      data = {
+        "password" => [{"value" => "secret"}, ["secret", {"value" => "secret"}]],
+      }
+
+      result = test_processor.process(data)
+      result = result.to_any_json
+
+      result["password"].should eq([STRING_MASK, [STRING_MASK, STRING_MASK]])
+    end
+
+    it "should mask sets" do
+      data = {
+        "password" => Set{"secret", {"value" => "secret"}.to_any_json.to_h},
+        "users"    => Set{ {"password" => "secret"}.to_any_json.to_h },
+      }
+
+      result = test_processor.process(data)
+      result = result.to_any_json
+
+      result["password"].should eq([STRING_MASK, STRING_MASK])
+      result["users"].should eq([{"password" => STRING_MASK}])
+    end
+
+    it "should mask JSON strings as a whole" do
+      data = {
+        "secret" => {"password" => "secret", "value" => "secret"}.to_json,
+      }
+
+      result = test_processor.process(data)
+      result = result.to_any_json
+
+      result["secret"].should eq(STRING_MASK)
+    end
+  end
+
   it "should not fail when json is invalid" do
     data_with_invalid_json = {
       "data" => {
