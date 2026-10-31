@@ -40,4 +40,25 @@ describe Raven::Processor::HTTPHeaders do
       result[:request, :headers, "Another-Header"].should eq("still-here")
     end
   end
+
+  it "should treat user-defined headers literally" do
+    with_processor(Raven::Processor::HTTPHeaders) do |processor|
+      processor.sanitize_http_headers << "X.Token"
+
+      data = {
+        :request => {
+          :headers => {
+            "X.Token" => "dontseeme",
+            "XyToken" => "still-here",
+          },
+        },
+      }
+
+      result = processor.process(data)
+      result = result.to_any_json
+
+      result[:request, :headers, "X.Token"].should eq("********")
+      result[:request, :headers, "XyToken"].should eq("still-here")
+    end
+  end
 end

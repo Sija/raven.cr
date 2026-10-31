@@ -19,7 +19,7 @@ describe Raven::Processor::SanitizeData do
       with_processor(SanitizeDataTest) do |processor|
         processor.sanitize_fields = Raven::Processor::SanitizeData::DEFAULT_FIELDS | %w[test monkeybutt]
 
-        expected_fields_pattern = /authorization|password|password_repeat|passwd|secret|ssn|(?i-msx:social(.*)?sec)|(?-imsx:\btest\b)|(?-imsx:\bmonkeybutt\b)/
+        expected_fields_pattern = /authorization|password|password_repeat|passwd|secret|ssn|(?i-msx:social(.*)?sec)|(?-imsx:(?<!\w)test(?!\w))|(?-imsx:(?<!\w)monkeybutt(?!\w))/
 
         processor.fields_pattern.should eq(expected_fields_pattern)
       end
@@ -86,6 +86,30 @@ describe Raven::Processor::SanitizeData do
       vars["user_field"].should eq(STRING_MASK)
       vars["user_field_foo"].should eq("hello")
       vars["query_string"].should eq("foo=bar")
+    end
+  end
+
+  it "should treat user-defined fields literally" do
+    with_processor(Raven::Processor::SanitizeData) do |processor|
+      processor.sanitize_fields.clear
+      processor.sanitize_fields << "api.key" << "$token"
+
+      data = {
+        "api.key"   => "hello",
+        "apixkey"   => "hello",
+        "$token"    => "hello",
+        "my_$token" => "hello",
+        "$tokens"   => "hello",
+      }
+
+      result = processor.process(data)
+      result = result.to_any_json
+
+      result["api.key"].should eq(STRING_MASK)
+      result["apixkey"].should eq("hello")
+      result["$token"].should eq(STRING_MASK)
+      result["my_$token"].should eq("hello")
+      result["$tokens"].should eq("hello")
     end
   end
 
